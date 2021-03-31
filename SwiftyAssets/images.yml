@@ -1,0 +1,14 @@
+gearshape:
+    height: 24
+
+ellipsis_circle:
+    height: 24
+
+play_circle:
+    height: 40
+
+clear:
+    height: 24
+
+square_and_arrow_down:
+    height: 24

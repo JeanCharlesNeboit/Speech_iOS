@@ -1,0 +1,3 @@
+[submodule "Dependencies/SwiftyKit"]
+	path = Dependencies/SwiftyKit
+	url = git@github.com:JeanCharlesNeboit/SwiftyKit.git

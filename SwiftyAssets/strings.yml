@@ -1,0 +1,35 @@
+#
+# strings.yml
+# Speech
+#
+# Created by Jean-Charles Neboit on 29/03/2021.
+#
+
+## Generic
+generic_messages:
+    fr: Messages
+
+generic_settings:
+    fr: Réglages
+
+generic_cancel:
+    fr: Annuler
+
+generic_validate:
+    fr: Valider
+
+generic_clear:
+    fr: Effacer
+    
+generic_save:
+    fr: Enregistrer
+
+## EditorArea
+editor_area_placeholder:
+    fr: Entrez le texte à prononcer ici
+
+editor_area_empty_text_on_save_title:
+    fr: Aucun texte saisi !
+    
+editor_area_empty_text_on_save_body:
+    fr: Veuillez entrer un texte avant de continuer.

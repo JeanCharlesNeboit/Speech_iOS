@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="EditorAreaToolbar" customModule="Speech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrI-Eq-UKL">
+                    <rect key="frame" x="20" y="0.0" width="374" height="61"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Mig-tw-gFH">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="61"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="backgroundColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.50196078431372548" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                    <blurEffect style="regular"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-Jb-yJh">
+                    <rect key="frame" x="20" y="0.0" width="374" height="61"/>
+                    <color key="backgroundColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hK-Hc-EUo">
+                    <rect key="frame" x="40" y="10" width="334" height="41"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNk-xP-kaH">
+                            <rect key="frame" x="0.0" y="0.0" width="76" height="41"/>
+                            <state key="normal" title="Effacer*"/>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R33-H9-Gps">
+                            <rect key="frame" x="76" y="0.0" width="67.5" height="41"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxZ-Yq-Iwh">
+                            <rect key="frame" x="143.5" y="0.0" width="41" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="mxZ-Yq-Iwh" secondAttribute="height" id="ose-m6-iXB"/>
+                            </constraints>
+                            <state key="normal" image="play_circle"/>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwV-gn-TFH">
+                            <rect key="frame" x="184.5" y="0.0" width="67.5" height="41"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbA-Vv-EsU">
+                            <rect key="frame" x="252" y="0.0" width="82" height="41"/>
+                            <state key="normal" title="Enregistrer*"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="OwV-gn-TFH" firstAttribute="width" secondItem="R33-H9-Gps" secondAttribute="width" id="zoz-6g-cPt"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="WrI-Eq-UKL" firstAttribute="bottom" secondItem="Feg-Jb-yJh" secondAttribute="bottom" id="0XB-mm-twh"/>
+                <constraint firstItem="Feg-Jb-yJh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="2fS-a2-RIj"/>
+                <constraint firstItem="8hK-Hc-EUo" firstAttribute="top" secondItem="Feg-Jb-yJh" secondAttribute="top" constant="10" id="32H-1W-V2c"/>
+                <constraint firstItem="Feg-Jb-yJh" firstAttribute="trailing" secondItem="8hK-Hc-EUo" secondAttribute="trailing" constant="20" id="NII-Rc-gph"/>
+                <constraint firstAttribute="trailing" secondItem="Feg-Jb-yJh" secondAttribute="trailing" constant="20" id="RQL-yl-wDH"/>
+                <constraint firstItem="Feg-Jb-yJh" firstAttribute="bottom" secondItem="8hK-Hc-EUo" secondAttribute="bottom" constant="10" id="URc-Vv-aq9"/>
+                <constraint firstItem="8hK-Hc-EUo" firstAttribute="leading" secondItem="Feg-Jb-yJh" secondAttribute="leading" constant="20" id="Vwq-LH-aaB"/>
+                <constraint firstItem="WrI-Eq-UKL" firstAttribute="leading" secondItem="Feg-Jb-yJh" secondAttribute="leading" id="YRb-04-KO6"/>
+                <constraint firstAttribute="bottom" secondItem="Feg-Jb-yJh" secondAttribute="bottom" constant="20" id="bzt-8B-6gc"/>
+                <constraint firstItem="WrI-Eq-UKL" firstAttribute="top" secondItem="Feg-Jb-yJh" secondAttribute="top" id="fVH-xB-hNz"/>
+                <constraint firstItem="WrI-Eq-UKL" firstAttribute="trailing" secondItem="Feg-Jb-yJh" secondAttribute="trailing" id="iay-SC-wMt"/>
+                <constraint firstItem="Feg-Jb-yJh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tmq-Qi-hcf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="clearButton" destination="hNk-xP-kaH" id="Ddz-g5-0aA"/>
+                <outlet property="contentView" destination="WrI-Eq-UKL" id="zpr-fh-FYa"/>
+                <outlet property="playButton" destination="mxZ-Yq-Iwh" id="48t-Ji-t9m"/>
+                <outlet property="saveButton" destination="hbA-Vv-EsU" id="WWV-wP-ZyC"/>
+            </connections>
+            <point key="canvasLocation" x="-200" y="115.59220389805098"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="play_circle" width="40" height="40"/>
+    </resources>
+</document>
