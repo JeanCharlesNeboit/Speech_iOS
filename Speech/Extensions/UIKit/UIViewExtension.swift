@@ -8,13 +8,20 @@
 import UIKit
 
 extension UIViewController {
-    static var main: UISplitViewController {
-        let splitViewController = UISplitViewController()
-        splitViewController.preferredDisplayMode = .oneBesideSecondary
-        splitViewController.viewControllers = [
-            NavigationController(rootViewController: MessageListViewController()),
-            NavigationController(rootViewController: EditorAreaViewController())
-        ]
-        return splitViewController
+    static var main: UIViewController {
+        let homeViewController = NavigationController(rootViewController: EditorAreaViewController())
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let splitViewController = UISplitViewController()
+            splitViewController.preferredDisplayMode = .oneBesideSecondary
+//            splitViewController.maximumPrimaryColumnWidth = splitViewController.view.bounds.size.width
+//            splitViewController.preferredPrimaryColumnWidthFraction = 1/2
+            splitViewController.viewControllers = [
+                NavigationController(rootViewController: MessageListViewController()),
+                homeViewController
+            ]
+            return splitViewController
+        } else {
+            return homeViewController
+        }
     }
 }

@@ -37,6 +37,7 @@ class NavigationController: UINavigationController {
     private func configure() {
         NotificationCenter.default.rx
             .notification(UIDevice.orientationDidChangeNotification)
+            .delay(.milliseconds(200), scheduler: MainScheduler.instance)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [self] _ in
                 self.configureNavigation()

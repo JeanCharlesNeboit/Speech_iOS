@@ -8,28 +8,41 @@
 ## Generic
 generic_messages:
     fr: Messages
+    en: Messages
 
 generic_settings:
     fr: Réglages
+    en: Settings
+    
+generic_delete:
+    fr: Supprimer
+    en: Delete
 
 generic_cancel:
     fr: Annuler
+    en: Cancel
 
 generic_validate:
     fr: Valider
+    en: Validate
 
 generic_clear:
     fr: Effacer
+    en: Clear
     
 generic_save:
     fr: Enregistrer
+    en: Save
 
 ## EditorArea
 editor_area_placeholder:
     fr: Entrez le texte à prononcer ici
+    en: Tap text here
 
 editor_area_empty_text_on_save_title:
     fr: Aucun texte saisi !
+    en: No text entered !
     
 editor_area_empty_text_on_save_body:
     fr: Veuillez entrer un texte avant de continuer.
+    en: Please enter text before continue.

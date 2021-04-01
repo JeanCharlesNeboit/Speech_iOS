@@ -61,7 +61,7 @@ class TextView: UITextView {
             .subscribe(onNext: { [weak self] isPlaceholderActive in
                 guard let self = self else { return }
                 self.text = isPlaceholderActive ? self.placeholder : nil
-                self.textColor = isPlaceholderActive ? .lightGray : .black
+                self.textColor = isPlaceholderActive ? AppThemeService.shared.placeholderTextColor : AppThemeService.shared.textColor
             }).disposed(by: disposeBag)
         
         rx.didBeginEditing.subscribe(onNext: { [self] _ in

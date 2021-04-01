@@ -12,3 +12,7 @@ clear:
 
 square_and_arrow_down:
     height: 24
+
+# AppIcon
+app_icon:
+    width: 200

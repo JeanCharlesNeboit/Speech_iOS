@@ -6,17 +6,22 @@
 //
 
 import UIKit
+import SwiftyKit
+import SwiftDate
 
 class MessageTableViewCell: AbstractTableViewCell {
+    // MARK: - IBOutlets
+    @IBOutlet weak var containerView: UIView!
+    
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // containerView.layer.cornerRadius = 10
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // MARK: - Configure
+    func configure(message: Message) {
+        textLabel?.text = message.text
+        detailTextLabel?.text = message.addedDate?.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
     }
 }

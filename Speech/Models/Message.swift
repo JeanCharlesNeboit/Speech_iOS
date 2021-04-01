@@ -13,6 +13,7 @@ class Message: Object {
     @objc private(set) dynamic var id: String?
     @objc private(set) dynamic var text: String?
     @objc private(set) dynamic var addedDate: Date?
+    @objc private(set) dynamic var numberOfUse: Int = 0
     
     // MARK: - Initialization
     convenience init(text: String) {
@@ -25,5 +26,12 @@ class Message: Object {
     // MARK: - Object
     override class func primaryKey() -> String? {
         #keyPath(Message.id)
+    }
+    
+    // MARK: -
+    func incrementNumberOfUse() {
+        try? realm?.write {
+            numberOfUse += 1
+        }
     }
 }

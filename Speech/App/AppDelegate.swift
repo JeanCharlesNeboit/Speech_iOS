@@ -8,7 +8,6 @@
 import UIKit
 import SwiftyKit
 
-@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow?
@@ -20,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         RealmMigrator.setDefaultConfiguration()
         RealmService.default.printDatabaseFilePath()
+        AVAudioSessionService.default.set(category: .playback, mode: .spokenAudio)
         
         return true
     }
