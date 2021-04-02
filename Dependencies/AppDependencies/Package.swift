@@ -17,7 +17,8 @@ let package = Package(
         .package(url: "https://github.com/RxSwiftCommunity/RxDataSources.git", .upToNextMajor(from: "5.0.1")),
         .package(url: "https://github.com/RxSwiftCommunity/RxKeyboard.git", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/malcommac/SwiftDate.git", .upToNextMajor(from: "6.3.1")),
-        .package(url: "https://github.com/SwiftKickMobile/SwiftMessages.git", .upToNextMajor(from: "9.0.2"))
+        .package(url: "https://github.com/SwiftKickMobile/SwiftMessages.git", .upToNextMajor(from: "9.0.2")),
+        .package(name: "TinyConstraints", url: "https://github.com/roberthein/TinyConstraints.git", .upToNextMajor(from: "4.0.1"))
     ],
     targets: [
         .target(name: "AppDependencies",
@@ -30,7 +31,8 @@ let package = Package(
                     .product(name: "RxDataSources", package: "RxDataSources"),
                     .product(name: "RxKeyboard", package: "RxKeyboard"),
                     "SwiftDate",
-                    "SwiftMessages"
+                    "SwiftMessages",
+                    "TinyConstraints"
                 ],
                 path: ".",
                 sources: ["AppDependencies.swift"])

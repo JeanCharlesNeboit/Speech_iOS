@@ -1,18 +1,23 @@
+# AppIcon
+app_icon:
+    width: 200
+
+# NavigationItem
 gearshape:
     height: 24
 
 ellipsis_circle:
     height: 24
+    
+line_horizontal_3_circle:
+    height: 24
 
+# SpeechMode
 play_circle:
     height: 40
 
-clear:
-    height: 24
+pause_circle:
+    height: 40
 
-square_and_arrow_down:
-    height: 24
-
-# AppIcon
-app_icon:
-    width: 200
+stop_circle:
+    height: 40

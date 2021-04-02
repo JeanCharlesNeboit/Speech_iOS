@@ -46,3 +46,16 @@ editor_area_empty_text_on_save_title:
 editor_area_empty_text_on_save_body:
     fr: Veuillez entrer un texte avant de continuer.
     en: Please enter text before continue.
+
+## MessagesList
+messages_list_empty:
+    fr: Aucun message !\nVos messages enregistrés apparaîtront ici.
+    en: No messages !\nYour saved messages will appear here.
+
+messages_list_sort_by_alphabetical_order:
+    fr: Trier par ordre alphabétique
+    en: Sort by alphabetical order
+
+messages_list_sort_by_date_added:
+    fr: Trier par date d'ajout
+    en: Sort by date added

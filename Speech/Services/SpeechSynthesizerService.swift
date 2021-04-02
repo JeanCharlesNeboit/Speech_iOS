@@ -17,12 +17,41 @@ enum SpeechSynthesizerState {
 class SpeechSynthesizerService: NSObject {
     // MARK: - Properties
     static let shared = SpeechSynthesizerService()
+    
+    private let disposeBag = DisposeBag()
     private lazy var speechSynthesizer = AVSpeechSynthesizer()
-    let state = BehaviorSubject<SpeechSynthesizerState>(value: .idle)
+    
+    let stateBehaviorSubject = BehaviorSubject<SpeechSynthesizerState>(value: .idle)
+    var state: SpeechSynthesizerState {
+        (try? stateBehaviorSubject.value()) ?? .idle
+    }
     
     // MARK: - Initialization
     private override init() {
+        super.init()
+        speechSynthesizer.delegate = self
+        listenNotifications()
+    }
+    
+    // MARK: -
+    private func listenNotifications() {
+        NotificationCenter.default.rx
+            .notification(.editorAreaContinueSpeaking)
+            .subscribe(onNext: { [self] _ in
+                continueSpeaking()
+            }).disposed(by: disposeBag)
         
+        NotificationCenter.default.rx
+            .notification(.editorAreaPauseSpeaking)
+            .subscribe(onNext: { [self] _ in
+                pauseSpeaking()
+            }).disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx
+            .notification(.editorAreaStopSpeaking)
+            .subscribe(onNext: { [self] _ in
+                stopSpeaking()
+            }).disposed(by: disposeBag)
     }
     
     // MARK: -
@@ -41,26 +70,38 @@ class SpeechSynthesizerService: NSObject {
         //            speechUterrance = AVSpeechUtterance(string: selectedText!)
         //        }
     }
+    
+    private func continueSpeaking() {
+        speechSynthesizer.continueSpeaking()
+    }
+    
+    private func pauseSpeaking() {
+        speechSynthesizer.pauseSpeaking(at: .immediate)
+    }
+    
+    private func stopSpeaking() {
+        speechSynthesizer.stopSpeaking(at: .immediate)
+    }
 }
 
 extension SpeechSynthesizerService: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        state.onNext(.speak)
+        stateBehaviorSubject.onNext(.speak)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
-        state.onNext(.speak)
+        stateBehaviorSubject.onNext(.speak)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
-        state.onNext(.pause)
+        stateBehaviorSubject.onNext(.pause)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        state.onNext(.idle)
+        stateBehaviorSubject.onNext(.idle)
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        state.onNext(.idle)
+        stateBehaviorSubject.onNext(.idle)
     }
 }

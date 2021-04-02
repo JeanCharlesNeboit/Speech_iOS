@@ -22,6 +22,6 @@ class MessageTableViewCell: AbstractTableViewCell {
     // MARK: - Configure
     func configure(message: Message) {
         textLabel?.text = message.text
-        detailTextLabel?.text = message.addedDate?.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
+        detailTextLabel?.text = message.addedDate.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
     }
 }

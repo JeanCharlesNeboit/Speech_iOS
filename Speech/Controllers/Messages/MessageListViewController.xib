@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageListViewController" customModule="Speech" customModuleProvider="target">
             <connections>
+                <outlet property="emptyLabel" destination="dG4-Jy-ymb" id="YeN-9n-RUC"/>
+                <outlet property="emptyView" destination="dG4-Jy-ymb" id="6Vf-dC-Eee"/>
                 <outlet property="tableView" destination="Laf-IF-uKS" id="jWu-kX-zRk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,23 +23,62 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="always" keyboardDismissMode="interactive" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Laf-IF-uKS">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="always" keyboardDismissMode="interactive" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Laf-IF-uKS">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-BB-EEn">
+                    <rect key="frame" x="312.5" y="473.5" width="143" height="77.5"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-5U-eQ5">
+                            <rect key="frame" x="0.0" y="0.0" width="143" height="77.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="‼️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTp-DJ-FC9">
+                                    <rect key="frame" x="0.0" y="0.0" width="143" height="41"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                    <color key="textColor" name="AccentColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun messages*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG4-Jy-ymb">
+                                    <rect key="frame" x="0.0" y="57" width="143" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ppD-5U-eQ5" secondAttribute="trailing" id="2JD-Yw-cn7"/>
+                        <constraint firstAttribute="bottom" secondItem="ppD-5U-eQ5" secondAttribute="bottom" id="HDJ-DB-Ma2"/>
+                        <constraint firstItem="ppD-5U-eQ5" firstAttribute="leading" secondItem="y4v-BB-EEn" secondAttribute="leading" id="dag-m6-AIX"/>
+                        <constraint firstItem="ppD-5U-eQ5" firstAttribute="top" secondItem="y4v-BB-EEn" secondAttribute="top" id="p69-LF-u84"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="y4v-BB-EEn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L4l-V4-Zi9"/>
+                <constraint firstItem="y4v-BB-EEn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="MUu-Mi-8Dy"/>
                 <constraint firstItem="Laf-IF-uKS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="OKQ-5H-PSd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Laf-IF-uKS" secondAttribute="bottom" id="aPL-9R-XqF"/>
                 <constraint firstItem="Laf-IF-uKS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bGs-wu-nJY"/>
+                <constraint firstItem="y4v-BB-EEn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="eBf-x4-bL0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Laf-IF-uKS" secondAttribute="trailing" id="gVr-Ay-E92"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y4v-BB-EEn" secondAttribute="trailing" constant="20" id="ncA-UW-iZu"/>
             </constraints>
             <point key="canvasLocation" x="138.28125" y="87.890625"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.16099999845027924" green="0.50199997425079346" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

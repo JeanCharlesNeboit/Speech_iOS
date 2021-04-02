@@ -16,6 +16,18 @@ class AbstractViewController: UIViewController {
     lazy var realmService = RealmService()
     lazy var appThemeService = AppThemeService.shared
     
+    var isCollapsed: Bool {
+        splitViewController?.isCollapsed ?? true
+    }
+    
+    lazy var cancelBarButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem.init(title: SwiftyAssets.Strings.generic_cancel, style: .plain, target: nil, action: nil)
+        button.rx.tap.subscribe(onNext: {
+            self.dismiss(animated: true, completion: nil)
+        }).disposed(by: disposeBag)
+        return button
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,25 +37,5 @@ class AbstractViewController: UIViewController {
     // MARK: - Configure
     func configure() {
         
-    }
-}
-
-extension AbstractViewController {
-    func showError(title: String, message: String) {
-        showMessageCardView(title: title, body: message, theme: .error)
-    }
-    
-    private func showMessageCardView(title: String, body: String, theme: Theme) {
-        let cardView = MessageView.viewFromNib(layout: .cardView)
-        cardView.configureTheme(theme)
-        cardView.configureDropShadow()
-        cardView.configureContent(title: title, body: body)
-        cardView.button?.isHidden = true
-        var config = SwiftMessages.defaultConfig
-        config.keyboardTrackingView = KeyboardTrackingView()
-        config.duration = .seconds(seconds: 3)
-        config.presentationStyle = .bottom
-        config.presentationContext = .window(windowLevel: .statusBar)
-        SwiftMessages.show(config: config, view: cardView)
     }
 }

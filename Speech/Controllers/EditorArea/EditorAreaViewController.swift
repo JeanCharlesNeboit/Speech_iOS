@@ -32,25 +32,12 @@ class EditorAreaViewController: AbstractViewController {
         return accessoryView
     }
     
-    private var isCollapsed: Bool {
-        splitViewController?.isCollapsed ?? true
-    }
-    
     private lazy var settingsBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: SwiftyAssets.Images.gearshape, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
-            let destination = NavigationController(rootViewController: SettingsViewController())
-            if self.isCollapsed {
-                let segue = SwiftMessagesSegue(identifier: nil, source: self, destination: destination)
-                
-                segue.interactiveHide = false
-                segue.presentationStyle = .center
-                segue.dimMode = .blur(style: .dark, alpha: 1, interactive: false)
-                segue.containerView.cornerRadius = 20
-    //            segue.messageView.collapseLayoutMarginAdditions = true
-                segue.containment = .background
-                
-                segue.perform()
+            let destination = SettingsViewController() //NavigationController(rootViewController: SettingsViewController())
+            if !self.isCollapsed {
+                self.customPresent(destination)
             } else {
                 self.present(destination, animated: true, completion: nil)
             }
@@ -66,7 +53,7 @@ class EditorAreaViewController: AbstractViewController {
         if !isCollapsed {
             navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         } else {
-            let messageBarButtonItem = UIBarButtonItem(title: "*Messages*", style: .plain, target: nil, action: nil)
+            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.Images.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
             messageBarButtonItem.rx.tap
                 .subscribe(onNext: { [self] in
                     present(NavigationController(rootViewController: MessageListViewController()), animated: true, completion: nil)
@@ -100,8 +87,22 @@ class EditorAreaViewController: AbstractViewController {
                     showEmptyError()
                     return
                 }
+                
+                guard !realmService.doesMessageAlreadyExist(text: text) else {
+                    showWarning(title: "Duplication*", message: "Le message existe déjà*")
+                    return
+                }
+                
                 let message = Message(text: text)
-                realmService.addObject(message)
+                realmService.addObject(message, completion: { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success:
+                        self.showSuccess(title: "Hello*", message: "Message*")
+                    case .failure:
+                        break
+                    }
+                })
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx

@@ -38,32 +38,31 @@
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hK-Hc-EUo">
                     <rect key="frame" x="40" y="10" width="334" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNk-xP-kaH">
-                            <rect key="frame" x="0.0" y="0.0" width="77" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNk-xP-kaH">
+                            <rect key="frame" x="0.0" y="0.0" width="56" height="40"/>
                             <state key="normal" title="Effacer*"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R33-H9-Gps">
-                            <rect key="frame" x="77" y="0.0" width="67.5" height="40"/>
+                            <rect key="frame" x="56" y="0.0" width="91" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxZ-Yq-Iwh">
-                            <rect key="frame" x="144.5" y="0.0" width="40" height="40"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tR9-lm-85C">
+                            <rect key="frame" x="147" y="0.0" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="mxZ-Yq-Iwh" secondAttribute="height" id="ose-m6-iXB"/>
+                                <constraint firstAttribute="width" secondItem="tR9-lm-85C" secondAttribute="height" multiplier="1:1" priority="250" id="I5w-cl-GWr"/>
                             </constraints>
-                            <state key="normal" image="play_circle"/>
-                        </button>
+                        </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwV-gn-TFH">
-                            <rect key="frame" x="184.5" y="0.0" width="67.5" height="40"/>
+                            <rect key="frame" x="187" y="0.0" width="65" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbA-Vv-EsU">
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbA-Vv-EsU">
                             <rect key="frame" x="252" y="0.0" width="82" height="40"/>
                             <state key="normal" title="Enregistrer*"/>
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="OwV-gn-TFH" firstAttribute="width" secondItem="R33-H9-Gps" secondAttribute="width" id="zoz-6g-cPt"/>
+                        <constraint firstItem="tR9-lm-85C" firstAttribute="centerX" secondItem="8hK-Hc-EUo" secondAttribute="centerX" id="g3P-DK-k2c"/>
                     </constraints>
                 </stackView>
             </subviews>
@@ -89,13 +88,10 @@
                 <outlet property="contentView" destination="WrI-Eq-UKL" id="zpr-fh-FYa"/>
                 <outlet property="contentViewBottomConstraint" destination="bzt-8B-6gc" id="1dv-aH-Htp"/>
                 <outlet property="contentViewHeightConstraint" destination="bHc-n3-Qq1" id="ixO-SE-dQO"/>
-                <outlet property="playButton" destination="mxZ-Yq-Iwh" id="48t-Ji-t9m"/>
                 <outlet property="saveButton" destination="hbA-Vv-EsU" id="WWV-wP-ZyC"/>
+                <outlet property="speechSynthetiserActionStackView" destination="tR9-lm-85C" id="t67-ti-ohG"/>
             </connections>
-            <point key="canvasLocation" x="-200" y="107.0464767616192"/>
+            <point key="canvasLocation" x="-158" y="109"/>
         </view>
     </objects>
-    <resources>
-        <image name="play_circle" width="40" height="40"/>
-    </resources>
 </document>

@@ -12,7 +12,7 @@ class Message: Object {
     // MARK: - Properties
     @objc private(set) dynamic var id: String?
     @objc private(set) dynamic var text: String?
-    @objc private(set) dynamic var addedDate: Date?
+    @objc private(set) dynamic var addedDate: Date = Date()
     @objc private(set) dynamic var numberOfUse: Int = 0
     
     // MARK: - Initialization
@@ -20,7 +20,6 @@ class Message: Object {
         self.init()
         self.id = UUID().uuidString
         self.text = text
-        self.addedDate = Date()
     }
     
     // MARK: - Object
@@ -33,5 +32,19 @@ class Message: Object {
         try? realm?.write {
             numberOfUse += 1
         }
+    }
+}
+
+extension Collection where Iterator.Element: Message {
+    func sortedByAlphabeticalOrder() -> [Message] {
+        sorted(by: { lhs, rhs -> Bool in
+            lhs.text.strongValue.folding(options: .diacriticInsensitive, locale: .current) < rhs.text.strongValue.folding(options: .diacriticInsensitive, locale: .current)
+        })
+    }
+    
+    func sortedByAddedDateOrder() -> [Message] {
+        sorted(by: { lhs, rhs -> Bool in
+            lhs.addedDate > rhs.addedDate
+        })
     }
 }

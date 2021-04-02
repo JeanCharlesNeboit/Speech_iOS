@@ -9,7 +9,12 @@ import Foundation
 import SwiftyKit
 import RealmSwift
 
-public class RealmService {
+enum WriteResult {
+    case success
+    case failure
+}
+
+class RealmService {
     // MARK: - Singleton
     static let `default` = RealmService()
     
@@ -51,28 +56,43 @@ public class RealmService {
     }
     
     // MARK: - Request
-    func object<T>(ofType type: T.Type) -> Results<T> where T: RealmSwift.Object {
+    func all<T>(_ type: T.Type) -> Results<T> where T: RealmSwift.Object {
         return realm.objects(type)
     }
     
-    func addObject<T: Object>(_ object: T) {
-        addObjects([object])
+    func addObject<T: Object>(_ object: T, completion: ((WriteResult) -> Void)? = nil) {
+        addObjects([object], completion: completion)
     }
     
-    func addObjects<T: Object>(_ objects: [T]) {
+    func addObjects<T: Object>(_ objects: [T], completion: ((WriteResult) -> Void)? = nil) {
         beginWrite()
         realm.add(objects, update: .all)
+        commit(completion: completion)
+    }
+    
+    func deleteObject<T: Object>(_ object: T, completion: ((WriteResult) -> Void)? = nil) {
+        beginWrite()
+        realm.delete(object)
+        commit(completion: completion)
+    }
+    
+    private func commit(completion: ((WriteResult) -> Void)?) {
         do {
             try commitWrite()
+            completion?(.success)
         } catch let error {
             NSLog("❌ Transaction could not be written. (\(error.localizedDescription))")
+            completion?(.failure)
         }
-        
     }
 }
 
 extension RealmService {
     func getMessagesResult() -> Results<Message> {
-        return object(ofType: Message.self)
+        return all(Message.self)
+    }
+    
+    func doesMessageAlreadyExist(text: String) -> Bool {
+        return getMessagesResult().contains(where: { $0.text == text })
     }
 }

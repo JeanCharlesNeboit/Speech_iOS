@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyKit
 
 class EditorAreaToolbar: AbstractView {
     // MARK: - IBOutlets
@@ -23,15 +24,7 @@ class EditorAreaToolbar: AbstractView {
         }
     }
     
-    @IBOutlet weak var playButton: UIButton! {
-        didSet {
-            playButton.setImage(SwiftyAssets.Images.play_circle.withRenderingMode(.alwaysTemplate), for: .normal)
-            playButton.rx.tap
-                .subscribe(onNext: { _ in
-                    NotificationCenter.default.post(name: Notification.Name.editorAreaStartSpeaking, object: nil)
-                }).disposed(by: disposeBag)
-        }
-    }
+    @IBOutlet weak var speechSynthetiserActionStackView: UIStackView!
     
     @IBOutlet weak var saveButton: UIButton! {
         didSet {
@@ -46,6 +39,40 @@ class EditorAreaToolbar: AbstractView {
     // MARK: - Properties
     static let shared: EditorAreaToolbar = .loadFromXib()
     
+    private lazy var stopButton: UIButton = {
+        let stopButton = UIButton()
+        stopButton.setImage(SwiftyAssets.Images.stop_circle.withRenderingMode(.alwaysTemplate), for: .normal)
+        stopButton.rx.tap
+            .subscribe(onNext: { _ in
+                NotificationCenter.default.post(name: Notification.Name.editorAreaStopSpeaking, object: nil)
+            }).disposed(by: disposeBag)
+        return stopButton
+    }()
+    
+    private lazy var pauseButton: UIButton = {
+        let pauseButton = UIButton()
+        pauseButton.setImage(SwiftyAssets.Images.pause_circle.withRenderingMode(.alwaysTemplate), for: .normal)
+        pauseButton.rx.tap
+            .subscribe(onNext: { _ in
+                NotificationCenter.default.post(name: Notification.Name.editorAreaPauseSpeaking, object: nil)
+            }).disposed(by: disposeBag)
+        return pauseButton
+    }()
+    
+    private lazy var playButton: UIButton = {
+        let playButton = UIButton()
+        playButton.setImage(SwiftyAssets.Images.play_circle.withRenderingMode(.alwaysTemplate), for: .normal)
+        playButton.rx.tap
+            .subscribe(onNext: { _ in
+                if SpeechSynthesizerService.shared.state == .pause {
+                    NotificationCenter.default.post(name: Notification.Name.editorAreaContinueSpeaking, object: nil)
+                } else {
+                    NotificationCenter.default.post(name: Notification.Name.editorAreaStartSpeaking, object: nil)
+                }
+            }).disposed(by: disposeBag)
+        return playButton
+    }()
+    
     override var intrinsicContentSize: CGSize {
         CGSize(width: 0, height: contentViewHeightConstraint.constant)
     }
@@ -53,14 +80,40 @@ class EditorAreaToolbar: AbstractView {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        configure()
+        listenSpeechSynthesizerState()
+    }
+    
+    // MARK: - Configure
+    private func configure() {
         contentView.layer.cornerRadius = 20
         contentView.clipsToBounds = true
         addShadow(color: .darkGray, opacity: 0.20, offset: .zero, radius: 4)
     }
     
-    // MARK: - Configure
     func configure(safeAreaBottomInset: CGFloat) {
         let bottomConstant: CGFloat = safeAreaBottomInset > 0 ? 0 : 20
         contentViewBottomConstraint.constant = bottomConstant
+    }
+    
+    // MARK: - SpeechSynthesizerState
+    private func listenSpeechSynthesizerState() {
+        SpeechSynthesizerService.shared.stateBehaviorSubject
+            .subscribe(onNext: { [weak self] state in
+                guard let self = self else { return }
+                let actionButtons: [UIButton]
+                
+                switch state {
+                case .idle:
+                    actionButtons = [self.playButton]
+                case .speak:
+                    actionButtons = [self.stopButton, self.pauseButton]
+                case .pause:
+                    actionButtons = [self.stopButton, self.playButton]
+                }
+                
+                self.speechSynthetiserActionStackView.removeAllArrangedSubviews()
+                self.speechSynthetiserActionStackView.addArrangedSubview(actionButtons)
+            }).disposed(by: disposeBag)
     }
 }
