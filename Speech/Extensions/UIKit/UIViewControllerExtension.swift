@@ -60,16 +60,16 @@ extension AbstractViewController {
 }
 
 extension UIViewController {
-    func customPresent(_ vc: PresentedInSwiftMessagesSegue) {
+    @discardableResult
+    func customPresent(_ vc: UIViewController) -> SwiftMessagesSegue {
         let segue = SwiftMessagesSegue(identifier: nil, source: self, destination: vc)
         segue.interactiveHide = false
         segue.presentationStyle = .center
-        segue.dimMode = .blur(style: .light, alpha: 0.5, interactive: true)
+        segue.dimMode = .blur(style: .regular, alpha: 1, interactive: true)
         segue.containerView.cornerRadius = 20
-//        segue.messageView.collapseLayoutMarginAdditions = true
+        segue.messageView.configureDropShadow()
         segue.containment = .background
         segue.perform()
-        
-        vc.segue = segue
+        return segue
     }
 }

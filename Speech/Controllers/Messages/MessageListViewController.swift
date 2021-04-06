@@ -26,7 +26,7 @@ fileprivate enum SortMode: Int, CaseIterable {
 
 class MessageListViewController: AbstractViewController {
     // MARK: - Typealias
-    typealias Section = SectionModel<String, Message>
+    private typealias Section = SectionModel<String, Message>
     
     // MARK: - IBOutlets
     @IBOutlet weak var emptyView: UIView!
@@ -75,6 +75,9 @@ class MessageListViewController: AbstractViewController {
                 })
                 alertController.addAction(action)
             }
+            
+            let cancelAction = UIAlertAction(title: SwiftyAssets.Strings.generic_cancel, style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
             
             let popover = alertController.popoverPresentationController
             popover?.barButtonItem = button
@@ -175,12 +178,18 @@ class MessageListViewController: AbstractViewController {
 
 extension MessageListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
+        let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
             guard let self = self else { return }
             guard let message = self.sections[safe: indexPath.section]?.items[safe: indexPath.row] else { return }
             self.realmService.deleteObject(message)
         }
-        let configuration = UISwipeActionsConfiguration(actions: [action])
+//        deleteAction.image = SwiftyAssets.Images.gearshape
+        
+        let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, _ in
+            
+        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         configuration.performsFirstActionWithFullSwipe = true
         return configuration
     }

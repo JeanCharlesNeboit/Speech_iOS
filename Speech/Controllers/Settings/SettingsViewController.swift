@@ -6,21 +6,30 @@
 //
 
 import UIKit
+import SwiftyKit
 import RxSwift
 import RxDataSources
 import SwiftMessages
 
-protocol PresentedInSwiftMessagesSegue where Self: UIViewController {
-    var segue: SwiftMessagesSegue? { get set }
-}
-
-class SettingsViewController: AbstractViewController, PresentedInSwiftMessagesSegue {
-    // MARK: - IBOutlets
-    @IBOutlet weak var tableView: UITableView!
-    
+class SettingsViewController: BaseSettingsViewController {
     // MARK: - Properties
-    var segue: SwiftMessagesSegue?
     private var widthConstraint: NSLayoutConstraint?
+    
+    private static var SettingsSections: [Section] {
+        [
+            Section(model: .init(),
+                    items: [
+                        .details(title: SwiftyAssets.Strings.settings_appearance),
+                        .details(title: SwiftyAssets.Strings.settings_voice)
+                    ]),
+            Section(model: .init(footer: "\(Bundle.main.info)\n\(SwiftyAssets.Strings.settings_made_in_auvergne)"),
+                    items: [
+                        .details(title: SwiftyAssets.Strings.settings_about),
+                        .details(title: SwiftyAssets.Strings.settings_open_source),
+                        .details(title: SwiftyAssets.Strings.settings_thanks)
+                    ])
+        ]
+    }
     
 //    public override var preferredContentSize: CGSize {
 //        get {
@@ -39,32 +48,19 @@ class SettingsViewController: AbstractViewController, PresentedInSwiftMessagesSe
         return button
     }()
     
-    // MARK: - Lifecycle
-    override func configure() {
-        title = SwiftyAssets.Strings.generic_settings
-        navigationItem.leftBarButtonItem = cancelBarButtonItem
-        navigationItem.rightBarButtonItem = validBarButtonItem
-        configureTableView()
+    // MARK: - Initialization
+    init() {
+        super.init(title: SwiftyAssets.Strings.generic_settings, sections: Self.SettingsSections)
     }
     
-    // MARK: - Configure
-    private func configureTableView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<SectionHeaderFooter, String>>(configureCell: { _, tableView, indexPath, message in
-            //guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier, for: indexPath) as? MessageTableViewCell else {
-                return UITableViewCell()
-            //}
-            //cell.configure(message: message)
-            //return cell
-        }, titleForHeaderInSection: { sections, indexPath -> String? in
-            return sections.sectionModels[indexPath].model.header
-        }, canEditRowAtIndexPath: { _, _ in
-            return true
-        })
-        
-        Observable.just([
-                SectionModel(model: SectionHeaderFooter(header: "Hello*"), items: [""])
-            ])
-            .bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Lifecycle
+    override func configure() {
+        super.configure()
+        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        navigationItem.rightBarButtonItem = validBarButtonItem
     }
 }

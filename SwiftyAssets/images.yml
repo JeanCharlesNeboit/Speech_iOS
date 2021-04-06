@@ -1,6 +1,10 @@
 # AppIcon
 app_icon:
     width: 200
+    
+# MessagesList
+no_messages:
+    width: 400
 
 # NavigationItem
 gearshape:

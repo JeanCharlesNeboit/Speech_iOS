@@ -23,6 +23,7 @@ class EditorAreaViewController: AbstractViewController {
     private lazy var speechSynthesizerService = SpeechSynthesizerService.shared
     
     override var canBecomeFirstResponder: Bool {
+        guard presentedViewController == nil else { return false }
         return true
     }
     
@@ -35,9 +36,12 @@ class EditorAreaViewController: AbstractViewController {
     private lazy var settingsBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: SwiftyAssets.Images.gearshape, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
-            let destination = SettingsViewController() //NavigationController(rootViewController: SettingsViewController())
+            let destination = NavigationController(rootViewController: SettingsViewController())
             if !self.isCollapsed {
                 self.customPresent(destination)
+//                self.splitViewController?.view.rx.observe(CGRect.self, #keyPath(UIView.frame))
+//                    .subscribe(onNext: { print("frame: \($0)") })
+//                    .disposed(by: self.disposeBag)
             } else {
                 self.present(destination, animated: true, completion: nil)
             }
@@ -71,6 +75,10 @@ class EditorAreaViewController: AbstractViewController {
             }).disposed(by: disposeBag)
         
         listenNotifications()
+        
+        #if DEBUG
+        textView.append(text: "Bonjour")
+        #endif
     }
     
     private func listenNotifications() {
@@ -83,24 +91,29 @@ class EditorAreaViewController: AbstractViewController {
         NotificationCenter.default.rx
             .notification(.editorAreaSaveText)
             .subscribe(onNext: { [self] _ in
+//                let destination = NavigationController(rootViewController: MessageViewController())
+//                present(destination, animated: true, completion: nil)
                 guard let text = self.textView.enteredText else {
                     showEmptyError()
                     return
                 }
-                
+
                 guard !realmService.doesMessageAlreadyExist(text: text) else {
-                    showWarning(title: "Duplication*", message: "Le message existe déjà*")
+                    showWarning(title: SwiftyAssets.Strings.editor_area_duplication_title,
+                                message: SwiftyAssets.Strings.editor_area_duplication_body)
                     return
                 }
-                
+
                 let message = Message(text: text)
                 realmService.addObject(message, completion: { [weak self] result in
                     guard let self = self else { return }
                     switch result {
                     case .success:
-                        self.showSuccess(title: "Hello*", message: "Message*")
+                        self.showSuccess(title: SwiftyAssets.Strings.editor_area_successfully_saved_title,
+                                         message: SwiftyAssets.Strings.editor_area_successfully_saved_body)
                     case .failure:
-                        break
+                        self.showError(title: SwiftyAssets.Strings.editor_area_not_successfully_saved_title,
+                                         message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
                     }
                 })
             }).disposed(by: disposeBag)

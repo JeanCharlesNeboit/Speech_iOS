@@ -34,11 +34,20 @@ generic_save:
     fr: Enregistrer
     en: Save
 
+generic_edit:
+    fr: Editer
+    en: Edit
+
+generic_version:
+    fr: version
+    en: version
+
 ## EditorArea
 editor_area_placeholder:
     fr: Entrez le texte à prononcer ici
     en: Tap text here
 
+# Empty text
 editor_area_empty_text_on_save_title:
     fr: Aucun texte saisi !
     en: No text entered !
@@ -47,7 +56,34 @@ editor_area_empty_text_on_save_body:
     fr: Veuillez entrer un texte avant de continuer.
     en: Please enter text before continue.
 
-## MessagesList
+# Successfully saved
+editor_area_successfully_saved_title:
+    fr: Enregistré !
+    en: Saved !
+
+editor_area_successfully_saved_body:
+    fr: Le message a été enregistré.
+    en: The message have been successfully saved.
+
+# Not successfully saved
+editor_area_not_successfully_saved_title:
+    fr: Erreur d'enregistrement !
+    en: Saving error !
+
+editor_area_not_successfully_saved_body:
+    fr: Une erreur est survenue lors de enregistrement du message.
+    en: An error occurred while saving the message.
+
+# Duplication
+editor_area_duplication_title:
+    fr: Duplication !
+    en: Duplication !
+
+editor_area_duplication_body:
+    fr: Le message existe déjà !
+    en: The message already exists !
+
+## Messages list
 messages_list_empty:
     fr: Aucun message !\nVos messages enregistrés apparaîtront ici.
     en: No messages !\nYour saved messages will appear here.
@@ -59,3 +95,33 @@ messages_list_sort_by_alphabetical_order:
 messages_list_sort_by_date_added:
     fr: Trier par date d'ajout
     en: Sort by date added
+    
+## Message
+message_new_title:
+    fr: Nouveau message
+    en: New message
+
+## Settings
+settings_appearance:
+    fr: Apparance
+    en: Appearance
+
+settings_voice:
+    fr: Voix
+    en: Voice
+
+settings_about:
+    fr: À propos
+    en: About
+
+settings_open_source:
+    fr: Bibliothèques Open Source
+    en: Open Source libraries
+
+settings_thanks:
+    fr: Remerciements
+    en: Thanks
+
+settings_made_in_auvergne:
+    fr: Conçu en Auvergne 🇫🇷
+    en: Made in Auvergne 🇫🇷

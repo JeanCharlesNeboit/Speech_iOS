@@ -10,7 +10,7 @@ import RealmSwift
 
 class Message: Object {
     // MARK: - Properties
-    @objc private(set) dynamic var id: String?
+    @objc private(set) dynamic var id: String = ""
     @objc private(set) dynamic var text: String?
     @objc private(set) dynamic var addedDate: Date = Date()
     @objc private(set) dynamic var numberOfUse: Int = 0
