@@ -28,6 +28,21 @@ class AbstractViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Initialization
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        sharedInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        sharedInit()
+    }
+    
+    func sharedInit() {
+        
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RealmService.default.printDatabaseFilePath()
         AVAudioSessionService.default.set(category: .playback, mode: .spokenAudio)
         
+        SwiftyUIView.DefaultCornerRadius = 10
+        
         return true
     }
 }

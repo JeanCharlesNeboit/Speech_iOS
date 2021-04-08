@@ -21,13 +21,13 @@ if which swiftyassets >/dev/null; then
         swiftyassets strings $stringsYAML $outputFolder --project-name ${PROJECT}
     fi
 
-#    # Colors Generation 🎨
-#    colorsYAML=$sourceFolder/colors.yml
-#    colorsSwift=$outputFolder/SwiftyColors.swift
-#
-#    if [[ ! -f "$colorsSwift" || "$colorsYAML" -nt "$colorsSwift" ]]; then
-#        swiftyassets colors $colorsYAML $outputFolder --project-name ${PROJECT}
-#    fi
+    # Colors Generation 🎨
+    colorsYAML=$sourceFolder/colors.yml
+    colorsSwift=$outputFolder/SwiftyColors.swift
+
+    if [[ ! -f "$colorsSwift" || "$colorsYAML" -nt "$colorsSwift" ]]; then
+        swiftyassets colors $colorsYAML $outputFolder --project-name ${PROJECT}
+    fi
 
     # Images Generation 🌃
     imagesYAML=$sourceFolder/images.yml

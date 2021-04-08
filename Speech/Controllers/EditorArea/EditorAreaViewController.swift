@@ -36,24 +36,29 @@ class EditorAreaViewController: AbstractViewController {
     private lazy var settingsBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: SwiftyAssets.Images.gearshape, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
-            let destination = NavigationController(rootViewController: SettingsViewController())
-            if !self.isCollapsed {
-                self.customPresent(destination)
-//                self.splitViewController?.view.rx.observe(CGRect.self, #keyPath(UIView.frame))
-//                    .subscribe(onNext: { print("frame: \($0)") })
-//                    .disposed(by: self.disposeBag)
-            } else {
-                self.present(destination, animated: true, completion: nil)
-            }
-            
+            self.present(NavigationController(rootViewController: SettingsViewController()))
         }).disposed(by: disposeBag)
         return button
     }()
     
-    // MARK: - Configure
-    override func configure() {
-        title = Bundle.main.displayName
+    // MARK: - Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if !DefaultsStorage.welcomeDone {
+            let nav = NavigationController(rootViewController: WelcomeViewController())
+            present(nav)
+        }
+    }
+    
+    // MARK: - Initialization
+    override func sharedInit() {
+        super.sharedInit()
+        title = Bundle.main.displayName
+    }
+    
+    // MARK: - Configure
+    override func configure() {        
         if !isCollapsed {
             navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         } else {
@@ -142,5 +147,13 @@ class EditorAreaViewController: AbstractViewController {
         // textView.resignFirstResponder()
         showError(title: SwiftyAssets.Strings.editor_area_empty_text_on_save_title,
                   message: SwiftyAssets.Strings.editor_area_empty_text_on_save_body)
+    }
+}
+
+extension EditorAreaViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        if canBecomeFirstResponder {
+            becomeFirstResponder()
+        }
     }
 }

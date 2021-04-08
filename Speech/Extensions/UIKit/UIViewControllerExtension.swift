@@ -30,19 +30,19 @@ extension AbstractViewController {
     }
     
     func showWarning(title: String, message: String) {
-        showMessageCardView(title: title, body: message, theme: .warning, presentationStyle: .top)
+        showMessageCardView(title: title, body: message, theme: .warning)
     }
     
     func showSuccess(title: String, message: String) {
-        showMessageCardView(title: title, body: message, theme: .success, presentationStyle: .top)
+        showMessageCardView(title: title, body: message, theme: .success)
     }
     
     private func showMessageCardView(title: String,
                                      body: String,
-                                     layout: MessageView.Layout = .cardView,
+                                     layout: MessageView.Layout = .statusLine,
                                      theme: Theme,
                                      duration: SwiftMessages.Duration = .seconds(seconds: 2),
-                                     presentationStyle: SwiftMessages.PresentationStyle = .bottom) {
+                                     presentationStyle: SwiftMessages.PresentationStyle = .top) {
         let cardView = MessageView.viewFromNib(layout: .cardView)
         cardView.configureTheme(theme)
         cardView.configureDropShadow()
@@ -71,5 +71,13 @@ extension UIViewController {
         segue.containment = .background
         segue.perform()
         return segue
+    }
+    
+    func present(_ vc: UIViewController) {
+        if let delegate = self as? UIAdaptivePresentationControllerDelegate {
+            vc.presentationController?.delegate = delegate
+        }
+        vc.modalPresentationStyle = .formSheet //traitCollection.verticalSizeClass == .compact ? .formSheet : .automatic
+        present(vc, animated: true, completion: nil)
     }
 }

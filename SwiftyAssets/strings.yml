@@ -38,9 +38,26 @@ generic_edit:
     fr: Editer
     en: Edit
 
-generic_version:
-    fr: version
-    en: version
+generic_categories:
+    fr: Catégories
+    en: Categories
+    
+## Welcome
+welcome_title:
+    fr: Bienvenue
+    en: Welcome
+    
+welcome_slogan:
+    fr: Ecriver, Sauvegarder, Communiquer !
+    en: Write, Save, Communicate !
+
+welcome_description:
+    fr: Speech, l'application qui vous permet de vous exprimer plus facilement et plus radipement.
+    en: To translate*
+
+welcome_get_started:
+    fr: Découvrir
+    en: Get started
 
 ## EditorArea
 editor_area_placeholder:
@@ -84,9 +101,21 @@ editor_area_duplication_body:
     en: The message already exists !
 
 ## Messages list
-messages_list_empty:
-    fr: Aucun message !\nVos messages enregistrés apparaîtront ici.
-    en: No messages !\nYour saved messages will appear here.
+messages_list_empty_title:
+    fr: Aucun message !
+    en: No messages !
+
+messages_list_empty_body:
+    fr: Vos messages enregistrés apparaîtront ici.
+    en: Your saved messages will appear here.
+
+messages_list_empty_search_title:
+    fr: Aucun résultat !
+    en: No result !
+
+messages_list_empty_search_body:
+    fr: Aucun résultat ne correspond à votre recherche
+    en: No results match your search
 
 messages_list_sort_by_alphabetical_order:
     fr: Trier par ordre alphabétique
@@ -100,6 +129,10 @@ messages_list_sort_by_date_added:
 message_new_title:
     fr: Nouveau message
     en: New message
+
+message_edit_title:
+    fr: Edition message
+    en: Edit message
 
 ## Settings
 settings_appearance:

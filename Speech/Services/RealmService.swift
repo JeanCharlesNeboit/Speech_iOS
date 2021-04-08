@@ -88,11 +88,24 @@ class RealmService {
 }
 
 extension RealmService {
-    func getMessagesResult() -> Results<Message> {
-        return all(Message.self)
+    func allMessagesResult() -> Results<Message> {
+        all(Message.self)
     }
     
     func doesMessageAlreadyExist(text: String) -> Bool {
-        return getMessagesResult().contains(where: { $0.text == text })
+        return allMessagesResult().contains(where: { $0.text == text })
+    }
+    
+    func mostUsedMessages(limit: Int) -> [Message] {
+        Array(allMessagesResult()
+            .sorted(byKeyPath: #keyPath(Message.numberOfUse), ascending: false)
+            .toArray()
+            .prefix(limit))
+    }
+}
+
+extension RealmService {
+    func getCategoriesResult() -> Results<Category> {
+        return all(Category.self)
     }
 }

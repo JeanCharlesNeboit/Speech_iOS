@@ -11,7 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageListViewController" customModule="Speech" customModuleProvider="target">
             <connections>
-                <outlet property="emptyLabel" destination="dG4-Jy-ymb" id="YeN-9n-RUC"/>
+                <outlet property="emptyBodyLabel" destination="WMZ-9Q-0i3" id="Wde-6u-ant"/>
+                <outlet property="emptyTitleLabel" destination="dG4-Jy-ymb" id="606-hU-eOX"/>
                 <outlet property="emptyView" destination="y4v-BB-EEn" id="xVq-YS-9Is"/>
                 <outlet property="tableView" destination="Laf-IF-uKS" id="jWu-kX-zRk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,10 +28,10 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-BB-EEn">
-                    <rect key="frame" x="41.5" y="319.5" width="331" height="257"/>
+                    <rect key="frame" x="41.5" y="310.5" width="331" height="275"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-5U-eQ5">
-                            <rect key="frame" x="0.0" y="0.0" width="331" height="257"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-5U-eQ5">
+                            <rect key="frame" x="0.0" y="0.0" width="331" height="275"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_messages" translatesAutoresizingMaskIntoConstraints="NO" id="nIA-dL-cRm">
                                     <rect key="frame" x="0.0" y="0.0" width="331" height="220.5"/>
@@ -38,9 +39,15 @@
                                         <constraint firstAttribute="width" secondItem="nIA-dL-cRm" secondAttribute="height" multiplier="750:500" id="b6Q-N8-5Zd"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun messages*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG4-Jy-ymb">
-                                    <rect key="frame" x="0.0" y="236.5" width="331" height="20.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aucun messages !*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG4-Jy-ymb">
+                                    <rect key="frame" x="0.0" y="228.5" width="331" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vos messages enregistrés apparaîtront ici.*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMZ-9Q-0i3">
+                                    <rect key="frame" x="0.0" y="257" width="331" height="18"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>

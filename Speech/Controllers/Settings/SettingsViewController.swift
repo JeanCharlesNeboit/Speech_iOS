@@ -19,14 +19,15 @@ class SettingsViewController: BaseSettingsViewController {
         [
             Section(model: .init(),
                     items: [
-                        .details(title: SwiftyAssets.Strings.settings_appearance),
-                        .details(title: SwiftyAssets.Strings.settings_voice)
+                        .details(vc: BaseSettingsViewController(title: SwiftyAssets.Strings.settings_appearance, sections: [])),
+                        .details(vc: BaseSettingsViewController(title: SwiftyAssets.Strings.settings_voice, sections: [])),
+                        .details(vc: CategoriesViewController())
                     ]),
             Section(model: .init(footer: "\(Bundle.main.info)\n\(SwiftyAssets.Strings.settings_made_in_auvergne)"),
                     items: [
-                        .details(title: SwiftyAssets.Strings.settings_about),
-                        .details(title: SwiftyAssets.Strings.settings_open_source),
-                        .details(title: SwiftyAssets.Strings.settings_thanks)
+                        .details(vc: AboutViewController()),
+                        .details(title: SwiftyAssets.Strings.settings_open_source, vc: BaseSettingsViewController(title: "Open Source*", sections: [])),
+                        .details(vc: BaseSettingsViewController(title: SwiftyAssets.Strings.settings_thanks, sections: []))
                     ])
         ]
     }
@@ -39,14 +40,6 @@ class SettingsViewController: BaseSettingsViewController {
 //
 //        set { super.preferredContentSize = newValue }
 //    }
-    
-    private lazy var validBarButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(title: SwiftyAssets.Strings.generic_validate, style: .done, target: nil, action: nil)
-        button.rx.tap.subscribe(onNext: {
-            self.dismiss(animated: true, completion: nil)
-        }).disposed(by: disposeBag)
-        return button
-    }()
     
     // MARK: - Initialization
     init() {
@@ -61,6 +54,5 @@ class SettingsViewController: BaseSettingsViewController {
     override func configure() {
         super.configure()
         navigationItem.leftBarButtonItem = cancelBarButtonItem
-        navigationItem.rightBarButtonItem = validBarButtonItem
     }
 }

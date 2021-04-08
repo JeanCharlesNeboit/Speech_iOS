@@ -1,10 +1,18 @@
 # AppIcon
 app_icon:
     width: 200
+
+# Welcome
+welcome:
+    width: 400
     
 # MessagesList
 no_messages:
     width: 400
+    
+# Icons
+plus_circle_fill:
+    height: 50
 
 # NavigationItem
 gearshape:

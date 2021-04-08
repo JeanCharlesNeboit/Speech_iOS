@@ -10,7 +10,7 @@ import SwiftyKit
 import RxSwift
 import RxDataSources
 
-fileprivate enum SortMode: Int, CaseIterable {
+enum SortMode: Int, CaseIterable {
     case alphabetical
     case addedDate
     
@@ -28,13 +28,33 @@ class MessageListViewController: AbstractViewController {
     // MARK: - Typealias
     private typealias Section = SectionModel<String, Message>
     
-    // MARK: - IBOutlets
-    @IBOutlet weak var emptyView: UIView!
-    @IBOutlet weak var emptyLabel: UILabel! {
-        didSet {
-            emptyLabel.text = SwiftyAssets.Strings.messages_list_empty
+    enum EmptyMode {
+        case noData
+        case noResult
+        
+        var title: String {
+            switch self {
+            case .noData:
+                return SwiftyAssets.Strings.messages_list_empty_title
+            case .noResult:
+                return SwiftyAssets.Strings.messages_list_empty_search_title
+            }
+        }
+        
+        var body: String {
+            switch self {
+            case .noData:
+                return SwiftyAssets.Strings.messages_list_empty_body
+            case .noResult:
+                return SwiftyAssets.Strings.messages_list_empty_search_body
+            }
         }
     }
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var emptyTitleLabel: UILabel!
+    @IBOutlet weak var emptyBodyLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -61,8 +81,19 @@ class MessageListViewController: AbstractViewController {
         (try? sectionsObservable.value()) ?? []
     }
     
-    @SwiftyRawUserDefaults(key: "preferredMessagesSortMode", defaultValue: .alphabetical) private var preferredSortMode: SortMode
-    private lazy var sortModeBehaviorSubject = BehaviorSubject<SortMode>(value: preferredSortMode)
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<Section>(configureCell: { _, tableView, indexPath, message in
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier, for: indexPath) as? MessageTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(message: message)
+        return cell
+    }, titleForHeaderInSection: { sections, indexPath -> String? in
+        return sections.sectionModels[indexPath].model
+    }, canEditRowAtIndexPath: { _, _ in
+        return true
+    })
+    
+    private lazy var sortModeBehaviorSubject = BehaviorSubject<SortMode>(value: DefaultsStorage.preferredSortMode)
     
     private lazy var moreBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem.init(image: SwiftyAssets.Images.ellipsis_circle, style: .plain, target: nil, action: nil)
@@ -81,21 +112,17 @@ class MessageListViewController: AbstractViewController {
             
             let popover = alertController.popoverPresentationController
             popover?.barButtonItem = button
-            popover?.sourceRect = CGRect(x: 32, y: 32, width: 64, height: 64)
             
             self.present(alertController, animated: true)
         }).disposed(by: disposeBag)
         return button
     }()
     
-    private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.searchBarStyle = .minimal
-        // searchController.hidesNavigationBarDuringPresentation = false
+    private lazy var searchController: SearchController = {
+        let searchController = SearchController(searchResultsController: nil)
         if !isCollapsed {
             searchController.searchBar.inputAccessoryView = EditorAreaToolbar.shared
         }
-        searchController.dimsBackgroundDuringPresentation = false
         return searchController
     }()
     
@@ -104,8 +131,8 @@ class MessageListViewController: AbstractViewController {
         title = SwiftyAssets.Strings.generic_messages
         definesPresentationContext = true
         
-        sortModeBehaviorSubject.subscribe(onNext: { [self] sortMode in
-            preferredSortMode = sortMode
+        sortModeBehaviorSubject.subscribe(onNext: { sortMode in
+            DefaultsStorage.preferredSortMode = sortMode
         }).disposed(by: disposeBag)
         
         navigationItem()
@@ -113,34 +140,23 @@ class MessageListViewController: AbstractViewController {
     }
     
     private func navigationItem() {
-        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        if isCollapsed {
+            navigationItem.leftBarButtonItem = cancelBarButtonItem
+        }
         navigationItem.rightBarButtonItem = moreBarButtonItem
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func configureTableView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<Section>(configureCell: { _, tableView, indexPath, message in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier, for: indexPath) as? MessageTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.configure(message: message)
-            return cell
-        }, titleForHeaderInSection: { sections, indexPath -> String? in
-            return sections.sectionModels[indexPath].model
-        }, canEditRowAtIndexPath: { _, _ in
-            return true
-        })
-        
         let searchTextObservable = searchController.searchBar.rx.text.asObservable()
-        let messagesResultsObservable = Observable.collection(from: realmService.getMessagesResult())
+        let messagesResultsObservable = Observable.collection(from: realmService.allMessagesResult())
         Observable.combineLatest(searchTextObservable, messagesResultsObservable, sortModeBehaviorSubject)
-            .map { search, messagesResult, orderMode -> [Message] in
+            .map { search, messagesResult, orderMode -> [Section] in
                 var messages = messagesResult.toArray()
                     .filter { message in
-                        guard let search = search,
-                              !search.trimmingCharacters(in: .whitespaces).isEmpty else { return true }
-                        return message.text?.contains(search) ?? false
+                        guard let search = self.searchController.searchText else { return true }
+                        return message.text.contains(search)
                     }
                 
                 switch orderMode {
@@ -150,29 +166,47 @@ class MessageListViewController: AbstractViewController {
                     messages = messages.sortedByAddedDateOrder()
                 }
                 
-                return messages
-            }
-            .map { messages -> [Section] in
-                guard !messages.isEmpty else { return [] }
-                return [
-                    SectionModel(model: "Les plus utilisés*", items: messages),
-                    SectionModel(model: "Toutes les messages*", items: messages)
-                ]
+                var sections = [Section]()
+                if !messages.isEmpty {
+                    var defaultSectionHeader = " "
+                    if self.searchController.searchText == nil {
+                        defaultSectionHeader = "Toutes les messages*"
+                        let mostUsedMessages = self.realmService.mostUsedMessages(limit: 5)
+                        sections.append(SectionModel(model: "Les plus utilisés*", items: mostUsedMessages))
+                    }
+                    sections.append(SectionModel(model: defaultSectionHeader, items: messages))
+                }
+                
+                return sections
             }
             .bind(to: sectionsObservable)
             .disposed(by: disposeBag)
+        
+        searchTextObservable
+            .subscribe(onNext: { [weak self] search in
+                guard let self = self else { return }
+                if !search.strongValue.isEmpty {
+                    self.configureEmptyView(mode: .noResult)
+                } else {
+                    self.configureEmptyView(mode: .noData)
+                }
+            }).disposed(by: disposeBag)
         
         sectionsObservable
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.tableView.isHidden = $0.isEmpty
                 self.emptyView.isHidden = !$0.isEmpty
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
             
         sectionsObservable
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+    
+    private func configureEmptyView(mode: EmptyMode) {
+        emptyTitleLabel.text = mode.title
+        emptyBodyLabel.text = mode.body
     }
 }
 
@@ -185,12 +219,16 @@ extension MessageListViewController: UITableViewDelegate {
         }
 //        deleteAction.image = SwiftyAssets.Images.gearshape
         
-        let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, _ in
-            
+        let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, success in
+            guard let self = self else { return }
+            guard let message = self.sections[safe: indexPath.section]?.items[safe: indexPath.row] else { return }
+            self.present(NavigationController(rootViewController: MessageViewController(message: message)))
+            success(true)
         }
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         configuration.performsFirstActionWithFullSwipe = true
+        
         return configuration
     }
 }

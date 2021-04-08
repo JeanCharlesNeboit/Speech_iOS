@@ -12,13 +12,20 @@ import RxDataSources
 import TinyConstraints
 
 enum SettingsType {
-    case details(title: String)
+    case details(title: String? = nil, vc: UIViewController = UIViewController())
 //    case speechRate
     
     var cellType: CellIdentifiable.Type {
         switch self {
         case .details:
             return DetailsTableViewCell.self
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .details(let title, let vc):
+            return title ?? vc.title ?? ""
         }
     }
 }
@@ -29,7 +36,7 @@ class BaseSettingsViewController: AbstractViewController {
     
     // MARK: - IBOutlets
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = TableView()
         
         let cells: [CellIdentifiable.Type] = [DetailsTableViewCell.self]
         cells.forEach {
@@ -49,8 +56,8 @@ class BaseSettingsViewController: AbstractViewController {
             .subscribe(onNext: { [weak self] model in
                 guard let self = self else { return }
                 switch model {
-                case .details(let title):
-                    self.navigationController?.pushViewController(BaseSettingsViewController(title: title, sections: []), animated: true)
+                case .details(let title, let vc):
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }).disposed(by: disposeBag)
         
@@ -63,7 +70,7 @@ class BaseSettingsViewController: AbstractViewController {
     // MARK: - Initialization
     init(title: String, sections: [Section]) {
         self.sections = sections
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         self.title = title
     }
     
@@ -87,17 +94,15 @@ class BaseSettingsViewController: AbstractViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath)
             
             switch dataSource {
-            case .details(let title):
+            case .details:
                 if let cell = cell as? DetailsTableViewCell {
-                    cell.configure(title: title)
+                    cell.configure(title: dataSource.title)
                 }
             }
             
             return cell
         }, titleForHeaderInSection: { sections, indexPath -> String? in
             return sections.sectionModels[indexPath].model.header
-        }, titleForFooterInSection: { sections, indexPath -> String? in
-            return sections.sectionModels[indexPath].model.footer
         })
         
         Observable.just(sections)
@@ -107,5 +112,9 @@ class BaseSettingsViewController: AbstractViewController {
 }
 
 extension BaseSettingsViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view: TableViewHeaderFooterView = .loadFromXib()
+        view.configure(text: sections[safe: section]?.model.footer)
+        return view
+    }
 }
