@@ -8,9 +8,18 @@
 import SwiftyKit
 
 class DefaultsStorage {
+    // Welcome
     @SwiftyUserDefaults(key: UserDefaultsKeys.welcomeDone(), defaultValue: false)
     static var welcomeDone: Bool
     
+    // Editor area
+    @SwiftyRawUserDefaults(key: UserDefaultsKeys.preferredEditorAreaTextFont(), defaultValue: .body)
+    static var preferredEditorAreaTextFont: FontStyle
+    
+    // Messages
     @SwiftyRawUserDefaults(key: UserDefaultsKeys.preferredMessagesSortMode(), defaultValue: .alphabetical)
     static var preferredSortMode: SortMode
+    
+    @SwiftyUserDefaults(key: UserDefaultsKeys.showMostUsedMessages(), defaultValue: false)
+    static var showMostUsedMessages: Bool
 }

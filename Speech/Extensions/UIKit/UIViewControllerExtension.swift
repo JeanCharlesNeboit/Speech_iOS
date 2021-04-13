@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 import TinyConstraints
 import SwiftMessages
 
@@ -79,5 +80,13 @@ extension UIViewController {
         }
         vc.modalPresentationStyle = .formSheet //traitCollection.verticalSizeClass == .compact ? .formSheet : .automatic
         present(vc, animated: true, completion: nil)
+    }
+}
+
+extension UIViewController {
+    func openSafari(urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
     }
 }

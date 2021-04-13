@@ -1,5 +1,5 @@
 //
-//  BaseSettingsViewController.swift
+//  BaseListViewController.swift
 //  Speech
 //
 //  Created by Jean-Charles Neboit on 06/04/2021.
@@ -11,14 +11,24 @@ import RxSwift
 import RxDataSources
 import TinyConstraints
 
-enum SettingsType {
+enum BaseListCellType {
     case details(title: String? = nil, vc: UIViewController = UIViewController())
+    case link(title: String, urlString: String?)
+    
 //    case speechRate
+    case editorAreaTextSize(SliderTableViewCell.State)
+    case switchChoice(SwitchTableViewCell.State)
     
     var cellType: CellIdentifiable.Type {
         switch self {
         case .details:
             return DetailsTableViewCell.self
+        case .link:
+            return DetailsTableViewCell.self
+        case .editorAreaTextSize:
+            return SliderTableViewCell.self
+        case .switchChoice:
+            return SwitchTableViewCell.self
         }
     }
     
@@ -26,19 +36,30 @@ enum SettingsType {
         switch self {
         case .details(let title, let vc):
             return title ?? vc.title ?? ""
+        case .link(let title, _):
+            return title
+        case .switchChoice(let state):
+            return state.title
+        case .editorAreaTextSize:
+            return ""
         }
     }
 }
 
-class BaseSettingsViewController: AbstractViewController {
+class BaseListViewController: AbstractViewController {
     // MARK: - Typealias
-    typealias Section = SectionModel<SectionHeaderFooter, SettingsType>
+    typealias Section = SectionModel<SectionHeaderFooter, BaseListCellType>
     
     // MARK: - IBOutlets
     private lazy var tableView: UITableView = {
         let tableView = TableView()
         
-        let cells: [CellIdentifiable.Type] = [DetailsTableViewCell.self]
+        let cells: [CellIdentifiable.Type] = [
+            DetailsTableViewCell.self,
+            SliderTableViewCell.self,
+            SwitchTableViewCell.self
+        ]
+        
         cells.forEach {
             tableView.register($0.nib, forCellReuseIdentifier: $0.identifier)
         }
@@ -52,12 +73,18 @@ class BaseSettingsViewController: AbstractViewController {
                 tableView.deselectRow(at: indexPath, animated: true)
             }).disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(SettingsType.self)
+        tableView.rx.modelSelected(BaseListCellType.self)
             .subscribe(onNext: { [weak self] model in
                 guard let self = self else { return }
                 switch model {
                 case .details(let title, let vc):
                     self.navigationController?.pushViewController(vc, animated: true)
+                case .link(title: let title, let urlString):
+                    guard let urlString = urlString else { return }
+                    self.openSafari(urlString: urlString)
+                case .editorAreaTextSize,
+                     .switchChoice:
+                    break
                 }
             }).disposed(by: disposeBag)
         
@@ -65,7 +92,7 @@ class BaseSettingsViewController: AbstractViewController {
     }()
     
     // MARK: - Properties
-    private var sections: [Section]
+    var sections = [Section]()
     
     // MARK: - Initialization
     init(title: String, sections: [Section]) {
@@ -74,8 +101,12 @@ class BaseSettingsViewController: AbstractViewController {
         self.title = title
     }
     
+    override init() {
+        super.init()
+    }
+    
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     // MARK: - Lifecycle
@@ -94,9 +125,18 @@ class BaseSettingsViewController: AbstractViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath)
             
             switch dataSource {
-            case .details:
+            case .details,
+                 .link:
                 if let cell = cell as? DetailsTableViewCell {
                     cell.configure(title: dataSource.title)
+                }
+            case .switchChoice(let state):
+                if let cell = cell as? SwitchTableViewCell {
+                    cell.configure(state: state)
+                }
+            case .editorAreaTextSize(let state):
+                if let cell = cell as? SliderTableViewCell {
+                    cell.configure(state: state)
                 }
             }
             
@@ -111,7 +151,7 @@ class BaseSettingsViewController: AbstractViewController {
     }
 }
 
-extension BaseSettingsViewController: UITableViewDelegate {
+extension BaseListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let view: TableViewHeaderFooterView = .loadFromXib()
         view.configure(text: sections[safe: section]?.model.footer)

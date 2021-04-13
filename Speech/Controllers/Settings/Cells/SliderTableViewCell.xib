@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="61" id="y82-XX-1bY" customClass="SliderTableViewCell" customModule="Speech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y82-XX-1bY" id="2QZ-6a-zDb">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YvK-3g-q6y">
+                        <rect key="frame" x="20" y="10" width="374" height="41"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBQ-Ma-Dc3">
+                                <rect key="frame" x="0.0" y="14" width="7.5" height="13.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="4" translatesAutoresizingMaskIntoConstraints="NO" id="FVd-xb-0t4" customClass="Slider" customModule="SwiftyKit">
+                                <rect key="frame" x="15.5" y="5.5" width="328.5" height="31"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="step">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jI-8A-6Rz">
+                                <rect key="frame" x="352" y="0.0" width="22" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YvK-3g-q6y" firstAttribute="leading" secondItem="2QZ-6a-zDb" secondAttribute="leading" constant="20" id="GwX-Li-GSw"/>
+                    <constraint firstItem="YvK-3g-q6y" firstAttribute="top" secondItem="2QZ-6a-zDb" secondAttribute="top" constant="10" id="UrZ-Gr-sw0"/>
+                    <constraint firstAttribute="bottom" secondItem="YvK-3g-q6y" secondAttribute="bottom" constant="10" id="j9M-WA-8nD"/>
+                    <constraint firstAttribute="trailing" secondItem="YvK-3g-q6y" secondAttribute="trailing" constant="20" id="nBV-Vg-ROR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="maximumLabel" destination="9jI-8A-6Rz" id="2Lv-A3-KjI"/>
+                <outlet property="minimumLabel" destination="DBQ-Ma-Dc3" id="51c-cp-9FF"/>
+                <outlet property="slider" destination="FVd-xb-0t4" id="2A3-y1-RXG"/>
+            </connections>
+            <point key="canvasLocation" x="147.82608695652175" y="108.81696428571428"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="FVd-xb-0t4">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+    </designables>
+</document>

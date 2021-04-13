@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         RealmMigrator.setDefaultConfiguration()
         RealmService.default.printDatabaseFilePath()
+        FirebaseService.configure()
         AVAudioSessionService.default.set(category: .playback, mode: .spokenAudio)
         
         SwiftyUIView.DefaultCornerRadius = 10

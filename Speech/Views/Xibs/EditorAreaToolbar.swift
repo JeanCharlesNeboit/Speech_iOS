@@ -10,7 +10,12 @@ import SwiftyKit
 
 class EditorAreaToolbar: AbstractView {
     // MARK: - IBOutlets
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            contentView.layer.cornerRadius = 20
+            contentView.clipsToBounds = true
+        }
+    }
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
@@ -86,13 +91,15 @@ class EditorAreaToolbar: AbstractView {
     
     // MARK: - Configure
     private func configure() {
-        contentView.layer.cornerRadius = 20
-        contentView.clipsToBounds = true
-        addShadow(color: .darkGray, opacity: 0.20, offset: .zero, radius: 4)
+        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 4)
     }
     
-    func configure(safeAreaBottomInset: CGFloat) {
-        let bottomConstant: CGFloat = safeAreaBottomInset > 0 ? 0 : 20
+    func configure(safeAreaBottomInset: CGFloat, keyboardHeight: CGFloat) {
+        var bottomConstant: CGFloat = 20
+        if keyboardHeight == 0,
+           safeAreaBottomInset > 0 {
+            bottomConstant = 0
+        }
         contentViewBottomConstraint.constant = bottomConstant
     }
     

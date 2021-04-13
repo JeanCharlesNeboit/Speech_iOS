@@ -9,5 +9,7 @@ import Foundation
 
 enum UserDefaultsKeys: String {
     case welcomeDone
+    case preferredEditorAreaTextFont
     case preferredMessagesSortMode
+    case showMostUsedMessages
 }

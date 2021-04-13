@@ -9,6 +9,8 @@ import UIKit
 import SwiftyKit
 import RxSwift
 import RxDataSources
+import RealmSwift
+import RxKeyboard
 
 enum SortMode: Int, CaseIterable {
     case alphabetical
@@ -148,38 +150,42 @@ class MessageListViewController: AbstractViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
+    private func getSections(search: String?, messagesResult: Results<Message>, sortMode: SortMode) -> [Section] {
+        var messages = messagesResult.toArray()
+            .filter { message in
+                guard let search = self.searchController.searchText else { return true }
+                return message.text.contains(search)
+            }
+        
+        switch sortMode {
+        case .alphabetical:
+            messages = messages.sortedByAlphabeticalOrder()
+        case .addedDate:
+            messages = messages.sortedByAddedDateOrder()
+        }
+        
+        var sections = [Section]()
+        if !messages.isEmpty {
+            var defaultSectionHeader = " "
+            if DefaultsStorage.showMostUsedMessages && self.searchController.searchText == nil {
+                defaultSectionHeader = "Toutes les messages*"
+                let mostUsedMessages = self.realmService.mostUsedMessages(limit: 5)
+                sections.append(SectionModel(model: "Les plus utilisés*", items: mostUsedMessages))
+            }
+            sections.append(SectionModel(model: defaultSectionHeader, items: messages))
+        }
+        
+        return sections
+    }
+    
     private func configureTableView() {
         let searchTextObservable = searchController.searchBar.rx.text.asObservable()
         let messagesResultsObservable = Observable.collection(from: realmService.allMessagesResult())
         Observable.combineLatest(searchTextObservable, messagesResultsObservable, sortModeBehaviorSubject)
-            .map { search, messagesResult, orderMode -> [Section] in
-                var messages = messagesResult.toArray()
-                    .filter { message in
-                        guard let search = self.searchController.searchText else { return true }
-                        return message.text.contains(search)
-                    }
-                
-                switch orderMode {
-                case .alphabetical:
-                    messages = messages.sortedByAlphabeticalOrder()
-                case .addedDate:
-                    messages = messages.sortedByAddedDateOrder()
-                }
-                
-                var sections = [Section]()
-                if !messages.isEmpty {
-                    var defaultSectionHeader = " "
-                    if self.searchController.searchText == nil {
-                        defaultSectionHeader = "Toutes les messages*"
-                        let mostUsedMessages = self.realmService.mostUsedMessages(limit: 5)
-                        sections.append(SectionModel(model: "Les plus utilisés*", items: mostUsedMessages))
-                    }
-                    sections.append(SectionModel(model: defaultSectionHeader, items: messages))
-                }
-                
-                return sections
-            }
-            .bind(to: sectionsObservable)
+            .map { [weak self] search, messagesResult, sortMode -> [Section] in
+                guard let self = self else { return [] }
+                return self.getSections(search: search, messagesResult: messagesResult, sortMode: sortMode)
+            }.bind(to: sectionsObservable)
             .disposed(by: disposeBag)
         
         searchTextObservable
@@ -198,10 +204,20 @@ class MessageListViewController: AbstractViewController {
                 self.tableView.isHidden = $0.isEmpty
                 self.emptyView.isHidden = !$0.isEmpty
             }).disposed(by: disposeBag)
-            
+        
         sectionsObservable
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        configureKeyboard()
+    }
+    
+    private func configureKeyboard() {
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [tableView] keyboardVisibleHeight in
+                tableView?.contentInset.bottom = keyboardVisibleHeight
+                tableView?.scrollIndicatorInsets.bottom = keyboardVisibleHeight
+            }).disposed(by: disposeBag)
     }
     
     private func configureEmptyView(mode: EmptyMode) {
@@ -217,7 +233,7 @@ extension MessageListViewController: UITableViewDelegate {
             guard let message = self.sections[safe: indexPath.section]?.items[safe: indexPath.row] else { return }
             self.realmService.deleteObject(message)
         }
-//        deleteAction.image = SwiftyAssets.Images.gearshape
+        //        deleteAction.image = SwiftyAssets.Images.gearshape
         
         let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, success in
             guard let self = self else { return }

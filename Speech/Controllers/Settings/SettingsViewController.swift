@@ -11,43 +11,31 @@ import RxSwift
 import RxDataSources
 import SwiftMessages
 
-class SettingsViewController: BaseSettingsViewController {
+class SettingsViewController: BaseListViewController {
     // MARK: - Properties
-    private var widthConstraint: NSLayoutConstraint?
-    
     private static var SettingsSections: [Section] {
         [
             Section(model: .init(),
                     items: [
-                        .details(vc: BaseSettingsViewController(title: SwiftyAssets.Strings.settings_appearance, sections: [])),
-                        .details(vc: BaseSettingsViewController(title: SwiftyAssets.Strings.settings_voice, sections: [])),
+                        .details(vc: AppearanceListViewController()),
+                        .details(vc: VoiceListViewController()),
                         .details(vc: CategoriesViewController())
                     ]),
             Section(model: .init(footer: "\(Bundle.main.info)\n\(SwiftyAssets.Strings.settings_made_in_auvergne)"),
                     items: [
                         .details(vc: AboutViewController()),
-                        .details(title: SwiftyAssets.Strings.settings_open_source, vc: BaseSettingsViewController(title: "Open Source*", sections: [])),
-                        .details(vc: BaseSettingsViewController(title: SwiftyAssets.Strings.settings_thanks, sections: []))
+                        .link(title: SwiftyAssets.Strings.settings_github, urlString: "https://github.com/JeanCharlesNeboit/Speech_iOS"),
+                        .details(vc: OpenSourceListViewController()),
+                        .details(vc: ThanksListViewController())
                     ])
         ]
     }
     
-//    public override var preferredContentSize: CGSize {
-//        get {
-//            let screenBounds = UIScreen.main.bounds
-//            return CGSize(width: screenBounds.width * 0.5, height: screenBounds.height * 0.6)
-//        }
-//
-//        set { super.preferredContentSize = newValue }
-//    }
-    
     // MARK: - Initialization
-    init() {
-        super.init(title: SwiftyAssets.Strings.generic_settings, sections: Self.SettingsSections)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func sharedInit() {
+        super.sharedInit()
+        title = SwiftyAssets.Strings.generic_settings
+        sections = Self.SettingsSections
     }
     
     // MARK: - Lifecycle

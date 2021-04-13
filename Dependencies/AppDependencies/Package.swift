@@ -24,6 +24,7 @@ let package = Package(
         .target(name: "AppDependencies",
                 dependencies: [
                     .product(name: "FirebaseAnalytics", package: "Firebase"),
+                    .product(name: "FirebaseCrashlytics", package: "Firebase"),
                     .product(name: "Realm", package: "Realm"),
                     .product(name: "RealmSwift", package: "Realm"),
                     .product(name: "RxSwift", package: "RxSwift"),

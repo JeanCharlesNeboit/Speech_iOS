@@ -29,7 +29,9 @@ class EditorAreaViewController: AbstractViewController {
     
     override var inputAccessoryView: UIView? {
         let accessoryView = EditorAreaToolbar.shared
-        accessoryView.configure(safeAreaBottomInset: view.safeAreaInsets.bottom)
+        let keyboardHeight = KeyboardService.shared.keyboardHeight - accessoryView.bounds.height
+        accessoryView.configure(safeAreaBottomInset: view.safeAreaInsets.bottom,
+                                keyboardHeight: max(0, keyboardHeight))
         return accessoryView
     }
     

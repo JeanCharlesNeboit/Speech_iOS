@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import RxSwift
 import SwiftyKit
 
 class AbstractTableViewCell: UITableViewCell, CellIdentifiable {
-    
+    // MARK: - Properties
+    let disposeBag = DisposeBag()
 }
