@@ -11,14 +11,16 @@ import RealmSwift
 class Message: Object {
     // MARK: - Properties
     @objc private(set) dynamic var id: String = ""
+    @objc private(set) dynamic var emoji: String?
     @objc private(set) dynamic var text: String = ""
     @objc private(set) dynamic var addedDate: Date = Date()
     @objc private(set) dynamic var numberOfUse: Int = 0
     
     // MARK: - Initialization
-    convenience init(text: String) {
+    convenience init(emoji: String?, text: String) {
         self.init()
         self.id = UUID().uuidString
+        self.emoji = emoji
         self.text = text
     }
     
@@ -38,7 +40,7 @@ class Message: Object {
 extension Collection where Iterator.Element: Message {
     func sortedByAlphabeticalOrder() -> [Message] {
         sorted(by: { lhs, rhs -> Bool in
-            lhs.text.folding(options: .diacriticInsensitive, locale: .current) < rhs.text.folding(options: .diacriticInsensitive, locale: .current)
+            lhs.text.diacriticInsensitive < rhs.text.diacriticInsensitive
         })
     }
     

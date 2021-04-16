@@ -15,19 +15,24 @@ class TableView: UITableView {
         }
         return .insetGrouped
     }
-    
+
     // MARK: - Initialization
     init() {
         super.init(frame: .zero, style: Self.Style)
         sharedInit()
     }
-    
+
     required init?(coder: NSCoder) {
-        super.init(frame: .zero, style: Self.Style)
+        super.init(coder: coder)
         sharedInit()
     }
-    
+
     private func sharedInit() {
-        
+        sectionHeaderHeight = UITableView.automaticDimension
+        estimatedSectionHeaderHeight = 20
+        rowHeight = UITableView.automaticDimension
+        estimatedRowHeight = 100
+        sectionFooterHeight = UITableView.automaticDimension
+        estimatedSectionFooterHeight = 20
     }
 }

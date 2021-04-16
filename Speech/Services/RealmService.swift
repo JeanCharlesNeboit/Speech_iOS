@@ -55,6 +55,20 @@ class RealmService {
         }
     }
     
+    func commit(completion: ((WriteResult) -> Void)?) {
+        do {
+            try commitWrite()
+            completion?(.success)
+        } catch let error {
+            NSLog("❌ Transaction could not be written. (\(error.localizedDescription))")
+            completion?(.failure)
+        }
+    }
+    
+//    func write(block: () -> Void) throws {
+//        try realm.write(block)
+//    }
+    
     // MARK: - Request
     func all<T>(_ type: T.Type) -> Results<T> where T: RealmSwift.Object {
         return realm.objects(type)
@@ -72,18 +86,9 @@ class RealmService {
     
     func deleteObject<T: Object>(_ object: T, completion: ((WriteResult) -> Void)? = nil) {
         beginWrite()
-        realm.delete(object)
+        realm.deleteCascade(object)
+//        realm.delete(object)
         commit(completion: completion)
-    }
-    
-    private func commit(completion: ((WriteResult) -> Void)?) {
-        do {
-            try commitWrite()
-            completion?(.success)
-        } catch let error {
-            NSLog("❌ Transaction could not be written. (\(error.localizedDescription))")
-            completion?(.failure)
-        }
     }
 }
 
@@ -105,7 +110,16 @@ extension RealmService {
 }
 
 extension RealmService {
-    func getCategoriesResult() -> Results<Category> {
-        return all(Category.self)
+    func getCategoriesResult(parentCategory: Category?) -> Results<Category> {
+        if let parentCategory = parentCategory {
+            return getSubCategoriesResult(category: parentCategory)
+        } else {
+            return all(Category.self).filter("parentCategory == nil")
+        }
+    }
+    
+    func getSubCategoriesResult(category: Category) -> Results<Category> {
+        all(Category.self)
+            .filter("parentCategory == %@", category)
     }
 }

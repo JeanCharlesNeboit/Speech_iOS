@@ -41,6 +41,14 @@ generic_edit:
 generic_categories:
     fr: Catégories
     en: Categories
+
+generic_add:
+    fr: Ajouter
+    en: Add
+
+generic_create:
+    fr: Créer
+    en: Create
     
 ## Welcome
 welcome_title:
@@ -125,6 +133,14 @@ messages_list_sort_by_date_added:
     fr: Trier par date d'ajout
     en: Sort by date added
     
+messages_frequently_used:
+    fr: Fréquemment utilisé
+    en: Frequently used
+
+messages_all:
+    fr: Tous les messages
+    en: All messages
+    
 ## Message
 message_new_title:
     fr: Nouveau message
@@ -138,6 +154,10 @@ message_edit_title:
 settings_appearance:
     fr: Apparence
     en: Appearance
+    
+settings_speech_synthesis:
+    fr: Synthèse vocale
+    en: Speech synthesis
 
 settings_voice:
     fr: Voix
@@ -149,7 +169,7 @@ settings_about:
 
 settings_github:
     fr: GitHub
-    en: About
+    en: GitHub
 
 settings_open_source:
     fr: Bibliothèques Open Source
@@ -162,6 +182,18 @@ settings_thanks:
 settings_made_in_auvergne:
     fr: Conçu en Auvergne 🇫🇷
     en: Made in Auvergne 🇫🇷
+
+## Appearance
+appearance_show_frequently_used_messages:
+    fr: Afficher les messages fréquemment utilisés
+    en: Show frequently used messages
+    
+## Categories
+
+## New Category
+new_category_title:
+    fr: Nouveau catégorie
+    en: New category
 
 ## About
 about_description:

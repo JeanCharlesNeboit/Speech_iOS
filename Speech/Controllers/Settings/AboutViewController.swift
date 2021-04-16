@@ -12,12 +12,13 @@ class AboutViewController: AbstractViewController {
     @IBOutlet weak var appNameLabel: UILabel! {
         didSet {
             appNameLabel.text = Bundle.main.displayName
-            appNameLabel.font = UIFont.getFont(style: .title1, weight: .bold)
+            appNameLabel.setDynamicFont(style: .title1, weight: .bold)
         }
     }
     @IBOutlet weak var aboutLabel: UILabel! {
         didSet {
             aboutLabel.text = SwiftyAssets.Strings.about_description
+            aboutLabel.setDynamicFont(style: .body)
         }
     }
     

@@ -11,17 +11,25 @@ import SwiftDate
 
 class MessageTableViewCell: AbstractTableViewCell {
     // MARK: - IBOutlets
-    @IBOutlet weak var containerView: UIView!
-    
-    // MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // containerView.layer.cornerRadius = 10
+    @IBOutlet weak var emojiContentView: UIView!
+    @IBOutlet weak var emojiLabel: UILabel!
+        
+    @IBOutlet weak var messageLabel: UILabel! {
+        didSet {
+            messageLabel.setDynamicFont(style: .body)
+        }
+    }
+    @IBOutlet weak var dateLabel: UILabel! {
+        didSet {
+            dateLabel.setDynamicFont(style: .footnote)
+        }
     }
     
     // MARK: - Configure
     func configure(message: Message) {
-        textLabel?.text = message.text
-        detailTextLabel?.text = message.addedDate.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
+        emojiContentView.isHidden = message.emoji.isEmptyOrNil
+        emojiLabel?.text = message.emoji
+        messageLabel?.text = message.text
+        dateLabel?.text = message.addedDate.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
     }
 }

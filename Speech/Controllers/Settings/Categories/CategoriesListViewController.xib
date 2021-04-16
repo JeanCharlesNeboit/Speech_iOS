@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoriesListViewController" customModule="Speech" customModuleProvider="target">
+            <connections>
+                <outlet property="addButton" destination="HHC-rW-9vE" id="s63-9X-rOx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-rW-9vE" customClass="Button" customModule="Speech" customModuleProvider="target">
+                    <rect key="frame" x="41.5" y="808" width="331" height="34"/>
+                    <state key="normal" title="Ajouter*"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="HHC-rW-9vE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PFE-Wr-iKs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="HHC-rW-9vE" secondAttribute="bottom" constant="20" id="XpE-LH-WeX"/>
+                <constraint firstItem="HHC-rW-9vE" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="uEf-36-dYQ"/>
+            </constraints>
+            <point key="canvasLocation" x="113.04347826086958" y="68.973214285714278"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="HHC-rW-9vE">
+            <size key="intrinsicContentSize" width="66" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

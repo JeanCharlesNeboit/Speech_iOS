@@ -83,6 +83,11 @@ class EditorAreaViewController: AbstractViewController {
         
         listenNotifications()
         
+        DefaultsStorage.preferredEditorAreaTextFontSubject
+            .subscribe(onNext: { [textView] fontStyle in
+                textView?.font = UIFont.getFont(style: fontStyle)
+            }).disposed(by: disposeBag)
+        
         #if DEBUG
         textView.append(text: "Bonjour")
         #endif
@@ -111,7 +116,8 @@ class EditorAreaViewController: AbstractViewController {
                     return
                 }
 
-                let message = Message(text: text)
+                #warning("ToDo emoji")
+                let message = Message(emoji: nil, text: text)
                 realmService.addObject(message, completion: { [weak self] result in
                     guard let self = self else { return }
                     switch result {

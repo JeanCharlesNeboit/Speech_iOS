@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gth-gS-pOY" customClass="EmojiMessageView" customModule="Speech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkK-tC-IN2" customClass="SwiftyUIView" customModule="SwiftyKit">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0IY-vK-XPc">
+                            <rect key="frame" x="20" y="10" width="374" height="96"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JtC-hI-AFg">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37h-TC-Iph" customClass="SwiftyUIView" customModule="SwiftyKit">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Emoji" translatesAutoresizingMaskIntoConstraints="NO" id="Lcc-OA-o8h">
+                                                    <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3h-xs-eUD" customClass="EmojiTextField" customModule="Speech" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="M3h-xs-eUD" firstAttribute="top" secondItem="37h-TC-Iph" secondAttribute="top" id="2ID-kH-lOF"/>
+                                                <constraint firstAttribute="width" secondItem="37h-TC-Iph" secondAttribute="height" id="4Lz-OH-Npm"/>
+                                                <constraint firstItem="Lcc-OA-o8h" firstAttribute="top" secondItem="37h-TC-Iph" secondAttribute="top" constant="10" id="Iis-J7-434"/>
+                                                <constraint firstAttribute="trailing" secondItem="Lcc-OA-o8h" secondAttribute="trailing" constant="10" id="LFp-fj-kD8"/>
+                                                <constraint firstAttribute="trailing" secondItem="M3h-xs-eUD" secondAttribute="trailing" id="Nkh-gD-YHl"/>
+                                                <constraint firstAttribute="bottom" secondItem="M3h-xs-eUD" secondAttribute="bottom" id="OsL-73-DWQ"/>
+                                                <constraint firstItem="M3h-xs-eUD" firstAttribute="leading" secondItem="37h-TC-Iph" secondAttribute="leading" id="Rxz-ER-rq9"/>
+                                                <constraint firstAttribute="height" constant="50" id="XE6-pd-OcJ"/>
+                                                <constraint firstItem="Lcc-OA-o8h" firstAttribute="leading" secondItem="37h-TC-Iph" secondAttribute="leading" constant="10" id="lao-Mf-FHC"/>
+                                                <constraint firstAttribute="bottom" secondItem="Lcc-OA-o8h" secondAttribute="bottom" constant="10" id="np9-0h-QDk"/>
+                                            </constraints>
+                                        </view>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Message*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pzo-JY-bSW">
+                                            <rect key="frame" x="60" y="0.0" width="314" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8v-yP-Orw" customClass="InputMessageStackView" customModule="Speech" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="60" width="374" height="36"/>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="0IY-vK-XPc" secondAttribute="bottom" constant="10" id="UUx-CZ-bP6"/>
+                        <constraint firstItem="0IY-vK-XPc" firstAttribute="leading" secondItem="JkK-tC-IN2" secondAttribute="leading" constant="20" id="cEB-UA-e0v"/>
+                        <constraint firstAttribute="trailing" secondItem="0IY-vK-XPc" secondAttribute="trailing" constant="20" id="fKc-At-mjh"/>
+                        <constraint firstItem="0IY-vK-XPc" firstAttribute="top" secondItem="JkK-tC-IN2" secondAttribute="top" constant="10" id="gbp-Qi-pSS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="JkK-tC-IN2" firstAttribute="top" secondItem="gth-gS-pOY" secondAttribute="top" id="KoS-pd-zir"/>
+                <constraint firstAttribute="trailing" secondItem="JkK-tC-IN2" secondAttribute="trailing" id="VL0-mP-db3"/>
+                <constraint firstItem="JkK-tC-IN2" firstAttribute="leading" secondItem="gth-gS-pOY" secondAttribute="leading" id="fC9-td-MFa"/>
+                <constraint firstAttribute="bottom" secondItem="JkK-tC-IN2" secondAttribute="bottom" id="o7a-ue-tpS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="emojiPlaceholderImageView" destination="Lcc-OA-o8h" id="35G-Y8-wia"/>
+                <outlet property="emojiTextField" destination="M3h-xs-eUD" id="qTZ-d0-JVf"/>
+                <outlet property="inputMessageStackView" destination="h8v-yP-Orw" id="q9A-5R-j6Z"/>
+                <outlet property="messageTextField" destination="Pzo-JY-bSW" id="noh-AM-IJs"/>
+            </connections>
+            <point key="canvasLocation" x="24.637681159420293" y="6.0267857142857144"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Emoji" width="512" height="512"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -28,7 +28,7 @@ enum SortMode: Int, CaseIterable {
 
 class MessageListViewController: AbstractViewController {
     // MARK: - Typealias
-    private typealias Section = SectionModel<String, Message>
+    private typealias Section = SectionModel<String?, Message>
     
     enum EmptyMode {
         case noData
@@ -150,7 +150,7 @@ class MessageListViewController: AbstractViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    private func getSections(search: String?, messagesResult: Results<Message>, sortMode: SortMode) -> [Section] {
+    private func getSections(search: String?, messagesResult: Results<Message>, sortMode: SortMode, showFrequentlyUsedMessages: Bool) -> [Section] {
         var messages = messagesResult.toArray()
             .filter { message in
                 guard let search = self.searchController.searchText else { return true }
@@ -166,11 +166,11 @@ class MessageListViewController: AbstractViewController {
         
         var sections = [Section]()
         if !messages.isEmpty {
-            var defaultSectionHeader = " "
-            if DefaultsStorage.showMostUsedMessages && self.searchController.searchText == nil {
-                defaultSectionHeader = "Toutes les messages*"
+            var defaultSectionHeader: String?
+            if showFrequentlyUsedMessages && self.searchController.searchText == nil {
+                defaultSectionHeader = SwiftyAssets.Strings.messages_all
                 let mostUsedMessages = self.realmService.mostUsedMessages(limit: 5)
-                sections.append(SectionModel(model: "Les plus utilisés*", items: mostUsedMessages))
+                sections.append(SectionModel(model: SwiftyAssets.Strings.messages_frequently_used, items: mostUsedMessages))
             }
             sections.append(SectionModel(model: defaultSectionHeader, items: messages))
         }
@@ -181,10 +181,14 @@ class MessageListViewController: AbstractViewController {
     private func configureTableView() {
         let searchTextObservable = searchController.searchBar.rx.text.asObservable()
         let messagesResultsObservable = Observable.collection(from: realmService.allMessagesResult())
-        Observable.combineLatest(searchTextObservable, messagesResultsObservable, sortModeBehaviorSubject)
-            .map { [weak self] search, messagesResult, sortMode -> [Section] in
+        
+        Observable.combineLatest(searchTextObservable,
+                                 messagesResultsObservable,
+                                 sortModeBehaviorSubject,
+                                 DefaultsStorage.showFrequentlyUsedMessagesSubject)
+            .map { [weak self] search, messagesResult, sortMode, showFrequentlyUsedMessages -> [Section] in
                 guard let self = self else { return [] }
-                return self.getSections(search: search, messagesResult: messagesResult, sortMode: sortMode)
+                return self.getSections(search: search, messagesResult: messagesResult, sortMode: sortMode, showFrequentlyUsedMessages: showFrequentlyUsedMessages)
             }.bind(to: sectionsObservable)
             .disposed(by: disposeBag)
         

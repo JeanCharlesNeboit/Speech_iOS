@@ -32,9 +32,9 @@ class AppearanceListViewController: BaseListViewController {
                     DefaultsStorage.preferredEditorAreaTextFont = font
                 }))
             ]),
-            Section(model: .init(header: "Messages*"), items: [
-                .switchChoice(.init(title: "Afficher les messages les plus utilisés*", initialValue: DefaultsStorage.showMostUsedMessages, onSwitch: { value in
-                    DefaultsStorage.showMostUsedMessages = value
+            Section(model: .init(header: SwiftyAssets.Strings.generic_messages), items: [
+                .switchChoice(.init(title: SwiftyAssets.Strings.appearance_show_frequently_used_messages, initialValue: DefaultsStorage.showFrequentlyUsedMessages, onSwitch: { value in
+                    DefaultsStorage.showFrequentlyUsedMessages = value
                 }))
             ])
         ]

@@ -12,7 +12,8 @@ class TableViewHeaderFooterView: UITableViewHeaderFooterView {
     @IBOutlet weak var headerFooterLabel: UILabel!
     
     // MARK: - Configure
-    func configure(text: String?) {
+    func configure(text: String?, textAlignment: NSTextAlignment = .left) {
         headerFooterLabel.text = text
+        headerFooterLabel.textAlignment = textAlignment
     }
 }

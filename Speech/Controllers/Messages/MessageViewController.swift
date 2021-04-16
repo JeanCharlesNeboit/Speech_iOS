@@ -7,15 +7,6 @@
 
 import UIKit
 
-class EmojiTextField: UITextField {
-    override var textInputMode: UITextInputMode? {
-        for mode in UITextInputMode.activeInputModes where mode.primaryLanguage == "emoji" {
-            return mode
-        }
-        return nil
-    }
-}
-
 class MessageViewController: AbstractViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var emojiTextField: EmojiTextField! {

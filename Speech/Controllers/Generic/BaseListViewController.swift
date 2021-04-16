@@ -11,7 +11,7 @@ import RxSwift
 import RxDataSources
 import TinyConstraints
 
-enum BaseListCellType {
+enum BaseListCellType {    
     case details(title: String? = nil, vc: UIViewController = UIViewController())
     case link(title: String, urlString: String?)
     
@@ -51,7 +51,7 @@ class BaseListViewController: AbstractViewController {
     typealias Section = SectionModel<SectionHeaderFooter, BaseListCellType>
     
     // MARK: - IBOutlets
-    private lazy var tableView: UITableView = {
+    lazy var tableView: TableView = {
         let tableView = TableView()
         
         let cells: [CellIdentifiable.Type] = [
@@ -64,7 +64,6 @@ class BaseListViewController: AbstractViewController {
             tableView.register($0.nib, forCellReuseIdentifier: $0.identifier)
         }
         
-        tableView.contentInset = .vertical(20)
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         
@@ -92,7 +91,12 @@ class BaseListViewController: AbstractViewController {
     }()
     
     // MARK: - Properties
-    var sections = [Section]()
+    var sections = [Section]() {
+        didSet {
+            sectionsObservable.onNext(sections)
+        }
+    }
+    private var sectionsObservable = BehaviorSubject<[Section]>(value: [])
     
     // MARK: - Initialization
     init(title: String, sections: [Section]) {
@@ -117,7 +121,7 @@ class BaseListViewController: AbstractViewController {
     
     // MARK: - Configure
     private func configureTableView() {
-        view.addSubview(tableView)
+        view.insertSubview(tableView, at: 0)
         tableView.edgesToSuperview()
         
         let dataSource = RxTableViewSectionedReloadDataSource<Section>(configureCell: { _, tableView, indexPath, dataSource in
@@ -140,21 +144,36 @@ class BaseListViewController: AbstractViewController {
                 }
             }
             
+            cell.layoutSubviews()
+            cell.layoutIfNeeded()
+    
             return cell
         }, titleForHeaderInSection: { sections, indexPath -> String? in
             return sections.sectionModels[indexPath].model.header
         })
         
-        Observable.just(sections)
+        sectionsObservable
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
 }
 
-extension BaseListViewController: UITableViewDelegate {
+extension BaseListViewController: UITableViewDelegate {    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let header = sections[safe: section]?.model.header else { return nil }
+//        let view: TableViewHeaderFooterView = .loadFromXib()
+//        view.configure(text: header)
+//        return view
+//    }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let footer = sections[safe: section]?.model.footer else { return nil }
         let view: TableViewHeaderFooterView = .loadFromXib()
-        view.configure(text: sections[safe: section]?.model.footer)
+        view.configure(text: footer, textAlignment: .center)
         return view
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       return nil
     }
 }

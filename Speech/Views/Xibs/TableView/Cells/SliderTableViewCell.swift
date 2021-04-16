@@ -6,8 +6,8 @@
 //
 
 import UIKit
+import SwiftyKit
 
-// https://stackoverflow.com/questions/35452185/how-can-i-make-a-uislider-with-step-value
 // https://stackoverflow.com/questions/24726411/how-to-customze-uislider-to-get-stepps-visible
 class SliderTableViewCell: AbstractTableViewCell {
     // MARK: - State
@@ -28,9 +28,9 @@ class SliderTableViewCell: AbstractTableViewCell {
         }
     }
     
-    @IBOutlet weak var slider: UISlider! {
+    @IBOutlet weak var slider: SwitchSlider! {
         didSet {
-            slider.minimumTrackTintColor = SwiftyAssets.UIColors.primary
+            slider.step = 1
             slider.rx.value
                 .subscribe(onNext: { value in
                     self.onSlide?(value)

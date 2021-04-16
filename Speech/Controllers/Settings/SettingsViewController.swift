@@ -18,8 +18,8 @@ class SettingsViewController: BaseListViewController {
             Section(model: .init(),
                     items: [
                         .details(vc: AppearanceListViewController()),
-                        .details(vc: VoiceListViewController()),
-                        .details(vc: CategoriesViewController())
+                        .details(vc: SpeechSynthesisListViewController()),
+                        .details(vc: CategoriesListViewController())
                     ]),
             Section(model: .init(footer: "\(Bundle.main.info)\n\(SwiftyAssets.Strings.settings_made_in_auvergne)"),
                     items: [
