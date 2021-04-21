@@ -11,10 +11,9 @@ no_messages:
     width: 400
     
 # Icons
-plus_circle_fill:
-    height: 50
+smileys_and_people:
+    width: -1
 
-# NavigationItem
 gearshape:
     height: 24
 

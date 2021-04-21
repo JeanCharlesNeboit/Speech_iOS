@@ -14,7 +14,6 @@
                 <outlet property="emptyBodyLabel" destination="WMZ-9Q-0i3" id="Wde-6u-ant"/>
                 <outlet property="emptyTitleLabel" destination="dG4-Jy-ymb" id="606-hU-eOX"/>
                 <outlet property="emptyView" destination="y4v-BB-EEn" id="xVq-YS-9Is"/>
-                <outlet property="tableView" destination="Laf-IF-uKS" id="jWu-kX-zRk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,10 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="always" keyboardDismissMode="interactive" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Laf-IF-uKS" customClass="TableView" customModule="Speech" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-BB-EEn">
                     <rect key="frame" x="41.5" y="310.5" width="331" height="275"/>
                     <subviews>
@@ -67,11 +62,7 @@
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
                 <constraint firstItem="y4v-BB-EEn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L4l-V4-Zi9"/>
-                <constraint firstItem="Laf-IF-uKS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OKQ-5H-PSd"/>
-                <constraint firstAttribute="bottom" secondItem="Laf-IF-uKS" secondAttribute="bottom" id="aPL-9R-XqF"/>
-                <constraint firstItem="Laf-IF-uKS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bGs-wu-nJY"/>
                 <constraint firstItem="y4v-BB-EEn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="eBf-x4-bL0"/>
-                <constraint firstAttribute="trailing" secondItem="Laf-IF-uKS" secondAttribute="trailing" id="gVr-Ay-E92"/>
                 <constraint firstItem="y4v-BB-EEn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="tyx-nb-Pr8"/>
             </constraints>
             <point key="canvasLocation" x="138.28125" y="87.890625"/>

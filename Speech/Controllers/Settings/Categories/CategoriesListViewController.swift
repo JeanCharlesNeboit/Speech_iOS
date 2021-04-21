@@ -25,8 +25,7 @@ class CategoriesListViewController: BaseListViewController {
     
     // MARK: - Properties
     private var parentCategory: Category?
-    private var categories = [Category]()
-    private var categoriesObservable = BehaviorSubject<[Category]>(value: [])
+    @RxBehaviorSubject private var categories = [Category]()
     private lazy var searchController = SearchController()
 
     // MARK: - Initialization
@@ -57,32 +56,35 @@ class CategoriesListViewController: BaseListViewController {
     }
     
     private func configureTableView() {
+        tableView.rx.modelSelected(BaseListCellType.self)
+            .subscribe(onNext: { [weak self] cellType in
+                guard case let .category(category) = cellType else { return }
+                self?.navigationController?.pushViewController(CategoriesListViewController(parentCategory: category), animated: true)
+            }).disposed(by: disposeBag)
+        
         let searchTextObservable = searchController.searchBar.rx.text.asObservable()
         let categoriesResultsObservable = Observable.collection(from: realmService.getCategoriesResult(parentCategory: parentCategory))
         Observable.combineLatest(searchTextObservable, categoriesResultsObservable)
-            .map { search, categoriesResult -> [Category] in
+            .subscribe { search, categoriesResult in
                 let categories = categoriesResult.toArray()
                     .filter { category in
                         guard let search = search,
                               !search.trimmingCharacters(in: .whitespaces).isEmpty else { return true }
                         return category.name.contains(search)
                     }
-                return categories.sorted()
-            }.bind(to: categoriesObservable)
-            .disposed(by: disposeBag)
+                self.categories = categories.sorted()
+            }.disposed(by: disposeBag)
         
-        categoriesObservable
-            .map { categories in
-                self.categories = categories
-                return [
-                    Section.init(model: .init(), items:
+        $categories
+            .subscribe(onNext: { [weak self] categories in
+                guard let self = self else { return }
+                self.sections = [
+                    Section.init(model: .init(header: self.parentCategory?.name), items:
                         categories.map {
-                            return .details(title: $0.name, vc: CategoriesListViewController(parentCategory: $0))
+                            return .category($0)
                         }
                     )
                 ]
-            }.subscribe(onNext: { [weak self] in
-                self?.sections = $0
             }).disposed(by: disposeBag)
     }
 }

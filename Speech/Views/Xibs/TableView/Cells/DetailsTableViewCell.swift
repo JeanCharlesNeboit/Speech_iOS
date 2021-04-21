@@ -5,11 +5,14 @@
 //  Created by Jean-Charles Neboit on 06/04/2021.
 //
 
-import Foundation
+import UIKit
 
 class DetailsTableViewCell: AbstractTableViewCell {
+    // MARK: - Properties
+    @IBOutlet weak var titleLabel: UILabel!
+    
     // MARK: - Configure
     func configure(title: String) {
-        textLabel?.text = title
+        titleLabel.text = title
     }
 }

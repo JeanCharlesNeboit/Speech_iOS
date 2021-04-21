@@ -11,37 +11,57 @@ import RxSwift
 import RxDataSources
 import TinyConstraints
 
-enum BaseListCellType {    
+enum BaseListCellType {
+    case container(view: UIView, onConfigure: ((IndexPath) -> Void)?)
     case details(title: String? = nil, vc: UIViewController = UIViewController())
-    case link(title: String, urlString: String?)
+    case action(title: String, onTap: (() -> Void)?)
+    case link(Link)
     
 //    case speechRate
     case editorAreaTextSize(SliderTableViewCell.State)
     case switchChoice(SwitchTableViewCell.State)
     
+    case message(Message)
+    case category(Category)
+    
     var cellType: CellIdentifiable.Type {
         switch self {
-        case .details:
-            return DetailsTableViewCell.self
-        case .link:
+        case .container:
+            return ContainerTableViewCell.self
+        case .details,
+             .action,
+            .link:
             return DetailsTableViewCell.self
         case .editorAreaTextSize:
             return SliderTableViewCell.self
         case .switchChoice:
             return SwitchTableViewCell.self
+        case .message:
+            return MessageTableViewCell.self
+        case .category:
+            return CategoryTableViewCell.self
         }
     }
     
-    var title: String {
+    func configure(cell: UITableViewCell, indexPath: IndexPath) {
         switch self {
+        case .container(let view, let onConfigure):
+            (cell as? ContainerTableViewCell)?.configure(view: view)
+            onConfigure?(indexPath)
         case .details(let title, let vc):
-            return title ?? vc.title ?? ""
-        case .link(let title, _):
-            return title
+            (cell as? DetailsTableViewCell)?.configure(title: title ?? vc.title ?? "")
+        case .action(let title, _):
+            (cell as? DetailsTableViewCell)?.configure(title: title)
+        case .link(let link):
+            (cell as? DetailsTableViewCell)?.configure(title: link.title)
         case .switchChoice(let state):
-            return state.title
-        case .editorAreaTextSize:
-            return ""
+            (cell as? SwitchTableViewCell)?.configure(state: state)
+        case .editorAreaTextSize(let state):
+            (cell as? SliderTableViewCell)?.configure(state: state)
+        case .message(let message):
+            (cell as? MessageTableViewCell)?.configure(message: message)
+        case .category(let category):
+            (cell as? CategoryTableViewCell)?.configure(category: category)
         }
     }
 }
@@ -55,9 +75,12 @@ class BaseListViewController: AbstractViewController {
         let tableView = TableView()
         
         let cells: [CellIdentifiable.Type] = [
+            ContainerTableViewCell.self,
             DetailsTableViewCell.self,
             SliderTableViewCell.self,
-            SwitchTableViewCell.self
+            SwitchTableViewCell.self,
+            MessageTableViewCell.self,
+            CategoryTableViewCell.self
         ]
         
         cells.forEach {
@@ -78,11 +101,15 @@ class BaseListViewController: AbstractViewController {
                 switch model {
                 case .details(let title, let vc):
                     self.navigationController?.pushViewController(vc, animated: true)
-                case .link(title: let title, let urlString):
-                    guard let urlString = urlString else { return }
-                    self.openSafari(urlString: urlString)
-                case .editorAreaTextSize,
-                     .switchChoice:
+                case .action(_, let onTap):
+                    onTap?()
+                case .link(let link):
+                    self.openSafari(urlString: link.urlString)
+                case .container,
+                     .editorAreaTextSize,
+                     .switchChoice,
+                     .message,
+                     .category:
                     break
                 }
             }).disposed(by: disposeBag)
@@ -91,12 +118,7 @@ class BaseListViewController: AbstractViewController {
     }()
     
     // MARK: - Properties
-    var sections = [Section]() {
-        didSet {
-            sectionsObservable.onNext(sections)
-        }
-    }
-    private var sectionsObservable = BehaviorSubject<[Section]>(value: [])
+    @RxBehaviorSubject var sections = [Section]()
     
     // MARK: - Initialization
     init(title: String, sections: [Section]) {
@@ -125,34 +147,14 @@ class BaseListViewController: AbstractViewController {
         tableView.edgesToSuperview()
         
         let dataSource = RxTableViewSectionedReloadDataSource<Section>(configureCell: { _, tableView, indexPath, dataSource in
-            let cellType = dataSource.cellType
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath)
-            
-            switch dataSource {
-            case .details,
-                 .link:
-                if let cell = cell as? DetailsTableViewCell {
-                    cell.configure(title: dataSource.title)
-                }
-            case .switchChoice(let state):
-                if let cell = cell as? SwitchTableViewCell {
-                    cell.configure(state: state)
-                }
-            case .editorAreaTextSize(let state):
-                if let cell = cell as? SliderTableViewCell {
-                    cell.configure(state: state)
-                }
-            }
-            
-            cell.layoutSubviews()
-            cell.layoutIfNeeded()
-    
+            let cell = tableView.dequeueReusableCell(withIdentifier: dataSource.cellType.identifier, for: indexPath)
+            dataSource.configure(cell: cell, indexPath: indexPath)
             return cell
         }, titleForHeaderInSection: { sections, indexPath -> String? in
             return sections.sectionModels[indexPath].model.header
         })
         
-        sectionsObservable
+        $sections
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }

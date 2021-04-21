@@ -9,22 +9,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hhV-dp-PDq" rowHeight="69" style="IBUITableViewCellStyleDefault" id="pyX-ab-K3d" customClass="DetailsTableViewCell" customModule="Speech" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="69" id="pyX-ab-K3d" customClass="DetailsTableViewCell" customModule="Speech" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="69"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pyX-ab-K3d" id="hBC-Bn-vJI">
                 <rect key="frame" x="0.0" y="0.0" width="383" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hhV-dp-PDq">
-                        <rect key="frame" x="20" y="0.0" width="355" height="69"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yts-hb-g46">
+                        <rect key="frame" x="20" y="10" width="343" height="49"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="yts-hb-g46" firstAttribute="top" secondItem="hBC-Bn-vJI" secondAttribute="top" constant="10" id="Dx8-ry-h5c"/>
+                    <constraint firstAttribute="bottom" secondItem="yts-hb-g46" secondAttribute="bottom" constant="10" id="N3L-2O-Z8K"/>
+                    <constraint firstAttribute="trailing" secondItem="yts-hb-g46" secondAttribute="trailing" constant="20" id="Ny8-EA-zJ7"/>
+                    <constraint firstItem="yts-hb-g46" firstAttribute="leading" secondItem="hBC-Bn-vJI" secondAttribute="leading" constant="20" id="gTq-j5-HHU"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="titleLabel" destination="yts-hb-g46" id="q9h-gC-3lQ"/>
+            </connections>
             <point key="canvasLocation" x="-355.07246376811599" y="9.0401785714285712"/>
         </tableViewCell>
     </objects>

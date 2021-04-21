@@ -41,8 +41,8 @@
                                     <constraint firstAttribute="width" secondItem="wuJ-yd-mod" secondAttribute="height" id="vnS-hL-8ii"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8Oj-Ox-NXs">
-                                <rect key="frame" x="60" y="15" width="220" height="41"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="8Oj-Ox-NXs">
+                                <rect key="frame" x="60" y="3" width="220" height="65.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message*" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1k-Dr-kaR">
                                         <rect key="frame" x="0.0" y="0.0" width="220" height="20.5"/>
@@ -50,8 +50,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date*" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwu-53-NUg">
-                                        <rect key="frame" x="0.0" y="20.5" width="220" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catégorie" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwu-53-NUg">
+                                        <rect key="frame" x="0.0" y="22.5" width="220" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date*" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmR-Jq-D53">
+                                        <rect key="frame" x="0.0" y="45" width="220" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -71,7 +77,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="dateLabel" destination="Vwu-53-NUg" id="zEt-wM-uYm"/>
+                <outlet property="categoryLabel" destination="Vwu-53-NUg" id="uur-vf-kgm"/>
+                <outlet property="dateLabel" destination="zmR-Jq-D53" id="VQ3-E9-yJY"/>
                 <outlet property="emojiContentView" destination="wuJ-yd-mod" id="1oo-Sc-TUN"/>
                 <outlet property="emojiLabel" destination="zT1-iy-qQp" id="e0p-26-90L"/>
                 <outlet property="messageLabel" destination="Y1k-Dr-kaR" id="mF7-xp-SfW"/>

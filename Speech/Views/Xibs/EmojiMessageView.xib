@@ -26,7 +26,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37h-TC-Iph" customClass="SwiftyUIView" customModule="SwiftyKit">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Emoji" translatesAutoresizingMaskIntoConstraints="NO" id="Lcc-OA-o8h">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smileys_and_people" translatesAutoresizingMaskIntoConstraints="NO" id="Lcc-OA-o8h">
                                                     <rect key="frame" x="10" y="10" width="30" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
@@ -60,13 +60,16 @@
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8v-yP-Orw" customClass="InputMessageStackView" customModule="Speech" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="60" width="374" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="250" id="ako-do-gBU"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="0IY-vK-XPc" secondAttribute="bottom" constant="10" id="UUx-CZ-bP6"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0IY-vK-XPc" secondAttribute="bottom" constant="10" id="UUx-CZ-bP6"/>
                         <constraint firstItem="0IY-vK-XPc" firstAttribute="leading" secondItem="JkK-tC-IN2" secondAttribute="leading" constant="20" id="cEB-UA-e0v"/>
                         <constraint firstAttribute="trailing" secondItem="0IY-vK-XPc" secondAttribute="trailing" constant="20" id="fKc-At-mjh"/>
                         <constraint firstItem="0IY-vK-XPc" firstAttribute="top" secondItem="JkK-tC-IN2" secondAttribute="top" constant="10" id="gbp-Qi-pSS"/>
@@ -91,7 +94,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Emoji" width="512" height="512"/>
+        <image name="smileys_and_people" width="23" height="23"/>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

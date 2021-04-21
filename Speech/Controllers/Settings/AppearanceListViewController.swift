@@ -24,8 +24,18 @@ class AppearanceListViewController: BaseListViewController {
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.settings_appearance
+        title = SwiftyAssets.Strings.settings_preferences
         sections = [
+            Section(model: .init(header: "Speaking rate*"), items: [
+//                .editorAreaTextSize(.init(minimumValue: 0, maximumValue: Float(editorAreaFonts.count - 1), initialValue: Float(currentEditorAreaFontIndex), onSlide: { value in
+//                    let font = self.editorAreaFonts[safe: Int(value)] ?? .body
+//                    DefaultsStorage.preferredEditorAreaTextFont = font
+//                }))
+                .switchChoice(.init(title: "Use keyboard language as default*", initialValue: true, onSwitch: { value in
+                    
+                })),
+                .details(title: SwiftyAssets.Strings.settings_voice, vc: VoiceListViewController())
+            ]),
             Section(model: .init(header: "Editor area text size*"), items: [
                 .editorAreaTextSize(.init(minimumValue: 0, maximumValue: Float(editorAreaFonts.count - 1), initialValue: Float(currentEditorAreaFontIndex), onSlide: { value in
                     let font = self.editorAreaFonts[safe: Int(value)] ?? .body
@@ -33,6 +43,9 @@ class AppearanceListViewController: BaseListViewController {
                 }))
             ]),
             Section(model: .init(header: SwiftyAssets.Strings.generic_messages), items: [
+                .switchChoice(.init(title: "Demander la catégorie avant l'enregistrement du message*", initialValue: true, onSwitch: { value in
+                    
+                })),
                 .switchChoice(.init(title: SwiftyAssets.Strings.appearance_show_frequently_used_messages, initialValue: DefaultsStorage.showFrequentlyUsedMessages, onSwitch: { value in
                     DefaultsStorage.showFrequentlyUsedMessages = value
                 }))

@@ -21,10 +21,7 @@ class SpeechSynthesizerService: NSObject {
     private let disposeBag = DisposeBag()
     private lazy var speechSynthesizer = AVSpeechSynthesizer()
     
-    let stateBehaviorSubject = BehaviorSubject<SpeechSynthesizerState>(value: .idle)
-    var state: SpeechSynthesizerState {
-        (try? stateBehaviorSubject.value()) ?? .idle
-    }
+    @RxBehaviorSubject var state: SpeechSynthesizerState = .idle
     
     // MARK: - Initialization
     private override init() {
@@ -86,22 +83,22 @@ class SpeechSynthesizerService: NSObject {
 
 extension SpeechSynthesizerService: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        stateBehaviorSubject.onNext(.speak)
+        state = .speak
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {
-        stateBehaviorSubject.onNext(.speak)
+        state = .speak
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
-        stateBehaviorSubject.onNext(.pause)
+        state = .pause
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        stateBehaviorSubject.onNext(.idle)
+        state = .idle
     }
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        stateBehaviorSubject.onNext(.idle)
+        state = .idle
     }
 }

@@ -84,9 +84,13 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func openSafari(urlString: String) {
+    func openSafari(urlString: String, inApp: Bool = false) {
         guard let url = URL(string: urlString) else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true, completion: nil)
+        if inApp {
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.open(url)
+        }
     }
 }

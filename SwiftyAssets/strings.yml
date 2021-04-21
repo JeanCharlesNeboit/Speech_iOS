@@ -151,9 +151,9 @@ message_edit_title:
     en: Edit message
 
 ## Settings
-settings_appearance:
-    fr: Apparence
-    en: Appearance
+settings_preferences:
+    fr: Préférences
+    en: Preferences
     
 settings_speech_synthesis:
     fr: Synthèse vocale
@@ -162,6 +162,18 @@ settings_speech_synthesis:
 settings_voice:
     fr: Voix
     en: Voice
+    
+settings_share_app:
+    fr: Partager %@
+    en: Share %@
+
+settings_rate_app:
+    fr: Donner votre avis sur %@
+    en: Give your opinion about %@
+    
+settings_privacy_policy:
+    fr: Politique de confidentialité
+    en: Privacy policy
 
 settings_about:
     fr: À propos

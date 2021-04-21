@@ -83,7 +83,7 @@ class EditorAreaViewController: AbstractViewController {
         
         listenNotifications()
         
-        DefaultsStorage.preferredEditorAreaTextFontSubject
+        DefaultsStorage.$preferredEditorAreaTextFont
             .subscribe(onNext: { [textView] fontStyle in
                 textView?.font = UIFont.getFont(style: fontStyle)
             }).disposed(by: disposeBag)

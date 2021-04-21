@@ -6,20 +6,10 @@
 //
 
 import UIKit
+import RxSwift
 
-class MessageViewController: AbstractViewController {
+class MessageViewController: BaseListViewController {
     // MARK: - IBOutlets
-    @IBOutlet weak var emojiTextField: EmojiTextField! {
-        didSet {
-            emojiTextField.font = UIFont.getFont(style: .largeTitle)
-        }
-    }
-    
-    @IBOutlet weak var nameTextField: UITextField! {
-        didSet {
-            emojiTextField.font = UIFont.getFont(style: .body)
-        }
-    }
     
     // MARK: - Properties
     private lazy var validBarButtonItem: UIBarButtonItem = {
@@ -30,6 +20,8 @@ class MessageViewController: AbstractViewController {
         return button
     }()
     
+    private var emojiMessageViewOnConfigureDisposable: Disposable?
+    private var emojiMessageView: EmojiMessageView = .loadFromXib()
     private var message: Message?
     
     // MARK: - Initialization
@@ -41,13 +33,34 @@ class MessageViewController: AbstractViewController {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
-    // MARK: - Configure
-    override func configure() {
+    
+    override func sharedInit() {
+        super.sharedInit()
         title = message == nil ? SwiftyAssets.Strings.message_new_title : SwiftyAssets.Strings.message_edit_title
         navigationItem.leftBarButtonItem = cancelBarButtonItem
         navigationItem.rightBarButtonItem = validBarButtonItem
-        
-        nameTextField.text = message?.text
+    }
+
+    // MARK: - Configure
+    override func configure() {
+        super.configure()
+        sections = [
+            Section(model: .init(),
+                    items: [
+                        .container(view: emojiMessageView, onConfigure: { [weak self] _ in
+                            guard let self = self else { return }
+                            self.emojiMessageViewOnConfigureDisposable = self.emojiMessageView
+                                .inputMessageStackView
+                                .message
+                                .subscribe(onNext: { [weak self] _ in
+                                    self?.tableView.performBatchUpdates(nil, completion: nil)
+                                })
+                        })
+                    ]),
+            Section(model: .init(),
+                    items: [
+                        .details(title: "Category*", vc: CategoriesListViewController())
+                    ])
+        ]
     }
 }

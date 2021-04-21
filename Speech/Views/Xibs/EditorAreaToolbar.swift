@@ -105,7 +105,7 @@ class EditorAreaToolbar: AbstractView {
     
     // MARK: - SpeechSynthesizerState
     private func listenSpeechSynthesizerState() {
-        SpeechSynthesizerService.shared.stateBehaviorSubject
+        SpeechSynthesizerService.shared.$state
             .subscribe(onNext: { [weak self] state in
                 guard let self = self else { return }
                 let actionButtons: [UIButton]

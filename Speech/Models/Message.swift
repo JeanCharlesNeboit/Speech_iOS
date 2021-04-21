@@ -14,6 +14,7 @@ class Message: Object {
     @objc private(set) dynamic var emoji: String?
     @objc private(set) dynamic var text: String = ""
     @objc private(set) dynamic var addedDate: Date = Date()
+    @objc private(set) dynamic var category: Category?
     @objc private(set) dynamic var numberOfUse: Int = 0
     
     // MARK: - Initialization

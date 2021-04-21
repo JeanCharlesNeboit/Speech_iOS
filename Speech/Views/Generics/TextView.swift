@@ -13,16 +13,7 @@ class TextView: UITextView {
     // MARK: - Properties
     let disposeBag = DisposeBag()
     
-    private var isPlaceholderActiveBehaviorSubject = BehaviorSubject<Bool>(value: true)
-    private var isPlaceholderActive: Bool {
-        get {
-            (try? isPlaceholderActiveBehaviorSubject.value()) ?? false
-        }
-        set {
-            isPlaceholderActiveBehaviorSubject.onNext(newValue)
-        }
-        
-    }
+    @RxBehaviorSubject private var isPlaceholderActive: Bool = true
     
     var placeholder: String = "" {
         didSet {
@@ -57,7 +48,7 @@ class TextView: UITextView {
         textContainerInset = .zero
         textContainer.lineFragmentPadding = 0
         
-        isPlaceholderActiveBehaviorSubject
+        $isPlaceholderActive
             .subscribe(onNext: { [weak self] isPlaceholderActive in
                 guard let self = self else { return }
                 self.text = isPlaceholderActive ? self.placeholder : nil

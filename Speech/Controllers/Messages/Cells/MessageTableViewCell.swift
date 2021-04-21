@@ -19,17 +19,25 @@ class MessageTableViewCell: AbstractTableViewCell {
             messageLabel.setDynamicFont(style: .body)
         }
     }
+    
+    @IBOutlet weak var categoryLabel: UILabel! {
+        didSet {
+            categoryLabel.setDynamicFont(style: .footnote)
+        }
+    }
+    
     @IBOutlet weak var dateLabel: UILabel! {
         didSet {
-            dateLabel.setDynamicFont(style: .footnote)
+            dateLabel.setDynamicFont(style: .caption2)
         }
     }
     
     // MARK: - Configure
     func configure(message: Message) {
         emojiContentView.isHidden = message.emoji.isEmptyOrNil
-        emojiLabel?.text = message.emoji
-        messageLabel?.text = message.text
-        dateLabel?.text = message.addedDate.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
+        emojiLabel.text = message.emoji
+        messageLabel.text = message.text
+        categoryLabel.text = message.category?.name
+        dateLabel.text = message.addedDate.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
     }
 }

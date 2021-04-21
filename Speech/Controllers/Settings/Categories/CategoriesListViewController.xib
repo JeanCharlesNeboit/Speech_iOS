@@ -20,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-rW-9vE" customClass="Button" customModule="Speech" customModuleProvider="target">
-                    <rect key="frame" x="41.5" y="808" width="331" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-rW-9vE" customClass="Button" customModule="Speech" customModuleProvider="target">
+                    <rect key="frame" x="41.5" y="812" width="331" height="30"/>
                     <state key="normal" title="Ajouter*"/>
                 </button>
             </subviews>
@@ -37,7 +37,7 @@
     </objects>
     <designables>
         <designable name="HHC-rW-9vE">
-            <size key="intrinsicContentSize" width="66" height="34"/>
+            <size key="intrinsicContentSize" width="57" height="30"/>
         </designable>
     </designables>
     <resources>

@@ -12,8 +12,8 @@ class ThanksListViewController: BaseListViewController {
         title = SwiftyAssets.Strings.settings_thanks
         sections = [
             Section(model: .init(), items: [
-                .link(title: "Freepik Storyset*", urlString: "https://storyset.com"),
-                .link(title: "Association ADOL43*", urlString: nil)
+                .link(.init(title: "Freepik Storyset*", urlString: "https://storyset.com")),
+                .link(.init(title: "Association ADOL43*", urlString: ""))
             ])
         ]
     }
