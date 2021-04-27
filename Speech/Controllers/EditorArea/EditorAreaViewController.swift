@@ -36,7 +36,7 @@ class EditorAreaViewController: AbstractViewController {
     }
     
     private lazy var settingsBarButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: SwiftyAssets.Images.gearshape, style: .plain, target: nil, action: nil)
+        let button = UIBarButtonItem(image: SwiftyAssets.UIImages.gearshape, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
             self.present(NavigationController(rootViewController: SettingsViewController()))
         }).disposed(by: disposeBag)
@@ -64,7 +64,7 @@ class EditorAreaViewController: AbstractViewController {
         if !isCollapsed {
             navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         } else {
-            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.Images.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
+            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
             messageBarButtonItem.rx.tap
                 .subscribe(onNext: { [self] in
                     present(NavigationController(rootViewController: MessageListViewController()), animated: true, completion: nil)
@@ -85,7 +85,7 @@ class EditorAreaViewController: AbstractViewController {
         
         DefaultsStorage.$preferredEditorAreaTextFont
             .subscribe(onNext: { [textView] fontStyle in
-                textView?.font = UIFont.getFont(style: fontStyle)
+                textView?.setDynamicFont(style: fontStyle)
             }).disposed(by: disposeBag)
         
         #if DEBUG
@@ -103,8 +103,7 @@ class EditorAreaViewController: AbstractViewController {
         NotificationCenter.default.rx
             .notification(.editorAreaSaveText)
             .subscribe(onNext: { [self] _ in
-//                let destination = NavigationController(rootViewController: MessageViewController())
-//                present(destination, animated: true, completion: nil)
+
                 guard let text = self.textView.enteredText else {
                     showEmptyError()
                     return
@@ -116,19 +115,24 @@ class EditorAreaViewController: AbstractViewController {
                     return
                 }
 
-                #warning("ToDo emoji")
                 let message = Message(emoji: nil, text: text)
-                realmService.addObject(message, completion: { [weak self] result in
-                    guard let self = self else { return }
-                    switch result {
-                    case .success:
-                        self.showSuccess(title: SwiftyAssets.Strings.editor_area_successfully_saved_title,
-                                         message: SwiftyAssets.Strings.editor_area_successfully_saved_body)
-                    case .failure:
-                        self.showError(title: SwiftyAssets.Strings.editor_area_not_successfully_saved_title,
-                                         message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
-                    }
-                })
+                if DefaultsStorage.saveMessagesQuickly {
+                    #warning("Manage notifications with MessageViewController too")
+                    realmService.addObject(message, completion: { [weak self] result in
+                        guard let self = self else { return }
+                        switch result {
+                        case .success:
+                            self.showSuccess(title: SwiftyAssets.Strings.editor_area_successfully_saved_title,
+                                             message: SwiftyAssets.Strings.editor_area_successfully_saved_body)
+                        case .failure:
+                            self.showError(title: SwiftyAssets.Strings.editor_area_not_successfully_saved_title,
+                                             message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
+                        }
+                    })
+                } else {
+                    let destination = NavigationController(rootViewController: MessageViewController(message: message))
+                    present(destination, animated: true, completion: nil)
+                }
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx

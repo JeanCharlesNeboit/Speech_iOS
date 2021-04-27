@@ -1,11 +1,11 @@
 //
-//  AppearanceListViewController.swift
+//  PreferencesListViewController.swift
 //  Speech
 //
 //  Created by Jean-Charles Neboit on 13/04/2021.
 //
 
-class AppearanceListViewController: BaseListViewController {
+class PreferencesListViewController: BaseListViewController {
     // MARK: - Properties
     private var currentEditorAreaFontIndex: Int {
         editorAreaFonts.firstIndex(where: {
@@ -43,12 +43,20 @@ class AppearanceListViewController: BaseListViewController {
                 }))
             ]),
             Section(model: .init(header: SwiftyAssets.Strings.generic_messages), items: [
-                .switchChoice(.init(title: "Demander la catégorie avant l'enregistrement du message*", initialValue: true, onSwitch: { value in
-                    
-                })),
-                .switchChoice(.init(title: SwiftyAssets.Strings.appearance_show_frequently_used_messages, initialValue: DefaultsStorage.showFrequentlyUsedMessages, onSwitch: { value in
-                    DefaultsStorage.showFrequentlyUsedMessages = value
-                }))
+                .switchChoice(
+                    .init(title: SwiftyAssets.Strings.preferences_save_messages_quickly,
+                          initialValue: DefaultsStorage.saveMessagesQuickly,
+                          onSwitch: { value in
+                            DefaultsStorage.saveMessagesQuickly = value
+                          })
+                ),
+                .switchChoice(
+                    .init(title: SwiftyAssets.Strings.preferences_show_frequently_used_messages,
+                          initialValue: DefaultsStorage.showFrequentlyUsedMessages,
+                          onSwitch: { value in
+                            DefaultsStorage.showFrequentlyUsedMessages = value
+                          })
+                )
             ])
         ]
     }

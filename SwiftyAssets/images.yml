@@ -12,8 +12,8 @@ no_messages:
     
 # Icons
 smileys_and_people:
-    width: -1
-
+    format: svg
+    
 gearshape:
     height: 24
 

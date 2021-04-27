@@ -24,7 +24,7 @@ class SettingsViewController: BaseListViewController {
         sections = [
             Section(model: .init(),
                     items: [
-                        .details(vc: AppearanceListViewController()),
+                        .details(vc: PreferencesListViewController()),
                         .details(vc: CategoriesListViewController())
                     ]),
             Section(model: .init(),
@@ -36,7 +36,7 @@ class SettingsViewController: BaseListViewController {
                     ]),
             Section(model: .init(),
                     items: [
-                        .link(.init(title: SwiftyAssets.Strings.settings_privacy_policy, urlString: ""))
+                        .details(vc: MarkdownViewController())
                     ]),
             Section(model: .init(footer: "\(Bundle.main.info)\n\(SwiftyAssets.Strings.settings_made_in_auvergne)"),
                     items: [
@@ -80,7 +80,7 @@ extension SettingsViewController: UIActivityItemSource {
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivity.ActivityType?, suggestedSize size: CGSize) -> UIImage? {
-        SwiftyAssets.Images.app_icon
+        SwiftyAssets.UIImages.app_icon
     }
     
     @available(iOS 13.0, *)
@@ -88,7 +88,7 @@ extension SettingsViewController: UIActivityItemSource {
         let metadata = LPLinkMetadata()
         metadata.title = Bundle.main.displayName
         metadata.originalURL = URL(string: appStoreAppLink)
-        metadata.iconProvider = NSItemProvider(object: SwiftyAssets.Images.app_icon)
+        metadata.iconProvider = NSItemProvider(object: SwiftyAssets.UIImages.app_icon)
         return metadata
     }
 }

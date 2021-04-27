@@ -20,3 +20,17 @@ extension UILabel {
         adjustsFontForContentSizeCategory = true
     }
 }
+
+extension UITextField {
+    func setDynamicFont(style: FontStyle, weight: UIFont.Weight = .regular) {
+        font = UIFont.getFont(style: style, weight: weight)
+        adjustsFontForContentSizeCategory = true
+    }
+}
+
+extension UITextView {
+    func setDynamicFont(style: FontStyle, weight: UIFont.Weight = .regular) {
+        font = UIFont.getFont(style: style, weight: weight)
+        adjustsFontForContentSizeCategory = true
+    }
+}

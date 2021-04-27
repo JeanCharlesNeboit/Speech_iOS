@@ -11,7 +11,11 @@ import RxSwift
 class EmojiMessageView: AbstractView {
     // MARK: - Properties
     var message: String? {
-        messageTextField.text
+        get {
+            messageTextField.text
+        } set {
+            messageTextField.text = newValue
+        }
     }
     
     // MARK: - IBOutlets
@@ -36,6 +40,7 @@ class EmojiMessageView: AbstractView {
     
     @IBOutlet weak var messageTextField: UITextField! {
         didSet {
+            messageTextField.setDynamicFont(style: .body)
             messageTextField.rx.controlEvent(.editingDidBegin)
                 .subscribe(onNext: { [weak self] _ in
                     self?.inputMessageStackView.message.onNext(nil)

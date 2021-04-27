@@ -27,6 +27,14 @@ class AppThemeService {
         }
     }
     
+    var systemBackgroundColor: UIColor {
+        if #available(iOS 13.0, *) {
+            return .systemBackground
+        } else {
+            return .white
+        }
+    }
+    
     // MARK: - Initialization
     private init() {
         

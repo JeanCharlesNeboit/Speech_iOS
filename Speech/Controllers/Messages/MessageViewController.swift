@@ -21,7 +21,7 @@ class MessageViewController: BaseListViewController {
     }()
     
     private var emojiMessageViewOnConfigureDisposable: Disposable?
-    private var emojiMessageView: EmojiMessageView = .loadFromXib()
+    private lazy var emojiMessageView: EmojiMessageView = .loadFromXib()
     private var message: Message?
     
     // MARK: - Initialization
@@ -44,6 +44,8 @@ class MessageViewController: BaseListViewController {
     // MARK: - Configure
     override func configure() {
         super.configure()
+        emojiMessageView.message = message?.text
+        
         sections = [
             Section(model: .init(),
                     items: [

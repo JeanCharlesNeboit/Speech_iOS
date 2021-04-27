@@ -195,10 +195,14 @@ settings_made_in_auvergne:
     fr: Conçu en Auvergne 🇫🇷
     en: Made in Auvergne 🇫🇷
 
-## Appearance
-appearance_show_frequently_used_messages:
+## Preferences
+preferences_show_frequently_used_messages:
     fr: Afficher les messages fréquemment utilisés
     en: Show frequently used messages
+    
+preferences_save_messages_quickly:
+    fr: Sauvegarder les nouveaux messages radipement
+    en: Save new messages quickly
     
 ## Categories
 

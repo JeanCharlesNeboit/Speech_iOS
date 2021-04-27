@@ -60,7 +60,7 @@ class MessageListViewController: BaseListViewController {
     @RxBehaviorSubject private var sortMode = DefaultsStorage.preferredSortMode
     
     private lazy var moreBarButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(image: SwiftyAssets.Images.ellipsis_circle, style: .plain, target: nil, action: nil)
+        let button = UIBarButtonItem.init(image: SwiftyAssets.UIImages.ellipsis_circle, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             

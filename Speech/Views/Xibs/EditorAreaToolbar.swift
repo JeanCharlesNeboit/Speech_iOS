@@ -46,7 +46,7 @@ class EditorAreaToolbar: AbstractView {
     
     private lazy var stopButton: UIButton = {
         let stopButton = UIButton()
-        stopButton.setImage(SwiftyAssets.Images.stop_circle.withRenderingMode(.alwaysTemplate), for: .normal)
+        stopButton.setImage(SwiftyAssets.UIImages.stop_circle.withRenderingMode(.alwaysTemplate), for: .normal)
         stopButton.rx.tap
             .subscribe(onNext: { _ in
                 NotificationCenter.default.post(name: Notification.Name.editorAreaStopSpeaking, object: nil)
@@ -56,7 +56,7 @@ class EditorAreaToolbar: AbstractView {
     
     private lazy var pauseButton: UIButton = {
         let pauseButton = UIButton()
-        pauseButton.setImage(SwiftyAssets.Images.pause_circle.withRenderingMode(.alwaysTemplate), for: .normal)
+        pauseButton.setImage(SwiftyAssets.UIImages.pause_circle.withRenderingMode(.alwaysTemplate), for: .normal)
         pauseButton.rx.tap
             .subscribe(onNext: { _ in
                 NotificationCenter.default.post(name: Notification.Name.editorAreaPauseSpeaking, object: nil)
@@ -66,7 +66,7 @@ class EditorAreaToolbar: AbstractView {
     
     private lazy var playButton: UIButton = {
         let playButton = UIButton()
-        playButton.setImage(SwiftyAssets.Images.play_circle.withRenderingMode(.alwaysTemplate), for: .normal)
+        playButton.setImage(SwiftyAssets.UIImages.play_circle.withRenderingMode(.alwaysTemplate), for: .normal)
         playButton.rx.tap
             .subscribe(onNext: { _ in
                 if SpeechSynthesizerService.shared.state == .pause {

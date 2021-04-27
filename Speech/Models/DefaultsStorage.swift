@@ -23,4 +23,6 @@ class DefaultsStorage {
     
     @RxUserDefault(key: UserDefaultsKeys.showFrequentlyUsedMessages())
     static var showFrequentlyUsedMessages: Bool = false
+    
+    static var saveMessagesQuickly: Bool = false
 }

@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "AppDependencies",
-    platforms: [ .iOS(.v11) ],
+    platforms: [.iOS(.v11)],
     products: [
         .library(name: "AppDependencies",
                  type: .dynamic,
@@ -12,6 +12,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "Firebase", url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "7.9.0")),
+        .package(name: "Ink", url: "https://github.com/JohnSundell/Ink.git", .upToNextMajor(from: "0.5.0")),
         .package(name: "Realm", url: "https://github.com/realm/realm-cocoa.git", .upToNextMajor(from: "10.5.1")),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.1.0")),
         .package(url: "https://github.com/RxSwiftCommunity/RxDataSources.git", .upToNextMajor(from: "5.0.1")),
@@ -25,6 +26,7 @@ let package = Package(
                 dependencies: [
                     .product(name: "FirebaseAnalytics", package: "Firebase"),
                     .product(name: "FirebaseCrashlytics", package: "Firebase"),
+                    .product(name: "Ink", package: "Ink"),
                     .product(name: "Realm", package: "Realm"),
                     .product(name: "RealmSwift", package: "Realm"),
                     .product(name: "RxSwift", package: "RxSwift"),
