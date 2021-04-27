@@ -135,7 +135,7 @@ class MessageListViewController: BaseListViewController {
         var sections = [Section]()
         if !messages.isEmpty {
             var defaultSectionHeader: String?
-            if showFrequentlyUsedMessages && self.searchController.searchText == nil {
+            if showFrequentlyUsedMessages && self.searchController.searchText.isEmptyOrNil {
                 defaultSectionHeader = SwiftyAssets.Strings.messages_all
                 let mostUsedMessages = self.realmService.mostUsedMessages(limit: 5)
                 sections.append(SectionModel(model: .init(header: SwiftyAssets.Strings.messages_frequently_used),
@@ -150,10 +150,14 @@ class MessageListViewController: BaseListViewController {
     
     private func configureTableView() {
         tableView.rx.modelSelected(BaseListCellType.self)
-            .subscribe(onNext: { cellType in
-                guard case let .message(message) = cellType else { return }
+            .subscribe(onNext: { [weak self] cellType in
+                guard let self = self,
+                      case let .message(message) = cellType else { return }
                 message.incrementNumberOfUse()
                 NotificationCenter.default.post(name: Notification.Name.editorAreaAppendText, object: message.text)
+                if self.isCollapsed {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }).disposed(by: disposeBag)
         
         let searchTextObservable = searchController.searchBar.rx.text.asObservable()

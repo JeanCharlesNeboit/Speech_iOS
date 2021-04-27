@@ -27,10 +27,12 @@ class PreferencesListViewController: BaseListViewController {
         title = SwiftyAssets.Strings.settings_preferences
         sections = [
             Section(model: .init(header: "Speaking rate*"), items: [
-//                .editorAreaTextSize(.init(minimumValue: 0, maximumValue: Float(editorAreaFonts.count - 1), initialValue: Float(currentEditorAreaFontIndex), onSlide: { value in
-//                    let font = self.editorAreaFonts[safe: Int(value)] ?? .body
-//                    DefaultsStorage.preferredEditorAreaTextFont = font
-//                }))
+                .editorAreaTextSize(.init(minimumValue: 0, maximumValue: 1, initialValue: 0.5, onSlide: { value in
+                    let font = self.editorAreaFonts[safe: Int(value)] ?? .body
+                    DefaultsStorage.preferredEditorAreaTextFont = font
+                }))
+            ]),
+            Section(model: .init(header: "Voice*"), items: [
                 .switchChoice(.init(title: "Use keyboard language as default*", initialValue: true, onSwitch: { value in
                     
                 })),

@@ -12,7 +12,9 @@ import RxSwift
 @propertyWrapper
 public class RxUserDefault<T>: UserDefault<T> {
     // MARK: - Properties
-    private var behaviorSubject: BehaviorSubject<T>
+    private lazy var behaviorSubject: BehaviorSubject<T> = {
+        BehaviorSubject<T>(value: wrappedValue)
+    }()
 
     public override var wrappedValue: T {
         didSet {
@@ -26,7 +28,6 @@ public class RxUserDefault<T>: UserDefault<T> {
 
     // MARK: - Initialization
     override init(wrappedValue: T, key: String, userDefaults: UserDefaults = UserDefaults.standard) {
-        self.behaviorSubject = BehaviorSubject<T>(value: wrappedValue)
         super.init(wrappedValue: wrappedValue, key: key, userDefaults: userDefaults)
     }
 }
@@ -34,7 +35,9 @@ public class RxUserDefault<T>: UserDefault<T> {
 @propertyWrapper
 public class RxRawUserDefault<T>: RawUserDefault<T> where T: RawRepresentable {
     // MARK: - Properties
-    private var behaviorSubject: BehaviorSubject<T>
+    private lazy var behaviorSubject: BehaviorSubject<T> = {
+        BehaviorSubject<T>(value: wrappedValue)
+    }()
 
     public override var wrappedValue: T {
         didSet {
@@ -48,7 +51,6 @@ public class RxRawUserDefault<T>: RawUserDefault<T> where T: RawRepresentable {
 
     // MARK: - Initialization
     override init(wrappedValue: T, key: String, userDefaults: UserDefaults = UserDefaults.standard) {
-        self.behaviorSubject = BehaviorSubject<T>(value: wrappedValue)
         super.init(wrappedValue: wrappedValue, key: key, userDefaults: userDefaults)
     }
 }
