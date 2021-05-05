@@ -12,22 +12,10 @@ env:
   DERIVED_DATA_PATH: "./DerivedData"
   BUILD_PRODUCTS_ARTIFACT_NAME: "build_products"
 
-jobs:
-  prepare:
-    name: Prepare
-    runs-on: macOS-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set env from .github.env file
-        uses: JeanCharlesNeboit/action-dotenv-to-setenv@main
-        with:
-          env-file: .github.env
-  
+jobs:  
   lint:
     name: Lint
     runs-on: macOS-latest
-    needs: prepare
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -44,7 +32,11 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
-      - name: Decrypt encrypted files
+      - name: Set env from .github.env file
+        uses: JeanCharlesNeboit/action-dotenv-to-setenv@main
+        with:
+          env-file: .github.env
+      - name: Decrypt gpg files
         run: ./SwiftyCI/scripts/decrypt_secret.sh ${{ env.GPG_FILES }}
       - name: Xcode select
         uses: ./SwiftyCI/actions/xcode_select
@@ -77,6 +69,10 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
+      - name: Set env from .github.env file
+        uses: JeanCharlesNeboit/action-dotenv-to-setenv@main
+        with:
+          env-file: .github.env
       - name: Xcode select
         uses: ./SwiftyCI/actions/xcode_select
       - name: Download products
