@@ -9,7 +9,6 @@ on:
       - '**/build_test.yml'
 
 env:
-  GOOGLE_SERVICE_INFO_PLIST_PATH: "./Firebase/Crashlytics/GoogleService-Info.plist"
   DERIVED_DATA_PATH: "./DerivedData"
   BUILD_PRODUCTS_ARTIFACT_NAME: "build_products"
 
@@ -45,6 +44,8 @@ jobs:
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
+      - name: Decrypt encrypted files
+        run: ./SwiftyCI/scripts/decrypt_secret.sh ${{ env.GPG_FILES }}
       - name: Xcode select
         uses: ./SwiftyCI/actions/xcode_select
       - name: Run build action
