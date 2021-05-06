@@ -42,7 +42,10 @@ jobs:
         env:
           PASSPHRASE: ${{ secrets.GPG_SECRET }}
       - name: Xcode select
+        if: ${{ env.XCODE != '' }}
         uses: ./SwiftyCI/actions/xcode_select
+        with:
+          xcode: ${{ env.XCODE }}
       - name: Run build action
         id: build
         uses: ./SwiftyCI/actions/build
@@ -77,7 +80,10 @@ jobs:
         with:
           env-file: .github.env
       - name: Xcode select
+        if: ${{ env.XCODE != '' }}
         uses: ./SwiftyCI/actions/xcode_select
+        with:
+          xcode: ${{ env.XCODE }}
       - name: Download products
         uses: actions/download-artifact@v2
         with:
