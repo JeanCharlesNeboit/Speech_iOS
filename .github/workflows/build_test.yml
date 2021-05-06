@@ -38,6 +38,8 @@ jobs:
           env-file: .github.env
       - name: Decrypt gpg files
         run: ./SwiftyCI/scripts/decrypt_secret.sh ${{ env.GPG_FILES }}
+        env:
+          PASSPHRASE: ${{ secrets.GPG_SECRET }}
       - name: Xcode select
         uses: ./SwiftyCI/actions/xcode_select
       - name: Run build action
