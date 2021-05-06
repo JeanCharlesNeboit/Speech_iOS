@@ -7,6 +7,7 @@ on:
     paths:
       - '**.swift'
       - '**/build_test.yml'
+      - '.github.env'
 
 env:
   DERIVED_DATA_PATH: "./DerivedData"
