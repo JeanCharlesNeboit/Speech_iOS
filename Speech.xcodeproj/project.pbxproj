@@ -827,7 +827,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#${PROJECT_DIR}/Firebase/Scripts/copy_firebase_plist_file.sh\n";
+			shellScript = "${PROJECT_DIR}/Firebase/Scripts/copy_firebase_plist_file.sh\n";
 		};
 		7EF83F92260F4C4800E53A70 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
