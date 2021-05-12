@@ -109,9 +109,9 @@ extension CategoriesListViewController {
             self.realmService.deleteObject(category)
         }
         
-        let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, success in
-            guard let self = self else { return }
-            guard let category = self.categories[safe: indexPath.row] else { return }
+        let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { _, _, success in
+//            guard let self = self else { return }
+//            guard let category = self.categories[safe: indexPath.row] else { return }
             //self.present(NavigationController(rootViewController: NewCategoryViewController()))
             success(true)
         }

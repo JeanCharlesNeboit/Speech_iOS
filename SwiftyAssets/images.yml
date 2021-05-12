@@ -22,6 +22,9 @@ hare:
     
 smileys_and_people:
     format: svg
+
+square_grid_2x2:
+    height: 22
     
 tortoise:
     format: svg

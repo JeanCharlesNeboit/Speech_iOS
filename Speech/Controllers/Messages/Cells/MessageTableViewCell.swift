@@ -38,6 +38,10 @@ class MessageTableViewCell: AbstractTableViewCell {
         emojiLabel.text = message.emoji
         messageLabel.text = message.text
         categoryLabel.text = message.category?.name
-        dateLabel.text = message.addedDate.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        dateLabel.text = dateFormatter.string(from: message.addedDate) //.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
     }
 }

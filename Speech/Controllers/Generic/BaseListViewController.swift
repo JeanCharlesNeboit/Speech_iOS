@@ -73,20 +73,7 @@ class BaseListViewController: AbstractViewController {
     // MARK: - IBOutlets
     lazy var tableView: TableView = {
         let tableView = TableView()
-        
-        let cells: [CellIdentifiable.Type] = [
-            ContainerTableViewCell.self,
-            DetailsTableViewCell.self,
-            SliderTableViewCell.self,
-            SwitchTableViewCell.self,
-            MessageTableViewCell.self,
-            CategoryTableViewCell.self
-        ]
-        
-        cells.forEach {
-            tableView.register($0.nib, forCellReuseIdentifier: $0.identifier)
-        }
-        
+                
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         

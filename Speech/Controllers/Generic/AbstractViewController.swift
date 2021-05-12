@@ -40,7 +40,7 @@ class AbstractViewController: UIViewController {
     }
     
     func sharedInit() {
-        view.backgroundColor = AppThemeService.shared.systemBackgroundColor
+//        view.backgroundColor = AppThemeService.shared.systemBackgroundColor
     }
     
     // MARK: - Lifecycle

@@ -75,6 +75,8 @@
 		7E9058D826284F810082F057 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9058D726284F810082F057 /* Label.swift */; };
 		7E9058DC2628B96F0082F057 /* InputMessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9058DB2628B96F0082F057 /* InputMessageStackView.swift */; };
 		7E9058E22628D38B0082F057 /* NewCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9058E12628D38B0082F057 /* NewCategoryViewController.xib */; };
+		7EB4DCBC264C6FE0009FA304 /* AbstractTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */; };
+		7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */; };
 		7ECFD1932614F1730026406E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFD1922614F1730026406E /* main.swift */; };
 		7ECFD1972614F2220026406E /* TestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFD1962614F2220026406E /* TestAppDelegate.swift */; };
 		7ECFD1A52614FE720026406E /* AppThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFD1A42614FE720026406E /* AppThemeService.swift */; };
@@ -198,6 +200,8 @@
 		7E9058D726284F810082F057 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		7E9058DB2628B96F0082F057 /* InputMessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMessageStackView.swift; sourceTree = "<group>"; };
 		7E9058E12628D38B0082F057 /* NewCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCategoryViewController.xib; sourceTree = "<group>"; };
+		7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTableView.swift; sourceTree = "<group>"; };
+		7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionView.swift; sourceTree = "<group>"; };
 		7ECFD1922614F1730026406E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		7ECFD1962614F2220026406E /* TestAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppDelegate.swift; sourceTree = "<group>"; };
 		7ECFD1A22614FE0E0026406E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -384,7 +388,9 @@
 			isa = PBXGroup;
 			children = (
 				7E5AEE2826124659008E024C /* AbstractView.swift */,
+				7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */,
 				7E5AEE572613C604008E024C /* AbstractTableViewCell.swift */,
+				7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */,
 			);
 			path = AbstractViews;
 			sourceTree = "<group>";
@@ -887,7 +893,9 @@
 				7E68C02626262F1A00617FA2 /* SwitchTableViewCell.swift in Sources */,
 				7EF83FC226110AB700E53A70 /* SwiftyAssets.swift in Sources */,
 				7EE1F293262E06F600537240 /* Link.swift in Sources */,
+				7EB4DCBC264C6FE0009FA304 /* AbstractTableView.swift in Sources */,
 				7E47AFD5261F860200BA175E /* UIFontExtension.swift in Sources */,
+				7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */,
 				7E89D18A261C6CB2009930E6 /* DetailsTableViewCell.swift in Sources */,
 				7E5AEE1426120B85008E024C /* TextView.swift in Sources */,
 				7E4099D7262637CB006E2A37 /* OpenSourceListViewController.swift in Sources */,

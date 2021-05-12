@@ -43,7 +43,7 @@ class PreferencesListViewController: BaseListViewController {
                 ]
             ),
             Section(model: .init(header: SwiftyAssets.Strings.preferences_voice), items: [
-                .switchChoice(.init(title: "Use keyboard language as default*", initialValue: true, onSwitch: { value in
+                .switchChoice(.init(title: "Use keyboard language as default*", initialValue: true, onSwitch: { _ in
                     
                 })),
                 .details(title: SwiftyAssets.Strings.preferences_voice, vc: VoiceListViewController())
