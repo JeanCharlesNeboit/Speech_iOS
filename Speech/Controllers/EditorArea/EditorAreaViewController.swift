@@ -43,6 +43,12 @@ class EditorAreaViewController: AbstractViewController {
         return button
     }()
     
+    // MARK: - Initialization
+    override func sharedInit() {
+        super.sharedInit()
+        title = Bundle.main.displayName
+    }
+    
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,16 +57,7 @@ class EditorAreaViewController: AbstractViewController {
             let nav = NavigationController(rootViewController: WelcomeViewController())
             present(nav)
         }
-    }
-    
-    // MARK: - Initialization
-    override func sharedInit() {
-        super.sharedInit()
-        title = Bundle.main.displayName
-    }
-    
-    // MARK: - Configure
-    override func configure() {        
+        
         if !isCollapsed {
             navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         } else {
@@ -71,7 +68,10 @@ class EditorAreaViewController: AbstractViewController {
                 }).disposed(by: disposeBag)
             navigationItem.leftBarButtonItem = messageBarButtonItem
         }
-        
+    }
+    
+    // MARK: - Configure
+    override func configure() {
         navigationItem.rightBarButtonItem = settingsBarButtonItem
         
         RxKeyboard.instance.isHidden

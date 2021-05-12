@@ -37,6 +37,10 @@ generic_save:
 generic_edit:
     fr: Editer
     en: Edit
+    
+generic_category:
+    fr: Catégory
+    en: Categorie
 
 generic_categories:
     fr: Catégories
@@ -149,6 +153,10 @@ message_new_title:
 message_edit_title:
     fr: Edition message
     en: Edit message
+    
+message_emoji_and_message:
+    fr: Emoji & message
+    en: Emoji & message
 
 ## Settings
 settings_preferences:
@@ -158,10 +166,6 @@ settings_preferences:
 settings_speech_synthesis:
     fr: Synthèse vocale
     en: Speech synthesis
-
-settings_voice:
-    fr: Voix
-    en: Voice
     
 settings_share_app:
     fr: Partager %@
@@ -196,6 +200,18 @@ settings_made_in_auvergne:
     en: Made in Auvergne 🇫🇷
 
 ## Preferences
+preferences_speaking_rate:
+    fr: Débit vocale
+    en: Speaking rate
+
+preferences_voice:
+    fr: Voix
+    en: Voice
+
+preferences_editor_area_text_size:
+    fr: Taille du texte de la zone de message
+    en: Message area text size
+            
 preferences_show_frequently_used_messages:
     fr: Afficher les messages fréquemment utilisés
     en: Show frequently used messages

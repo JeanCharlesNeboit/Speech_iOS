@@ -11,15 +11,21 @@ no_messages:
     width: 400
     
 # Icons
-smileys_and_people:
-    format: svg
-    
-gearshape:
-    height: 24
-
 ellipsis_circle:
     height: 24
     
+gearshape:
+    height: 24
+    
+hare:
+    format: svg
+    
+smileys_and_people:
+    format: svg
+    
+tortoise:
+    format: svg
+
 line_horizontal_3_circle:
     height: 24
 

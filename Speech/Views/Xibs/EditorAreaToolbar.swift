@@ -85,12 +85,11 @@ class EditorAreaToolbar: AbstractView {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
         listenSpeechSynthesizerState()
     }
     
     // MARK: - Configure
-    private func configure() {
+    override func configure() {
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 4)
     }
     

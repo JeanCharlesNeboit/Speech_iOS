@@ -30,6 +30,7 @@ class EditorAreaViewControllerTests: AbstractXCTestCase {
         show(viewController: sut)
         
         // Then
+//        XCTAssertEqual(navigationItem.leftBarButtonItem?.image?.pngData(), SwiftyAssets.UIImages.line_horizontal_3_circle.pngData())
         XCTAssertEqual(navigationItem.title, Bundle.main.displayName)
     }
     

@@ -11,11 +11,16 @@ import RxSwift
 @propertyWrapper
 public class RxBehaviorSubject<T> {
     // MARK: - Properties
+    private let disposeBag = DisposeBag()
     private var behaviorSubject: BehaviorSubject<T>
+    private var value: T
 
     public var wrappedValue: T {
-        didSet {
-            behaviorSubject.onNext(wrappedValue)
+        get {
+            value
+        } set {
+            value = newValue
+            behaviorSubject.onNext(newValue)
         }
     }
     
@@ -25,13 +30,10 @@ public class RxBehaviorSubject<T> {
 
     // MARK: - Initialization
     public init(wrappedValue: T) {
-        self.wrappedValue = wrappedValue
+        self.value = wrappedValue
         self.behaviorSubject = BehaviorSubject<T>(value: wrappedValue)
+        behaviorSubject.subscribe(onNext: { newValue in
+            self.value = newValue
+        }).disposed(by: disposeBag)
     }
 }
-
-//extension RxBehaviorSubject where T: UserDefault<Any> {
-//    override public var projectedValue: BehaviorSubject<T> {
-//        behaviorSubject
-//    }
-//}

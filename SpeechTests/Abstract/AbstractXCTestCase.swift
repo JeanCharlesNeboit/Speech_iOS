@@ -9,16 +9,30 @@ import XCTest
 @testable import Speech
 
 class AbstractXCTestCase: XCTestCase {
-    // MARK: -
-    func show(viewController: UIViewController) {
-        let window = UIWindow.init(frame: UIScreen.main.bounds)
-        window.rootViewController = viewController
+    // MARK: - Properties
+    private(set) var window: UIWindow!
+    
+    override func setUp() {
+        super.setUp()
+        window = UIWindow.init(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
     }
     
-    func lock(forSeconds seconds: Double) {
+    // MARK: -
+    func show(viewController: UIViewController) {
+        window.rootViewController = viewController
+        wait(forSeconds: 1)
+    }
+    
+    func wait(forSeconds seconds: Double) {
+//        while true {
+            CFRunLoopRunInMode(CFRunLoopMode.defaultMode, seconds, false)
+//        }
+    }
+    
+    func lock() {
         while true {
-            CFRunLoopRunInMode(CFRunLoopMode.defaultMode, seconds, true)
+            CFRunLoopRunInMode(CFRunLoopMode.defaultMode, 0, true)
         }
     }
 }

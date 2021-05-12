@@ -11,11 +11,12 @@ import RealmSwift
 class Message: Object {
     // MARK: - Properties
     @objc private(set) dynamic var id: String = ""
-    @objc private(set) dynamic var emoji: String?
-    @objc private(set) dynamic var text: String = ""
     @objc private(set) dynamic var addedDate: Date = Date()
-    @objc private(set) dynamic var category: Category?
     @objc private(set) dynamic var numberOfUse: Int = 0
+    
+    @objc dynamic var emoji: String?
+    @objc dynamic var text: String = ""
+    @objc dynamic var category: Category?
     
     // MARK: - Initialization
     convenience init(emoji: String?, text: String) {

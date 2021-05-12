@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,14 +20,8 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YvK-3g-q6y">
                         <rect key="frame" x="20" y="10" width="374" height="41"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBQ-Ma-Dc3">
-                                <rect key="frame" x="0.0" y="14" width="7.5" height="13.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="FVd-xb-0t4" customClass="SwitchSlider" customModule="SwiftyKit">
-                                <rect key="frame" x="15.5" y="5.5" width="328.5" height="31"/>
+                                <rect key="frame" x="-2" y="5.5" width="378" height="31"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="step">
                                         <real key="value" value="0.0"/>
@@ -36,12 +31,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jI-8A-6Rz">
-                                <rect key="frame" x="352" y="0.0" width="22" height="41"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -53,8 +42,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="maximumLabel" destination="9jI-8A-6Rz" id="2Lv-A3-KjI"/>
-                <outlet property="minimumLabel" destination="DBQ-Ma-Dc3" id="51c-cp-9FF"/>
+                <outlet property="contentStackView" destination="YvK-3g-q6y" id="mRG-AF-c4J"/>
                 <outlet property="slider" destination="FVd-xb-0t4" id="2A3-y1-RXG"/>
             </connections>
             <point key="canvasLocation" x="147.82608695652175" y="108.81696428571428"/>

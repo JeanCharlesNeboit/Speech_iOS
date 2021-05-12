@@ -24,13 +24,20 @@ class CategoriesListViewController: BaseListViewController {
     }
     
     // MARK: - Properties
-    private var parentCategory: Category?
-    @RxBehaviorSubject private var categories = [Category]()
     private lazy var searchController = SearchController()
+    
+    @RxBehaviorSubject private var categories = [Category]()
+    private var parentCategory: Category?
+    private var onSelection: ((Category) -> Void)?
 
     // MARK: - Initialization
     init(parentCategory: Category? = nil) {
         self.parentCategory = parentCategory
+        super.init()
+    }
+    
+    init(onSelection: @escaping ((Category) -> Void)) {
+        self.onSelection = onSelection
         super.init()
     }
     
@@ -58,8 +65,13 @@ class CategoriesListViewController: BaseListViewController {
     private func configureTableView() {
         tableView.rx.modelSelected(BaseListCellType.self)
             .subscribe(onNext: { [weak self] cellType in
+                guard let self = self else { return }
                 guard case let .category(category) = cellType else { return }
-                self?.navigationController?.pushViewController(CategoriesListViewController(parentCategory: category), animated: true)
+                if let onSelection = self.onSelection {
+                    onSelection(category)
+                } else {
+                    self.navigationController?.pushViewController(CategoriesListViewController(parentCategory: category), animated: true)
+                }
             }).disposed(by: disposeBag)
         
         let searchTextObservable = searchController.searchBar.rx.text.asObservable()

@@ -9,8 +9,8 @@ import UIKit
 import RxSwift
 
 class SwitchTableViewCell: AbstractTableViewCell {
-    // MARK: - State
-    struct State {
+    // MARK: - Config
+    struct Config {
         let title: String
         let initialValue: Bool
         let onSwitch: ((Bool) -> Void)?
@@ -37,9 +37,9 @@ class SwitchTableViewCell: AbstractTableViewCell {
     }
     
     // MARK: - Configure
-    func configure(state: State) {
-        titleLabel.text = state.title
-        uiSwitch.isOn = state.initialValue
-        onSwitch = state.onSwitch
+    func configure(config: Config) {
+        titleLabel.text = config.title
+        uiSwitch.isOn = config.initialValue
+        onSwitch = config.onSwitch
     }
 }

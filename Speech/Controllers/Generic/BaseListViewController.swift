@@ -18,8 +18,8 @@ enum BaseListCellType {
     case link(Link)
     
 //    case speechRate
-    case editorAreaTextSize(SliderTableViewCell.State)
-    case switchChoice(SwitchTableViewCell.State)
+    case slider(SliderTableViewCell.Config)
+    case switchChoice(SwitchTableViewCell.Config)
     
     case message(Message)
     case category(Category)
@@ -32,7 +32,7 @@ enum BaseListCellType {
              .action,
             .link:
             return DetailsTableViewCell.self
-        case .editorAreaTextSize:
+        case .slider:
             return SliderTableViewCell.self
         case .switchChoice:
             return SwitchTableViewCell.self
@@ -55,9 +55,9 @@ enum BaseListCellType {
         case .link(let link):
             (cell as? DetailsTableViewCell)?.configure(title: link.title)
         case .switchChoice(let state):
-            (cell as? SwitchTableViewCell)?.configure(state: state)
-        case .editorAreaTextSize(let state):
-            (cell as? SliderTableViewCell)?.configure(state: state)
+            (cell as? SwitchTableViewCell)?.configure(config: state)
+        case .slider(let state):
+            (cell as? SliderTableViewCell)?.configure(config: state)
         case .message(let message):
             (cell as? MessageTableViewCell)?.configure(message: message)
         case .category(let category):
@@ -106,7 +106,7 @@ class BaseListViewController: AbstractViewController {
                 case .link(let link):
                     self.openSafari(urlString: link.urlString)
                 case .container,
-                     .editorAreaTextSize,
+                     .slider,
                      .switchChoice,
                      .message,
                      .category:

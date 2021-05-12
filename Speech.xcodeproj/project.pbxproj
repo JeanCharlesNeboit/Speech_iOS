@@ -46,6 +46,7 @@
 		7E5B647C2614D49600F39BF3 /* AVAudioSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B647B2614D49600F39BF3 /* AVAudioSessionService.swift */; };
 		7E600AA5262F4B66003058FE /* ContainerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E600AA4262F4B66003058FE /* ContainerTableViewCell.swift */; };
 		7E600AA8262F4B88003058FE /* ContainerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E600AA7262F4B88003058FE /* ContainerTableViewCell.xib */; };
+		7E65EEC0264941C8009C9340 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E65EEBF264941C8009C9340 /* ViewControllerTests.swift */; };
 		7E68C0192625904A00617FA2 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C0182625904A00617FA2 /* KeyboardService.swift */; };
 		7E68C01C2625AFAE00617FA2 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C01B2625AFAE00617FA2 /* SliderTableViewCell.swift */; };
 		7E68C01F2625AFDD00617FA2 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E68C01E2625AFDD00617FA2 /* SliderTableViewCell.xib */; };
@@ -168,6 +169,7 @@
 		7E5B647B2614D49600F39BF3 /* AVAudioSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionService.swift; sourceTree = "<group>"; };
 		7E600AA4262F4B66003058FE /* ContainerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTableViewCell.swift; sourceTree = "<group>"; };
 		7E600AA7262F4B88003058FE /* ContainerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContainerTableViewCell.xib; sourceTree = "<group>"; };
+		7E65EEBF264941C8009C9340 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		7E68C0182625904A00617FA2 /* KeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
 		7E68C01B2625AFAE00617FA2 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
 		7E68C01E2625AFDD00617FA2 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 		7ECFD1A926150CAE0026406E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				7E65EEBF264941C8009C9340 /* ViewControllerTests.swift */,
 				7EF73333260F1757009D7A08 /* EditorAreaViewControllerTests.swift */,
 			);
 			path = ViewController;
@@ -945,6 +948,7 @@
 			files = (
 				7EE49A4C26150FCB00524C9F /* AbstractXCTestCase.swift in Sources */,
 				7ECFD1972614F2220026406E /* TestAppDelegate.swift in Sources */,
+				7E65EEC0264941C8009C9340 /* ViewControllerTests.swift in Sources */,
 				7EF73334260F1757009D7A08 /* EditorAreaViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

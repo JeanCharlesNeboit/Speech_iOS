@@ -56,18 +56,25 @@ class RealmService {
     }
     
     func commit(completion: ((WriteResult) -> Void)?) {
+        perform(transaction: commitWrite, completion: completion)
+    }
+    
+    func write(block: () -> Void, completion: ((WriteResult) -> Void)?) {
+        let write: (() throws -> Void) = {
+            try self.realm.write(block)
+        }
+        perform(transaction: write, completion: completion)
+    }
+    
+    private func perform(transaction: (() throws -> Void), completion: ((WriteResult) -> Void)?) {
         do {
-            try commitWrite()
+            try transaction()
             completion?(.success)
         } catch let error {
             NSLog("❌ Transaction could not be written. (\(error.localizedDescription))")
             completion?(.failure)
         }
     }
-    
-//    func write(block: () -> Void) throws {
-//        try realm.write(block)
-//    }
     
     // MARK: - Request
     func all<T>(_ type: T.Type) -> Results<T> where T: RealmSwift.Object {
@@ -84,10 +91,13 @@ class RealmService {
         commit(completion: completion)
     }
     
-    func deleteObject<T: Object>(_ object: T, completion: ((WriteResult) -> Void)? = nil) {
+    func deleteObject<T: Object>(_ object: T, completion: ((WriteResult) -> Void)? = nil, cascade: Bool = false) {
         beginWrite()
-        realm.deleteCascade(object)
-//        realm.delete(object)
+        if cascade {
+            realm.deleteCascade(object)
+        } else {
+            realm.delete(object)
+        }
         commit(completion: completion)
     }
 }

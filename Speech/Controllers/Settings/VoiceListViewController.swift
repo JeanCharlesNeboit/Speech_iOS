@@ -20,7 +20,7 @@ class VoiceListViewController: BaseListViewController {
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.settings_voice
+        title = SwiftyAssets.Strings.preferences_voice
         sections = voicesGroupedByLocales.map { locale, voices in
             let country = [locale.countryFlag, locale.countryName].compactMap { $0 }.joined(separator: " ")
             return Section(model: .init(header: country),

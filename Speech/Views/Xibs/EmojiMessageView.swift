@@ -10,13 +10,8 @@ import RxSwift
 
 class EmojiMessageView: AbstractView {
     // MARK: - Properties
-    var message: String? {
-        get {
-            messageTextField.text
-        } set {
-            messageTextField.text = newValue
-        }
-    }
+    @RxBehaviorSubject var emoji: String?
+    @RxBehaviorSubject var message: String?
     
     // MARK: - IBOutlets
     @IBOutlet weak var emojiPlaceholderImageView: UIImageView!
@@ -35,6 +30,10 @@ class EmojiMessageView: AbstractView {
                 }.subscribe(onNext: { [weak self] _ in
                     self?.emojiPlaceholderImageView.isHidden = false
                 }).disposed(by: disposeBag)
+            
+            emojiTextField.rx.text
+                .bind(to: $emoji)
+                .disposed(by: disposeBag)
         }
     }
     
@@ -45,6 +44,10 @@ class EmojiMessageView: AbstractView {
                 .subscribe(onNext: { [weak self] _ in
                     self?.inputMessageStackView.message.onNext(nil)
                 }).disposed(by: disposeBag)
+            
+            messageTextField.rx.text
+                .bind(to: $message)
+                .disposed(by: disposeBag)
         }
     }
     
@@ -52,5 +55,13 @@ class EmojiMessageView: AbstractView {
         didSet {
             inputMessageStackView.type.onNext(.warning)
         }
+    }
+    
+    // MARK: - Lifecycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        $message.subscribe(onNext: { [weak self] message in
+            self?.messageTextField.text = message
+        }).disposed(by: disposeBag)
     }
 }

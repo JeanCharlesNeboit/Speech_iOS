@@ -9,12 +9,12 @@ import UIKit
 import RxSwift
 
 class MessageViewController: BaseListViewController {
-    // MARK: - IBOutlets
-    
     // MARK: - Properties
     private lazy var validBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem.init(title: SwiftyAssets.Strings.generic_validate, style: .done, target: nil, action: nil)
-        button.rx.tap.subscribe(onNext: {
+        button.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.saveMessage()
             self.dismiss(animated: true, completion: nil)
         }).disposed(by: disposeBag)
         return button
@@ -22,21 +22,24 @@ class MessageViewController: BaseListViewController {
     
     private var emojiMessageViewOnConfigureDisposable: Disposable?
     private lazy var emojiMessageView: EmojiMessageView = .loadFromXib()
-    private var message: Message?
+    
+    private var message: Message
+    private var category: Category?
     
     // MARK: - Initialization
     init(message: Message) {
         self.message = message
+        category = message.category
         super.init()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func sharedInit() {
         super.sharedInit()
-        title = message == nil ? SwiftyAssets.Strings.message_new_title : SwiftyAssets.Strings.message_edit_title
+        title = SwiftyAssets.Strings.message_new_title // : SwiftyAssets.Strings.message_edit_title
         navigationItem.leftBarButtonItem = cancelBarButtonItem
         navigationItem.rightBarButtonItem = validBarButtonItem
     }
@@ -44,10 +47,13 @@ class MessageViewController: BaseListViewController {
     // MARK: - Configure
     override func configure() {
         super.configure()
-        emojiMessageView.message = message?.text
-        
+        emojiMessageView.message = message.text
+        configureDataSource()
+    }
+    
+    private func configureDataSource() {
         sections = [
-            Section(model: .init(),
+            Section(model: .init(header: SwiftyAssets.Strings.message_emoji_and_message),
                     items: [
                         .container(view: emojiMessageView, onConfigure: { [weak self] _ in
                             guard let self = self else { return }
@@ -59,10 +65,37 @@ class MessageViewController: BaseListViewController {
                                 })
                         })
                     ]),
-            Section(model: .init(),
+            Section(model: .init(header: SwiftyAssets.Strings.generic_category),
                     items: [
-                        .details(title: "Category*", vc: CategoriesListViewController())
+                        .details(title: category?.name ?? "", vc: CategoriesListViewController(onSelection: { [weak self] category in
+                            guard let self = self else { return }
+                            self.navigationController?.popToRootViewController(animated: true)
+                            self.category = category
+                            self.configureDataSource()
+                        }))
                     ])
         ]
+    }
+    
+    // MARK: -
+    private func saveMessage() {
+        guard let text = emojiMessageView.message else { return }
+        
+        if message.realm == nil {
+            realmService.addObject(self.message)
+        }
+        
+        realmService.write {
+            message.emoji = emojiMessageView.emoji
+            message.text = text
+            message.category = category
+        } completion: { result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                break
+            }
+        }
     }
 }
