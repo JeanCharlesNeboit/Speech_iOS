@@ -8,9 +8,8 @@
 import XCTest
 @testable import Speech
 
-class EditorAreaViewControllerTests: AbstractXCTestCase {
+class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewController> {
     // MARK: - Properties
-    private var sut: EditorAreaViewController!
     private var textView: TextView {
         sut.textView
     }
@@ -22,12 +21,24 @@ class EditorAreaViewControllerTests: AbstractXCTestCase {
     }
     
     // MARK: - Tests
+    func testShowWelcome() {
+        // Given
+        DefaultsStorage.welcomeDone = false
+        
+        // When
+        showViewController()
+        let nav = sut.presentedViewController as! NavigationController
+        
+        // Then
+        XCTAssertTrue(nav.topViewController is WelcomeViewController)
+    }
+    
     func testNavigationBar() {
         // Given
         let navigationItem = sut.navigationItem
         
         // When
-        show(viewController: sut)
+        showViewController()
         
         // Then
 //        XCTAssertEqual(navigationItem.leftBarButtonItem?.image?.pngData(), SwiftyAssets.UIImages.line_horizontal_3_circle.pngData())
@@ -38,7 +49,7 @@ class EditorAreaViewControllerTests: AbstractXCTestCase {
         // Given
         
         // When
-        show(viewController: sut)
+        showViewController()
         
         // Then
         XCTAssertTrue(textView.isScrollEnabled)

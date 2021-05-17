@@ -11,7 +11,7 @@ let package = Package(
                  targets: ["AppDependencies"])
     ],
     dependencies: [
-        .package(name: "Firebase", url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "7.9.0")),
+        .package(name: "Firebase", url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "8.0.0")),
         .package(name: "Ink", url: "https://github.com/JohnSundell/Ink.git", .upToNextMajor(from: "0.5.0")),
         .package(name: "Realm", url: "https://github.com/realm/realm-cocoa.git", .upToNextMajor(from: "10.5.1")),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.1.0")),

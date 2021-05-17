@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftyKit
+import AppTrackingTransparency
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties

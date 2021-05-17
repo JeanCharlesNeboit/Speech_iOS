@@ -9,6 +9,7 @@ import UIKit
 
 class WelcomeViewController: AbstractViewController {
     // MARK: - IBOutlets
+    @IBOutlet weak var welcomeImageView: UIImageView!
     @IBOutlet weak var sloganLabel: UILabel! {
         didSet {
             sloganLabel.font = UIFont.getFont(style: .title2, weight: .bold)

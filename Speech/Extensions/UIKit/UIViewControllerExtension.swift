@@ -75,10 +75,16 @@ extension UIViewController {
     }
     
     func present(_ vc: UIViewController) {
-        if let delegate = self as? UIAdaptivePresentationControllerDelegate {
-            vc.presentationController?.delegate = delegate
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            vc.modalPresentationStyle = .formSheet
+        } else {
+            vc.modalPresentationStyle = .fullScreen
         }
-        vc.modalPresentationStyle = .formSheet //traitCollection.verticalSizeClass == .compact ? .formSheet : .automatic
+        
+//        if let delegate = self as? UIAdaptivePresentationControllerDelegate {
+//            vc.presentationController?.delegate = delegate
+//        }
+        
         present(vc, animated: true, completion: nil)
     }
 }

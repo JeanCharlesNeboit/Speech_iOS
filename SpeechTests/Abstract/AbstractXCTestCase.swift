@@ -19,8 +19,12 @@ class AbstractXCTestCase: XCTestCase {
     }
     
     // MARK: -
-    func show(viewController: UIViewController) {
-        window.rootViewController = viewController
+    func show(viewController: UIViewController, inNav: Bool = true) {
+        if inNav && viewController as? UINavigationController == nil {
+            window.rootViewController = NavigationController(rootViewController: viewController)
+        } else {
+            window.rootViewController = viewController
+        }
         wait(forSeconds: 1)
     }
     

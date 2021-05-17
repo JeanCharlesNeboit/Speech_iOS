@@ -14,6 +14,9 @@
 		7E4099EE26278BA6006E2A37 /* EmojiMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4099ED26278BA6006E2A37 /* EmojiMessageView.swift */; };
 		7E4099F226278BD2006E2A37 /* EmojiMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E4099F126278BD2006E2A37 /* EmojiMessageView.xib */; };
 		7E4099F526278C1E006E2A37 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4099F426278C1E006E2A37 /* EmojiTextField.swift */; };
+		7E4670C8265268B100373FE8 /* WelcomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4670C7265268B100373FE8 /* WelcomeViewControllerTests.swift */; };
+		7E4670CA265268FC00373FE8 /* AbstractTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4670C9265268FC00373FE8 /* AbstractTestViewController.swift */; };
+		7E4670CC2652703C00373FE8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7E4670CB2652703C00373FE8 /* .swiftlint.yml */; };
 		7E47AF91261DB8B000BA175E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AF8F261DB8B000BA175E /* WelcomeViewController.swift */; };
 		7E47AF92261DB8B000BA175E /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E47AF90261DB8B000BA175E /* WelcomeViewController.xib */; };
 		7E47AF95261DBBCF00BA175E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AF94261DBBCF00BA175E /* Button.swift */; };
@@ -139,6 +142,9 @@
 		7E4099ED26278BA6006E2A37 /* EmojiMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMessageView.swift; sourceTree = "<group>"; };
 		7E4099F126278BD2006E2A37 /* EmojiMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiMessageView.xib; sourceTree = "<group>"; };
 		7E4099F426278C1E006E2A37 /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
+		7E4670C7265268B100373FE8 /* WelcomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewControllerTests.swift; sourceTree = "<group>"; };
+		7E4670C9265268FC00373FE8 /* AbstractTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTestViewController.swift; sourceTree = "<group>"; };
+		7E4670CB2652703C00373FE8 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7E47AF8F261DB8B000BA175E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7E47AF90261DB8B000BA175E /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		7E47AF94261DBBCF00BA175E /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -450,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				7E65EEBF264941C8009C9340 /* ViewControllerTests.swift */,
+				7E4670C7265268B100373FE8 /* WelcomeViewControllerTests.swift */,
 				7EF73333260F1757009D7A08 /* EditorAreaViewControllerTests.swift */,
 			);
 			path = ViewController;
@@ -485,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				7EE49A4B26150FCB00524C9F /* AbstractXCTestCase.swift */,
+				7E4670C9265268FC00373FE8 /* AbstractTestViewController.swift */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -546,6 +554,7 @@
 		7EF73332260F1757009D7A08 /* SpeechTests */ = {
 			isa = PBXGroup;
 			children = (
+				7E4670CB2652703C00373FE8 /* .swiftlint.yml */,
 				7ECFD1992614F29C0026406E /* App */,
 				7EE49A4A26150F9A00524C9F /* Abstract */,
 				7ECFD1A926150CAE0026406E /* ViewController */,
@@ -794,6 +803,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4670CC2652703C00373FE8 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,7 +966,9 @@
 			files = (
 				7EE49A4C26150FCB00524C9F /* AbstractXCTestCase.swift in Sources */,
 				7ECFD1972614F2220026406E /* TestAppDelegate.swift in Sources */,
+				7E4670C8265268B100373FE8 /* WelcomeViewControllerTests.swift in Sources */,
 				7E65EEC0264941C8009C9340 /* ViewControllerTests.swift in Sources */,
+				7E4670CA265268FC00373FE8 /* AbstractTestViewController.swift in Sources */,
 				7EF73334260F1757009D7A08 /* EditorAreaViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

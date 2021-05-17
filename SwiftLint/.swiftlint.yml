@@ -1,16 +1,18 @@
 disabled_rules:
-- comment_spacing
-- file_length
-- function_body_length
-- leading_whitespace
-- line_length
-- multiple_closures_with_trailing_closure
-- private_over_fileprivate
-- trailing_whitespace
-- type_name
-- identifier_name
-- weak_delegate
+  - comment_spacing
+  - file_length
+  - function_body_length
+  - leading_whitespace
+  - line_length
+  - multiple_closures_with_trailing_closure
+  - private_over_fileprivate
+  - trailing_whitespace
+  - type_name
+  - identifier_name
+  - weak_delegate
+
 opt_in_rules:
-- force_unwrapping
+  - force_unwrapping
+
 excluded:
-- Dependencies
+  - Dependencies
