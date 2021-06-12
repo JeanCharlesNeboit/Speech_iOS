@@ -12,25 +12,25 @@ import RxDataSources
 import RealmSwift
 import RxKeyboard
 
-enum SortMode: Int, CaseIterable {
-    case alphabetical
-    case addedDate
-    
-    var name: String {
-        switch self {
-        case .alphabetical:
-            return SwiftyAssets.Strings.messages_list_sort_by_alphabetical_order
-        case .addedDate:
-            return SwiftyAssets.Strings.messages_list_sort_by_date_added
-        }
-    }
-}
-
 class MessageListViewController: AbstractViewController { //BaseListViewController {
     // MARK: - Typealias
-    typealias Section = SectionModel<SectionHeaderFooter, Message>
+    typealias ViewModel = MessageListViewModel
     
     // MARK: - Enums
+    enum DisplayMode {
+        case list
+        case grid
+        
+        var image: UIImage {
+            switch self {
+            case .list:
+                return SwiftyAssets.UIImages.square_grid_2x2
+            case .grid:
+                return SwiftyAssets.UIImages.rectangle_grid_1x2
+            }
+        }
+    }
+    
     enum EmptyMode {
         case noData
         case noResult
@@ -55,26 +55,21 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     }
     
     // MARK: - IBOutlets
-    @IBOutlet weak var tableView: TableView! {
-        didSet {
-            tableView.rx.setDelegate(self)
-                .disposed(by: disposeBag)
-        }
-    }
-    @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyBodyLabel: UILabel!
     
     // MARK: - Properties
-    @RxBehaviorSubject var sections = [Section]()
-    @RxBehaviorSubject private var sortMode = DefaultsStorage.preferredSortMode
+    lazy var viewModel: ViewModel = .init()
+    @RxBehaviorSubject var displayMode: DisplayMode = .list
+    let gridColumn = 2
     
     private lazy var layoutModeBarButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(image: SwiftyAssets.UIImages.square_grid_2x2, style: .plain, target: nil, action: nil)
-        button.rx.tap.subscribe(onNext: {
-            
+        let button = UIBarButtonItem.init(image: displayMode.image, style: .plain, target: nil, action: nil)
+        button.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.displayMode = self.displayMode == .list ? .grid : .list
         }).disposed(by: disposeBag)
         return button
     }()
@@ -86,7 +81,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             
             SortMode.allCases.forEach { sortMode in
                 let action = UIAlertAction(title: sortMode.name, style: .default, handler: { _ in
-                    self.sortMode = sortMode
+                    self.viewModel.sortMode = sortMode
                 })
                 alertController.addAction(action)
             }
@@ -110,6 +105,21 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
         return searchController
     }()
     
+    private lazy var listTableView: TableView = {
+        let tableView = TableView()
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        return tableView
+    }()
+    
+    private lazy var gridTableView: TableView = {
+        let tableView = TableView()
+        tableView.separatorStyle = .none
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        return tableView
+    }()
+    
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
@@ -124,66 +134,47 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    // MARK: - Sections
-    private func getSections(search: String?, messagesResult: Results<Message>, sortMode: SortMode, showFrequentlyUsedMessages: Bool) -> [Section] {
-        var messages = messagesResult.toArray()
-            .filter { message in
-                guard let search = self.searchController.searchText else { return true }
-                return message.text.contains(search)
-            }
-        
-        switch sortMode {
-        case .alphabetical:
-            messages = messages.sortedByAlphabeticalOrder()
-        case .addedDate:
-            messages = messages.sortedByAddedDateOrder()
-        }
-        
-        var sections = [Section]()
-        if !messages.isEmpty {
-            var defaultSectionHeader: String?
-            if showFrequentlyUsedMessages && self.searchController.searchText.isEmptyOrNil {
-                defaultSectionHeader = SwiftyAssets.Strings.messages_all
-                let mostUsedMessages = self.realmService.mostUsedMessages(limit: 5)
-                sections.append(SectionModel(model: .init(header: SwiftyAssets.Strings.messages_frequently_used),
-                                             items: mostUsedMessages.map { $0 }))
-            }
-            sections.append(SectionModel(model: .init(header: defaultSectionHeader),
-                                         items: messages.map { $0 }))
-        }
-        
-        return sections
-    }
-    
     // MARK: - Observe
-    private func observeSectionsAndSortMode() {
-        $sortMode.subscribe(onNext: { sortMode in
-            DefaultsStorage.preferredSortMode = sortMode
-        }).disposed(by: disposeBag)
-        
-        $sections
+    private func observeSections() {
+        viewModel.$sections
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.tableView.isHidden = $0.isEmpty
+                self.listTableView.isHidden = $0.isEmpty
                 self.emptyView.isHidden = !$0.isEmpty
             }).disposed(by: disposeBag)
     }
     
-    private func observeSearchAndMessageResults() {
-        let searchTextObservable = searchController.searchBar.rx.text.asObservable()
-        let messagesResultsObservable = Observable.collection(from: realmService.allMessagesResult())
-        
-        Observable.combineLatest(searchTextObservable,
-                                 messagesResultsObservable,
-                                 $sortMode,
-                                 DefaultsStorage.$showFrequentlyUsedMessages)
-            .subscribe(onNext: { [weak self] search, messagesResult, sortMode, showFrequentlyUsedMessages in
-                guard let self = self else { return }
-                self.sections = self.getSections(search: search, messagesResult: messagesResult, sortMode: sortMode, showFrequentlyUsedMessages: showFrequentlyUsedMessages)
-            })
+    private func observeDisplayMode() {
+        $displayMode.subscribe(onNext: { [weak self] mode in
+            guard let self = self else { return }
+            self.layoutModeBarButtonItem.image = self.displayMode.image
+            self.contentStackView.removeAllArrangedSubviews()
+            switch mode {
+            case .list:
+                self.contentStackView.addArrangedSubview(self.listTableView)
+            case .grid:
+                self.contentStackView.addArrangedSubview(self.gridTableView)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    // MARK: - Configure
+    override func configure() {
+        super.configure()
+        observeSections()
+        observeDisplayMode()
+        configureSearch()
+        configureTableView()
+        configureCollectionView()
+        configureKeyboard()
+    }
+    
+    private func configureSearch() {
+        searchController.searchBar.rx.text
+            .bind(to: viewModel.$search)
             .disposed(by: disposeBag)
         
-        searchTextObservable
+        searchController.searchBar.rx.text.asObservable()
             .subscribe(onNext: { [weak self] search in
                 guard let self = self else { return }
                 if !search.strongValue.isEmpty {
@@ -194,17 +185,8 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             }).disposed(by: disposeBag)
     }
     
-    // MARK: - Configure
-    override func configure() {
-        super.configure()
-        observeSectionsAndSortMode()
-        observeSearchAndMessageResults()
-        configureTableView()
-        configureKeyboard()
-    }
-    
     private func configureTableView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<Section>(configureCell: { _, tableView, indexPath, message in
+        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.Section>(configureCell: { _, tableView, indexPath, message in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier, for: indexPath) as? MessageTableViewCell else {
                 return UITableViewCell()
             }
@@ -214,27 +196,44 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             return sections.sectionModels[indexPath].model.header
         })
         
-        $sections
-            .bind(to: tableView.rx.items(dataSource: dataSource))
+        viewModel.$sections
+            .bind(to: listTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(Message.self)
+        listTableView.rx.modelSelected(Message.self)
             .subscribe(onNext: { [weak self] message in
                 guard let self = self,
                       case let message = message else { return }
-                message.incrementNumberOfUse()
-                NotificationCenter.default.post(name: Notification.Name.editorAreaAppendText, object: message.text)
-                if self.isCollapsed {
-                    self.dismiss(animated: true, completion: nil)
-                }
+                self.onMessageDidTap(message: message)
             }).disposed(by: disposeBag)
+    }
+    
+    private func configureCollectionView() {
+        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.GridSection>(configureCell: { _, tableView, indexPath, messages in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MessagesTableViewCell.identifier, for: indexPath) as? MessagesTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(messages: messages, column: self.gridColumn)
+            return cell
+        }, titleForHeaderInSection: { sections, indexPath -> String? in
+            return sections.sectionModels[indexPath].model.header
+        })
+        
+        viewModel.$sections
+            .map { section in
+                section.map {
+                    ViewModel.GridSection.init(model: $0.model, items: $0.items.chunked(into: self.gridColumn))
+                }
+            }
+            .bind(to: gridTableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
     
     private func configureKeyboard() {
         RxKeyboard.instance.visibleHeight
-            .drive(onNext: { [tableView] keyboardVisibleHeight in
-                tableView?.contentInset.bottom = keyboardVisibleHeight
-                tableView?.scrollIndicatorInsets.bottom = keyboardVisibleHeight
+            .drive(onNext: { [weak self] keyboardVisibleHeight in
+                self?.listTableView.contentInset.bottom = keyboardVisibleHeight
+                self?.listTableView.scrollIndicatorInsets.bottom = keyboardVisibleHeight
             }).disposed(by: disposeBag)
     }
     
@@ -242,11 +241,30 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
         emptyTitleLabel.text = mode.title
         emptyBodyLabel.text = mode.body
     }
+    
+    // MARK: -
+    private func onMessageDidTap(message: Message) {
+        message.incrementNumberOfUse()
+        NotificationCenter.default.post(name: Notification.Name.editorAreaAppendText, object: message.text)
+        if self.isCollapsed {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 extension MessageListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? MessagesTableViewCell {
+            cell.updateLayout()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let message = self.sections[safe: indexPath.section]?.items[safe: indexPath.row] else { return nil }
+        guard tableView == listTableView else {
+            // return empty UISwipeActionsConfiguration instead of nil, because nil create delete action automatically !
+            return UISwipeActionsConfiguration()
+        }
+        guard let message = self.viewModel.sections[safe: indexPath.section]?.items[safe: indexPath.row] else { return nil }
         
         let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
             guard let self = self else { return }

@@ -26,6 +26,9 @@ smileys_and_people:
 square_grid_2x2:
     height: 22
     
+rectangle_grid_1x2:
+    height: 22
+    
 tortoise:
     format: svg
 

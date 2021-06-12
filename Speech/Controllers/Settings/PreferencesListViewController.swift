@@ -35,8 +35,7 @@ class PreferencesListViewController: BaseListViewController {
                           initialValue: 0.5,
                           step: 0.1,
                           onSlide: { value in
-                            let font = self.editorAreaFonts[safe: Int(value)] ?? .body
-                            DefaultsStorage.preferredEditorAreaTextFont = font
+                            DefaultsStorage.preferredSpeakingRate = value
                           }
                         )
                     )

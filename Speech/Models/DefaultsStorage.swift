@@ -17,6 +17,9 @@ class DefaultsStorage {
     @RxRawUserDefault(key: UserDefaultsKeys.preferredEditorAreaTextFont())
     static var preferredEditorAreaTextFont: FontStyle = .body
     
+    // Speaking
+    static var preferredSpeakingRate: Float = 0.5
+    
     // Messages
     @RawUserDefault(key: UserDefaultsKeys.preferredMessagesSortMode())
     static var preferredSortMode: SortMode = .alphabetical

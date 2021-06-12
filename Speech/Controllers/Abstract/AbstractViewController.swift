@@ -17,7 +17,9 @@ class AbstractViewController: UIViewController {
     lazy var appThemeService = AppThemeService.shared
     
     var isCollapsed: Bool {
-        splitViewController?.isCollapsed ?? true
+//        splitViewController?.isCollapsed ?? true
+        #warning("Check this")
+        return UIDevice.current.userInterfaceIdiom == .phone
     }
     
     lazy var cancelBarButtonItem: UIBarButtonItem = {

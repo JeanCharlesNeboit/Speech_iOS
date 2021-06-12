@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e6k-0e-hVl">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e6k-0e-hVl">
                     <rect key="frame" x="20" y="190.5" width="374" height="515.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome" translatesAutoresizingMaskIntoConstraints="NO" id="avG-UT-K8j">
@@ -32,8 +32,8 @@
                                 <constraint firstAttribute="width" secondItem="avG-UT-K8j" secondAttribute="height" id="OJ1-Dy-aUI"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTd-mv-J1B" customClass="Label" customModule="Speech" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="394" width="374" height="71"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTd-mv-J1B" customClass="Label" customModule="Speech" customModuleProvider="target">
+                            <rect key="frame" x="118" y="394" width="138.5" height="71"/>
                             <string key="text">Ecriver,
 Sauvegarder,
 Communiquer !*</string>
@@ -41,15 +41,15 @@ Communiquer !*</string>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speech, l'application qui vous permet de vous exprimer plus facilement et plus radipement* " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGN-jl-6dR">
-                            <rect key="frame" x="0.0" y="485" width="374" height="30.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Speech, l'application qui vous permet de vous exprimer plus facilement et plus radipement* " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGN-jl-6dR">
+                            <rect key="frame" x="15" y="485" width="344" height="30.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5M-Vl-pJ8" customClass="Button" customModule="Speech" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5M-Vl-pJ8" customClass="Button" customModule="Speech" customModuleProvider="target">
                     <rect key="frame" x="20" y="812" width="374" height="30"/>
                     <state key="normal" title="Continuer*"/>
                 </button>
@@ -57,6 +57,7 @@ Communiquer !*</string>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="e6k-0e-hVl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" id="77r-JK-yHG"/>
                 <constraint firstAttribute="trailing" secondItem="e6k-0e-hVl" secondAttribute="trailing" constant="20" id="G7T-vi-bDI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q5M-Vl-pJ8" secondAttribute="bottom" constant="20" id="HG4-Hx-lgK"/>
                 <constraint firstItem="q5M-Vl-pJ8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="JD4-JB-YFC"/>
@@ -64,8 +65,9 @@ Communiquer !*</string>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q5M-Vl-pJ8" secondAttribute="trailing" constant="20" id="PrG-2G-yuV"/>
                 <constraint firstItem="e6k-0e-hVl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="kP3-UX-qvW"/>
                 <constraint firstItem="e6k-0e-hVl" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="sfV-ia-WiG"/>
+                <constraint firstItem="q5M-Vl-pJ8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e6k-0e-hVl" secondAttribute="bottom" constant="20" id="u5p-Gf-iaC"/>
             </constraints>
-            <point key="canvasLocation" x="114" y="117"/>
+            <point key="canvasLocation" x="113.04347826086958" y="227.34375"/>
         </view>
     </objects>
     <designables>

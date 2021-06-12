@@ -52,20 +52,15 @@ class SpeechSynthesizerService: NSObject {
     }
     
     // MARK: -
-    func startSpeaking(text: String) {
+    func startSpeaking(text: String, voice: AVSpeechSynthesisVoice?) {
         let speechUterrance = AVSpeechUtterance(string: text)
-        speechSynthesizer.speak(speechUterrance)
+        speechUterrance.rate = DefaultsStorage.preferredSpeakingRate
         
-        //         speechUterrance.rate = preferences.rate
-        //         let currentKeyboardLanguage = textView.textInputMode?.primaryLanguage
-        //        if currentKeyboardLanguage != nil{
-        //            speechUterrance.voice = AVSpeechSynthesisVoice(language: currentKeyboardLanguage)
-        //        }
-        //        let selectedTextRange = textView.selectedTextRange
-        //        let selectedText = textView.text(in: selectedTextRange!)
-        //        if selectedText != "" {
-        //            speechUterrance = AVSpeechUtterance(string: selectedText!)
-        //        }
+        if let voice = voice {
+            speechUterrance.voice = voice
+        }
+        
+        speechSynthesizer.speak(speechUterrance)
     }
     
     private func continueSpeaking() {

@@ -150,7 +150,19 @@ class EditorAreaViewController: AbstractViewController {
                     showEmptyError()
                     return
                 }
-                speechSynthesizerService.startSpeaking(text: text)
+                
+                var selectedText: String?
+                if let selectedTextRange = textView.selectedTextRange {
+                    selectedText = textView.text(in: selectedTextRange)
+                }
+                
+                var textToSpeech = text
+                if let selectedText = selectedText {
+                    textToSpeech = selectedText
+                }
+                
+//                let language = textView.textInputMode?.primaryLanguage
+                speechSynthesizerService.startSpeaking(text: textToSpeech, voice: nil)
             }).disposed(by: disposeBag)
     }
     

@@ -49,6 +49,12 @@
 		7E5B647C2614D49600F39BF3 /* AVAudioSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5B647B2614D49600F39BF3 /* AVAudioSessionService.swift */; };
 		7E600AA5262F4B66003058FE /* ContainerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E600AA4262F4B66003058FE /* ContainerTableViewCell.swift */; };
 		7E600AA8262F4B88003058FE /* ContainerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E600AA7262F4B88003058FE /* ContainerTableViewCell.xib */; };
+		7E64EA44265D773E00087124 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64EA43265D773E00087124 /* MessageListViewModel.swift */; };
+		7E64EA47265D791600087124 /* AbstractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64EA46265D791600087124 /* AbstractViewModel.swift */; };
+		7E64EA4C265D99A600087124 /* MessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64EA4A265D99A600087124 /* MessagesTableViewCell.swift */; };
+		7E64EA4D265D99A600087124 /* MessageTileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E64EA4B265D99A600087124 /* MessageTileView.xib */; };
+		7E64EA4F265D99BE00087124 /* AbstractCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64EA4E265D99BE00087124 /* AbstractCollectionViewCell.swift */; };
+		7E64EA51265DA29D00087124 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E64EA50265DA29D00087124 /* CollectionView.swift */; };
 		7E65EEC0264941C8009C9340 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E65EEBF264941C8009C9340 /* ViewControllerTests.swift */; };
 		7E68C0192625904A00617FA2 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C0182625904A00617FA2 /* KeyboardService.swift */; };
 		7E68C01C2625AFAE00617FA2 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C01B2625AFAE00617FA2 /* SliderTableViewCell.swift */; };
@@ -60,6 +66,8 @@
 		7E6E1E56263180B300165FF9 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E1E55263180B300165FF9 /* stylesheet.css */; };
 		7E6E1E5926319EF100165FF9 /* privacy_policy.html in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E1E5826319EF100165FF9 /* privacy_policy.html */; };
 		7E6E1E5E2631A2D000165FF9 /* privacy_policy.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E1E5D2631A2D000165FF9 /* privacy_policy.md */; };
+		7E7A412F2674CD4900BB64F9 /* MessageTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7A412E2674CD4900BB64F9 /* MessageTileView.swift */; };
+		7E7A41312674CE0C00BB64F9 /* MessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A41302674CE0C00BB64F9 /* MessagesTableViewCell.xib */; };
 		7E89D187261C6C9B009930E6 /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E89D186261C6C9B009930E6 /* DetailsTableViewCell.xib */; };
 		7E89D18A261C6CB2009930E6 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D189261C6CB2009930E6 /* DetailsTableViewCell.swift */; };
 		7E89D196261C8F91009930E6 /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D195261C8F91009930E6 /* BaseListViewController.swift */; };
@@ -78,6 +86,7 @@
 		7E9058D826284F810082F057 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9058D726284F810082F057 /* Label.swift */; };
 		7E9058DC2628B96F0082F057 /* InputMessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9058DB2628B96F0082F057 /* InputMessageStackView.swift */; };
 		7E9058E22628D38B0082F057 /* NewCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9058E12628D38B0082F057 /* NewCategoryViewController.xib */; };
+		7E9548D026678B1A00EBDC2A /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9548CF26678B1A00EBDC2A /* GridCollectionViewLayout.swift */; };
 		7EB4DCBC264C6FE0009FA304 /* AbstractTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */; };
 		7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */; };
 		7ECFD1932614F1730026406E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECFD1922614F1730026406E /* main.swift */; };
@@ -177,6 +186,12 @@
 		7E5B647B2614D49600F39BF3 /* AVAudioSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSessionService.swift; sourceTree = "<group>"; };
 		7E600AA4262F4B66003058FE /* ContainerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTableViewCell.swift; sourceTree = "<group>"; };
 		7E600AA7262F4B88003058FE /* ContainerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContainerTableViewCell.xib; sourceTree = "<group>"; };
+		7E64EA43265D773E00087124 /* MessageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
+		7E64EA46265D791600087124 /* AbstractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractViewModel.swift; sourceTree = "<group>"; };
+		7E64EA4A265D99A600087124 /* MessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTableViewCell.swift; sourceTree = "<group>"; };
+		7E64EA4B265D99A600087124 /* MessageTileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTileView.xib; sourceTree = "<group>"; };
+		7E64EA4E265D99BE00087124 /* AbstractCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionViewCell.swift; sourceTree = "<group>"; };
+		7E64EA50265DA29D00087124 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		7E65EEBF264941C8009C9340 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		7E68C0182625904A00617FA2 /* KeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
 		7E68C01B2625AFAE00617FA2 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +203,8 @@
 		7E6E1E55263180B300165FF9 /* stylesheet.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
 		7E6E1E5826319EF100165FF9 /* privacy_policy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = privacy_policy.html; sourceTree = "<group>"; };
 		7E6E1E5D2631A2D000165FF9 /* privacy_policy.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = privacy_policy.md; sourceTree = SOURCE_ROOT; };
+		7E7A412E2674CD4900BB64F9 /* MessageTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTileView.swift; sourceTree = "<group>"; };
+		7E7A41302674CE0C00BB64F9 /* MessagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTableViewCell.xib; sourceTree = "<group>"; };
 		7E89D186261C6C9B009930E6 /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
 		7E89D189261C6CB2009930E6 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		7E89D195261C8F91009930E6 /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +223,7 @@
 		7E9058D726284F810082F057 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		7E9058DB2628B96F0082F057 /* InputMessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMessageStackView.swift; sourceTree = "<group>"; };
 		7E9058E12628D38B0082F057 /* NewCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCategoryViewController.xib; sourceTree = "<group>"; };
+		7E9548CF26678B1A00EBDC2A /* GridCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewLayout.swift; sourceTree = "<group>"; };
 		7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTableView.swift; sourceTree = "<group>"; };
 		7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionView.swift; sourceTree = "<group>"; };
 		7ECFD1922614F1730026406E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -296,6 +314,7 @@
 				7E89D1A5261CCE77009930E6 /* AbstractViews */,
 				7E89D1A7261CCEEA009930E6 /* Generics */,
 				7E89D1A6261CCE87009930E6 /* Xibs */,
+				7E9548CF26678B1A00EBDC2A /* GridCollectionViewLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,7 +339,6 @@
 		7E5AEE4B2613C4BB008E024C /* Generic */ = {
 			isa = PBXGroup;
 			children = (
-				7EF83F83260F49EC00E53A70 /* AbstractViewController.swift */,
 				7E89D195261C8F91009930E6 /* BaseListViewController.swift */,
 				7E5AEE1726120E56008E024C /* NavigationController.swift */,
 				7EE49A8A2617266E00524C9F /* SplitViewController.swift */,
@@ -343,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				7E5AEE502613C5B0008E024C /* Cells */,
+				7E64EA43265D773E00087124 /* MessageListViewModel.swift */,
 				7EF83F89260F4A2600E53A70 /* MessageListViewController.swift */,
 				7EF83F8A260F4A2600E53A70 /* MessageListViewController.xib */,
 				7E89D199261C9C19009930E6 /* MessageViewController.swift */,
@@ -371,8 +390,21 @@
 			children = (
 				7E5AEE512613C5CE008E024C /* MessageTableViewCell.swift */,
 				7E5AEE522613C5CE008E024C /* MessageTableViewCell.xib */,
+				7E64EA4A265D99A600087124 /* MessagesTableViewCell.swift */,
+				7E7A41302674CE0C00BB64F9 /* MessagesTableViewCell.xib */,
+				7E7A412E2674CD4900BB64F9 /* MessageTileView.swift */,
+				7E64EA4B265D99A600087124 /* MessageTileView.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7E64EA45265D790800087124 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				7E64EA46265D791600087124 /* AbstractViewModel.swift */,
+				7EF83F83260F49EC00E53A70 /* AbstractViewController.swift */,
+			);
+			path = Abstract;
 			sourceTree = "<group>";
 		};
 		7E89D185261C6C0D009930E6 /* Cells */ = {
@@ -397,6 +429,7 @@
 				7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */,
 				7E5AEE572613C604008E024C /* AbstractTableViewCell.swift */,
 				7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */,
+				7E64EA4E265D99BE00087124 /* AbstractCollectionViewCell.swift */,
 			);
 			path = AbstractViews;
 			sourceTree = "<group>";
@@ -417,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				7E47AF94261DBBCF00BA175E /* Button.swift */,
+				7E64EA50265DA29D00087124 /* CollectionView.swift */,
 				7E4099F426278C1E006E2A37 /* EmojiTextField.swift */,
 				7E9058D726284F810082F057 /* Label.swift */,
 				7E5AEE1326120B85008E024C /* TextView.swift */,
@@ -594,6 +628,7 @@
 		7EF73356260F17A6009D7A08 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7E64EA45265D790800087124 /* Abstract */,
 				7E5AEE4B2613C4BB008E024C /* Generic */,
 				7E47AF8E261DB89F00BA175E /* Welcome */,
 				7E5AEE4C2613C4D2008E024C /* EditorArea */,
@@ -783,6 +818,7 @@
 				7E89D1AE261CE259009930E6 /* CategoriesListViewController.xib in Resources */,
 				7E89D1B9261CE71A009930E6 /* AboutViewController.xib in Resources */,
 				7E47AFE72620CC6200BA175E /* Firebase in Resources */,
+				7E64EA4D265D99A600087124 /* MessageTileView.xib in Resources */,
 				7EF73326260F1757009D7A08 /* Assets.xcassets in Resources */,
 				7E600AA8262F4B88003058FE /* ContainerTableViewCell.xib in Resources */,
 				7E6E1E5926319EF100165FF9 /* privacy_policy.html in Resources */,
@@ -796,6 +832,7 @@
 				7E9058E22628D38B0082F057 /* NewCategoryViewController.xib in Resources */,
 				7E68C01F2625AFDD00617FA2 /* SliderTableViewCell.xib in Resources */,
 				7E89D19C261C9C19009930E6 /* MessageViewController.xib in Resources */,
+				7E7A41312674CE0C00BB64F9 /* MessagesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,7 +936,9 @@
 				7E5B647C2614D49600F39BF3 /* AVAudioSessionService.swift in Sources */,
 				7E89D1C0261CF9F2009930E6 /* SearchController.swift in Sources */,
 				7EF83FB4260F60F400E53A70 /* RealmExtension.swift in Sources */,
+				7E64EA51265DA29D00087124 /* CollectionView.swift in Sources */,
 				7EF83F74260F20ED00E53A70 /* UIViewControllerExtension.swift in Sources */,
+				7E7A412F2674CD4900BB64F9 /* MessageTileView.swift in Sources */,
 				7E68C02626262F1A00617FA2 /* SwitchTableViewCell.swift in Sources */,
 				7EF83FC226110AB700E53A70 /* SwiftyAssets.swift in Sources */,
 				7EE1F293262E06F600537240 /* Link.swift in Sources */,
@@ -913,10 +952,12 @@
 				7E89D19B261C9C19009930E6 /* MessageViewController.swift in Sources */,
 				7E4099DB26263861006E2A37 /* ThanksListViewController.swift in Sources */,
 				7E600AA5262F4B66003058FE /* ContainerTableViewCell.swift in Sources */,
+				7E64EA47265D791600087124 /* AbstractViewModel.swift in Sources */,
 				7ECFD1A52614FE720026406E /* AppThemeService.swift in Sources */,
 				7E4099E02627748F006E2A37 /* VoiceListViewController.swift in Sources */,
 				7EE49A8F26172B8200524C9F /* SectionHeaderFooter.swift in Sources */,
 				7E89D1A2261CCBFC009930E6 /* TableView.swift in Sources */,
+				7E9548D026678B1A00EBDC2A /* GridCollectionViewLayout.swift in Sources */,
 				7EF83FC526110ABE00E53A70 /* SwiftyImages.swift in Sources */,
 				7EF83FA6260F5F0300E53A70 /* RealmMigrator.swift in Sources */,
 				7E89D1B1261CE43F009930E6 /* TableViewHeaderFooterView.swift in Sources */,
@@ -931,7 +972,9 @@
 				7E5AEE1F26123319008E024C /* SettingsViewController.swift in Sources */,
 				7EE49A8B2617266E00524C9F /* SplitViewController.swift in Sources */,
 				7ECFD1932614F1730026406E /* main.swift in Sources */,
+				7E64EA44265D773E00087124 /* MessageListViewModel.swift in Sources */,
 				7E89D1BC261CEAC2009930E6 /* Category.swift in Sources */,
+				7E64EA4C265D99A600087124 /* MessagesTableViewCell.swift in Sources */,
 				7EF83F9A260F5E4B00E53A70 /* Message.swift in Sources */,
 				7E5AEE582613C604008E024C /* AbstractTableViewCell.swift in Sources */,
 				7E4099F526278C1E006E2A37 /* EmojiTextField.swift in Sources */,
@@ -952,6 +995,7 @@
 				7E5AEE3E2613838E008E024C /* RealmObserver.swift in Sources */,
 				7E6E1E532631735C00165FF9 /* MarkdownViewController.swift in Sources */,
 				7EF7331D260F1756009D7A08 /* AppDelegate.swift in Sources */,
+				7E64EA4F265D99BE00087124 /* AbstractCollectionViewCell.swift in Sources */,
 				7E4099EE26278BA6006E2A37 /* EmojiMessageView.swift in Sources */,
 				7EF83FB1260F60A200E53A70 /* RealmService.swift in Sources */,
 				7E5AEE42261383D1008E024C /* RxRealm.swift in Sources */,

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="102" id="hHR-JU-N6l" customClass="MessagesTableViewCell" customModule="Speech" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hHR-JU-N6l" id="Fxm-jB-KpR">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="87p-I8-pRH">
+                        <rect key="frame" x="16" y="0.0" width="382" height="86"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-zx-tv1">
+                                <rect key="frame" x="0.0" y="0.0" width="382" height="86"/>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="87p-I8-pRH" firstAttribute="leading" secondItem="Fxm-jB-KpR" secondAttribute="leading" constant="16" id="HoZ-Ew-g3Q"/>
+                    <constraint firstAttribute="bottom" secondItem="87p-I8-pRH" secondAttribute="bottom" constant="16" id="Nfs-fK-hpv"/>
+                    <constraint firstItem="87p-I8-pRH" firstAttribute="top" secondItem="Fxm-jB-KpR" secondAttribute="top" id="Uwo-Sr-2qP"/>
+                    <constraint firstAttribute="trailing" secondItem="87p-I8-pRH" secondAttribute="trailing" constant="16" id="x1M-Ku-PfZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="stackView" destination="AjL-zx-tv1" id="MJK-uT-QFF"/>
+            </connections>
+            <point key="canvasLocation" x="-65.217391304347828" y="66.964285714285708"/>
+        </tableViewCell>
+    </objects>
+</document>
