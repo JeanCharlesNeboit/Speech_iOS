@@ -10,20 +10,15 @@ import RealmSwift
 
 class Category: Object {
     // MARK: - Properties
-    @objc private(set) dynamic var name: String = ""
-    @objc private(set) dynamic var parentCategory: Category?
-    private(set) var subCategories = List<Category>()
+    @Persisted(primaryKey: true) private(set) var name: String = ""
+    @Persisted private(set) var parentCategory: Category?
+    @Persisted private(set) var subCategories = List<Category>()
     
     // MARK: - Initialization
     convenience init(parentCategory: Category?, name: String) {
         self.init()
         self.name = name
         self.parentCategory = parentCategory
-    }
-    
-    // MARK: - Object
-    override class func primaryKey() -> String? {
-        #keyPath(Category.name)
     }
 }
 

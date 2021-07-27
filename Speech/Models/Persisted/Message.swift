@@ -10,13 +10,13 @@ import RealmSwift
 
 class Message: Object {
     // MARK: - Properties
-    @objc private(set) dynamic var id: String = ""
-    @objc private(set) dynamic var addedDate: Date = Date()
-    @objc private(set) dynamic var numberOfUse: Int = 0
+    @Persisted(primaryKey: true) private(set) var id: String = ""
+    @Persisted private(set) var addedDate: Date = Date()
+    @objc @Persisted private(set) dynamic var numberOfUse: Int = 0
     
-    @objc dynamic var emoji: String?
-    @objc dynamic var text: String = ""
-    @objc dynamic var category: Category?
+    @Persisted var emoji: String?
+    @Persisted var text: String = ""
+    @Persisted var category: Category?
     
     // MARK: - Initialization
     convenience init(emoji: String?, text: String) {
@@ -24,11 +24,6 @@ class Message: Object {
         self.id = UUID().uuidString
         self.emoji = emoji
         self.text = text
-    }
-    
-    // MARK: - Object
-    override class func primaryKey() -> String? {
-        #keyPath(Message.id)
     }
     
     // MARK: -

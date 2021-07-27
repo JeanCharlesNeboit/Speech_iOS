@@ -34,10 +34,10 @@ class SettingsViewController: BaseListViewController {
                         }),
                         .link(.init(title: String(format: SwiftyAssets.Strings.settings_rate_app, Bundle.main.displayName), urlString: appStoreAppLink))
                     ]),
-            Section(model: .init(),
-                    items: [
-                        .details(vc: MarkdownViewController())
-                    ]),
+//            Section(model: .init(),
+//                    items: [
+//                        .details(vc: MarkdownViewController())
+//                    ]),
             Section(model: .init(footer: "\(Bundle.main.info)\n\(SwiftyAssets.Strings.settings_made_in_auvergne)"),
                     items: [
                         .details(vc: AboutViewController()),

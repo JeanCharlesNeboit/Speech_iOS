@@ -15,15 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - UIApplicationDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        window?.set(rootViewController: UIViewController.main)
-        
+        // Realm
         RealmMigrator.setDefaultConfiguration()
         RealmService.default.printDatabaseFilePath()
+        
+        // Firebase
         FirebaseService.configure()
+        
+        // AVAudioSession
         AVAudioSessionService.default.set(category: .playback, mode: .spokenAudio)
         
+        // SwiftyKit
         SwiftyUIView.DefaultCornerRadius = 10
+        
+        // Window
+        window = UIWindow()
+        window?.set(rootViewController: UIViewController.main)
         
         return true
     }

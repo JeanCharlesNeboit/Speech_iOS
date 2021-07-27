@@ -31,9 +31,9 @@ extension Realm {
             guard let value = element.value(forKey: $0.name) else { return }
             if let entity = value as? RLMObjectBase {
                 toBeDeleted.insert(entity)
-            } else if let list = value as? RealmSwift.ListBase {
-                for index in 0..<list._rlmArray.count {
-                    if let object = list._rlmArray.object(at: index) as? RLMObjectBase {
+            } else if let list = value as? RLMSwiftCollectionBase {
+                for index in 0..<list._rlmCollection.count {
+                    if let object = list._rlmCollection.object(at: index) as? RLMObjectBase {
                         toBeDeleted.insert(object)
                     }
                 }
