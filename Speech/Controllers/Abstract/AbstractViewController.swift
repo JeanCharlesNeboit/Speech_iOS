@@ -13,7 +13,7 @@ import SwiftMessages
 class AbstractViewController: UIViewController {
     // MARK: - Properties
     let disposeBag = DisposeBag()
-    lazy var realmService = RealmService()
+//    lazy var realmService = RealmService()
     
     var isCollapsed: Bool {
 //        splitViewController?.isCollapsed ?? true

@@ -51,9 +51,7 @@ class NewCategoryViewModel: AbstractViewModel {
     
     // MARK: -
     func onCreate(onCompletion: ((Result<Void, Error>) -> Void)) {
-        guard !name.isEmptyOrNil else {
-            return
-        }
+        guard !name.isEmptyOrNil else { return }
         
         switch mode {
         case .creation(let parentCategory):

@@ -19,11 +19,12 @@ class Message: Object {
     @Persisted var category: Category?
     
     // MARK: - Initialization
-    convenience init(emoji: String?, text: String) {
+    convenience init(emoji: String? = nil, text: String, category: Category? = nil) {
         self.init()
         self.id = UUID().uuidString
         self.emoji = emoji
         self.text = text
+        self.category = category
     }
     
     // MARK: -

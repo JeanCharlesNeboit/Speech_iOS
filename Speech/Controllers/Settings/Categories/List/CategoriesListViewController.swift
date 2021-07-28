@@ -140,7 +140,8 @@ class CategoriesListViewController: BaseListViewController {
         tableView.rx.modelSelected(BaseListCellType.self)
             .subscribe(onNext: { [weak self] cellType in
                 guard let self = self else { return }
-                guard case let .category(category) = cellType else { return }
+                guard case let .category(category) = cellType,
+                      let category = category else { return }
                 
                 let showSubCategories = {
                     let vc = CategoriesListViewController(viewModel: .init(parentCategory: category, mode: self.viewModel.mode))
@@ -189,7 +190,7 @@ extension CategoriesListViewController {
         let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
             guard let self = self else { return }
             guard let category = self.viewModel.categories[safe: indexPath.row] else { return }
-            self.realmService.deleteObject(category)
+            self.viewModel.onDelete(category: category)
         }
         
         let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, success in

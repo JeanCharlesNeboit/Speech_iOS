@@ -10,6 +10,8 @@
 		7E21435A26B1A40200A3E8A2 /* EditorAreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21435926B1A40200A3E8A2 /* EditorAreaViewModel.swift */; };
 		7E21435E26B1B39500A3E8A2 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21435D26B1B39500A3E8A2 /* MessageViewModel.swift */; };
 		7E21436026B1BF1500A3E8A2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21435F26B1BF1500A3E8A2 /* UIColorExtension.swift */; };
+		7E21436426B1E9CC00A3E8A2 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E21436326B1E9CC00A3E8A2 /* MessageViewController.xib */; };
+		7E21436726B1ED2C00A3E8A2 /* RxSwiftExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21436626B1ED2C00A3E8A2 /* RxSwiftExtension.swift */; };
 		7E3953DE26B1989B0012E0B3 /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3953DD26B1989B0012E0B3 /* UIScrollViewExtension.swift */; };
 		7E3953E126B199CE0012E0B3 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3953E026B199CE0012E0B3 /* UIViewExtension.swift */; };
 		7E4099D7262637CB006E2A37 /* OpenSourceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4099D6262637CB006E2A37 /* OpenSourceListViewController.swift */; };
@@ -77,7 +79,6 @@
 		7E89D18A261C6CB2009930E6 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D189261C6CB2009930E6 /* DetailsTableViewCell.swift */; };
 		7E89D196261C8F91009930E6 /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D195261C8F91009930E6 /* BaseListViewController.swift */; };
 		7E89D19B261C9C19009930E6 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D199261C9C19009930E6 /* MessageViewController.swift */; };
-		7E89D19C261C9C19009930E6 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E89D19A261C9C19009930E6 /* MessageViewController.xib */; };
 		7E89D1A2261CCBFC009930E6 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D1A1261CCBFC009930E6 /* TableView.swift */; };
 		7E89D1AD261CE259009930E6 /* CategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D1AB261CE259009930E6 /* CategoriesListViewController.swift */; };
 		7E89D1AE261CE259009930E6 /* CategoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E89D1AC261CE259009930E6 /* CategoriesListViewController.xib */; };
@@ -158,6 +159,8 @@
 		7E21435926B1A40200A3E8A2 /* EditorAreaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorAreaViewModel.swift; sourceTree = "<group>"; };
 		7E21435D26B1B39500A3E8A2 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		7E21435F26B1BF1500A3E8A2 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		7E21436326B1E9CC00A3E8A2 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
+		7E21436626B1ED2C00A3E8A2 /* RxSwiftExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftExtension.swift; sourceTree = "<group>"; };
 		7E3953DD26B1989B0012E0B3 /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
 		7E3953E026B199CE0012E0B3 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		7E4099D6262637CB006E2A37 /* OpenSourceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceListViewController.swift; sourceTree = "<group>"; };
@@ -225,7 +228,6 @@
 		7E89D189261C6CB2009930E6 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		7E89D195261C8F91009930E6 /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
 		7E89D199261C9C19009930E6 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		7E89D19A261C9C19009930E6 /* MessageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		7E89D1A1261CCBFC009930E6 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		7E89D1AB261CE259009930E6 /* CategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListViewController.swift; sourceTree = "<group>"; };
 		7E89D1AC261CE259009930E6 /* CategoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesListViewController.xib; sourceTree = "<group>"; };
@@ -324,9 +326,17 @@
 			children = (
 				7E21435D26B1B39500A3E8A2 /* MessageViewModel.swift */,
 				7E89D199261C9C19009930E6 /* MessageViewController.swift */,
-				7E89D19A261C9C19009930E6 /* MessageViewController.xib */,
+				7E21436326B1E9CC00A3E8A2 /* MessageViewController.xib */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		7E21436526B1ECFF00A3E8A2 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				7E21436626B1ED2C00A3E8A2 /* RxSwiftExtension.swift */,
+			);
+			path = RxSwift;
 			sourceTree = "<group>";
 		};
 		7E3953DF26B199450012E0B3 /* Protocols */ = {
@@ -735,6 +745,7 @@
 				7E5AEE462613AFA6008E024C /* Foundation */,
 				7EF83F9D260F5EED00E53A70 /* UIKit */,
 				7EF83FA0260F5EF800E53A70 /* Realm */,
+				7E21436526B1ECFF00A3E8A2 /* RxSwift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -908,6 +919,7 @@
 				7E6E1E56263180B300165FF9 /* stylesheet.css in Resources */,
 				7E5AEE542613C5CE008E024C /* MessageTableViewCell.xib in Resources */,
 				7E89D1AE261CE259009930E6 /* CategoriesListViewController.xib in Resources */,
+				7E21436426B1E9CC00A3E8A2 /* MessageViewController.xib in Resources */,
 				7E89D1B9261CE71A009930E6 /* AboutViewController.xib in Resources */,
 				7E47AFE72620CC6200BA175E /* Firebase in Resources */,
 				7E64EA4D265D99A600087124 /* MessageTileView.xib in Resources */,
@@ -924,7 +936,6 @@
 				7E9058E22628D38B0082F057 /* NewCategoryViewController.xib in Resources */,
 				7ECE53A926B0A3A100BE28B5 /* EmptyView.xib in Resources */,
 				7E68C01F2625AFDD00617FA2 /* SliderTableViewCell.xib in Resources */,
-				7E89D19C261C9C19009930E6 /* MessageViewController.xib in Resources */,
 				7E7A41312674CE0C00BB64F9 /* MessagesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1036,6 +1047,7 @@
 				7E68C02626262F1A00617FA2 /* SwitchTableViewCell.swift in Sources */,
 				7EF83FC226110AB700E53A70 /* SwiftyAssets.swift in Sources */,
 				7EE1F293262E06F600537240 /* Link.swift in Sources */,
+				7E21436726B1ED2C00A3E8A2 /* RxSwiftExtension.swift in Sources */,
 				7EB4DCBC264C6FE0009FA304 /* AbstractTableView.swift in Sources */,
 				7E47AFD5261F860200BA175E /* UIFontExtension.swift in Sources */,
 				7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */,

@@ -22,7 +22,7 @@ enum BaseListCellType {
     case switchChoice(SwitchTableViewCell.Config)
     
     case message(Message)
-    case category(Category)
+    case category(Category?)
     
     var cellType: CellIdentifiable.Type {
         switch self {

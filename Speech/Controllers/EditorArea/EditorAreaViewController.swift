@@ -75,10 +75,6 @@ class EditorAreaViewController: AbstractViewController {
     override func configure() {
         navigationItem.rightBarButtonItem = settingsBarButtonItem
         
-        #if DEBUG
-        textView.append(text: "Bonjour")
-        #endif
-        
         RxKeyboard.instance.isHidden
             .filter { $0 == true }
             .delay(.milliseconds(500))
@@ -87,7 +83,10 @@ class EditorAreaViewController: AbstractViewController {
             }).disposed(by: disposeBag)
         
         listenNotifications()
-        textView.rx.text.bind(to: viewModel.$text).disposed(by: disposeBag)
+        
+        viewModel.$text.subscribe(onNext: { [weak self] text in
+            self?.textView.text = text
+        }).disposed(by: disposeBag)
         
         DefaultsStorage.$preferredEditorAreaTextFont
             .subscribe(onNext: { [textView] fontStyle in
@@ -99,22 +98,19 @@ class EditorAreaViewController: AbstractViewController {
         NotificationCenter.default.rx
             .notification(.editorAreaSaveText)
             .subscribe(onNext: { [self] _ in
-
                 guard let text = self.textView.enteredText else {
                     showEmptyError()
                     return
                 }
 
-                guard !realmService.doesMessageAlreadyExist(text: text) else {
+                guard !viewModel.doesMessageAlreadyExist() else {
                     showWarning(title: SwiftyAssets.Strings.editor_area_duplication_title,
                                 message: SwiftyAssets.Strings.editor_area_duplication_body)
                     return
                 }
 
-                let message = Message(emoji: nil, text: text)
                 if DefaultsStorage.saveMessagesQuickly {
-                    #warning("Manage notifications with MessageViewController too")
-                    realmService.addObject(message, completion: { [weak self] result in
+                    viewModel.onSaveQuickly { [weak self] result in
                         guard let self = self else { return }
                         switch result {
                         case .success:
@@ -122,11 +118,11 @@ class EditorAreaViewController: AbstractViewController {
                                              message: SwiftyAssets.Strings.editor_area_successfully_saved_body)
                         case .failure:
                             self.showError(title: SwiftyAssets.Strings.editor_area_not_successfully_saved_title,
-                                             message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
+                                            message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
                         }
-                    })
+                    }
                 } else {
-                    let destination = NavigationController(rootViewController: MessageViewController(message: message))
+                    let destination = NavigationController(rootViewController: MessageViewController(viewModel: .init(mode: .creation(text: text))))
                     present(destination)
                 }
             }).disposed(by: disposeBag)

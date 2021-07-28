@@ -14,10 +14,23 @@ class TextView: UITextView {
     let disposeBag = DisposeBag()
     
     @RxBehaviorSubject private var isPlaceholderActive: Bool = true
+    @RxBehaviorSubject var placeholder: String = ""
     
-    var placeholder: String = "" {
-        didSet {
-            setPlaceholderIfNeeded()
+    override var text: String! {
+        get {
+            super.text
+        } set {
+            if !isPlaceholderActive {
+                super.text = newValue
+                if super.text.isEmptyOrNil && !isFirstResponder {
+                    isPlaceholderActive = true
+                }
+            } else {
+                if !newValue.isEmptyOrNil {
+                    isPlaceholderActive = false
+                    super.text = newValue
+                }
+            }
         }
     }
     
@@ -48,19 +61,17 @@ class TextView: UITextView {
         textContainerInset = .zero
         textContainer.lineFragmentPadding = 0
         
-        $isPlaceholderActive
-            .subscribe(onNext: { [weak self] isPlaceholderActive in
-                guard let self = self else { return }
-                self.text = isPlaceholderActive ? self.placeholder : nil
-                self.textColor = isPlaceholderActive ? .placeholderTextColor : .textColor
+        Observable.combineLatest($isPlaceholderActive, $placeholder)
+            .subscribe(onNext: { [weak self] isPlaceholderActive, placeholder in
+                self?.updatePlaceholder(isPlaceholderActive, placeholder)
             }).disposed(by: disposeBag)
         
-        rx.didBeginEditing.subscribe(onNext: { [self] _ in
-            unsetPlaceholderIfNeeded()
+        rx.didBeginEditing.subscribe(onNext: { [weak self] _ in
+            self?.unsetPlaceholderIfNeeded()
         }).disposed(by: disposeBag)
-        
-        rx.didEndEditing.subscribe(onNext: { [self] _ in
-            setPlaceholderIfNeeded()
+
+        rx.didEndEditing.subscribe(onNext: { [weak self] _ in
+            self?.setPlaceholderIfNeeded()
         }).disposed(by: disposeBag)
     }
     
@@ -70,22 +81,27 @@ class TextView: UITextView {
             isPlaceholderActive = true
         }
     }
-    
+
     private func unsetPlaceholderIfNeeded() {
         if isPlaceholderActive {
             isPlaceholderActive = false
         }
     }
     
-    // MARK: -
-    func clear() {
-        guard !isPlaceholderActive else { return }
-        text = nil
+    private func updatePlaceholder(_ isPlaceholderActive: Bool, _ placeholder: String) {
+        super.text = isPlaceholderActive ? placeholder : nil
+        textColor = isPlaceholderActive ? .placeholderTextColor : .textColor
     }
     
-    func append(text appendingText: String) {
-        unsetPlaceholderIfNeeded()
-        let newText = [enteredText ?? "", appendingText].joined(separator: " ").trimmingCharacters(in: .whitespaces)
-        text = newText
-    }
+    // MARK: -
+//    func clear() {
+//        guard !isPlaceholderActive else { return }
+//        text = nil
+//    }
+//
+//    func append(text appendingText: String) {
+////        unsetPlaceholderIfNeeded()
+//        let newText = [enteredText ?? "", appendingText].joined(separator: " ").trimmingCharacters(in: .whitespaces)
+//        text = newText
+//    }
 }

@@ -40,4 +40,9 @@ class CategoriesListViewModel: AbstractViewModel {
                 self.categories = categories.sorted()
             }.disposed(by: disposeBag)
     }
+    
+    // MARK: -
+    func onDelete(category: Category) {
+        realmService.deleteObject(category)
+    }
 }

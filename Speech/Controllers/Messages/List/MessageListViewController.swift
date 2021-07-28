@@ -250,11 +250,10 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     
     // MARK: -
     private func onMessageDidTap(message: Message) {
-        message.incrementNumberOfUse()
-        NotificationCenter.default.post(name: Notification.Name.editorAreaAppendText, object: message.text)
-        if self.isCollapsed {
-            self.dismiss(animated: true, completion: nil)
-        }
+        NotificationCenter.default.post(name: Notification.Name.editorAreaAppendText, object: message)
+//        if self.isCollapsed {
+//            self.dismiss(animated: true, completion: nil)
+//        }
     }
 }
 
@@ -274,13 +273,13 @@ extension MessageListViewController: UITableViewDelegate {
         
         let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
             guard let self = self else { return }
-            self.realmService.deleteObject(message)
+            self.viewModel.onDelete(message: message)
         }
 //        deleteAction.image = SwiftyAssets.Images.gearshape
         
         let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, success in
             guard let self = self else { return }
-            self.present(NavigationController(rootViewController: MessageViewController(message: message)))
+            self.present(NavigationController(rootViewController: MessageViewController(viewModel: .init(mode: .edition(message: message)))))
             success(true)
         }
         

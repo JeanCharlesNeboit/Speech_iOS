@@ -11,7 +11,6 @@ import SwiftDate
 
 class MessageTableViewCell: AbstractTableViewCell {
     // MARK: - IBOutlets
-    @IBOutlet weak var emojiContentView: UIView!
     @IBOutlet weak var emojiLabel: UILabel!
         
     @IBOutlet weak var messageLabel: UILabel! {
@@ -34,7 +33,7 @@ class MessageTableViewCell: AbstractTableViewCell {
     
     // MARK: - Configure
     func configure(message: Message) {
-        emojiContentView.isHidden = message.emoji.isEmptyOrNil
+        emojiLabel.isHidden = message.emoji.isEmptyOrNil
         emojiLabel.text = message.emoji
         messageLabel.text = message.text
         categoryLabel.text = message.category?.name

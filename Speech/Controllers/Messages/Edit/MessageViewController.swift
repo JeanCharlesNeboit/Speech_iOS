@@ -12,6 +12,7 @@ class MessageViewController: BaseListViewController {
     typealias ViewModel = MessageViewModel
     
     // MARK: - Properties
+    let viewModel: ViewModel
     private lazy var validBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem.init(title: SwiftyAssets.Strings.generic_validate, style: .done, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: { [weak self] in
@@ -24,24 +25,27 @@ class MessageViewController: BaseListViewController {
     private lazy var emojiMessageView: EmojiMessageView = {
         let emojiMessageView: EmojiMessageView = .loadFromXib()
         emojiMessageView.messageTextField.placeholder = SwiftyAssets.Strings.generic_message
+        
+        viewModel.$emoji.subscribe(onNext: { emoji in
+            emojiMessageView.configure(emoji: emoji)
+        }).disposed(by: disposeBag)
+        emojiMessageView.emojiTextField.rx.text.bind(to: viewModel.$emoji).disposed(by: disposeBag)
+
+        (emojiMessageView.messageTextField.rx.text <-> viewModel.$message).disposed(by: disposeBag)
+        
         return emojiMessageView
     }()
-    
-    let viewModel = ViewModel()
-    private var message: Message
-    private var category: Category?
-    
+
     // MARK: - Initialization
-    init(message: Message) {
-        self.message = message
-        category = message.category
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
         super.init()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func sharedInit() {
         super.sharedInit()
         title = SwiftyAssets.Strings.message_new_title // : SwiftyAssets.Strings.message_edit_title
@@ -53,6 +57,7 @@ class MessageViewController: BaseListViewController {
     override func configure() {
         super.configure()
         configureDataSource()
+        configureTableView()
     }
     
     private func configureDataSource() {
@@ -71,20 +76,37 @@ class MessageViewController: BaseListViewController {
                     ]),
             Section(model: .init(header: SwiftyAssets.Strings.generic_category),
                     items: [
-                        .details(title: category?.name ?? "",
-                                 vc: CategoriesListViewController(viewModel: .init(parentCategory: nil, mode: .selection { [weak self] category in
-                            guard let self = self else { return }
-                            self.navigationController?.popToRootViewController(animated: true)
-                            self.category = category
-                            self.configureDataSource()
-                        })))
+                        .category(viewModel.category)
                     ])
         ]
     }
     
+    private func configureTableView() {
+        tableView.rx.modelSelected(BaseListCellType.self)
+            .subscribe(onNext: { [weak self] cellType in
+                guard let self = self else { return }
+                guard case .category = cellType else { return }
+                
+                let vc = CategoriesListViewController(viewModel: .init(parentCategory: nil, mode: .selection { [weak self] category in
+                    guard let self = self else { return }
+                    self.navigationController?.popToRootViewController(animated: true)
+                    self.viewModel.category = category
+                    self.configureDataSource()
+                }))
+                self.navigationController?.pushViewController(vc, animated: true)
+            }).disposed(by: disposeBag)
+    }
+    
     // MARK: -
     private func onSave() {
-        viewModel.onSave()
-        self.dismiss(animated: true, completion: nil)
+        viewModel.onSave { [weak self] result in
+            switch result {
+            case .success():
+                self?.dismiss(animated: true, completion: nil)
+            case .failure(_):
+                break
+            }
+        }
+        
     }
 }

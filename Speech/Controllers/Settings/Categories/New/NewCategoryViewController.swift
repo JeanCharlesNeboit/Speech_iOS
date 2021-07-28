@@ -8,22 +8,10 @@
 import UIKit
 import RxSwift
 
-class NewCategoryViewController: AbstractViewController {
+class NewCategoryViewController: BaseListViewController {
     typealias ViewModel = NewCategoryViewModel
     
     // MARK: - IBOutlets
-    @IBOutlet weak var scrollView: UIScrollView! {
-        didSet {
-            scrollView.keyboardDismissMode = .onDrag
-        }
-    }
-    
-    @IBOutlet weak var contentStackView: UIStackView! {
-        didSet {
-            contentStackView.addArrangedSubview(emojiMessageView)
-        }
-    }
-    
     @IBOutlet weak var createButton: Button! {
         didSet {
             createButton.setTitle(viewModel.mode.saveTitle)
@@ -44,6 +32,7 @@ class NewCategoryViewController: AbstractViewController {
     // MARK: - Properties
     let viewModel: ViewModel
     
+    private var emojiMessageViewOnConfigureDisposable: Disposable?
     private lazy var emojiMessageView: EmojiMessageView = {
         let emojiMessageView: EmojiMessageView = .loadFromXib()
         emojiMessageView.messageTextField.placeholder = SwiftyAssets.Strings.category_name
@@ -51,11 +40,10 @@ class NewCategoryViewController: AbstractViewController {
         viewModel.$emoji.subscribe(onNext: { emoji in
             emojiMessageView.configure(emoji: emoji)
         }).disposed(by: disposeBag)
-        viewModel.$name.bind(to: emojiMessageView.messageTextField.rx.text).disposed(by: disposeBag)
-        
         emojiMessageView.emojiTextField.rx.text.bind(to: viewModel.$emoji).disposed(by: disposeBag)
-        emojiMessageView.messageTextField.rx.text.bind(to: viewModel.$name).disposed(by: disposeBag)
 
+        (emojiMessageView.messageTextField.rx.text <-> viewModel.$name).disposed(by: disposeBag)
+        
         return emojiMessageView
     }()
     
@@ -74,5 +62,23 @@ class NewCategoryViewController: AbstractViewController {
         super.configure()
         title = viewModel.mode.title
         navigationItem.leftBarButtonItem = cancelBarButtonItem
+        configureDataSource()
+    }
+    
+    private func configureDataSource() {
+        sections = [
+            Section(model: .init(),
+                    items: [
+                        .container(view: emojiMessageView, onConfigure: { [weak self] _ in
+                            guard let self = self else { return }
+                            self.emojiMessageViewOnConfigureDisposable = self.emojiMessageView
+                                .inputMessageStackView
+                                .message
+                                .subscribe(onNext: { [weak self] _ in
+                                    self?.tableView.performBatchUpdates(nil, completion: nil)
+                                })
+                        })
+                    ])
+            ]
     }
 }

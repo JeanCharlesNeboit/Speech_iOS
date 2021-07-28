@@ -68,7 +68,7 @@ class MessageListViewModel: AbstractViewModel {
             .filter { message in
                 guard !search.isEmptyOrNil,
                       let search = search else { return true }
-                return message.text.contains(search)
+                return message.text.uppercased().contains(search.uppercased())
             }
         
         switch sortMode {
@@ -92,5 +92,10 @@ class MessageListViewModel: AbstractViewModel {
         }
         
         return sections
+    }
+    
+    // MARK: -
+    func onDelete(message: Message) {
+        realmService.deleteObject(message)
     }
 }

@@ -40,13 +40,11 @@ extension AbstractViewController {
     
     private func showMessageCardView(title: String,
                                      body: String,
-                                     layout: MessageView.Layout = .statusLine,
                                      theme: Theme,
                                      duration: SwiftMessages.Duration = .seconds(seconds: 2),
                                      presentationStyle: SwiftMessages.PresentationStyle = .top) {
         let cardView = MessageView.viewFromNib(layout: .cardView)
         cardView.configureTheme(theme)
-        cardView.configureDropShadow()
         cardView.configureContent(title: title, body: body)
         cardView.button?.isHidden = true
         
@@ -54,7 +52,7 @@ extension AbstractViewController {
         config.keyboardTrackingView = KeyboardTrackingView()
         config.duration = duration
         config.presentationStyle = presentationStyle
-        config.presentationContext = .window(windowLevel: .statusBar)
+        config.presentationContext = .window(windowLevel: .normal)
         
         SwiftMessages.show(config: config, view: cardView)
     }

@@ -11,18 +11,34 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageViewController" customModule="Speech" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view" destination="MBz-du-gml" id="hNu-F6-DNc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="MBz-du-gml">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8Y-Wh-cMH" customClass="Button" customModule="Speech" customModuleProvider="target">
+                    <rect key="frame" x="41.5" y="812" width="331" height="30"/>
+                    <state key="normal" title="Create*"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="tUf-yn-7Kn"/>
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
-            <point key="canvasLocation" x="137.68115942028987" y="111.83035714285714"/>
+            <constraints>
+                <constraint firstItem="x8Y-Wh-cMH" firstAttribute="centerX" secondItem="MBz-du-gml" secondAttribute="centerX" id="TQB-PC-5lk"/>
+                <constraint firstItem="tUf-yn-7Kn" firstAttribute="bottom" secondItem="x8Y-Wh-cMH" secondAttribute="bottom" constant="20" id="YgG-Pm-p9Q"/>
+                <constraint firstItem="x8Y-Wh-cMH" firstAttribute="width" secondItem="MBz-du-gml" secondAttribute="width" multiplier="0.8" id="iqS-62-zED"/>
+            </constraints>
+            <point key="canvasLocation" x="113.04347826086958" y="112.5"/>
         </view>
     </objects>
+    <designables>
+        <designable name="x8Y-Wh-cMH">
+            <size key="intrinsicContentSize" width="53" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
