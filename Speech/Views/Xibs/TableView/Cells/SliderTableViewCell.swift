@@ -12,7 +12,7 @@ import SwiftyKit
 class SliderTableViewCell: AbstractTableViewCell {
     // MARK: - Enums
     enum IconType {
-        case image(UIImage)
+        case image(UIImage, UIColor?)
         case text(String)
     }
     
@@ -79,8 +79,11 @@ class SliderTableViewCell: AbstractTableViewCell {
         onSlide = config.onSlide
         
         switch config.minimumIcon {
-        case .image(let image):
-            minimumImageView.image = image
+        case .image(let image, let tintColor):
+            minimumImageView.image = image.withRenderingMode(.alwaysTemplate)
+            if let tintColor = tintColor {
+                minimumImageView.tintColor = tintColor
+            }
             contentStackView.insertArrangedSubview(minimumImageView, at: 0)
         case .text(let text):
             minimumLabel.text = text
@@ -88,8 +91,11 @@ class SliderTableViewCell: AbstractTableViewCell {
         }
         
         switch config.maximumIcon {
-        case .image(let image):
-            maximumImageView.image = image
+        case .image(let image, let tintColor):
+            maximumImageView.image = image.withRenderingMode(.alwaysTemplate)
+            if let tintColor = tintColor {
+                maximumImageView.tintColor = tintColor
+            }
             contentStackView.addArrangedSubview(maximumImageView)
         case .text(let text):
             maximumLabel.text = text

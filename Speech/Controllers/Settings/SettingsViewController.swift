@@ -13,9 +13,10 @@ import RxDataSources
 import SwiftMessages
 
 class SettingsViewController: BaseListViewController {
+    typealias ViewModel = SettingsViewModel
+    
     // MARK: - Properties
-    private let appStoreAppLink = "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review"
-    private let githubRepositoryLink = "https://github.com/JeanCharlesNeboit/Speech_iOS"
+    let viewModel = ViewModel()
     
     // MARK: - Initialization
     override func sharedInit() {
@@ -25,24 +26,26 @@ class SettingsViewController: BaseListViewController {
             Section(model: .init(),
                     items: [
                         .details(vc: PreferencesListViewController()),
-                        .details(vc: CategoriesListViewController())
+                        .details(vc: CategoriesListViewController(viewModel: .init(parentCategory: nil,
+                                                                                   mode: .edition)))
                     ]),
             Section(model: .init(),
                     items: [
                         .action(title: String(format: SwiftyAssets.Strings.settings_share_app, Bundle.main.displayName), onTap: { [weak self] in
                             self?.onShareApp()
                         }),
-                        .link(.init(title: String(format: SwiftyAssets.Strings.settings_rate_app, Bundle.main.displayName), urlString: appStoreAppLink))
+                        .link(.init(title: String(format: SwiftyAssets.Strings.settings_rate_app, Bundle.main.displayName),
+                                    urlString: viewModel.appStoreAppLink))
                     ]),
 //            Section(model: .init(),
 //                    items: [
 //                        .details(vc: MarkdownViewController())
 //                    ]),
-            Section(model: .init(footer: "\(Bundle.main.info)\n\(SwiftyAssets.Strings.settings_made_in_auvergne)"),
+            Section(model: .init(footer: viewModel.appVersionInfo),
                     items: [
                         .details(vc: AboutViewController()),
                         .link(.init(title: SwiftyAssets.Strings.settings_github,
-                                    urlString: githubRepositoryLink,
+                                    urlString: viewModel.githubRepositoryLink,
                                     inApp: false)),
                         .details(vc: OpenSourceListViewController()),
                         .details(vc: ThanksListViewController())
@@ -72,7 +75,7 @@ extension SettingsViewController: UIActivityItemSource {
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        URL(string: appStoreAppLink)
+        URL(string: viewModel.appStoreAppLink)
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
@@ -87,7 +90,7 @@ extension SettingsViewController: UIActivityItemSource {
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
         let metadata = LPLinkMetadata()
         metadata.title = Bundle.main.displayName
-        metadata.originalURL = URL(string: appStoreAppLink)
+        metadata.originalURL = URL(string: viewModel.appStoreAppLink)
         metadata.iconProvider = NSItemProvider(object: SwiftyAssets.UIImages.app_icon)
         return metadata
     }

@@ -37,6 +37,10 @@ generic_save:
 generic_edit:
     fr: Editer
     en: Edit
+
+generic_message:
+    fr: Message
+    en: Message
     
 generic_category:
     fr: Catégory
@@ -53,6 +57,20 @@ generic_add:
 generic_create:
     fr: Créer
     en: Create
+    
+## Search
+search_empty_title:
+    fr: Aucun résultat !
+    en: No result !
+
+search_empty_body:
+    fr: Aucun résultat ne correspond à votre recherche
+    en: No results match your search
+
+## EmojiView
+emoji_only_allowed:
+    fr: Seul les emojis sont autorisés !
+    en: Only emojis are allowed !
     
 ## Welcome
 welcome_title:
@@ -120,14 +138,6 @@ messages_list_empty_title:
 messages_list_empty_body:
     fr: Vos messages enregistrés apparaîtront ici.
     en: Your saved messages will appear here.
-
-messages_list_empty_search_title:
-    fr: Aucun résultat !
-    en: No result !
-
-messages_list_empty_search_body:
-    fr: Aucun résultat ne correspond à votre recherche
-    en: No results match your search
 
 messages_list_sort_by_alphabetical_order:
     fr: Trier par ordre alphabétique
@@ -220,12 +230,39 @@ preferences_save_messages_quickly:
     fr: Sauvegarder les nouveaux messages radipement
     en: Save new messages quickly
     
-## Categories
+## Categories list
+categories_list_empty_title:
+    fr: Aucune catégorie !
+    en: No categories !
 
-## New Category
-new_category_title:
-    fr: Nouveau catégorie
+categories_list_empty_body:
+    fr: Vos catégories enregistrés apparaîtront ici.
+    en: Your saved categories will appear here.
+    
+sub_categories_list_empty_body:
+    fr: Aucune sous-catégorie !
+    en: No sub-categories !
+    
+sub_categories_single:
+    fr: '%@ sous-catégorie'
+    en: '%@ sub-category'
+    
+sub_categories_plurial:
+    fr: '%@ sous-catégories'
+    en: '%@ sub-categories'
+
+## Category
+category_new_title:
+    fr: Nouvelle catégorie
     en: New category
+
+category_edit_title:
+    fr: Edition catégorie
+    en: Edit category
+
+category_name:
+    fr: Nom de la catégory
+    en: Categorie name
 
 ## About
 about_description:

@@ -12,6 +12,8 @@ import RxSwift
 import RxKeyboard
 
 class EditorAreaViewController: AbstractViewController {
+    typealias ViewModel = EditorAreaViewModel
+    
     // MARK: - IBOutlets
     @IBOutlet weak var textView: TextView! {
         didSet {
@@ -20,8 +22,7 @@ class EditorAreaViewController: AbstractViewController {
     }
     
     // MARK: - Properties
-    private lazy var speechSynthesizerService = SpeechSynthesizerService.shared
-    
+    let viewModel = ViewModel()
     override var canBecomeFirstResponder: Bool {
         guard presentedViewController == nil else { return false }
         return true
@@ -64,7 +65,7 @@ class EditorAreaViewController: AbstractViewController {
             let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
             messageBarButtonItem.rx.tap
                 .subscribe(onNext: { [self] in
-                    present(NavigationController(rootViewController: MessageListViewController()), animated: true, completion: nil)
+                    present(NavigationController(rootViewController: MessageListViewController()))
                 }).disposed(by: disposeBag)
             navigationItem.leftBarButtonItem = messageBarButtonItem
         }
@@ -74,6 +75,10 @@ class EditorAreaViewController: AbstractViewController {
     override func configure() {
         navigationItem.rightBarButtonItem = settingsBarButtonItem
         
+        #if DEBUG
+        textView.append(text: "Bonjour")
+        #endif
+        
         RxKeyboard.instance.isHidden
             .filter { $0 == true }
             .delay(.milliseconds(500))
@@ -82,24 +87,15 @@ class EditorAreaViewController: AbstractViewController {
             }).disposed(by: disposeBag)
         
         listenNotifications()
+        textView.rx.text.bind(to: viewModel.$text).disposed(by: disposeBag)
         
         DefaultsStorage.$preferredEditorAreaTextFont
             .subscribe(onNext: { [textView] fontStyle in
                 textView?.setDynamicFont(style: fontStyle)
             }).disposed(by: disposeBag)
-        
-        #if DEBUG
-        textView.append(text: "Bonjour")
-        #endif
     }
     
     private func listenNotifications() {
-        NotificationCenter.default.rx
-            .notification(.editorAreaClearText)
-            .subscribe(onNext: { [textView] _ in
-                textView?.clear()
-            }).disposed(by: disposeBag)
-        
         NotificationCenter.default.rx
             .notification(.editorAreaSaveText)
             .subscribe(onNext: { [self] _ in
@@ -131,38 +127,18 @@ class EditorAreaViewController: AbstractViewController {
                     })
                 } else {
                     let destination = NavigationController(rootViewController: MessageViewController(message: message))
-                    present(destination, animated: true, completion: nil)
-                }
-            }).disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx
-            .notification(.editorAreaAppendText)
-            .subscribe(onNext: { [textView] notification in
-                if let text = notification.object as? String {
-                    textView?.append(text: text)
+                    present(destination)
                 }
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx
             .notification(.editorAreaStartSpeaking)
             .subscribe(onNext: { [self] _ in
-                guard let text = self.textView.enteredText else {
+                guard self.textView.enteredText != nil else {
                     showEmptyError()
                     return
                 }
-                
-                var selectedText: String?
-                if let selectedTextRange = textView.selectedTextRange {
-                    selectedText = textView.text(in: selectedTextRange)
-                }
-                
-                var textToSpeech = text
-                if let selectedText = selectedText {
-                    textToSpeech = selectedText
-                }
-                
-//                let language = textView.textInputMode?.primaryLanguage
-                speechSynthesizerService.startSpeaking(text: textToSpeech, voice: nil)
+                viewModel.startSpeaking()
             }).disposed(by: disposeBag)
     }
     

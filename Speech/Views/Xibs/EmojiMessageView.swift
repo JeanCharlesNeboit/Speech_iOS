@@ -9,45 +9,17 @@ import UIKit
 import RxSwift
 
 class EmojiMessageView: AbstractView {
-    // MARK: - Properties
-    @RxBehaviorSubject var emoji: String?
-    @RxBehaviorSubject var message: String?
-    
     // MARK: - IBOutlets
-    @IBOutlet weak var emojiPlaceholderImageView: UIImageView!
-    @IBOutlet weak var emojiTextField: UITextField! {
+    @IBOutlet weak var emojiPlaceholderImageView: UIImageView! {
         didSet {
-            emojiTextField.rx.controlEvent(.editingDidBegin)
-                .subscribe(onNext: { [weak self] _ in
-                    self?.emojiPlaceholderImageView.isHidden = true
-                    self?.inputMessageStackView.message.onNext("Only emoji is allowed*")
-                }).disposed(by: disposeBag)
-            
-            emojiTextField.rx.controlEvent(.editingDidEnd)
-                .filter { [weak self] in
-                    self?.emojiTextField.text?.isEmpty ?? true
-                    
-                }.subscribe(onNext: { [weak self] _ in
-                    self?.emojiPlaceholderImageView.isHidden = false
-                }).disposed(by: disposeBag)
-            
-            emojiTextField.rx.text
-                .bind(to: $emoji)
-                .disposed(by: disposeBag)
+            emojiPlaceholderImageView.image = SwiftyAssets.UIImages.face_smiling.withRenderingMode(.alwaysTemplate)
         }
     }
     
+    @IBOutlet weak var emojiTextField: EmojiTextField!
     @IBOutlet weak var messageTextField: UITextField! {
         didSet {
             messageTextField.setDynamicFont(style: .body)
-            messageTextField.rx.controlEvent(.editingDidBegin)
-                .subscribe(onNext: { [weak self] _ in
-                    self?.inputMessageStackView.message.onNext(nil)
-                }).disposed(by: disposeBag)
-            
-            messageTextField.rx.text
-                .bind(to: $message)
-                .disposed(by: disposeBag)
         }
     }
     
@@ -60,8 +32,23 @@ class EmojiMessageView: AbstractView {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        $message.subscribe(onNext: { [weak self] message in
-            self?.messageTextField.text = message
+        Observable.merge(
+            emojiTextField.rx.controlEvent(.editingDidBegin).asObservable(),
+            emojiTextField.rx.controlEvent(.editingDidEnd).asObservable()
+        ).subscribe(onNext: { [weak self] _ in
+            self?.updateEmojiPlaceholder()
         }).disposed(by: disposeBag)
+    }
+    
+    // MARK: - Configure
+    func configure(emoji: String?) {
+        emojiTextField.text = emoji
+        updateEmojiPlaceholder()
+    }
+    
+    // MARK: -
+    private func updateEmojiPlaceholder() {
+        emojiPlaceholderImageView.isHidden = !emojiTextField.text.isEmptyOrNil || emojiTextField.isEditing
+        inputMessageStackView.message.onNext(emojiTextField.isEditing ? SwiftyAssets.Strings.emoji_only_allowed : nil)
     }
 }

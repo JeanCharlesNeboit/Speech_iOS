@@ -40,7 +40,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             case .noData:
                 return SwiftyAssets.Strings.messages_list_empty_title
             case .noResult:
-                return SwiftyAssets.Strings.messages_list_empty_search_title
+                return SwiftyAssets.Strings.search_empty_title
             }
         }
         
@@ -49,16 +49,19 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             case .noData:
                 return SwiftyAssets.Strings.messages_list_empty_body
             case .noResult:
-                return SwiftyAssets.Strings.messages_list_empty_search_body
+                return SwiftyAssets.Strings.search_empty_body
             }
         }
     }
     
     // MARK: - IBOutlets
     @IBOutlet weak var contentStackView: UIStackView!
-    @IBOutlet weak var emptyView: UIView!
-    @IBOutlet weak var emptyTitleLabel: UILabel!
-    @IBOutlet weak var emptyBodyLabel: UILabel!
+    @IBOutlet weak var emptyContainerView: UIView! {
+        didSet {
+            emptyContainerView.addSubview(emptyView)
+            emptyView.edgesToSuperview()
+        }
+    }
     
     // MARK: - Properties
     lazy var viewModel: ViewModel = .init()
@@ -120,6 +123,8 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
         return tableView
     }()
     
+    private lazy var emptyView: EmptyView = .loadFromXib()
+
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
@@ -140,7 +145,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.listTableView.isHidden = $0.isEmpty
-                self.emptyView.isHidden = !$0.isEmpty
+                self.emptyContainerView.isHidden = !$0.isEmpty
             }).disposed(by: disposeBag)
     }
     
@@ -238,8 +243,9 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     }
     
     private func configureEmptyView(mode: EmptyMode) {
-        emptyTitleLabel.text = mode.title
-        emptyBodyLabel.text = mode.body
+        emptyView.configure(image: SwiftyAssets.UIImages.folder,
+                            title: mode.title,
+                            body: mode.body)
     }
     
     // MARK: -

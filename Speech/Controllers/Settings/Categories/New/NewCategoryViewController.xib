@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="contentStackView" destination="Cd3-2A-fzS" id="q0S-JK-ucE"/>
                 <outlet property="createButton" destination="72Y-bB-Ao7" id="QZN-7p-Usi"/>
+                <outlet property="scrollView" destination="kRN-X7-Uwx" id="1X6-7h-a4C"/>
                 <outlet property="view" destination="iN0-l3-epB" id="CYn-AB-WF3"/>
             </connections>
         </placeholder>
@@ -25,10 +26,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QyK-yh-IAW">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-ld-96V">
-                                    <rect key="frame" x="20" y="20" width="374" height="100"/>
+                                    <rect key="frame" x="20" y="20" width="374" height="50"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cd3-2A-fzS">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -36,10 +37,6 @@
                                                 <constraint firstAttribute="height" priority="250" constant="50" id="6cD-ge-Zh1"/>
                                             </constraints>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72Y-bB-Ao7" customClass="Button" customModule="Speech" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="70" width="374" height="30"/>
-                                            <state key="normal" title="Create*"/>
-                                        </button>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -62,17 +59,24 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="TXa-m2-pcw"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="WUc-tS-nAi"/>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72Y-bB-Ao7" customClass="Button" customModule="Speech" customModuleProvider="target">
+                    <rect key="frame" x="41.5" y="812" width="331" height="30"/>
+                    <state key="normal" title="Create*"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
+                <constraint firstItem="72Y-bB-Ao7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9Q7-We-aDf"/>
                 <constraint firstItem="kRN-X7-Uwx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ce6-gB-a2q"/>
+                <constraint firstItem="72Y-bB-Ao7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="IDH-k0-OL3"/>
                 <constraint firstAttribute="bottom" secondItem="kRN-X7-Uwx" secondAttribute="bottom" id="Tnk-RD-5Yg"/>
                 <constraint firstItem="kRN-X7-Uwx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XzW-99-iOW"/>
                 <constraint firstAttribute="bottom" secondItem="kRN-X7-Uwx" secondAttribute="bottom" id="ZCW-Ne-ElV"/>
                 <constraint firstItem="kRN-X7-Uwx" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ZML-di-z4g"/>
                 <constraint firstItem="kRN-X7-Uwx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aEQ-Am-neK"/>
                 <constraint firstItem="kRN-X7-Uwx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="e6D-tN-66x"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="72Y-bB-Ao7" secondAttribute="bottom" constant="20" id="e7N-U8-02t"/>
                 <constraint firstItem="kRN-X7-Uwx" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ocT-lM-em2"/>
             </constraints>
             <point key="canvasLocation" x="113.04347826086958" y="112.5"/>

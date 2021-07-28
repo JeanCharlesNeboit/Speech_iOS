@@ -9,10 +9,7 @@ import Foundation
 import SwiftyKit
 import RealmSwift
 
-enum WriteResult {
-    case success
-    case failure
-}
+typealias WriteResult = Result<Void, Error>
 
 class RealmService {
     // MARK: - Singleton
@@ -59,7 +56,7 @@ class RealmService {
         perform(transaction: commitWrite, completion: completion)
     }
     
-    func write(block: () -> Void, completion: ((WriteResult) -> Void)?) {
+    func write(block: () -> Void, completion: ((WriteResult) -> Void)? = nil) {
         let write: (() throws -> Void) = {
             try self.realm.write(block)
         }
@@ -69,10 +66,10 @@ class RealmService {
     private func perform(transaction: (() throws -> Void), completion: ((WriteResult) -> Void)?) {
         do {
             try transaction()
-            completion?(.success)
+            completion?(.success(()))
         } catch let error {
             NSLog("❌ Transaction could not be written. (\(error.localizedDescription))")
-            completion?(.failure)
+            completion?(.failure(error))
         }
     }
     

@@ -6,13 +6,16 @@ app_icon:
 welcome:
     width: 400
     
-# MessagesList
-no_messages:
-    width: 400
+# Empty
+folder:
+    format: svg
     
 # Icons
 ellipsis_circle:
     height: 24
+    
+face_smiling:
+    format: svg
     
 gearshape:
     height: 24

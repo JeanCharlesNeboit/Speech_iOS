@@ -7,13 +7,6 @@
 
 import UIKit
 
-//class Label: UILabel {
-//    // MARK: - Initialization
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//    }
-//}
-
 extension UILabel {
     func setDynamicFont(style: FontStyle, weight: UIFont.Weight = .regular) {
         font = UIFont.getFont(style: style, weight: weight)

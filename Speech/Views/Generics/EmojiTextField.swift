@@ -45,12 +45,11 @@ class EmojiTextField: UITextField {
 
 extension EmojiTextField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard !string.isEmpty else { return true }
-        if let firstCharacter = string.first {
-            if firstCharacter.isEmoji {
-                text = String(firstCharacter)
-            }
-        }
-        return false
+        guard !string.isEmpty,
+              string != "\n" else { return true }
+        guard let firstCharacter = string.first,
+              firstCharacter.isEmoji else { return false }
+        text = nil
+        return true
     }
 }

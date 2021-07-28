@@ -1,17 +1,15 @@
 //
-//  AppThemeService.swift
+//  UIColorExtension.swift
 //  Speech
 //
-//  Created by Jean-Charles Neboit on 31/03/2021.
+//  Created by Jean-Charles Neboit on 28/07/2021.
 //
 
 import UIKit
 
-class AppThemeService {
-    // MARK: - Properties
-    static let shared = AppThemeService()
-    
-    var placeholderTextColor: UIColor {
+
+extension UIColor {
+    class var placeholderTextColor: UIColor {
         if #available(iOS 13, *) {
             return UIColor.secondaryLabel
         } else {
@@ -19,7 +17,7 @@ class AppThemeService {
         }
     }
     
-    var textColor: UIColor {
+    class var textColor: UIColor {
         if #available(iOS 13, *) {
             return UIColor.label
         } else {
@@ -27,16 +25,11 @@ class AppThemeService {
         }
     }
     
-    var systemBackgroundColor: UIColor {
+    class var systemBackgroundColor: UIColor {
         if #available(iOS 13.0, *) {
             return .systemBackground
         } else {
             return .white
         }
-    }
-    
-    // MARK: - Initialization
-    private init() {
-        
     }
 }

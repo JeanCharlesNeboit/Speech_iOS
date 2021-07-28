@@ -14,7 +14,6 @@ class AbstractViewController: UIViewController {
     // MARK: - Properties
     let disposeBag = DisposeBag()
     lazy var realmService = RealmService()
-    lazy var appThemeService = AppThemeService.shared
     
     var isCollapsed: Bool {
 //        splitViewController?.isCollapsed ?? true

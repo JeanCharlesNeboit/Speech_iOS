@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoriesListViewController" customModule="Speech" customModuleProvider="target">
+            <connections>
+                <outlet property="addButton" destination="Et5-X1-haP" id="lLR-Uv-Li0"/>
+                <outlet property="addButtonBottomConstraint" destination="Kl7-vg-xWG" id="pgR-1p-LCB"/>
+                <outlet property="emptyContainerView" destination="mYs-TL-hih" id="owi-cD-YsJ"/>
+                <outlet property="view" destination="Bml-Kp-Hab" id="G4S-Zj-VzR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Bml-Kp-Hab">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYs-TL-hih">
+                    <rect key="frame" x="41.5" y="348" width="331" height="200"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="250" constant="200" placeholder="YES" id="NHi-YT-bDY"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Et5-X1-haP" customClass="Button" customModule="Speech" customModuleProvider="target">
+                    <rect key="frame" x="41.5" y="812" width="331" height="30"/>
+                    <state key="normal" title="Ajouter*"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="lAJ-Nl-OPj"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="mYs-TL-hih" firstAttribute="centerX" secondItem="Bml-Kp-Hab" secondAttribute="centerX" id="5ra-If-Bqi"/>
+                <constraint firstItem="Et5-X1-haP" firstAttribute="width" secondItem="Bml-Kp-Hab" secondAttribute="width" multiplier="0.8" id="Bfl-Tc-hXw"/>
+                <constraint firstItem="mYs-TL-hih" firstAttribute="width" secondItem="Bml-Kp-Hab" secondAttribute="width" multiplier="0.8" id="IOb-W3-cKO"/>
+                <constraint firstItem="lAJ-Nl-OPj" firstAttribute="bottom" secondItem="Et5-X1-haP" secondAttribute="bottom" constant="20" id="Kl7-vg-xWG"/>
+                <constraint firstItem="Et5-X1-haP" firstAttribute="centerX" secondItem="Bml-Kp-Hab" secondAttribute="centerX" id="n9S-xO-baE"/>
+                <constraint firstItem="mYs-TL-hih" firstAttribute="centerY" secondItem="Bml-Kp-Hab" secondAttribute="centerY" id="wzG-pT-w9W"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="Et5-X1-haP">
+            <size key="intrinsicContentSize" width="57" height="30"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

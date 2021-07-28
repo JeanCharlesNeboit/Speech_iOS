@@ -35,29 +35,31 @@ class NavigationController: UINavigationController {
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavigation()
+//        configureNavigation()
+        navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
     }
     
     // MARK: - Configure
     private func configure() {
-        NotificationCenter.default.rx
-            .notification(UIDevice.orientationDidChangeNotification)
-            .delay(.milliseconds(200), scheduler: MainScheduler.instance)
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [self] _ in
-                self.configureNavigation()
-            }).disposed(by: disposeBag)
+//        NotificationCenter.default.rx
+//            .notification(UIDevice.orientationDidChangeNotification)
+//            .delay(.milliseconds(200), scheduler: MainScheduler.instance)
+//            .observe(on: MainScheduler.instance)
+//            .subscribe(onNext: { [self] _ in
+//                self.configureNavigation()
+//            }).disposed(by: disposeBag)
     }
     
-    private func configureNavigation() {
-        if UIDevice.current.orientation == .landscapeLeft ||
-            UIDevice.current.orientation == .landscapeRight {
-            navigationBar.prefersLargeTitles = false
-            navigationItem.largeTitleDisplayMode = .never
-        } else {
-            navigationBar.prefersLargeTitles = true
-            navigationItem.largeTitleDisplayMode = .always
-        }
-        navigationBar.sizeToFit()
-    }
+//    private func configureNavigation() {
+//        if UIDevice.current.orientation == .landscapeLeft ||
+//            UIDevice.current.orientation == .landscapeRight {
+//            navigationBar.prefersLargeTitles = false
+//            navigationItem.largeTitleDisplayMode = .never
+//        } else {
+//            navigationBar.prefersLargeTitles = true
+//            navigationItem.largeTitleDisplayMode = .always
+//        }
+//        navigationBar.sizeToFit()
+//    }
 }
