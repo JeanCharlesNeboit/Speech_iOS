@@ -116,7 +116,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     }()
     
     private lazy var gridTableView: TableView = {
-        let tableView = TableView()
+        let tableView = TableView(style: .grouped)
         tableView.separatorStyle = .none
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
@@ -195,7 +195,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier, for: indexPath) as? MessageTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(message: message)
+            cell.configure(message: message, layout: .horizontal)
             return cell
         }, titleForHeaderInSection: { sections, indexPath -> String? in
             return sections.sectionModels[indexPath].model.header
@@ -209,7 +209,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             .subscribe(onNext: { [weak self] message in
                 guard let self = self,
                       case let message = message else { return }
-                self.onMessageDidTap(message: message)
+                self.viewModel.onTap(message: message)
             }).disposed(by: disposeBag)
     }
     
@@ -247,23 +247,9 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
                             title: mode.title,
                             body: mode.body)
     }
-    
-    // MARK: -
-    private func onMessageDidTap(message: Message) {
-        NotificationCenter.default.post(name: Notification.Name.editorAreaAppendText, object: message)
-//        if self.isCollapsed {
-//            self.dismiss(animated: true, completion: nil)
-//        }
-    }
 }
 
-extension MessageListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = cell as? MessagesTableViewCell {
-            cell.updateLayout()
-        }
-    }
-    
+extension MessageListViewController: UITableViewDelegate {    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard tableView == listTableView else {
             // return empty UISwipeActionsConfiguration instead of nil, because nil create delete action automatically !

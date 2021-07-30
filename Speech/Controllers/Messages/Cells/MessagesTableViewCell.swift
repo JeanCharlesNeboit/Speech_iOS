@@ -16,8 +16,8 @@ class MessagesTableViewCell: AbstractTableViewCell {
     func configure(messages: [Message], column: Int) {
         stackView.removeAllArrangedSubviews()
         var views = messages.map { message -> UIView in
-            let view: MessageTileView = .loadFromXib()
-            view.configure(message: message)
+            let view: MessageContentView = .loadFromXib()
+            view.configure(message: message, layout: .vertical)
             return view
         }
         
@@ -28,13 +28,8 @@ class MessagesTableViewCell: AbstractTableViewCell {
         }
 
         stackView.addArrangedSubview(views)
-        stackView.arrangedSubviews.forEach { view in
-            view.width(100)
-        }
-    }
-    
-    func updateLayout() {
-//        print(bounds.width)
-//        print(stackView.frame.width)
+//        stackView.arrangedSubviews.forEach { view in
+//            view.width(100)
+//        }
     }
 }

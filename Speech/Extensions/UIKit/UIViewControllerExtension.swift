@@ -25,6 +25,18 @@ extension UIViewController {
     }
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 extension AbstractViewController {
     func showError(title: String, message: String) {
         showMessageCardView(title: title, body: message, theme: .error)
@@ -43,7 +55,8 @@ extension AbstractViewController {
                                      theme: Theme,
                                      duration: SwiftMessages.Duration = .seconds(seconds: 2),
                                      presentationStyle: SwiftMessages.PresentationStyle = .top) {
-        let cardView = MessageView.viewFromNib(layout: .cardView)
+        
+        let cardView: MessageView = .viewFromNib(layout: .cardView)
         cardView.configureTheme(theme)
         cardView.configureContent(title: title, body: body)
         cardView.button?.isHidden = true

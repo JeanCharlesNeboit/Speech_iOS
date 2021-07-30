@@ -98,4 +98,8 @@ class MessageListViewModel: AbstractViewModel {
     func onDelete(message: Message) {
         realmService.deleteObject(message)
     }
+    
+    func onTap(message: Message) {
+        NotificationCenter.default.post(name: Notification.Name.editorAreaAppendText, object: message)
+    }
 }

@@ -10,7 +10,7 @@ import RxCocoa
 
 infix operator <->
 
-@discardableResult func <-><T>(property: ControlProperty<T>, variable: BehaviorSubject<T>) -> Disposable {
+@discardableResult func <-> <T>(property: ControlProperty<T>, variable: BehaviorSubject<T>) -> Disposable {
     let variableToProperty = variable.asObservable()
         .bind(to: property)
 

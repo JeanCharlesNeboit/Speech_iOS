@@ -17,6 +17,7 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
     // MARK: - Lifecycle
     override func setUp() {
         super.setUp()
+        DefaultsStorage.welcomeDone = true
         sut = EditorAreaViewController()
     }
     
@@ -30,9 +31,11 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
         let nav = sut.presentedViewController as! NavigationController
         
         // Then
+        XCTAssertFalse(sut.isFirstResponder)
         XCTAssertTrue(nav.topViewController is WelcomeViewController)
     }
     
+    // MARK: NavigationBar
     func testNavigationBar() {
         // Given
         let navigationItem = sut.navigationItem
@@ -43,8 +46,21 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
         // Then
 //        XCTAssertEqual(navigationItem.leftBarButtonItem?.image?.pngData(), SwiftyAssets.UIImages.line_horizontal_3_circle.pngData())
         XCTAssertEqual(navigationItem.title, Bundle.main.displayName)
+        XCTAssertEqual(navigationItem.rightBarButtonItem?.image, SwiftyAssets.UIImages.gearshape)
     }
     
+    // MARK: View
+    func testViewAppear() {
+        // Given
+        
+        // When
+        showViewController()
+        
+        // Then
+        XCTAssertTrue(sut.isFirstResponder)
+    }
+    
+    // MARK: TextView
     func testTextView() {
         // Given
         
@@ -54,5 +70,22 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
         // Then
         XCTAssertTrue(textView.isScrollEnabled)
         XCTAssertTrue(textView.alwaysBounceVertical)
+        XCTAssertTrue(textView.isPlaceholderActive)
+        XCTAssertEqual(textView.text, SwiftyAssets.Strings.editor_area_placeholder)
+        XCTAssertEqual(textView.textColor, .placeholder)
+    }
+    
+    func testTextViewWithText() {
+        // Given
+        
+        // When
+        showViewController()
+        textView.text = "Hello Tim !"
+        wait(forSeconds: 1)
+        
+        // Then
+        XCTAssertFalse(textView.isPlaceholderActive)
+        XCTAssertEqual(sut.viewModel.text, textView.text)
+        XCTAssertEqual(textView.textColor, .text)
     }
 }

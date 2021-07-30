@@ -24,7 +24,6 @@ class EditorAreaViewController: AbstractViewController {
     // MARK: - Properties
     let viewModel = ViewModel()
     override var canBecomeFirstResponder: Bool {
-        guard presentedViewController == nil else { return false }
         return true
     }
     
@@ -36,7 +35,7 @@ class EditorAreaViewController: AbstractViewController {
         return accessoryView
     }
     
-    private lazy var settingsBarButtonItem: UIBarButtonItem = {
+    private(set) lazy var settingsBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: SwiftyAssets.UIImages.gearshape, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
             self.present(NavigationController(rootViewController: SettingsViewController()))
@@ -54,6 +53,7 @@ class EditorAreaViewController: AbstractViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        showInputAccessoryView()
         if !DefaultsStorage.welcomeDone {
             let nav = NavigationController(rootViewController: WelcomeViewController())
             present(nav)
@@ -75,17 +75,14 @@ class EditorAreaViewController: AbstractViewController {
     override func configure() {
         navigationItem.rightBarButtonItem = settingsBarButtonItem
         
-        RxKeyboard.instance.isHidden
-            .filter { $0 == true }
-            .delay(.milliseconds(500))
-            .drive(onNext: { [self] _ in
-                becomeFirstResponder()
-            }).disposed(by: disposeBag)
-        
-        listenNotifications()
-        
         viewModel.$text.subscribe(onNext: { [weak self] text in
             self?.textView.text = text
+        }).disposed(by: disposeBag)
+        
+        textView.rx.text.filter { [weak self] _ in
+            !(self?.textView.isPlaceholderActive ?? true)
+        }.subscribe(onNext: { [weak self] text in
+            self?.viewModel.text = text
         }).disposed(by: disposeBag)
         
         DefaultsStorage.$preferredEditorAreaTextFont
@@ -98,58 +95,50 @@ class EditorAreaViewController: AbstractViewController {
         NotificationCenter.default.rx
             .notification(.editorAreaSaveText)
             .subscribe(onNext: { [self] _ in
-                guard let text = self.textView.enteredText else {
-                    showEmptyError()
-                    return
-                }
-
-                guard !viewModel.doesMessageAlreadyExist() else {
-                    showWarning(title: SwiftyAssets.Strings.editor_area_duplication_title,
-                                message: SwiftyAssets.Strings.editor_area_duplication_body)
-                    return
-                }
-
-                if DefaultsStorage.saveMessagesQuickly {
-                    viewModel.onSaveQuickly { [weak self] result in
-                        guard let self = self else { return }
-                        switch result {
-                        case .success:
-                            self.showSuccess(title: SwiftyAssets.Strings.editor_area_successfully_saved_title,
-                                             message: SwiftyAssets.Strings.editor_area_successfully_saved_body)
-                        case .failure:
-                            self.showError(title: SwiftyAssets.Strings.editor_area_not_successfully_saved_title,
-                                            message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
+                switch viewModel.onSave() {
+                case .success(let text):
+                    if DefaultsStorage.saveMessagesQuickly {
+                        viewModel.saveQuickly { [weak self] result in
+                            guard let self = self else { return }
+                            switch result {
+                            case .success:
+                                self.showSuccess(title: SwiftyAssets.Strings.editor_area_successfully_saved_title,
+                                                 message: SwiftyAssets.Strings.editor_area_successfully_saved_body)
+                            case .failure:
+                                self.showError(title: SwiftyAssets.Strings.editor_area_not_successfully_saved_title,
+                                                message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
+                            }
                         }
+                    } else {
+                        let viewModel = MessageViewModel(mode: .creation(text: text))
+                        let destination = NavigationController(rootViewController: MessageViewController(viewModel: viewModel))
+                        present(destination)
                     }
-                } else {
-                    let destination = NavigationController(rootViewController: MessageViewController(viewModel: .init(mode: .creation(text: text))))
-                    present(destination)
+                case .failure(let error):
+                    self.showError(title: error.title, message: error.body)
                 }
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx
             .notification(.editorAreaStartSpeaking)
-            .subscribe(onNext: { [self] _ in
-                guard self.textView.enteredText != nil else {
-                    showEmptyError()
-                    return
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.viewModel.startSpeaking { result in
+                    if case .failure(let error) = result {
+                        self.showError(title: error.title, message: error.body)
+                    }
                 }
-                viewModel.startSpeaking()
             }).disposed(by: disposeBag)
     }
     
-    // MARK: - Errors
-    private func showEmptyError() {
-        // textView.resignFirstResponder()
-        showError(title: SwiftyAssets.Strings.editor_area_empty_text_on_save_title,
-                  message: SwiftyAssets.Strings.editor_area_empty_text_on_save_body)
+    // MARK: -
+    private func showInputAccessoryView() {
+        becomeFirstResponder()
     }
 }
 
 extension EditorAreaViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        if canBecomeFirstResponder {
-            becomeFirstResponder()
-        }
+        showInputAccessoryView()
     }
 }

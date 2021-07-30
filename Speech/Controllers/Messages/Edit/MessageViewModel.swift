@@ -11,6 +11,24 @@ class MessageViewModel: AbstractViewModel {
     enum Mode {
         case creation(text: String)
         case edition(message: Message)
+        
+        var title: String {
+            switch self {
+            case .creation:
+                return SwiftyAssets.Strings.message_new_title
+            case .edition:
+                return SwiftyAssets.Strings.message_edit_title
+            }
+        }
+        
+        var saveTitle: String {
+            switch self {
+            case .creation:
+                return SwiftyAssets.Strings.generic_create
+            case .edition:
+                return SwiftyAssets.Strings.generic_edit
+            }
+        }
     }
     
     // MARK: - Properties
@@ -33,7 +51,7 @@ class MessageViewModel: AbstractViewModel {
     }
     
     // MARK: -
-    func onSave(onCompletion: ((Result<Void, Error>) -> Void)) {
+    func onValidate(onCompletion: ((Result<Void, Error>) -> Void)) {
         guard !message.isEmptyOrNil else { return }
         
         switch mode {

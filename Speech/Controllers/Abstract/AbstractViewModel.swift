@@ -11,5 +11,7 @@ import RxSwift
 class AbstractViewModel {
     // MARK: - Properties
     let disposeBag = DisposeBag()
+    
     lazy var realmService = RealmService()
+    lazy var environmentService = EnvironmentService()
 }

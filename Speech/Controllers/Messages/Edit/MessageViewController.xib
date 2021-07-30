@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageViewController" customModule="Speech" customModuleProvider="target">
             <connections>
+                <outlet property="validButton" destination="x8Y-Wh-cMH" id="JCQ-VZ-bVw"/>
                 <outlet property="view" destination="MBz-du-gml" id="hNu-F6-DNc"/>
             </connections>
         </placeholder>

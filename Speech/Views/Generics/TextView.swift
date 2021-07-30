@@ -13,7 +13,7 @@ class TextView: UITextView {
     // MARK: - Properties
     let disposeBag = DisposeBag()
     
-    @RxBehaviorSubject private var isPlaceholderActive: Bool = true
+    @RxBehaviorSubject private(set) var isPlaceholderActive: Bool = true
     @RxBehaviorSubject var placeholder: String = ""
     
     override var text: String! {
@@ -90,7 +90,7 @@ class TextView: UITextView {
     
     private func updatePlaceholder(_ isPlaceholderActive: Bool, _ placeholder: String) {
         super.text = isPlaceholderActive ? placeholder : nil
-        textColor = isPlaceholderActive ? .placeholderTextColor : .textColor
+        textColor = isPlaceholderActive ? .placeholder : .text
     }
     
     // MARK: -
@@ -100,7 +100,7 @@ class TextView: UITextView {
 //    }
 //
 //    func append(text appendingText: String) {
-////        unsetPlaceholderIfNeeded()
+//        unsetPlaceholderIfNeeded()
 //        let newText = [enteredText ?? "", appendingText].joined(separator: " ").trimmingCharacters(in: .whitespaces)
 //        text = newText
 //    }

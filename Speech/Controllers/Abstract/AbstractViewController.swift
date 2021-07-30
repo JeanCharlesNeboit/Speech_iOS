@@ -45,6 +45,12 @@ class AbstractViewController: UIViewController {
     }
     
     // MARK: - Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // https://stackoverflow.com/a/53165371/8353989
+        navigationController?.navigationBar.sizeToFit()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -52,6 +58,6 @@ class AbstractViewController: UIViewController {
     
     // MARK: - Configure
     func configure() {
-        
+        hideKeyboardWhenTappedAround()
     }
 }

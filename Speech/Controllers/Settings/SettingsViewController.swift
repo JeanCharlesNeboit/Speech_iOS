@@ -18,6 +18,13 @@ class SettingsViewController: BaseListViewController {
     // MARK: - Properties
     let viewModel = ViewModel()
     
+    #warning("Fix useless vc init by .details")
+    lazy var preferencesListViewController = PreferencesListViewController()
+    lazy var categoriesListViewController = CategoriesListViewController(viewModel: .init(parentCategory: nil, mode: .edition))
+    lazy var aboutViewController = AboutViewController()
+    lazy var openSourceListViewController = OpenSourceListViewController()
+    lazy var thanksListViewController = ThanksListViewController()
+    
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
@@ -25,9 +32,8 @@ class SettingsViewController: BaseListViewController {
         sections = [
             Section(model: .init(),
                     items: [
-                        .details(vc: PreferencesListViewController()),
-                        .details(vc: CategoriesListViewController(viewModel: .init(parentCategory: nil,
-                                                                                   mode: .edition)))
+                        .details(vc: preferencesListViewController),
+                        .details(vc: categoriesListViewController)
                     ]),
             Section(model: .init(),
                     items: [
@@ -43,12 +49,12 @@ class SettingsViewController: BaseListViewController {
 //                    ]),
             Section(model: .init(footer: viewModel.appVersionInfo),
                     items: [
-                        .details(vc: AboutViewController()),
+                        .details(vc: aboutViewController),
                         .link(.init(title: SwiftyAssets.Strings.settings_github,
                                     urlString: viewModel.githubRepositoryLink,
                                     inApp: false)),
-                        .details(vc: OpenSourceListViewController()),
-                        .details(vc: ThanksListViewController())
+                        .details(vc: openSourceListViewController),
+                        .details(vc: thanksListViewController)
                     ])
         ]
     }

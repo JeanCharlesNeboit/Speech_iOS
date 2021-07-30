@@ -6,41 +6,13 @@
 //
 
 import UIKit
-import SwiftyKit
-import SwiftDate
 
 class MessageTableViewCell: AbstractTableViewCell {
-    // MARK: - IBOutlets
-    @IBOutlet weak var emojiLabel: UILabel!
-        
-    @IBOutlet weak var messageLabel: UILabel! {
-        didSet {
-            messageLabel.setDynamicFont(style: .body)
-        }
-    }
-    
-    @IBOutlet weak var categoryLabel: UILabel! {
-        didSet {
-            categoryLabel.setDynamicFont(style: .footnote)
-        }
-    }
-    
-    @IBOutlet weak var dateLabel: UILabel! {
-        didSet {
-            dateLabel.setDynamicFont(style: .caption2)
-        }
-    }
-    
     // MARK: - Configure
-    func configure(message: Message) {
-        emojiLabel.isHidden = message.emoji.isEmptyOrNil
-        emojiLabel.text = message.emoji
-        messageLabel.text = message.text
-        categoryLabel.text = message.category?.name
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        dateLabel.text = dateFormatter.string(from: message.addedDate) //.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
+    func configure(message: Message, layout: NSLayoutConstraint.Axis) {
+        let messageView: MessageContentView = .loadFromXib()
+        messageView.configure(message: message, layout: layout)
+        addSubview(messageView)
+        messageView.edgesToSuperview()
     }
 }

@@ -29,9 +29,9 @@ class PreferencesListViewController: BaseListViewController {
             Section(model: .init(header: SwiftyAssets.Strings.preferences_speaking_rate), items: [
                 .slider(
                     .init(minimumValue: 0.2,
-                          minimumIcon: .image(SwiftyAssets.UIImages.tortoise, .textColor),
+                          minimumIcon: .image(SwiftyAssets.UIImages.tortoise, .text),
                           maximumValue: 1,
-                          maximumIcon: .image(SwiftyAssets.UIImages.hare, .textColor),
+                          maximumIcon: .image(SwiftyAssets.UIImages.hare, .text),
                           initialValue: 0.5,
                           step: 0.1,
                           onSlide: { value in

@@ -11,15 +11,18 @@ import RxSwift
 class MessageViewController: BaseListViewController {
     typealias ViewModel = MessageViewModel
     
+    // MARK: - IBOutlets
+    @IBOutlet var validButton: Button! {
+        didSet {
+            validButton.setTitle(viewModel.mode.saveTitle)
+            validButton.rx.tap.subscribe(onNext: { [weak self] in
+                self?.onValidate()
+            }).disposed(by: disposeBag)
+        }
+    }
+    
     // MARK: - Properties
     let viewModel: ViewModel
-    private lazy var validBarButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(title: SwiftyAssets.Strings.generic_validate, style: .done, target: nil, action: nil)
-        button.rx.tap.subscribe(onNext: { [weak self] in
-            self?.onSave()
-        }).disposed(by: disposeBag)
-        return button
-    }()
     
     private var emojiMessageViewOnConfigureDisposable: Disposable?
     private lazy var emojiMessageView: EmojiMessageView = {
@@ -48,9 +51,8 @@ class MessageViewController: BaseListViewController {
 
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.message_new_title // : SwiftyAssets.Strings.message_edit_title
+        title = viewModel.mode.title
         navigationItem.leftBarButtonItem = cancelBarButtonItem
-        navigationItem.rightBarButtonItem = validBarButtonItem
     }
 
     // MARK: - Configure
@@ -98,8 +100,8 @@ class MessageViewController: BaseListViewController {
     }
     
     // MARK: -
-    private func onSave() {
-        viewModel.onSave { [weak self] result in
+    private func onValidate() {
+        viewModel.onValidate { [weak self] result in
             switch result {
             case .success():
                 self?.dismiss(animated: true, completion: nil)

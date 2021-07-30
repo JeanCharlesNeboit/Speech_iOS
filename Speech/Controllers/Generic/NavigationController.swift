@@ -38,6 +38,7 @@ class NavigationController: UINavigationController {
 //        configureNavigation()
         navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+        navigationBar.sizeToFit()
     }
     
     // MARK: - Configure

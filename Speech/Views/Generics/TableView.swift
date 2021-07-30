@@ -18,8 +18,8 @@ class TableView: AbstractTableView {
     }
 
     // MARK: - Initialization
-    init() {
-        super.init(frame: .zero, style: Self.Style)
+    init(style: Style? = nil) {
+        super.init(frame: .zero, style: style ?? Self.Style)
         sharedInit()
     }
 

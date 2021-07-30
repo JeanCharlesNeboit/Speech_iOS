@@ -20,8 +20,6 @@ enum BaseListCellType {
 //    case speechRate
     case slider(SliderTableViewCell.Config)
     case switchChoice(SwitchTableViewCell.Config)
-    
-    case message(Message)
     case category(Category?)
     
     var cellType: CellIdentifiable.Type {
@@ -36,8 +34,6 @@ enum BaseListCellType {
             return SliderTableViewCell.self
         case .switchChoice:
             return SwitchTableViewCell.self
-        case .message:
-            return MessageTableViewCell.self
         case .category:
             return CategoryTableViewCell.self
         }
@@ -58,8 +54,6 @@ enum BaseListCellType {
             (cell as? SwitchTableViewCell)?.configure(config: state)
         case .slider(let state):
             (cell as? SliderTableViewCell)?.configure(config: state)
-        case .message(let message):
-            (cell as? MessageTableViewCell)?.configure(message: message)
         case .category(let category):
             (cell as? CategoryTableViewCell)?.configure(category: category)
         }
@@ -95,7 +89,6 @@ class BaseListViewController: AbstractViewController {
                 case .container,
                      .slider,
                      .switchChoice,
-                     .message,
                      .category:
                     break
                 }
@@ -120,6 +113,10 @@ class BaseListViewController: AbstractViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    override func sharedInit() {
+        super.sharedInit()
     }
     
     // MARK: - Lifecycle
