@@ -8,11 +8,18 @@
 import UIKit
 
 class MessageTableViewCell: AbstractTableViewCell {
-    // MARK: - Configure
-    func configure(message: Message, layout: NSLayoutConstraint.Axis) {
-        let messageView: MessageContentView = .loadFromXib()
-        messageView.configure(message: message, layout: layout)
+    // MARK: - Properties
+    private lazy var messageView: MessageContentView = .loadFromXib()
+    
+    // MARK: - Lifecycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
         addSubview(messageView)
         messageView.edgesToSuperview()
+    }
+    
+    // MARK: - Configure
+    func configure(message: Message, layout: NSLayoutConstraint.Axis) {
+        messageView.configure(message: message, layout: layout)
     }
 }

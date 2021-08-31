@@ -17,7 +17,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     typealias ViewModel = MessageListViewModel
     
     // MARK: - Enums
-    enum DisplayMode {
+    enum DisplayMode: Int {
         case list
         case grid
         
@@ -65,14 +65,13 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     
     // MARK: - Properties
     lazy var viewModel: ViewModel = .init()
-    @RxBehaviorSubject var displayMode: DisplayMode = .list
     let gridColumn = 2
     
     private lazy var layoutModeBarButtonItem: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(image: displayMode.image, style: .plain, target: nil, action: nil)
+        let button = UIBarButtonItem.init(image: DefaultsStorage.preferredMessageDisplayMode.image, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            self.displayMode = self.displayMode == .list ? .grid : .list
+            DefaultsStorage.preferredMessageDisplayMode = DefaultsStorage.preferredMessageDisplayMode == .list ? .grid : .list
         }).disposed(by: disposeBag)
         return button
     }()
@@ -83,7 +82,8 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             SortMode.allCases.forEach { sortMode in
-                let action = UIAlertAction(title: sortMode.name, style: .default, handler: { _ in
+                let title = sortMode.name + (sortMode == self.viewModel.sortMode ? " ✔︎" : "")
+                let action = UIAlertAction(title: title, style: .default, handler: { _ in
                     self.viewModel.sortMode = sortMode
                 })
                 alertController.addAction(action)
@@ -130,13 +130,20 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
         super.sharedInit()
         title = SwiftyAssets.Strings.generic_messages
         definesPresentationContext = true
-        
-        if isCollapsed {
-            navigationItem.leftBarButtonItem = cancelBarButtonItem
-        }
         navigationItem.rightBarButtonItems = [moreBarButtonItem, layoutModeBarButtonItem]
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    // MARK: - Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateNavigationItem()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateNavigationItem()
     }
     
     // MARK: - Observe
@@ -150,9 +157,9 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     }
     
     private func observeDisplayMode() {
-        $displayMode.subscribe(onNext: { [weak self] mode in
+        DefaultsStorage.$preferredMessageDisplayMode.subscribe(onNext: { [weak self] mode in
             guard let self = self else { return }
-            self.layoutModeBarButtonItem.image = self.displayMode.image
+            self.layoutModeBarButtonItem.image = mode.image
             self.contentStackView.removeAllArrangedSubviews()
             switch mode {
             case .list:
@@ -172,6 +179,10 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
         configureTableView()
         configureCollectionView()
         configureKeyboard()
+    }
+    
+    private func updateNavigationItem() {
+        navigationItem.leftBarButtonItem = isCollapsed ? cancelBarButtonItem : nil
     }
     
     private func configureSearch() {

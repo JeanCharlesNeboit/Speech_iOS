@@ -8,7 +8,7 @@
 import XCTest
 @testable import Speech
 
-class AbstractTestViewController<T: UIViewController>: AbstractXCTestCase {
+class AbstractTestViewController<T: UIViewController>: RealmTestCase {
     // MARK: - Properties
     var sut: T!
     

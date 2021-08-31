@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewCategoryViewModel: AbstractViewModel {
+class CategoryViewModel: AbstractViewModel {
     enum Mode {
         case creation(parentCategory: Category?)
         case edition(category: Category)

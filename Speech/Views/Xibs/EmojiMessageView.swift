@@ -38,6 +38,8 @@ class EmojiMessageView: AbstractView {
         ).subscribe(onNext: { [weak self] _ in
             self?.updateEmojiPlaceholder()
         }).disposed(by: disposeBag)
+        
+        emojiTextField.setNextTarget(toTextField: messageTextField)
     }
     
     // MARK: - Configure

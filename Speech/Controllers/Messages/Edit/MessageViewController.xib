@@ -31,7 +31,19 @@
                 <constraint firstItem="x8Y-Wh-cMH" firstAttribute="centerX" secondItem="MBz-du-gml" secondAttribute="centerX" id="TQB-PC-5lk"/>
                 <constraint firstItem="tUf-yn-7Kn" firstAttribute="bottom" secondItem="x8Y-Wh-cMH" secondAttribute="bottom" constant="20" id="YgG-Pm-p9Q"/>
                 <constraint firstItem="x8Y-Wh-cMH" firstAttribute="width" secondItem="MBz-du-gml" secondAttribute="width" multiplier="0.8" id="iqS-62-zED"/>
+                <constraint firstItem="x8Y-Wh-cMH" firstAttribute="width" secondItem="MBz-du-gml" secondAttribute="width" multiplier="0.5" id="u28-Md-xBj"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="u28-Md-xBj"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="iqS-62-zED"/>
+                    <include reference="u28-Md-xBj"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="113.04347826086958" y="112.5"/>
         </view>
     </objects>

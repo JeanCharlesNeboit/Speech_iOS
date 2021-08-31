@@ -6,10 +6,13 @@
 //
 
 class ThanksListViewController: BaseListViewController {
+    // MARK: - Properties
+    static let title = SwiftyAssets.Strings.settings_thanks
+    
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.settings_thanks
+        title = Self.title
         sections = [
             Section(model: .init(), items: [
                 .link(.init(title: "Association ADOL43", urlString: "")),

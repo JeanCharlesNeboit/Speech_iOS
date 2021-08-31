@@ -57,7 +57,7 @@ class CategoriesListViewController: BaseListViewController {
             addButton.rx.tap
                 .subscribe(onNext: { [weak self] _ in
                     guard let self = self else { return }
-                    let vc = NewCategoryViewController(viewModel: .init(mode: .creation(parentCategory: self.viewModel.parentCategory)))
+                    let vc = CategoryViewController(viewModel: .init(mode: .creation(parentCategory: self.viewModel.parentCategory)))
                     let nav = NavigationController(rootViewController: vc)
                     self.present(nav)
                 }).disposed(by: disposeBag)
@@ -65,6 +65,7 @@ class CategoriesListViewController: BaseListViewController {
     }
     
     // MARK: - Properties
+    static let title = SwiftyAssets.Strings.generic_categories
     let viewModel: ViewModel
     
     private lazy var searchController = SearchController()
@@ -82,7 +83,7 @@ class CategoriesListViewController: BaseListViewController {
     
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.generic_categories
+        title = Self.title
     }
     
     // MARK: - Observe
@@ -196,7 +197,7 @@ extension CategoriesListViewController {
         let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, success in
             guard let self = self else { return }
             guard let category = self.viewModel.categories[safe: indexPath.row] else { return }
-            let vc = NewCategoryViewController(viewModel: .init(mode: .edition(category: category)))
+            let vc = CategoryViewController(viewModel: .init(mode: .edition(category: category)))
             self.present(NavigationController(rootViewController: vc))
             success(true)
         }

@@ -18,14 +18,26 @@ class DefaultsStorage {
     static var preferredEditorAreaTextFont: FontStyle = .body
     
     // Speaking
+    @UserDefault(key: UserDefaultsKeys.preferredSpeakingRate())
     static var preferredSpeakingRate: Float = 0.5
     
+    // Voice
+    @UserDefault(key: UserDefaultsKeys.useKeyboardLanguageAsVoiceLanguage())
+    static var useKeyboardLanguageAsVoiceLanguage: Bool = true
+    
     // Messages
+    @RxRawUserDefault(key: UserDefaultsKeys.preferredMessageDisplayMode())
+    static var preferredMessageDisplayMode: MessageListViewController.DisplayMode = .list
+    
     @RawUserDefault(key: UserDefaultsKeys.preferredMessagesSortMode())
-    static var preferredSortMode: SortMode = .alphabetical
+    static var preferredMessageSortMode: SortMode = .alphabetical
+    
+    @UserDefault(key: UserDefaultsKeys.saveMessagesQuickly())
+    static var saveMessagesQuickly: Bool = false
     
     @RxUserDefault(key: UserDefaultsKeys.showFrequentlyUsedMessages())
-    static var showFrequentlyUsedMessages: Bool = false
+    static var showFrequentlyUsedMessages: Bool = true
     
-    static var saveMessagesQuickly: Bool = false
+    @UserDefault(key: UserDefaultsKeys.saveMessagesQuickly())
+    static var replaceTextWhenMessageSelected: Bool = true
 }

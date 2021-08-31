@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class EditorAreaViewModel: AbstractViewModel {
     // MARK: - Enum
@@ -54,9 +55,16 @@ class EditorAreaViewModel: AbstractViewModel {
         NotificationCenter.default.rx
             .notification(.editorAreaAppendText)
             .subscribe(onNext: { [weak self] notification in
-                guard let message = notification.object as? Message else { return }
+                guard let self = self,
+                      let message = notification.object as? Message else { return }
                 message.incrementNumberOfUse()
-                self?.text = message.text
+                
+                if DefaultsStorage.replaceTextWhenMessageSelected {
+                    self.text = message.text
+                } else {
+                    self.text = self.text.strongValue + " \(message.text)"
+                }
+                
             }).disposed(by: disposeBag)
     }
     
@@ -78,13 +86,16 @@ class EditorAreaViewModel: AbstractViewModel {
         })
     }
     
-    func startSpeaking(onCompletion: @escaping ((Result<Void, ViewModelError>) -> Void)) {
+    func startSpeaking(keyboardLanguage: String?, onCompletion: @escaping ((Result<Void, ViewModelError>) -> Void)) {
         guard let text = text.nilIfEmpty else {
             onCompletion(.failure(.empty))
             return
         }
         
-        // let language = textView.textInputMode?.primaryLanguage
-        speechSynthesizerService.startSpeaking(text: text, voice: nil)
+        var voice: AVSpeechSynthesisVoice?
+        if DefaultsStorage.useKeyboardLanguageAsVoiceLanguage {
+            voice = AVSpeechSynthesisVoice(language: keyboardLanguage)
+        }
+        speechSynthesizerService.startSpeaking(text: text, voice: voice)
     }
 }

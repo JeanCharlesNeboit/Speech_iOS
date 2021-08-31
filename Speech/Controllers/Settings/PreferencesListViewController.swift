@@ -7,6 +7,7 @@
 
 class PreferencesListViewController: BaseListViewController {
     // MARK: - Properties
+    static let title = SwiftyAssets.Strings.settings_preferences
     private var currentEditorAreaFontIndex: Int {
         editorAreaFonts.firstIndex(where: {
             $0 == DefaultsStorage.preferredEditorAreaTextFont
@@ -24,15 +25,15 @@ class PreferencesListViewController: BaseListViewController {
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.settings_preferences
+        title = Self.title
         sections = [
             Section(model: .init(header: SwiftyAssets.Strings.preferences_speaking_rate), items: [
                 .slider(
-                    .init(minimumValue: 0.2,
+                    .init(minimumValue: 0,
                           minimumIcon: .image(SwiftyAssets.UIImages.tortoise, .text),
                           maximumValue: 1,
                           maximumIcon: .image(SwiftyAssets.UIImages.hare, .text),
-                          initialValue: 0.5,
+                          initialValue: DefaultsStorage.preferredSpeakingRate,
                           step: 0.1,
                           onSlide: { value in
                             DefaultsStorage.preferredSpeakingRate = value
@@ -42,10 +43,13 @@ class PreferencesListViewController: BaseListViewController {
                 ]
             ),
             Section(model: .init(header: SwiftyAssets.Strings.preferences_voice), items: [
-                .switchChoice(.init(title: "Use keyboard language as default*", initialValue: true, onSwitch: { _ in
-                    
-                })),
-                .details(title: SwiftyAssets.Strings.preferences_voice, vc: VoiceListViewController())
+                .switchChoice(.init(title: SwiftyAssets.Strings.preferences_keyboard_language,
+                                    initialValue: DefaultsStorage.useKeyboardLanguageAsVoiceLanguage,
+                                    onSwitch: { _ in
+                                        DefaultsStorage.useKeyboardLanguageAsVoiceLanguage.toggle()
+                                    }
+                )),
+                .details(title: SwiftyAssets.Strings.preferences_voice) { VoiceListViewController() }
             ]),
             Section(model: .init(header: SwiftyAssets.Strings.preferences_editor_area_text_size), items: [
                 .slider(
@@ -76,6 +80,13 @@ class PreferencesListViewController: BaseListViewController {
                           initialValue: DefaultsStorage.showFrequentlyUsedMessages,
                           onSwitch: { value in
                             DefaultsStorage.showFrequentlyUsedMessages = value
+                          })
+                ),
+                .switchChoice(
+                    .init(title: SwiftyAssets.Strings.preferences_replace_text_when_message_selected,
+                          initialValue: DefaultsStorage.replaceTextWhenMessageSelected,
+                          onSwitch: { value in
+                            DefaultsStorage.replaceTextWhenMessageSelected = value
                           })
                 )
             ])

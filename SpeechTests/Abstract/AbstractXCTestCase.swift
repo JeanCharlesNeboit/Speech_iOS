@@ -6,12 +6,14 @@
 //
 
 import XCTest
+import RealmSwift
 @testable import Speech
 
 class AbstractXCTestCase: XCTestCase {
     // MARK: - Properties
     private(set) var window: UIWindow!
     
+    // MARK: - Lifecycle
     override func setUp() {
         super.setUp()
         window = UIWindow.init(frame: UIScreen.main.bounds)

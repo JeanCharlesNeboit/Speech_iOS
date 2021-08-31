@@ -13,12 +13,9 @@ import SwiftMessages
 class AbstractViewController: UIViewController {
     // MARK: - Properties
     let disposeBag = DisposeBag()
-//    lazy var realmService = RealmService()
     
     var isCollapsed: Bool {
-//        splitViewController?.isCollapsed ?? true
-        #warning("Check this")
-        return UIDevice.current.userInterfaceIdiom == .phone
+        splitViewController?.isCollapsed ?? true
     }
     
     lazy var cancelBarButtonItem: UIBarButtonItem = {
@@ -41,6 +38,7 @@ class AbstractViewController: UIViewController {
     }
     
     func sharedInit() {
+        print("🚀 Initialize \(Self.description())")
 //        view.backgroundColor = AppThemeService.shared.systemBackgroundColor
     }
     

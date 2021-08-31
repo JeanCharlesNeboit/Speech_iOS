@@ -13,11 +13,9 @@ import TinyConstraints
 
 enum BaseListCellType {
     case container(view: UIView, onConfigure: ((IndexPath) -> Void)?)
-    case details(title: String? = nil, vc: UIViewController = UIViewController())
+    case details(title: String, withViewController: (() -> UIViewController?))
     case action(title: String, onTap: (() -> Void)?)
     case link(Link)
-    
-//    case speechRate
     case slider(SliderTableViewCell.Config)
     case switchChoice(SwitchTableViewCell.Config)
     case category(Category?)
@@ -44,8 +42,8 @@ enum BaseListCellType {
         case .container(let view, let onConfigure):
             (cell as? ContainerTableViewCell)?.configure(view: view)
             onConfigure?(indexPath)
-        case .details(let title, let vc):
-            (cell as? DetailsTableViewCell)?.configure(title: title ?? vc.title ?? "")
+        case .details(let title, _):
+            (cell as? DetailsTableViewCell)?.configure(title: title, accessoryType: .disclosureIndicator)
         case .action(let title, _):
             (cell as? DetailsTableViewCell)?.configure(title: title)
         case .link(let link):
@@ -80,7 +78,8 @@ class BaseListViewController: AbstractViewController {
             .subscribe(onNext: { [weak self] model in
                 guard let self = self else { return }
                 switch model {
-                case .details(let title, let vc):
+                case .details(let title, let closure):
+                    guard let vc = closure() else { return }
                     self.navigationController?.pushViewController(vc, animated: true)
                 case .action(_, let onTap):
                     onTap?()
@@ -129,6 +128,10 @@ class BaseListViewController: AbstractViewController {
     private func configureTableView() {
         view.insertSubview(tableView, at: 0)
         tableView.edgesToSuperview()
+        
+        if self is FormViewController {
+            tableView.keyboardDismissMode = .interactive
+        }
         
         let dataSource = RxTableViewSectionedReloadDataSource<Section>(configureCell: { _, tableView, indexPath, dataSource in
             let cell = tableView.dequeueReusableCell(withIdentifier: dataSource.cellType.identifier, for: indexPath)

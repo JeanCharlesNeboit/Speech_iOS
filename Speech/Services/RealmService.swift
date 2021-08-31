@@ -13,10 +13,10 @@ typealias WriteResult = Result<Void, Error>
 
 class RealmService {
     // MARK: - Singleton
-    static let `default` = RealmService()
+    static var `default` = RealmService()
     
     // MARK: - Properties
-    private let realm: Realm
+    private var realm: Realm
     
     // MARK: - Initialization
     init() {
@@ -26,6 +26,11 @@ class RealmService {
             NSLog("Failed to instanciate database: \(error.localizedDescription)")
             fatalError()
         }
+    }
+    
+    convenience init(realm: Realm) {
+        self.init()
+        self.realm = realm
     }
     
     // MARK: File Path

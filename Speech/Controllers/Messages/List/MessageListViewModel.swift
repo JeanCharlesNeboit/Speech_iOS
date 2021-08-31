@@ -32,7 +32,7 @@ class MessageListViewModel: AbstractViewModel {
     // MARK: - Properties
     @RxBehaviorSubject var sections = [Section]()
     @RxBehaviorSubject var search: String?
-    @RxBehaviorSubject var sortMode = DefaultsStorage.preferredSortMode
+    @RxBehaviorSubject var sortMode = DefaultsStorage.preferredMessageSortMode
     
     // MARK: - Initialization
     override init() {
@@ -58,7 +58,7 @@ class MessageListViewModel: AbstractViewModel {
     
     private func observeSortMode() {
         $sortMode.subscribe(onNext: { sortMode in
-            DefaultsStorage.preferredSortMode = sortMode
+            DefaultsStorage.preferredMessageSortMode = sortMode
         }).disposed(by: disposeBag)
     }
     

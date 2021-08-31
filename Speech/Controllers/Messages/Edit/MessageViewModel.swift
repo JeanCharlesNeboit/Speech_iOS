@@ -53,17 +53,18 @@ class MessageViewModel: AbstractViewModel {
     // MARK: -
     func onValidate(onCompletion: ((Result<Void, Error>) -> Void)) {
         guard !message.isEmptyOrNil else { return }
+        let trimmedMessage = message.strongValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         switch mode {
         case .creation:
             let message = Message(emoji: emoji,
-                                  text: message.strongValue,
+                                  text: trimmedMessage,
                                   category: category)
             realmService.addObject(message)
         case .edition(let message):
             realmService.write {
                 message.emoji = emoji
-                message.text = self.message.strongValue
+                message.text = trimmedMessage
                 message.category = category
             }
         }

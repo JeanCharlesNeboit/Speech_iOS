@@ -70,6 +70,12 @@ class SliderTableViewCell: AbstractTableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var contentStackView: UIStackView!
     
+    // MARK: - Lifecycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
+    
     // MARK: - Configure
     func configure(config: Config) {
         slider.minimumValue = config.minimumValue

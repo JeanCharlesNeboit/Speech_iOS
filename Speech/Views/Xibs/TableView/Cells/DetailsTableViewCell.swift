@@ -12,7 +12,8 @@ class DetailsTableViewCell: AbstractTableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Configure
-    func configure(title: String) {
+    func configure(title: String, accessoryType: UITableViewCell.AccessoryType = .none) {
         titleLabel.text = title
+        self.accessoryType = accessoryType
     }
 }

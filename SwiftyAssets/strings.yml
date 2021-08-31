@@ -213,6 +213,10 @@ settings_made_in_auvergne:
 preferences_speaking_rate:
     fr: Débit vocale
     en: Speaking rate
+    
+preferences_keyboard_language:
+    fr: Utiliser la langue du clavier comme langue pour la voix de synthèse
+    en: Use the keyboard language as the language for the synthesized voice
 
 preferences_voice:
     fr: Voix
@@ -221,14 +225,18 @@ preferences_voice:
 preferences_editor_area_text_size:
     fr: Taille du texte de la zone de message
     en: Message area text size
+    
+preferences_save_messages_quickly:
+    fr: Sauvegarder les nouveaux messages radipement
+    en: Save new messages quickly
             
 preferences_show_frequently_used_messages:
     fr: Afficher les messages fréquemment utilisés
     en: Show frequently used messages
     
-preferences_save_messages_quickly:
-    fr: Sauvegarder les nouveaux messages radipement
-    en: Save new messages quickly
+preferences_replace_text_when_message_selected:
+    fr: Remplacer le texte lors de la selection d'un message
+    en: Replace the text when selecting a message
     
 ## Categories list
 categories_list_empty_title:
@@ -266,5 +274,5 @@ category_name:
 
 ## About
 about_description:
-    fr: Tout commence en 2016, lors d'un projet d'étude du département Informatique Graphique de l'IUT du Puy-en-Velay, Auvergne, France. (Université Clermont Auvergne). L'association ADOL43 (Haute-Loire), association départementale de lutte contre la douleur, souhaite proposer aux patients laryngectomisés une application mobile afin qu'ils puissent continuer à communiquer avec leur environnement. Ainsi est née l'application Speech.\n\nSpeech s'est très vite trouvée utile pour d'autres personnes atteintes de pathologie les empêchant de communiquer (Paralysie du visage, Trouble de la parole, etc) et ce, dans le monde entier. Ainsi, Speech, au delà de son origine, se veut aujourd'hui comme une application dont le but est de donner aux personnes privées de la parole un moyen de s'exprimer.
-    en: To translate*
+    fr: Tout commence en 2016, lors d'un projet d'étude du département Informatique Graphique de l'IUT du Puy-en-Velay, Auvergne, France. (Université Clermont Auvergne). L'association ADOL43 (Haute-Loire), association départementale de lutte contre la douleur, souhaite proposer aux patients laryngectomisés du centre hospitalier Emile Roux (Le Puy-en-Velay) une application mobile afin qu'ils puissent continuer à communiquer avec leur environnement. Ainsi est née l'application Speech.\n\nSpeech s'est très vite trouvée utile pour d'autres personnes atteintes de pathologie les empêchant de communiquer (Paralysie du visage, Trouble de la parole, etc) et ce, dans le monde entier. Ainsi, Speech, au delà de son origine, se veut aujourd'hui comme une application dont le but est de donner aux personnes privées de la parole un moyen de s'exprimer.
+    en: It all starts in 2016, during a study project of the IUT of Le Puy-en-Velay, Auvergne, France. (University Clermont Auvergne). The ADOL43 association (Haute-Loire), a departmental association for the fight against pain, wanted to offer laryngectomized patients at the Emile Roux hospital (Le Puy-en-Velay) a mobile application so that they could continue to communicate with their environment. This is how the Speech application was born. It was quickly found to be useful for other people suffering from pathologies that prevent them from communicating (facial paralysis, speech disorders, etc.) and this, all over the world. Thus, Speech, beyond its origin, is today an application whose goal is to give people deprived of speech a way to express themselves.

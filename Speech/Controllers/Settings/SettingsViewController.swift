@@ -18,13 +18,6 @@ class SettingsViewController: BaseListViewController {
     // MARK: - Properties
     let viewModel = ViewModel()
     
-    #warning("Fix useless vc init by .details")
-    lazy var preferencesListViewController = PreferencesListViewController()
-    lazy var categoriesListViewController = CategoriesListViewController(viewModel: .init(parentCategory: nil, mode: .edition))
-    lazy var aboutViewController = AboutViewController()
-    lazy var openSourceListViewController = OpenSourceListViewController()
-    lazy var thanksListViewController = ThanksListViewController()
-    
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
@@ -32,8 +25,10 @@ class SettingsViewController: BaseListViewController {
         sections = [
             Section(model: .init(),
                     items: [
-                        .details(vc: preferencesListViewController),
-                        .details(vc: categoriesListViewController)
+                        .details(title: PreferencesListViewController.title) { PreferencesListViewController() },
+                        .details(title: CategoriesListViewController.title) {
+                            CategoriesListViewController(viewModel: .init(parentCategory: nil, mode: .edition))
+                        }
                     ]),
             Section(model: .init(),
                     items: [
@@ -49,12 +44,12 @@ class SettingsViewController: BaseListViewController {
 //                    ]),
             Section(model: .init(footer: viewModel.appVersionInfo),
                     items: [
-                        .details(vc: aboutViewController),
+                        .details(title: AboutViewController.title) { AboutViewController() },
                         .link(.init(title: SwiftyAssets.Strings.settings_github,
                                     urlString: viewModel.githubRepositoryLink,
                                     inApp: false)),
-                        .details(vc: openSourceListViewController),
-                        .details(vc: thanksListViewController)
+                        .details(title: OpenSourceListViewController.title) { OpenSourceListViewController() },
+                        .details(title: ThanksListViewController.title) { ThanksListViewController() }
                     ])
         ]
     }

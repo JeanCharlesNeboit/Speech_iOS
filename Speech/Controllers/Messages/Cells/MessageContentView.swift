@@ -34,7 +34,7 @@ class MessageContentView: SwiftyUIView {
     // MARK: - Configure
     func configure(message: Message, layout: NSLayoutConstraint.Axis) {
         stackView.axis = layout
-        backgroundColor = layout == .vertical ? ._secondarySystemBackground : .clear
+        backgroundColor = layout == .vertical ? ._tertiarySystemBackground : .clear
         
         let emoji = message.emoji
         emojiLabel.text = emoji

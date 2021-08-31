@@ -9,39 +9,38 @@ import UIKit
 import AVFoundation
 
 class VoiceListViewController: BaseListViewController {
+    // MARK: - Struct
+    struct VoicesSection {
+        let locale: Locale
+        let voices: [AVSpeechSynthesisVoice]
+    }
+    
     // MARK: - Properties
-    private var voicesGroupedByLocales: [Locale: [AVSpeechSynthesisVoice]] {
+    private var voicesSections: [VoicesSection] {
         Dictionary(grouping: AVSpeechSynthesisVoice.speechVoices(), by: { Locale(identifier: $0.language) })
-//            .filter {
-//                $0.language == Bundle.main.preferredLocalizations.first
-//            }
+            .map { VoicesSection(locale: $0.key, voices: $0.value) }
+            .sorted { lhs, rhs in
+                lhs.locale.countryName.strongValue < rhs.locale.countryName.strongValue
+            }
     }
     
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
         title = SwiftyAssets.Strings.preferences_voice
-        sections = voicesGroupedByLocales.map { locale, voices in
-            let country = [locale.countryFlag, locale.countryName].compactMap { $0 }.joined(separator: " ")
+        sections = voicesSections.map { section in
+            let country = [section.locale.countryFlag, section.locale.countryName].compactMap { $0 }.joined(separator: " ")
             return Section(model: .init(header: country),
-                    items: voices.map { voice in
-                        var genderEmoji: String?
-                        if #available(iOS 13.0, *) {
-                            switch voice.gender {
-                            case .unspecified:
-                                break
-                            case .male:
-                                genderEmoji = "🧔"
-                            case .female:
-                                genderEmoji = "👩"
-                            @unknown default:
-                                break
-                            }
-                        }
-                        let voice = [genderEmoji, voice.name].compactMap { $0 }.joined(separator: " ")
-                        return .details(title: voice, vc: UIViewController())
-                    })
+                           items: section.voices.map { voice in
+                var genderEmoji: String?
+                if #available(iOS 13.0, *) {
+                    genderEmoji = voice.gender.emoji
                 }
+                let voice = [genderEmoji, voice.name].compactMap { $0 }.joined(separator: " ")
+                return .action(title: voice, onTap: {
+                })
+            })
+        }
         sections.insert(Section(model: .init(header: "To use more voice, download more on your device settings*"),
                                 items: []), at: 0)
     }

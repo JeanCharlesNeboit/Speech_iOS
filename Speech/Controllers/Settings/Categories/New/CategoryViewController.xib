@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewCategoryViewController" customModule="Speech" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryViewController" customModule="Speech" customModuleProvider="target">
             <connections>
                 <outlet property="createButton" destination="72Y-bB-Ao7" id="QZN-7p-Usi"/>
                 <outlet property="view" destination="iN0-l3-epB" id="CYn-AB-WF3"/>
@@ -30,8 +30,20 @@
             <constraints>
                 <constraint firstItem="72Y-bB-Ao7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9Q7-We-aDf"/>
                 <constraint firstItem="72Y-bB-Ao7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="IDH-k0-OL3"/>
+                <constraint firstItem="72Y-bB-Ao7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="QXW-rG-pQo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="72Y-bB-Ao7" secondAttribute="bottom" constant="20" id="e7N-U8-02t"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="QXW-rG-pQo"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="IDH-k0-OL3"/>
+                    <include reference="QXW-rG-pQo"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="113.04347826086958" y="112.5"/>
         </view>
     </objects>

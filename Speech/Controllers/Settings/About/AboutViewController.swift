@@ -22,10 +22,13 @@ class AboutViewController: AbstractViewController {
         }
     }
     
+    // MARK: - Properties
+    static let title = SwiftyAssets.Strings.settings_about
+    
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.settings_about
+        title = Self.title
     }
     
     // MARK: - Configure

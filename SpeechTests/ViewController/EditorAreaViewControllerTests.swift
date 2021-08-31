@@ -44,7 +44,9 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
         showViewController()
         
         // Then
-//        XCTAssertEqual(navigationItem.leftBarButtonItem?.image?.pngData(), SwiftyAssets.UIImages.line_horizontal_3_circle.pngData())
+        let leftBarButtonItem = UIDevice.current.isPad ? nil : SwiftyAssets.UIImages.line_horizontal_3_circle
+        XCTAssertEqual(navigationItem.leftBarButtonItem?.image, leftBarButtonItem)
+        
         XCTAssertEqual(navigationItem.title, Bundle.main.displayName)
         XCTAssertEqual(navigationItem.rightBarButtonItem?.image, SwiftyAssets.UIImages.gearshape)
     }

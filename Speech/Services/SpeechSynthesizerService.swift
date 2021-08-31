@@ -54,7 +54,8 @@ class SpeechSynthesizerService: NSObject {
     // MARK: -
     func startSpeaking(text: String, voice: AVSpeechSynthesisVoice?) {
         let speechUterrance = AVSpeechUtterance(string: text)
-//        speechUterrance.rate = DefaultsStorage.preferredSpeakingRate
+        speechUterrance.rate = DefaultsStorage.preferredSpeakingRate
+//        let voice = AVSpeechSynthesisVoice(language: currentKeyboardLanguage)
         
         if let voice = voice {
             speechUterrance.voice = voice

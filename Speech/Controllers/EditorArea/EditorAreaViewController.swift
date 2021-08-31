@@ -53,27 +53,24 @@ class EditorAreaViewController: AbstractViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        updateNavigationItem()
         showInputAccessoryView()
+        
         if !DefaultsStorage.welcomeDone {
             let nav = NavigationController(rootViewController: WelcomeViewController())
             present(nav)
         }
-        
-        if !isCollapsed {
-            navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        } else {
-            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
-            messageBarButtonItem.rx.tap
-                .subscribe(onNext: { [self] in
-                    present(NavigationController(rootViewController: MessageListViewController()))
-                }).disposed(by: disposeBag)
-            navigationItem.leftBarButtonItem = messageBarButtonItem
-        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateNavigationItem()
     }
     
     // MARK: - Configure
     override func configure() {
         navigationItem.rightBarButtonItem = settingsBarButtonItem
+        listenNotifications()
         
         viewModel.$text.subscribe(onNext: { [weak self] text in
             self?.textView.text = text
@@ -123,12 +120,25 @@ class EditorAreaViewController: AbstractViewController {
             .notification(.editorAreaStartSpeaking)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.viewModel.startSpeaking { result in
+                self.viewModel.startSpeaking(keyboardLanguage: self.textView.textInputMode?.primaryLanguage) { result in
                     if case .failure(let error) = result {
                         self.showError(title: error.title, message: error.body)
                     }
                 }
             }).disposed(by: disposeBag)
+    }
+    
+    func updateNavigationItem() {
+        if !isCollapsed {
+            navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        } else {
+            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
+            messageBarButtonItem.rx.tap
+                .subscribe(onNext: { [self] in
+                    present(NavigationController(rootViewController: MessageListViewController()))
+                }).disposed(by: disposeBag)
+            navigationItem.leftBarButtonItem = messageBarButtonItem
+        }
     }
     
     // MARK: -

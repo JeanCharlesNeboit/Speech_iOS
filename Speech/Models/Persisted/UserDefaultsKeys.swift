@@ -10,6 +10,10 @@ import Foundation
 enum UserDefaultsKeys: String {
     case welcomeDone
     case preferredEditorAreaTextFont
+    case preferredSpeakingRate
+    case useKeyboardLanguageAsVoiceLanguage
+    case preferredMessageDisplayMode
     case preferredMessagesSortMode
     case showFrequentlyUsedMessages
+    case saveMessagesQuickly
 }

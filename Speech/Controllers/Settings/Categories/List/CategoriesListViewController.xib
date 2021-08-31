@@ -42,8 +42,20 @@
                 <constraint firstItem="mYs-TL-hih" firstAttribute="width" secondItem="Bml-Kp-Hab" secondAttribute="width" multiplier="0.8" id="IOb-W3-cKO"/>
                 <constraint firstItem="lAJ-Nl-OPj" firstAttribute="bottom" secondItem="Et5-X1-haP" secondAttribute="bottom" constant="20" id="Kl7-vg-xWG"/>
                 <constraint firstItem="Et5-X1-haP" firstAttribute="centerX" secondItem="Bml-Kp-Hab" secondAttribute="centerX" id="n9S-xO-baE"/>
+                <constraint firstItem="Et5-X1-haP" firstAttribute="width" secondItem="Bml-Kp-Hab" secondAttribute="width" multiplier="0.5" id="nvm-6B-A8p"/>
                 <constraint firstItem="mYs-TL-hih" firstAttribute="centerY" secondItem="Bml-Kp-Hab" secondAttribute="centerY" id="wzG-pT-w9W"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="nvm-6B-A8p"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="Bfl-Tc-hXw"/>
+                    <include reference="nvm-6B-A8p"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </view>
     </objects>

@@ -1,5 +1,5 @@
 //
-//  NewCategoryViewController.swift
+//  CategoryViewController.swift
 //  Speech
 //
 //  Created by Jean-Charles Neboit on 14/04/2021.
@@ -8,8 +8,8 @@
 import UIKit
 import RxSwift
 
-class NewCategoryViewController: BaseListViewController {
-    typealias ViewModel = NewCategoryViewModel
+class CategoryViewController: BaseListViewController, FormViewController {
+    typealias ViewModel = CategoryViewModel
     
     // MARK: - IBOutlets
     @IBOutlet weak var createButton: Button! {

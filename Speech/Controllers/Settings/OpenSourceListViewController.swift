@@ -7,6 +7,7 @@
 
 class OpenSourceListViewController: BaseListViewController {
     // MARK: - Properties
+    static let title = SwiftyAssets.Strings.settings_open_source
     private var dependencies: [(title: String, urlString: String)] {
         [
             (title: "Firebase", urlString: "https://github.com/firebase/firebase-ios-sdk.git"),
@@ -23,7 +24,7 @@ class OpenSourceListViewController: BaseListViewController {
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.settings_open_source
+        title = Self.title
         sections = [
             Section(model: .init(),
                     items: dependencies.map {

@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class MessageViewController: BaseListViewController {
+class MessageViewController: BaseListViewController, FormViewController {
     typealias ViewModel = MessageViewModel
     
     // MARK: - IBOutlets
