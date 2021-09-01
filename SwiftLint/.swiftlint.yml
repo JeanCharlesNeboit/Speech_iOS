@@ -16,3 +16,4 @@ opt_in_rules:
 
 excluded:
   - Dependencies
+  - DerivedData
