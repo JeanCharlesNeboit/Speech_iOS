@@ -8,6 +8,7 @@ on:
       - '**.swift'
       - '**/build_test.yml'
       - '.github.env'
+  workflow_dispatch:
 
 env:
   DERIVED_DATA_PATH: "./DerivedData"

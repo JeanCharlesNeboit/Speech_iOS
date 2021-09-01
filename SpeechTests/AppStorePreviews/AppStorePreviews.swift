@@ -7,6 +7,12 @@
 
 import XCTest
 
-class AppStorePreviews {
-    
+class AppStorePreviews: AbstractXCTestCase {
+    // MARK: - Previews
+    func testWelcomePreview() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        lock()
+    }
 }

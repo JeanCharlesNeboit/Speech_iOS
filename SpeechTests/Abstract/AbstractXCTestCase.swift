@@ -31,9 +31,7 @@ class AbstractXCTestCase: XCTestCase {
     }
     
     func wait(forSeconds seconds: Double) {
-//        while true {
-            CFRunLoopRunInMode(CFRunLoopMode.defaultMode, seconds, false)
-//        }
+        CFRunLoopRunInMode(CFRunLoopMode.defaultMode, seconds, false)
     }
     
     func lock() {
