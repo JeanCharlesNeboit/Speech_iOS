@@ -72,3 +72,5 @@ class MessageViewModel: AbstractViewModel {
         onCompletion(.success(()))
     }
 }
+
+#warning("Rate app on message saved https://developer.apple.com/documentation/storekit/skstorereviewcontroller")

@@ -90,3 +90,6 @@ iOSInjectionProject/
 
 # Firebase
 **/GoogleService-Info.plist
+
+# App Store Preview
+AppStorePreviews

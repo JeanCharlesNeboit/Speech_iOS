@@ -14,8 +14,9 @@ class OpenSourceListViewController: BaseListViewController {
             (title: "Realm", urlString: "https://github.com/realm/realm-cocoa.git"),
             (title: "RxSwift", urlString: "https://github.com/ReactiveX/RxSwift.git"),
             (title: "RxDataSources", urlString: "https://github.com/RxSwiftCommunity/RxDataSources.git"),
+            (title: "RxGesture", urlString: "https://github.com/RxSwiftCommunity/RxGesture.git"),
             (title: "RxKeyboard", urlString: "https://github.com/RxSwiftCommunity/RxKeyboard.git"),
-            (title: "SwiftDate", urlString: "https://github.com/malcommac/SwiftDate.git"),
+//            (title: "SwiftDate", urlString: "https://github.com/malcommac/SwiftDate.git"),
             (title: "SwiftMessages", urlString: "https://github.com/SwiftKickMobile/SwiftMessages.git"),
             (title: "TinyConstraints", urlString: "https://github.com/roberthein/TinyConstraints.git")
         ]

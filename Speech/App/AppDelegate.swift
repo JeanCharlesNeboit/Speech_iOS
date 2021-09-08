@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Window
         window = UIWindow()
-        window?.set(rootViewController: UIViewController.main)
+        window?.set(rootViewController: LoadViewController())
+//        window?.set(rootViewController: UIViewController.main)
         
         return true
     }

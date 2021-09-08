@@ -21,8 +21,10 @@ class SplitViewController: UISplitViewController {
     
     private func sharedInit() {
         preferredDisplayMode = .oneBesideSecondary
-        // maximumPrimaryColumnWidth = splitViewController.view.bounds.size.width
-        // preferredPrimaryColumnWidthFraction = 1/2
+        
+        #warning("Add to settings")
+//        maximumPrimaryColumnWidth = view.bounds.size.width/2
+//        preferredPrimaryColumnWidthFraction = 1/4
     }
     
     // MARK: - Configure

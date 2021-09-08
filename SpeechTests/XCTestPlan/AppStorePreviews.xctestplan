@@ -2,17 +2,43 @@
   "configurations" : [
     {
       "id" : "AAAEBD23-EED5-47A8-A0D8-82E3A466324A",
-      "name" : "Configuration 1",
+      "name" : "French",
       "options" : {
-
+        "language" : "fr",
+        "region" : "FR"
+      }
+    },
+    {
+      "id" : "291C5CBB-E23B-4FE8-A56B-DC96689EBE5C",
+      "name" : "English",
+      "options" : {
+        "language" : "en",
+        "region" : "US"
       }
     }
   ],
   "defaultOptions" : {
+    "environmentVariableEntries" : [
 
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Speech.xcodeproj",
+      "identifier" : "7EF73318260F1756009D7A08",
+      "name" : "Speech"
+    }
   },
   "testTargets" : [
-
+    {
+      "selectedTests" : [
+        "AppStorePreviews\/testLoadPreview()",
+        "AppStorePreviews\/testWelcomePreview()"
+      ],
+      "target" : {
+        "containerPath" : "container:Speech.xcodeproj",
+        "identifier" : "7EF7332E260F1757009D7A08",
+        "name" : "SpeechTests"
+      }
+    }
   ],
   "version" : 1
 }

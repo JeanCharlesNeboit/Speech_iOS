@@ -7,17 +7,35 @@
 
 import UIKit
 import RxSwift
+import RxGesture
 
 class MessagesTableViewCell: AbstractTableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var bottomStackViewConstraint: NSLayoutConstraint!
+    
+    // MARK: - Properties
+    private var tapDisposables = [Disposable]()
+    var onCategoryTap: ((Category) -> Void)?
     
     // MARK: - Configure
-    func configure(messages: [Message], column: Int) {
+    func configure(categories: [Category], column: Int, isLast: Bool) {
+        tapDisposables.removeAll()
         stackView.removeAllArrangedSubviews()
-        var views = messages.map { message -> UIView in
-            let view: MessageContentView = .loadFromXib()
-            view.configure(message: message, layout: .vertical)
+        
+        var views = categories.map { category -> UIView in
+//            let view: MessageContentView = .loadFromXib()
+            let view: CategoryContentView = .loadFromXib()
+            view.configure(category: category)
+            view.aspectRatio(1)
+            
+            let tapDisposable = view.rx.tapGesture()
+                .when(.recognized)
+                .subscribe(onNext: { [weak self] _ in
+                    self?.onCategoryTap?(category)
+                })
+            tapDisposables.append(tapDisposable)
+            
             return view
         }
         
@@ -28,8 +46,6 @@ class MessagesTableViewCell: AbstractTableViewCell {
         }
 
         stackView.addArrangedSubview(views)
-//        stackView.arrangedSubviews.forEach { view in
-//            view.width(100)
-//        }
+        bottomStackViewConstraint.constant = isLast ? 0 : 16
     }
 }

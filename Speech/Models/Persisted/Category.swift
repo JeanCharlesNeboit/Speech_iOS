@@ -13,7 +13,7 @@ class Category: Object {
     @Persisted(primaryKey: true) private var id: String
     @Persisted var name: String
     @Persisted var emoji: String?
-    @Persisted private(set) var parentCategory: Category?
+    @objc @Persisted private(set) var parentCategory: Category?
     
     var nameWithEmoji: String {
         [emoji, name]
@@ -23,6 +23,15 @@ class Category: Object {
     
     var subCategories: [Category] {
         RealmService.default.getSubCategoriesResult(category: self).toArray()
+    }
+    
+    var messages: [Message] {
+        RealmService.default.allMessagesResult(category: self).toArray()
+    }
+    
+    @objc var numberOfUse: Int {
+        #warning("average could be better condition")
+        return messages.compactMap { $0.numberOfUse }.reduce(0, +)
     }
     
     // MARK: - Initialization
@@ -37,8 +46,28 @@ class Category: Object {
     }
 }
 
+extension Category: Searchable {
+    var searchText: String {
+        name
+    }
+}
+
 extension Category: Comparable {
     static func < (lhs: Category, rhs: Category) -> Bool {
         lhs.name.diacriticInsensitive < rhs.name.diacriticInsensitive
+    }
+}
+
+class WithoutCategory: Category {
+    // MARK: - Initialization
+    override init() {
+        super.init()
+        name = SwiftyAssets.Strings.category_without_category
+        emoji = "📁"
+    }
+    
+    // MARK: - Properties
+    override var messages: [Message] {
+        RealmService.default.allMessagesResult(category: nil).toArray()
     }
 }

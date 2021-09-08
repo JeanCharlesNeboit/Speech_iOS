@@ -16,7 +16,7 @@ class Message: Object {
     
     @Persisted var emoji: String?
     @Persisted var text: String = ""
-    @Persisted var category: Category?
+    @objc @Persisted var category: Category?
     
     // MARK: - Initialization
     convenience init(emoji: String? = nil, text: String, category: Category? = nil) {
@@ -32,6 +32,12 @@ class Message: Object {
         try? realm?.write {
             numberOfUse += 1
         }
+    }
+}
+
+extension Message: Searchable {
+    var searchText: String {
+        text
     }
 }
 

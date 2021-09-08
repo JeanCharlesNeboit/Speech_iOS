@@ -109,15 +109,24 @@ extension RealmService {
         all(Message.self)
     }
     
+    func allMessagesResult(category: Category?) -> Results<Message> {
+        let result = allMessagesResult()
+        if let category = category {
+            return result.filter("\(#keyPath(Message.category)) == %@", category)
+        } else {
+            return result.filter("\(#keyPath(Message.category)) == nil")
+        }
+    }
+    
     func doesMessageAlreadyExist(text: String) -> Bool {
         return allMessagesResult().contains(where: { $0.text == text })
     }
     
     func mostUsedMessages(limit: Int) -> [Message] {
         Array(allMessagesResult()
-            .sorted(byKeyPath: #keyPath(Message.numberOfUse), ascending: false)
-            .toArray()
-            .prefix(limit))
+                .sorted(byKeyPath: #keyPath(Message.numberOfUse), ascending: false)
+                .toArray()
+                .prefix(limit))
     }
 }
 
@@ -126,12 +135,20 @@ extension RealmService {
         if let parentCategory = parentCategory {
             return getSubCategoriesResult(category: parentCategory)
         } else {
-            return all(Category.self).filter("parentCategory == nil")
+            return all(Category.self).filter("\(#keyPath(Category.parentCategory)) == nil")
         }
     }
     
     func getSubCategoriesResult(category: Category) -> Results<Category> {
         all(Category.self)
-            .filter("parentCategory == %@", category)
+            .filter("\(#keyPath(Category.parentCategory)) == %@", category)
+    }
+    
+    func mostUsedCategories(limit: Int) -> [Category] {
+        Array(getCategoriesResult(parentCategory: nil)
+            .toArray()
+            .sorted(by: { lhs, rhs in
+                return lhs.numberOfUse < rhs.numberOfUse
+            }).prefix(limit))
     }
 }

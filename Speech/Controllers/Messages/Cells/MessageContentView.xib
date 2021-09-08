@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -30,13 +29,13 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="bG3-qB-QFU">
                             <rect key="frame" x="50" y="18.5" width="130" height="43"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message*" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="848-Er-FUG">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Message*" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="848-Er-FUG">
                                     <rect key="frame" x="0.0" y="0.0" width="130" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catégorie" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7KS-EW-MzV">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Catégorie" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7KS-EW-MzV">
                                     <rect key="frame" x="0.0" y="22.5" width="130" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
@@ -55,32 +54,10 @@
                         <constraint firstItem="bG3-qB-QFU" firstAttribute="height" relation="greaterThanOrEqual" secondItem="g04-w0-mH4" secondAttribute="height" id="b56-d3-vnh"/>
                     </constraints>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isi-hA-WeR" customClass="HorizontalCapsule" customModule="SwiftyKit">
-                    <rect key="frame" x="175" y="0.0" width="25" height="25"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-Ue-dQx">
-                            <rect key="frame" x="2" y="2" width="21" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" name="AccentColor"/>
-                    <constraints>
-                        <constraint firstItem="xAb-Ue-dQx" firstAttribute="top" secondItem="Isi-hA-WeR" secondAttribute="top" constant="2" id="4yi-mw-fqk"/>
-                        <constraint firstAttribute="bottom" secondItem="xAb-Ue-dQx" secondAttribute="bottom" constant="2" id="Wxv-eq-S7F"/>
-                        <constraint firstAttribute="height" constant="25" id="aZc-V0-shB"/>
-                        <constraint firstAttribute="trailing" secondItem="xAb-Ue-dQx" secondAttribute="trailing" constant="2" id="m6c-4w-hrr"/>
-                        <constraint firstItem="xAb-Ue-dQx" firstAttribute="leading" secondItem="Isi-hA-WeR" secondAttribute="leading" constant="2" id="rlh-RO-tqD"/>
-                        <constraint firstAttribute="width" secondItem="Isi-hA-WeR" secondAttribute="height" id="xYU-vE-ER2"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Isi-hA-WeR" secondAttribute="trailing" id="6JS-Kv-Dyc"/>
                 <constraint firstItem="Rbm-fp-nud" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="9jg-Fb-MD5"/>
-                <constraint firstItem="Isi-hA-WeR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DbF-ap-8ul"/>
                 <constraint firstItem="Rbm-fp-nud" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="LYv-eX-O4F"/>
                 <constraint firstAttribute="bottom" secondItem="Rbm-fp-nud" secondAttribute="bottom" constant="10" id="PHD-i3-ost"/>
                 <constraint firstAttribute="trailing" secondItem="Rbm-fp-nud" secondAttribute="trailing" constant="10" id="yNA-wB-SOs"/>
@@ -96,9 +73,4 @@
             <point key="canvasLocation" x="137.59999999999999" y="112.44377811094454"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="AccentColor">
-            <color red="0.16099999845027924" green="0.50199997425079346" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

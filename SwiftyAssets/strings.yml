@@ -272,6 +272,10 @@ category_name:
     fr: Nom de la catégory
     en: Categorie name
 
+category_without_category:
+    fr: Sans catégorie
+    en: No category
+
 ## About
 about_description:
     fr: Tout commence en 2016, lors d'un projet d'étude du département Informatique Graphique de l'IUT du Puy-en-Velay, Auvergne, France. (Université Clermont Auvergne). L'association ADOL43 (Haute-Loire), association départementale de lutte contre la douleur, souhaite proposer aux patients laryngectomisés du centre hospitalier Emile Roux (Le Puy-en-Velay) une application mobile afin qu'ils puissent continuer à communiquer avec leur environnement. Ainsi est née l'application Speech.\n\nSpeech s'est très vite trouvée utile pour d'autres personnes atteintes de pathologie les empêchant de communiquer (Paralysie du visage, Trouble de la parole, etc) et ce, dans le monde entier. Ainsi, Speech, au delà de son origine, se veut aujourd'hui comme une application dont le but est de donner aux personnes privées de la parole un moyen de s'exprimer.

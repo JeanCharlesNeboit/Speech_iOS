@@ -2,14 +2,22 @@
   "configurations" : [
     {
       "id" : "796A50FF-BCDB-4579-9E85-CD22E482689F",
-      "name" : "Configuration 1",
+      "name" : "Configuration",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Speech.xcodeproj",
+          "identifier" : "7EF73318260F1756009D7A08",
+          "name" : "Speech"
+        }
+      ]
+    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:Speech.xcodeproj",
       "identifier" : "7EF73318260F1756009D7A08",
@@ -18,6 +26,9 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "AppStorePreviews"
+      ],
       "target" : {
         "containerPath" : "container:Speech.xcodeproj",
         "identifier" : "7EF7332E260F1757009D7A08",

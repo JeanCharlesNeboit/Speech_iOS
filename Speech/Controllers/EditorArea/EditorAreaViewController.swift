@@ -35,7 +35,7 @@ class EditorAreaViewController: AbstractViewController {
         return accessoryView
     }
     
-    private(set) lazy var settingsBarButtonItem: UIBarButtonItem = {
+    lazy var settingsBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: SwiftyAssets.UIImages.gearshape, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
             self.present(NavigationController(rootViewController: SettingsViewController()))

@@ -12,7 +12,7 @@ import RxDataSources
 import RealmSwift
 import RxKeyboard
 
-class MessageListViewController: AbstractViewController { //BaseListViewController {
+class MessageListViewController: AbstractViewController {
     // MARK: - Typealias
     typealias ViewModel = MessageListViewModel
     
@@ -64,7 +64,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     }
     
     // MARK: - Properties
-    lazy var viewModel: ViewModel = .init()
+    let viewModel: ViewModel
     let gridColumn = 2
     
     private lazy var layoutModeBarButtonItem: UIBarButtonItem = {
@@ -126,6 +126,15 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     private lazy var emptyView: EmptyView = .loadFromXib()
 
     // MARK: - Initialization
+    init(viewModel: ViewModel = .init()) {
+        self.viewModel = viewModel
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func sharedInit() {
         super.sharedInit()
         title = SwiftyAssets.Strings.generic_messages
@@ -148,7 +157,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     
     // MARK: - Observe
     private func observeSections() {
-        viewModel.$sections
+        viewModel.$messageSections
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.listTableView.isHidden = $0.isEmpty
@@ -202,7 +211,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     }
     
     private func configureTableView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.Section>(configureCell: { _, tableView, indexPath, message in
+        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.MessageSection>(configureCell: { _, tableView, indexPath, message in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier, for: indexPath) as? MessageTableViewCell else {
                 return UITableViewCell()
             }
@@ -212,7 +221,7 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
             return sections.sectionModels[indexPath].model.header
         })
         
-        viewModel.$sections
+        viewModel.$messageSections
             .bind(to: listTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
@@ -225,17 +234,22 @@ class MessageListViewController: AbstractViewController { //BaseListViewControll
     }
     
     private func configureCollectionView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.GridSection>(configureCell: { _, tableView, indexPath, messages in
+        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.GridSection>(configureCell: { _, tableView, indexPath, categories in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MessagesTableViewCell.identifier, for: indexPath) as? MessagesTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(messages: messages, column: self.gridColumn)
+            let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
+            cell.configure(categories: categories, column: self.gridColumn, isLast: isLast)
+            cell.onCategoryTap = { [weak self] category in
+                #warning("Todo")
+                self?.navigationController?.pushViewController(MessageListViewController(), animated: true)
+            }
             return cell
         }, titleForHeaderInSection: { sections, indexPath -> String? in
             return sections.sectionModels[indexPath].model.header
         })
         
-        viewModel.$sections
+        viewModel.$categorySections
             .map { section in
                 section.map {
                     ViewModel.GridSection.init(model: $0.model, items: $0.items.chunked(into: self.gridColumn))
@@ -266,7 +280,7 @@ extension MessageListViewController: UITableViewDelegate {
             // return empty UISwipeActionsConfiguration instead of nil, because nil create delete action automatically !
             return UISwipeActionsConfiguration()
         }
-        guard let message = self.viewModel.sections[safe: indexPath.section]?.items[safe: indexPath.row] else { return nil }
+        guard let message = self.viewModel.messageSections[safe: indexPath.section]?.items[safe: indexPath.row] else { return nil }
         
         let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
             guard let self = self else { return }

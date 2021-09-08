@@ -82,3 +82,6 @@ class CategoryViewController: BaseListViewController, FormViewController {
             ]
     }
 }
+
+#warning("Add remove category feature")
+#warning("Remove sub-categories when remove category")
