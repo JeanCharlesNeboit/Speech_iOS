@@ -111,7 +111,8 @@ extension RealmService {
     
     func allMessagesResult(category: Category?) -> Results<Message> {
         let result = allMessagesResult()
-        if let category = category {
+        if let category = category,
+           category != Category.withoutCategory {
             return result.filter("\(#keyPath(Message.category)) == %@", category)
         } else {
             return result.filter("\(#keyPath(Message.category)) == nil")

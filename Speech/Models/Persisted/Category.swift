@@ -14,6 +14,7 @@ class Category: Object {
     @Persisted var name: String
     @Persisted var emoji: String?
     @objc @Persisted private(set) var parentCategory: Category?
+    private var isEmptyCategory = false
     
     var nameWithEmoji: String {
         [emoji, name]
@@ -26,7 +27,11 @@ class Category: Object {
     }
     
     var messages: [Message] {
-        RealmService.default.allMessagesResult(category: self).toArray()
+        if isEmptyCategory {
+            return RealmService.default.allMessagesResult(category: nil).toArray()
+        } else {
+            return RealmService.default.allMessagesResult(category: self).toArray()
+        }
     }
     
     @objc var numberOfUse: Int {
@@ -37,12 +42,14 @@ class Category: Object {
     // MARK: - Initialization
     convenience init(name: String,
                      emoji: String?,
-                     parentCategory: Category?) {
+                     parentCategory: Category?,
+                     isEmptyCategory: Bool = false) {
         self.init()
         self.id = UUID().uuidString
         self.name = name
         self.emoji = emoji
         self.parentCategory = parentCategory
+        self.isEmptyCategory = isEmptyCategory
     }
 }
 
@@ -58,16 +65,9 @@ extension Category: Comparable {
     }
 }
 
-class WithoutCategory: Category {
-    // MARK: - Initialization
-    override init() {
-        super.init()
-        name = SwiftyAssets.Strings.category_without_category
-        emoji = "📁"
-    }
-    
-    // MARK: - Properties
-    override var messages: [Message] {
-        RealmService.default.allMessagesResult(category: nil).toArray()
-    }
+extension Category {
+    static let withoutCategory = Category(name: SwiftyAssets.Strings.category_without_category,
+                                          emoji: "📁",
+                                          parentCategory: nil,
+                                          isEmptyCategory: true)
 }

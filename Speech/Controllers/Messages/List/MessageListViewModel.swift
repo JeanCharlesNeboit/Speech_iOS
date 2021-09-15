@@ -11,12 +11,20 @@ import RxDataSources
 import RealmSwift
 
 class MessageListViewModel: AbstractViewModel {
+    // MARK: - Enum
+    enum DataSource {
+        case message(Message)
+        case categories([Category])
+    }
+    
     // MARK: - Typealias
     typealias MessageSection = SectionModel<SectionHeaderFooter, Message>
-    typealias CategorySection = SectionModel<SectionHeaderFooter, Category>
-    typealias GridSection = SectionModel<SectionHeaderFooter, [Category]>
+    typealias CategorySection = SectionModel<SectionHeaderFooter, DataSource>
     
     // MARK: - Properties
+    let category: Category?
+    let gridColumn = 2
+    
     @RxBehaviorSubject var search: String?
     @RxBehaviorSubject var sortMode = DefaultsStorage.preferredMessageSortMode
     
@@ -24,7 +32,8 @@ class MessageListViewModel: AbstractViewModel {
     @RxBehaviorSubject var categorySections = [CategorySection]()
     
     // MARK: - Initialization
-    override init() {
+    init(category: Category?) {
+        self.category = category
         super.init()
         observeSortMode()
         observeMessageResult()
@@ -32,8 +41,8 @@ class MessageListViewModel: AbstractViewModel {
     
     // MARK: - Observation
     private func observeMessageResult() {
-        let messagesResultsObservable = Observable.collection(from: realmService.allMessagesResult())
-        let categoriesResultObservable = Observable.collection(from: realmService.getCategoriesResult(parentCategory: nil))
+        let messagesResultsObservable = Observable.collection(from: category == nil ? realmService.allMessagesResult() : realmService.allMessagesResult(category: category))
+        let categoriesResultObservable = Observable.collection(from: realmService.getCategoriesResult(parentCategory: category))
         
         Observable.combineLatest($search,
                                  messagesResultsObservable,
@@ -44,7 +53,7 @@ class MessageListViewModel: AbstractViewModel {
                 guard let self = self else { return }
                 self.messageSections = self.getMessageSections(search: search, messagesResult: messagesResult, sortMode: sortMode, showFrequentlyUsedMessages: showFrequentlyUsedMessages)
                 
-                self.categorySections = self.getCategorySections(search: search, categoriesResult: categoriesResult, sortMode: sortMode, showFrequentlyUsedMessages: showFrequentlyUsedMessages)
+                self.categorySections = self.getCategorySections(search: search, messagesResult: messagesResult, categoriesResult: categoriesResult, sortMode: sortMode, showFrequentlyUsedMessages: showFrequentlyUsedMessages)
                 
             })
             .disposed(by: disposeBag)
@@ -70,7 +79,7 @@ class MessageListViewModel: AbstractViewModel {
         var sections = [MessageSection]()
         if !messages.isEmpty {
             var defaultSectionHeader: String?
-            if showFrequentlyUsedMessages && search.isEmptyOrNil {
+            if showFrequentlyUsedMessages && search.isEmptyOrNil && category == nil {
                 defaultSectionHeader = SwiftyAssets.Strings.messages_all
                 let mostUsedMessages = self.realmService.mostUsedMessages(limit: 5)
                 sections.append(SectionModel(model: .init(header: SwiftyAssets.Strings.messages_frequently_used),
@@ -82,25 +91,31 @@ class MessageListViewModel: AbstractViewModel {
         return sections
     }
     
-    private func getCategorySections(search: String?, categoriesResult: Results<Category>, sortMode: SortMode, showFrequentlyUsedMessages: Bool) -> [CategorySection] {
+    private func getCategorySections(search: String?, messagesResult: Results<Message>, categoriesResult: Results<Category>, sortMode: SortMode, showFrequentlyUsedMessages: Bool) -> [CategorySection] {
+        let messages = messagesResult.toArray().filter(search: search)
         var categories = categoriesResult.toArray()
-        categories.append(WithoutCategory())
+        if category == nil {
+            categories.append(Category.withoutCategory)
+        }
         let filteredCategories = categories.filter(search: search)
         
         #warning("sortMode")
         
         var sections = [CategorySection]()
-        if !filteredCategories.isEmpty {
+        if !filteredCategories.isEmpty || !messages.isEmpty {
             var defaultSectionHeader: String?
-            if showFrequentlyUsedMessages && search.isEmptyOrNil {
+            if showFrequentlyUsedMessages && search.isEmptyOrNil && category == nil {
                 defaultSectionHeader = SwiftyAssets.Strings.generic_categories
                 #warning("Factorize limit & rename messages_frequently_used")
                 let mostUsedCategories = self.realmService.mostUsedCategories(limit: 5)
                 sections.append(SectionModel(model: .init(header: SwiftyAssets.Strings.messages_frequently_used),
-                                             items: mostUsedCategories))
+                                             items: mostUsedCategories.chunked(into: self.gridColumn).map { .categories($0 )}))
+            } else if category != nil {
+                sections.append(SectionModel(model: .init(header: SwiftyAssets.Strings.generic_messages),
+                                             items: messages.map { .message($0) }))
             }
             sections.append(SectionModel(model: .init(header: defaultSectionHeader),
-                                         items: filteredCategories.map { $0 }))
+                                         items: filteredCategories.chunked(into: self.gridColumn).map { .categories($0) }))
         }
         return sections
     }

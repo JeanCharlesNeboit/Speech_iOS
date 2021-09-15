@@ -65,7 +65,6 @@ class MessageListViewController: AbstractViewController {
     
     // MARK: - Properties
     let viewModel: ViewModel
-    let gridColumn = 2
     
     private lazy var layoutModeBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem.init(image: DefaultsStorage.preferredMessageDisplayMode.image, style: .plain, target: nil, action: nil)
@@ -126,7 +125,7 @@ class MessageListViewController: AbstractViewController {
     private lazy var emptyView: EmptyView = .loadFromXib()
 
     // MARK: - Initialization
-    init(viewModel: ViewModel = .init()) {
+    init(viewModel: ViewModel = .init(category: nil)) {
         self.viewModel = viewModel
         super.init()
     }
@@ -137,9 +136,14 @@ class MessageListViewController: AbstractViewController {
     
     override func sharedInit() {
         super.sharedInit()
-        title = SwiftyAssets.Strings.generic_messages
+        title = viewModel.category?.name ?? SwiftyAssets.Strings.generic_messages
         definesPresentationContext = true
-        navigationItem.rightBarButtonItems = [moreBarButtonItem, layoutModeBarButtonItem]
+        
+        navigationItem.rightBarButtonItems = [moreBarButtonItem]
+        if viewModel.category == nil {
+            navigationItem.rightBarButtonItems?.append(layoutModeBarButtonItem)
+        }
+        
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
@@ -161,6 +165,7 @@ class MessageListViewController: AbstractViewController {
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.listTableView.isHidden = $0.isEmpty
+                self.gridTableView.isHidden = $0.isEmpty
                 self.emptyContainerView.isHidden = !$0.isEmpty
             }).disposed(by: disposeBag)
     }
@@ -234,29 +239,44 @@ class MessageListViewController: AbstractViewController {
     }
     
     private func configureCollectionView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.GridSection>(configureCell: { _, tableView, indexPath, categories in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MessagesTableViewCell.identifier, for: indexPath) as? MessagesTableViewCell else {
-                return UITableViewCell()
+        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.CategorySection>(configureCell: { _, tableView, indexPath, dataSource in
+            switch dataSource {
+            case .message(let message):
+                guard let cell: MessageTableViewCell = tableView.dequeueReusableCell(for: indexPath) else {
+                    return UITableViewCell()
+                }
+                cell.configure(message: message, layout: .horizontal)
+                return cell
+            case .categories(let categories):
+                guard let cell: MessagesTableViewCell = tableView.dequeueReusableCell(for: indexPath) else {
+                    return UITableViewCell()
+                }
+                let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
+                cell.configure(categories: categories, column: self.viewModel.gridColumn, isLast: isLast)
+                cell.onCategoryTap = { [weak self] category in
+                    let vc = MessageListViewController(viewModel: .init(category: category))
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+                return cell
             }
-            let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
-            cell.configure(categories: categories, column: self.gridColumn, isLast: isLast)
-            cell.onCategoryTap = { [weak self] category in
-                #warning("Todo")
-                self?.navigationController?.pushViewController(MessageListViewController(), animated: true)
-            }
-            return cell
         }, titleForHeaderInSection: { sections, indexPath -> String? in
             return sections.sectionModels[indexPath].model.header
         })
         
         viewModel.$categorySections
-            .map { section in
-                section.map {
-                    ViewModel.GridSection.init(model: $0.model, items: $0.items.chunked(into: self.gridColumn))
-                }
-            }
             .bind(to: gridTableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
+        gridTableView.rx.modelSelected(ViewModel.DataSource.self)
+            .subscribe(onNext: { [weak self] dataSource in
+                guard let self = self else { return }
+                switch dataSource {
+                case .message(let message):
+                    self.viewModel.onTap(message: message)
+                case .categories(_):
+                    break
+                }
+            }).disposed(by: disposeBag)
     }
     
     private func configureKeyboard() {
