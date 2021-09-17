@@ -63,24 +63,27 @@ class MessageViewController: BaseListViewController, FormViewController {
     }
     
     private func configureDataSource() {
-        sections = [
-            Section(model: .init(header: SwiftyAssets.Strings.message_emoji_and_message),
-                    items: [
-                        .container(view: emojiMessageView, onConfigure: { [weak self] _ in
-                            guard let self = self else { return }
-                            self.emojiMessageViewOnConfigureDisposable = self.emojiMessageView
-                                .inputMessageStackView
-                                .message
-                                .subscribe(onNext: { [weak self] _ in
-                                    self?.tableView.performBatchUpdates(nil, completion: nil)
-                                })
-                        })
-                    ]),
-            Section(model: .init(header: SwiftyAssets.Strings.generic_category),
-                    items: [
-                        .category(viewModel.category)
-                    ])
-        ]
+        viewModel.$category.subscribe(onNext: { [weak self] category in
+            guard let self = self else { return }
+            self.sections = [
+                Section(model: .init(header: SwiftyAssets.Strings.message_emoji_and_message),
+                        items: [
+                            .container(view: self.emojiMessageView, onConfigure: { [weak self] _ in
+                                guard let self = self else { return }
+                                self.emojiMessageViewOnConfigureDisposable = self.emojiMessageView
+                                    .inputMessageStackView
+                                    .message
+                                    .subscribe(onNext: { [weak self] _ in
+                                        self?.tableView.performBatchUpdates(nil, completion: nil)
+                                    })
+                            })
+                        ]),
+                Section(model: .init(header: SwiftyAssets.Strings.generic_category),
+                        items: [
+                            .category(category)
+                        ])
+            ]
+        }).disposed(by: disposeBag)
     }
     
     private func configureTableView() {
@@ -110,5 +113,25 @@ class MessageViewController: BaseListViewController, FormViewController {
             }
         }
         
+    }
+}
+
+#warning("Add remove category feature")
+extension MessageViewController {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard case .category = sections[indexPath.section].items[indexPath.row] else {
+            return UISwipeActionsConfiguration()
+        }
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, success in
+            guard let self = self else { return }
+            self.viewModel.category = nil
+            success(true)
+        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = true
+        
+        return configuration
     }
 }

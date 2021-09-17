@@ -26,6 +26,9 @@ class DefaultsStorage {
     static var useKeyboardLanguageAsVoiceLanguage: Bool = true
     
     // Messages
+    @RxUserDefault(key: UserDefaultsKeys.savedMessagesCount())
+    static var savedMessagesCount: Int = 0
+    
     @RxRawUserDefault(key: UserDefaultsKeys.preferredMessageDisplayMode())
     static var preferredMessageDisplayMode: MessageListViewController.DisplayMode = .list
     

@@ -196,7 +196,8 @@ class MessageListViewController: AbstractViewController {
     }
     
     private func updateNavigationItem() {
-        navigationItem.leftBarButtonItem = isCollapsed ? cancelBarButtonItem : nil
+        let isPushed = navigationController?.viewControllers.count ?? 0 > 1
+        navigationItem.leftBarButtonItem = isCollapsed && !isPushed ? cancelBarButtonItem : nil
     }
     
     private func configureSearch() {

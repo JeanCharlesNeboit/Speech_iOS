@@ -16,16 +16,13 @@
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Rbm-fp-nud">
                     <rect key="frame" x="10" y="10" width="180" height="80"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g04-w0-mH4">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D3J-fI-GL4">
                             <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="Gsb-ys-daa"/>
-                                <constraint firstAttribute="width" secondItem="g04-w0-mH4" secondAttribute="height" id="Plg-so-yCA"/>
+                                <constraint firstAttribute="height" constant="40" id="0Lf-hH-ieh"/>
+                                <constraint firstAttribute="width" secondItem="D3J-fI-GL4" secondAttribute="height" id="YUX-LV-T27"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="bG3-qB-QFU">
                             <rect key="frame" x="50" y="18.5" width="130" height="43"/>
                             <subviews>
@@ -51,7 +48,7 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="bG3-qB-QFU" firstAttribute="height" relation="greaterThanOrEqual" secondItem="g04-w0-mH4" secondAttribute="height" id="b56-d3-vnh"/>
+                        <constraint firstItem="bG3-qB-QFU" firstAttribute="height" relation="greaterThanOrEqual" secondItem="D3J-fI-GL4" secondAttribute="height" id="gAA-r1-GV7"/>
                     </constraints>
                 </stackView>
             </subviews>
@@ -66,7 +63,7 @@
             <connections>
                 <outlet property="categoryLabel" destination="7KS-EW-MzV" id="N5N-iM-8Nt"/>
                 <outlet property="dateLabel" destination="fM2-J6-kF1" id="jbb-ul-3ze"/>
-                <outlet property="emojiLabel" destination="g04-w0-mH4" id="RMR-wV-TMh"/>
+                <outlet property="emojiImageView" destination="D3J-fI-GL4" id="CM1-3j-u6d"/>
                 <outlet property="messageLabel" destination="848-Er-FUG" id="j1z-of-WXF"/>
                 <outlet property="stackView" destination="Rbm-fp-nud" id="ElC-8u-QBf"/>
             </connections>

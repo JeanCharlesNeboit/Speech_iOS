@@ -23,14 +23,14 @@ class Category: Object {
     }
     
     var subCategories: [Category] {
-        RealmService.default.getSubCategoriesResult(category: self).toArray()
+        RealmService.default.getSubCategoriesResult(parent: self).toArray()
     }
     
     var messages: [Message] {
         if isEmptyCategory {
-            return RealmService.default.allMessagesResult(category: nil).toArray()
+            return RealmService.default.allMessagesWithoutCategoryResult().toArray()
         } else {
-            return RealmService.default.allMessagesResult(category: self).toArray()
+            return RealmService.default.allMessagesWithCategoryResult(category: self).toArray()
         }
     }
     
@@ -41,8 +41,8 @@ class Category: Object {
     
     // MARK: - Initialization
     convenience init(name: String,
-                     emoji: String?,
-                     parentCategory: Category?,
+                     emoji: String? = nil,
+                     parentCategory: Category? = nil,
                      isEmptyCategory: Bool = false) {
         self.init()
         self.id = UUID().uuidString

@@ -11,7 +11,7 @@ import SwiftyKit
 class MessageContentView: SwiftyUIView {
     // MARK: - IBOutlets
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var emojiImageView: UIImageView!
         
     @IBOutlet weak var messageLabel: UILabel! {
         didSet {
@@ -37,8 +37,8 @@ class MessageContentView: SwiftyUIView {
         backgroundColor = layout == .vertical ? ._tertiarySystemBackground : .clear
         
         let emoji = message.emoji
-        emojiLabel.text = emoji
-        emojiLabel.isHidden = emoji.isEmptyOrNil
+        emojiImageView.image = emoji?.toImage()
+        emojiImageView.isHidden = emoji.isEmptyOrNil
         
         messageLabel.text = message.text
         

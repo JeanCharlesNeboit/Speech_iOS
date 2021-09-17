@@ -12,27 +12,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Gbl-G2-IEj" customClass="CategoryContentView" customModule="Speech" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="133"/>
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lp4-xJ-sf8">
-                    <rect key="frame" x="10" y="21.5" width="180" height="90"/>
+                    <rect key="frame" x="10" y="49" width="180" height="102.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19A-GE-8V4">
-                            <rect key="frame" x="70" y="0.0" width="40" height="40"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DS4-KS-WWS">
+                            <rect key="frame" x="54" y="0.0" width="72" height="72"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="19A-GE-8V4" secondAttribute="height" id="5WN-kj-r5m"/>
-                                <constraint firstAttribute="height" constant="40" id="Aw0-0l-7Sp"/>
+                                <constraint firstAttribute="width" secondItem="DS4-KS-WWS" secondAttribute="height" id="ABP-vn-ajS"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="vgg-7p-NXf">
-                            <rect key="frame" x="52" y="50" width="76.5" height="40"/>
+                            <rect key="frame" x="52" y="82" width="76.5" height="20.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Message*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7M-LI-koJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="76.5" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="76.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -41,7 +37,7 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="vgg-7p-NXf" firstAttribute="height" relation="greaterThanOrEqual" secondItem="19A-GE-8V4" secondAttribute="height" id="bAe-CN-cjj"/>
+                        <constraint firstItem="DS4-KS-WWS" firstAttribute="width" secondItem="lp4-xJ-sf8" secondAttribute="width" multiplier="0.4" id="FFa-sy-tFQ"/>
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xd-Oy-cdv" customClass="HorizontalCapsule" customModule="SwiftyKit">
@@ -79,7 +75,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="badgeLabel" destination="QQw-mP-BJU" id="qlF-tI-1di"/>
-                <outlet property="emojiLabel" destination="19A-GE-8V4" id="zf4-FP-ECp"/>
+                <outlet property="emojiImageView" destination="DS4-KS-WWS" id="5U6-0G-oeF"/>
                 <outlet property="messageLabel" destination="O7M-LI-koJ" id="Ols-p8-XB9"/>
                 <outlet property="stackView" destination="lp4-xJ-sf8" id="KDx-0F-W96"/>
             </connections>

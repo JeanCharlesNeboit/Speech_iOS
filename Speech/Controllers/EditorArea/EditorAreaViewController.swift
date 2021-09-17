@@ -92,7 +92,7 @@ class EditorAreaViewController: AbstractViewController {
         NotificationCenter.default.rx
             .notification(.editorAreaSaveText)
             .subscribe(onNext: { [self] _ in
-                switch viewModel.onSave() {
+                switch viewModel.canMessageBeSaved(text: viewModel.text) {
                 case .success(let text):
                     if DefaultsStorage.saveMessagesQuickly {
                         viewModel.saveQuickly { [weak self] result in

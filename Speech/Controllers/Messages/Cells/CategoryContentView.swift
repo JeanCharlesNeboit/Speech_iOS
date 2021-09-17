@@ -12,7 +12,7 @@ class CategoryContentView: SwiftyUIView {
     // MARK: - IBOutlets
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var badgeLabel: UILabel!
-    @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var emojiImageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel! {
         didSet {
             messageLabel.setDynamicFont(style: .body)
@@ -28,8 +28,7 @@ class CategoryContentView: SwiftyUIView {
         badgeLabel.text = "\(category.messages.count)"
         
         let emoji = category.emoji
-        emojiLabel.text = emoji
-        emojiLabel.isHidden = emoji.isEmptyOrNil
+        emojiImageView.image = emoji?.toImage() ?? SwiftyAssets.UIImages.face_smiling
         
         messageLabel.text = category.name
     }

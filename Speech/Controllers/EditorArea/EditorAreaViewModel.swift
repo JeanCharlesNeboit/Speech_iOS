@@ -8,31 +8,7 @@
 import Foundation
 import AVFoundation
 
-class EditorAreaViewModel: AbstractViewModel {
-    // MARK: - Enum
-    enum ViewModelError: Error {
-        case empty
-        case duplication
-        
-        var title: String {
-            switch self {
-            case .empty:
-                return SwiftyAssets.Strings.editor_area_empty_text_on_save_title
-            case .duplication:
-                return SwiftyAssets.Strings.editor_area_duplication_title
-            }
-        }
-        
-        var body: String {
-            switch self {
-            case .empty:
-                return SwiftyAssets.Strings.editor_area_empty_text_on_save_body
-            case .duplication:
-                return SwiftyAssets.Strings.editor_area_duplication_body
-            }
-        }
-    }
-    
+class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
     // MARK: - Properties
     @RxBehaviorSubject var text: String?
     
@@ -42,7 +18,7 @@ class EditorAreaViewModel: AbstractViewModel {
     override init() {
         super.init()
         
-        if environmentService.isDev() && !environmentService.isTest() {
+        if environmentService.isDev && !environmentService.isTest {
             text = "Bonjour"
         }
         
@@ -69,24 +45,13 @@ class EditorAreaViewModel: AbstractViewModel {
     }
     
     // MARK: -
-    private func doesMessageAlreadyExist() -> Bool {
-        realmService.doesMessageAlreadyExist(text: text.strongValue)
-    }
-    
-    func onSave() -> Result<String, ViewModelError> {
-        guard let text = text.nilIfEmpty else { return .failure(.empty) }
-        guard !doesMessageAlreadyExist() else { return .failure(.duplication) }
-        return .success(text)
-    }
-    
     func saveQuickly(onCompletion: @escaping ((Result<Void, Error>) -> Void)) {
         guard let text = text else { return }
-        realmService.addObject(Message(text: text), completion: { result in
-            onCompletion(result)
-        })
+        let message = Message(text: text)
+        realmService.save(message: message, completion: onCompletion)
     }
     
-    func startSpeaking(keyboardLanguage: String?, onCompletion: @escaping ((Result<Void, ViewModelError>) -> Void)) {
+    func startSpeaking(keyboardLanguage: String?, onCompletion: @escaping ((Result<Void, MessageError>) -> Void)) {
         guard let text = text.nilIfEmpty else {
             onCompletion(.failure(.empty))
             return

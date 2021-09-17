@@ -12,6 +12,7 @@ enum UserDefaultsKeys: String {
     case preferredEditorAreaTextFont
     case preferredSpeakingRate
     case useKeyboardLanguageAsVoiceLanguage
+    case savedMessagesCount
     case preferredMessageDisplayMode
     case preferredMessagesSortMode
     case showFrequentlyUsedMessages

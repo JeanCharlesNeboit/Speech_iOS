@@ -7,7 +7,23 @@
 
 import Foundation
 
-class MessageViewModel: AbstractViewModel {
+protocol MessageViewModelProtocol: AbstractViewModel {
+    
+}
+
+extension MessageViewModelProtocol {
+    func canMessageBeSaved(text: String?) -> Result<String, MessageError> {
+        guard let text = text.nilIfEmpty else {
+            return .failure(MessageError.empty)
+        }
+        guard !realmService.doesMessageAlreadyExist(text: text) else {
+            return .failure(MessageError.duplication)
+        }
+        return .success(text)
+    }
+}
+
+class MessageViewModel: AbstractViewModel, MessageViewModelProtocol {
     enum Mode {
         case creation(text: String)
         case edition(message: Message)
@@ -51,16 +67,22 @@ class MessageViewModel: AbstractViewModel {
     }
     
     // MARK: -
-    func onValidate(onCompletion: ((Result<Void, Error>) -> Void)) {
+    func onValidate(onCompletion: @escaping ((Result<Void, Error>) -> Void)) {
         guard !message.isEmptyOrNil else { return }
         let trimmedMessage = message.strongValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         switch mode {
         case .creation:
+            #warning("Show error in controller & check id to avoid duplication by editing")
+            if case .failure(let error) = canMessageBeSaved(text: trimmedMessage) {
+                onCompletion(.failure(error))
+                return
+            }
+            
             let message = Message(emoji: emoji,
                                   text: trimmedMessage,
                                   category: category)
-            realmService.addObject(message)
+            realmService.save(message: message, completion: onCompletion)
         case .edition(let message):
             realmService.write {
                 message.emoji = emoji
@@ -72,5 +94,3 @@ class MessageViewModel: AbstractViewModel {
         onCompletion(.success(()))
     }
 }
-
-#warning("Rate app on message saved https://developer.apple.com/documentation/storekit/skstorereviewcontroller")

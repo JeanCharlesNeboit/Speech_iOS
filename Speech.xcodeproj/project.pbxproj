@@ -84,6 +84,10 @@
 		7E6E1E5926319EF100165FF9 /* privacy_policy.html in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E1E5826319EF100165FF9 /* privacy_policy.html */; };
 		7E6E1E5E2631A2D000165FF9 /* privacy_policy.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E1E5D2631A2D000165FF9 /* privacy_policy.md */; };
 		7E7A41312674CE0C00BB64F9 /* MessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A41302674CE0C00BB64F9 /* MessagesTableViewCell.xib */; };
+		7E7E6ECD26F478D300834F48 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E6ECC26F478D300834F48 /* StringExtension.swift */; };
+		7E7E6ED026F4E35C00834F48 /* MessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E6ECF26F4E35C00834F48 /* MessageError.swift */; };
+		7E83EC2826F349CD00663540 /* RealmServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83EC2726F349CD00663540 /* RealmServiceTests.swift */; };
+		7E83EC2A26F34FB100663540 /* RealmService+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83EC2926F34FB100663540 /* RealmService+Requests.swift */; };
 		7E89D187261C6C9B009930E6 /* DetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E89D186261C6C9B009930E6 /* DetailsTableViewCell.xib */; };
 		7E89D18A261C6CB2009930E6 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D189261C6CB2009930E6 /* DetailsTableViewCell.swift */; };
 		7E89D196261C8F91009930E6 /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89D195261C8F91009930E6 /* BaseListViewController.swift */; };
@@ -245,6 +249,10 @@
 		7E6E1E5826319EF100165FF9 /* privacy_policy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = privacy_policy.html; sourceTree = "<group>"; };
 		7E6E1E5D2631A2D000165FF9 /* privacy_policy.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = privacy_policy.md; sourceTree = SOURCE_ROOT; };
 		7E7A41302674CE0C00BB64F9 /* MessagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTableViewCell.xib; sourceTree = "<group>"; };
+		7E7E6ECC26F478D300834F48 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		7E7E6ECF26F4E35C00834F48 /* MessageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
+		7E83EC2726F349CD00663540 /* RealmServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServiceTests.swift; sourceTree = "<group>"; };
+		7E83EC2926F34FB100663540 /* RealmService+Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmService+Requests.swift"; sourceTree = "<group>"; };
 		7E89D186261C6C9B009930E6 /* DetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsTableViewCell.xib; sourceTree = "<group>"; };
 		7E89D189261C6CB2009930E6 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		7E89D195261C8F91009930E6 /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
@@ -514,6 +522,22 @@
 			path = Abstract;
 			sourceTree = "<group>";
 		};
+		7E7E6ECE26F4E34F00834F48 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				7E7E6ECF26F4E35C00834F48 /* MessageError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		7E83EC2626F349AA00663540 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7E83EC2726F349CD00663540 /* RealmServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7E89D185261C6C0D009930E6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +607,7 @@
 			isa = PBXGroup;
 			children = (
 				7E9058D426284A3D0082F057 /* CharacterExtension.swift */,
+				7E7E6ECC26F478D300834F48 /* StringExtension.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -651,7 +676,7 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		7ECFD1A926150CAE0026406E /* ViewControllers */ = {
+		7ECFD1A926150CAE0026406E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				7E65EEBF264941C8009C9340 /* ViewControllerTests.swift */,
@@ -659,7 +684,7 @@
 				7EF73333260F1757009D7A08 /* EditorAreaViewControllerTests.swift */,
 				7EF0F82526DECE8F000616E1 /* MessageViewControllerTests.swift */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		7EE0DA5F26E02D8B00274F5D /* Extensions */ = {
@@ -778,7 +803,8 @@
 				7ECFD1992614F29C0026406E /* App */,
 				7EF0F82226DECB60000616E1 /* AppStorePreviews */,
 				7EE49A4A26150F9A00524C9F /* Abstract */,
-				7ECFD1A926150CAE0026406E /* ViewControllers */,
+				7ECFD1A926150CAE0026406E /* Controllers */,
+				7E83EC2626F349AA00663540 /* Services */,
 				7EE0DA5F26E02D8B00274F5D /* Extensions */,
 				7E4670CB2652703C00373FE8 /* .swiftlint.yml */,
 				7EF73335260F1757009D7A08 /* Info.plist */,
@@ -853,6 +879,7 @@
 		7EF83F98260F5E3800E53A70 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7E7E6ECE26F4E34F00834F48 /* Errors */,
 				7ECE539E26B090F600BE28B5 /* Persisted */,
 				7EE1F292262E06F600537240 /* Link.swift */,
 				7E21118126E6C1F200916417 /* SortMode.swift */,
@@ -891,6 +918,7 @@
 				7E56F11226B44D19000D6B04 /* EnvironmentService.swift */,
 				7E47AFEA2620CE7800BA175E /* FirebaseService.swift */,
 				7EF83FB0260F60A200E53A70 /* RealmService.swift */,
+				7E83EC2926F34FB100663540 /* RealmService+Requests.swift */,
 				7E5B64772614D27300F39BF3 /* SpeechSynthesizerService.swift */,
 				7E68C0182625904A00617FA2 /* KeyboardService.swift */,
 			);
@@ -1167,10 +1195,12 @@
 				7E89D19B261C9C19009930E6 /* MessageViewController.swift in Sources */,
 				7E3953E126B199CE0012E0B3 /* UIViewExtension.swift in Sources */,
 				7E3953DE26B1989B0012E0B3 /* UIScrollViewExtension.swift in Sources */,
+				7E83EC2A26F34FB100663540 /* RealmService+Requests.swift in Sources */,
 				7E21436026B1BF1500A3E8A2 /* UIColorExtension.swift in Sources */,
 				7E4099DB26263861006E2A37 /* ThanksListViewController.swift in Sources */,
 				7ECE53A726B0A39500BE28B5 /* EmptyView.swift in Sources */,
 				7E600AA5262F4B66003058FE /* ContainerTableViewCell.swift in Sources */,
+				7E7E6ECD26F478D300834F48 /* StringExtension.swift in Sources */,
 				7E64EA47265D791600087124 /* AbstractViewModel.swift in Sources */,
 				7E4099E02627748F006E2A37 /* VoiceListViewController.swift in Sources */,
 				7EE49A8F26172B8200524C9F /* SectionHeaderFooter.swift in Sources */,
@@ -1196,6 +1226,7 @@
 				7E9058D526284A3D0082F057 /* CharacterExtension.swift in Sources */,
 				7E5AEE1F26123319008E024C /* SettingsViewController.swift in Sources */,
 				7E21435A26B1A40200A3E8A2 /* EditorAreaViewModel.swift in Sources */,
+				7E7E6ED026F4E35C00834F48 /* MessageError.swift in Sources */,
 				7EE49A8B2617266E00524C9F /* SplitViewController.swift in Sources */,
 				7ECFD1932614F1730026406E /* main.swift in Sources */,
 				7E64EA44265D773E00087124 /* MessageListViewModel.swift in Sources */,
@@ -1238,6 +1269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E83EC2826F349CD00663540 /* RealmServiceTests.swift in Sources */,
 				7EE49A4C26150FCB00524C9F /* AbstractXCTestCase.swift in Sources */,
 				7ECFD1972614F2220026406E /* TestAppDelegate.swift in Sources */,
 				7E4670C8265268B100373FE8 /* WelcomeViewControllerTests.swift in Sources */,
@@ -1333,6 +1365,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = BETA;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1498,6 +1531,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1524,6 +1558,7 @@
 					SwiftUI,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeancharlesneboit.Speech;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

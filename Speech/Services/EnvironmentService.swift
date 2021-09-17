@@ -11,7 +11,7 @@ class EnvironmentService {
     // MARK: - Properties
     lazy var environment: [String: String] = ProcessInfo.processInfo.environment
     
-    func isDev() -> Bool {
+    var isDev: Bool {
         #if DEV
         return true
         #else
@@ -19,7 +19,7 @@ class EnvironmentService {
         #endif
     }
     
-    func isDebug() -> Bool {
+    var isDebug: Bool {
         #if DEBUG
         return true
         #else
@@ -27,11 +27,31 @@ class EnvironmentService {
         #endif
     }
     
-    func isTest() -> Bool {
+    var isRelease: Bool {
+        #if RELEASE
+        return true
+        #else
+        return false
+        #endif
+    }
+    
+    var isTest: Bool {
         #if DEBUG
         return environment["XCTestConfigurationFilePath"] != nil
         #else
         return false
+        #endif
+    }
+    
+    var additionalName: String {
+        #if DEBUG
+        return "👨‍💻"
+        #elseif BETA
+        return "👩‍🔬"
+        #elseif RELEASE
+        return "📱"
+        #else
+        return nil
         #endif
     }
 }

@@ -41,8 +41,8 @@ class MessageListViewModel: AbstractViewModel {
     
     // MARK: - Observation
     private func observeMessageResult() {
-        let messagesResultsObservable = Observable.collection(from: category == nil ? realmService.allMessagesResult() : realmService.allMessagesResult(category: category))
-        let categoriesResultObservable = Observable.collection(from: realmService.getCategoriesResult(parentCategory: category))
+        let messagesResultsObservable = Observable.collection(from: realmService.getMessagesResult(in: category))
+        let categoriesResultObservable = Observable.collection(from: realmService.getCategories(parent: category))
         
         Observable.combineLatest($search,
                                  messagesResultsObservable,

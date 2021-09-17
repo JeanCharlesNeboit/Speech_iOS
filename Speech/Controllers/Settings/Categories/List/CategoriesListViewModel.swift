@@ -28,7 +28,7 @@ class CategoriesListViewModel: AbstractViewModel {
         self.mode = mode
         super.init()
         
-        let categoriesResultsObservable = Observable.collection(from: realmService.getCategoriesResult(parentCategory: parentCategory))
+        let categoriesResultsObservable = Observable.collection(from: realmService.getCategories(parent: parentCategory))
         Observable.combineLatest($search, categoriesResultsObservable)
             .subscribe { search, categoriesResult in
                 let categories = categoriesResult.toArray()
