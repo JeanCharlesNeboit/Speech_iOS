@@ -8,11 +8,15 @@
 import Foundation
  
 extension Notification.Name {
-    static let editorAreaClearText = Notification.Name("editorAreaClearText")
-    static let editorAreaSaveText = Notification.Name("editorAreaSaveText")
-    static let editorAreaAppendText = Notification.Name("editorAreaAppendText")
-    static let editorAreaStartSpeaking = Notification.Name("editorAreaStartSpeaking")
-    static let editorAreaContinueSpeaking = Notification.Name("editorAreaContinueSpeaking")
-    static let editorAreaPauseSpeaking = Notification.Name("editorAreaPauseSpeaking")
-    static let editorAreaStopSpeaking = Notification.Name("editorAreaStopSpeaking")
+    // MARK: - Editor
+    static let EditorAreaClearText = Notification.Name("EditorAreaClearText")
+    static let EditorAreaSaveText = Notification.Name("EditorAreaSaveText")
+    static let EditorAreaAppendText = Notification.Name("EditorAreaAppendText")
+    static let EditorAreaStartSpeaking = Notification.Name("EditorAreaStartSpeaking")
+    static let EditorAreaContinueSpeaking = Notification.Name("EditorAreaContinueSpeaking")
+    static let EditorAreaPauseSpeaking = Notification.Name("EditorAreaPauseSpeaking")
+    static let EditorAreaStopSpeaking = Notification.Name("EditorAreaStopSpeaking")
+    
+    // MARK: - Message
+    static let MessageDidSave = Notification.Name("MessageDidSave")
 }

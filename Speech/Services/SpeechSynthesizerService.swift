@@ -33,19 +33,19 @@ class SpeechSynthesizerService: NSObject {
     // MARK: -
     private func listenNotifications() {
         NotificationCenter.default.rx
-            .notification(.editorAreaContinueSpeaking)
+            .notification(.EditorAreaContinueSpeaking)
             .subscribe(onNext: { [self] _ in
                 continueSpeaking()
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx
-            .notification(.editorAreaPauseSpeaking)
+            .notification(.EditorAreaPauseSpeaking)
             .subscribe(onNext: { [self] _ in
                 pauseSpeaking()
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx
-            .notification(.editorAreaStopSpeaking)
+            .notification(.EditorAreaStopSpeaking)
             .subscribe(onNext: { [self] _ in
                 stopSpeaking()
             }).disposed(by: disposeBag)

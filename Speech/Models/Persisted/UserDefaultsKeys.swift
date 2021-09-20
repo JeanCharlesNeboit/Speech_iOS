@@ -17,4 +17,5 @@ enum UserDefaultsKeys: String {
     case preferredMessagesSortMode
     case showFrequentlyUsedMessages
     case saveMessagesQuickly
+    case closeMessageViewWhenMessageSelected
 }

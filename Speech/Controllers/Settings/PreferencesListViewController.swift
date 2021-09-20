@@ -5,6 +5,8 @@
 //  Created by Jean-Charles Neboit on 13/04/2021.
 //
 
+import UIKit
+
 class PreferencesListViewController: BaseListViewController {
     // MARK: - Properties
     static let title = SwiftyAssets.Strings.settings_preferences
@@ -26,6 +28,7 @@ class PreferencesListViewController: BaseListViewController {
     override func sharedInit() {
         super.sharedInit()
         title = Self.title
+        
         sections = [
             Section(model: .init(header: SwiftyAssets.Strings.preferences_speaking_rate), items: [
                 .slider(
@@ -42,15 +45,15 @@ class PreferencesListViewController: BaseListViewController {
                     )
                 ]
             ),
-            Section(model: .init(header: SwiftyAssets.Strings.preferences_voice), items: [
-                .switchChoice(.init(title: SwiftyAssets.Strings.preferences_keyboard_language,
-                                    initialValue: DefaultsStorage.useKeyboardLanguageAsVoiceLanguage,
-                                    onSwitch: { _ in
-                                        DefaultsStorage.useKeyboardLanguageAsVoiceLanguage.toggle()
-                                    }
-                )),
-                .details(title: SwiftyAssets.Strings.preferences_voice) { VoiceListViewController() }
-            ]),
+//            Section(model: .init(header: SwiftyAssets.Strings.preferences_voice), items: [
+//                .switchChoice(.init(title: SwiftyAssets.Strings.preferences_keyboard_language,
+//                                    initialValue: DefaultsStorage.useKeyboardLanguageAsVoiceLanguage,
+//                                    onSwitch: { _ in
+//                                        DefaultsStorage.useKeyboardLanguageAsVoiceLanguage.toggle()
+//                                    }
+//                )),
+//                .details(title: SwiftyAssets.Strings.preferences_voice) { VoiceListViewController() }
+//            ]),
             Section(model: .init(header: SwiftyAssets.Strings.preferences_editor_area_text_size), items: [
                 .slider(
                     .init(minimumValue: 0,
@@ -88,8 +91,15 @@ class PreferencesListViewController: BaseListViewController {
                           onSwitch: { value in
                             DefaultsStorage.replaceTextWhenMessageSelected = value
                           })
-                )
-            ])
+                ),
+                UIDevice.current.isPhone ? .switchChoice(
+                    .init(title: "Automatically close message view when a message is selected*",
+                          initialValue: DefaultsStorage.replaceTextWhenMessageSelected,
+                          onSwitch: { value in
+                            DefaultsStorage.closeMessageViewWhenMessageSelected = value
+                          })
+                ) : nil
+            ].compactMap { $0 })
         ]
     }
 }

@@ -23,13 +23,13 @@ class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
         }
         
         NotificationCenter.default.rx
-            .notification(.editorAreaClearText)
+            .notification(.EditorAreaClearText)
             .subscribe(onNext: { [weak self] _ in
                 self?.text = nil
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx
-            .notification(.editorAreaAppendText)
+            .notification(.EditorAreaAppendText)
             .subscribe(onNext: { [weak self] notification in
                 guard let self = self,
                       let message = notification.object as? Message else { return }

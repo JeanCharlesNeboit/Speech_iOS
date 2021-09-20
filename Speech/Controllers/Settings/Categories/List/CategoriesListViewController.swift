@@ -187,19 +187,44 @@ class CategoriesListViewController: BaseListViewController {
 }
 
 extension CategoriesListViewController {
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
-            guard let self = self else { return }
-            guard let category = self.viewModel.categories[safe: indexPath.row] else { return }
-            self.viewModel.onDelete(category: category)
+    private func showCategoryDeleteAlert(onCompletion: @escaping ((Bool) -> Void)) {
+        let alertViewController = UIAlertController(title: SwiftyAssets.Strings.category_delete_confirmation_title,
+                                                    message: SwiftyAssets.Strings.category_delete_confirmation_message,
+                                                    preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: SwiftyAssets.Strings.generic_delete, style: .destructive) { _ in
+            onCompletion(true)
+        }
+        let cancelAction = UIAlertAction(title: SwiftyAssets.Strings.generic_cancel, style: .cancel) { _ in
+            onCompletion(false)
         }
         
-        let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, success in
+        alertViewController.addAction(deleteAction)
+        alertViewController.addAction(cancelAction)
+        
+        present(alertViewController)
+    }
+}
+
+extension CategoriesListViewController {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, completion in
+            guard let self = self else { return }
+            guard let category = self.viewModel.categories[safe: indexPath.row] else { return }
+            self.showCategoryDeleteAlert(onCompletion: { [weak self] shouldDelete in
+                if shouldDelete {
+                    self?.viewModel.onDelete(category: category)
+                }
+                completion(true)
+            })
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, completion in
             guard let self = self else { return }
             guard let category = self.viewModel.categories[safe: indexPath.row] else { return }
             let vc = CategoryViewController(viewModel: .init(mode: .edition(category: category)))
             self.present(NavigationController(rootViewController: vc))
-            success(true)
+            completion(true)
         }
         
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])

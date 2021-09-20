@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-zx-tv1">
-                        <rect key="frame" x="16" y="0.0" width="382" height="102"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="AjL-zx-tv1" firstAttribute="leading" secondItem="Fxm-jB-KpR" secondAttribute="leading" constant="16" id="EHR-a8-Uv6"/>
-                    <constraint firstAttribute="trailing" secondItem="AjL-zx-tv1" secondAttribute="trailing" constant="16" id="RME-xo-YFU"/>
+                    <constraint firstItem="AjL-zx-tv1" firstAttribute="leading" secondItem="Fxm-jB-KpR" secondAttribute="leading" id="EHR-a8-Uv6"/>
+                    <constraint firstAttribute="trailing" secondItem="AjL-zx-tv1" secondAttribute="trailing" id="RME-xo-YFU"/>
                     <constraint firstItem="AjL-zx-tv1" firstAttribute="top" secondItem="Fxm-jB-KpR" secondAttribute="top" id="bBE-8f-sbp"/>
                     <constraint firstAttribute="bottom" secondItem="AjL-zx-tv1" secondAttribute="bottom" id="xAx-kw-HtW"/>
                 </constraints>

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import StoreKit
 import AppTrackingTransparency
 import SwiftyKit
 import RxSwift
@@ -30,14 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // SwiftyKit
         SwiftyUIView.DefaultCornerRadius = 10
-        
-        // SKStoreReviewController
-        #warning("Use NotificationCenter instead")
-//        DefaultsStorage.$savedMessagesCount
-//            .filter { $0 > 0 && $0 % 1 == 0 }
-//            .subscribe(onNext: { _ in
-//                SKStoreReviewController.requestReview()
-//            }).disposed(by: disposeBag)
         
         // Window
         window = UIWindow()

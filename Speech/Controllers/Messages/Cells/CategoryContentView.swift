@@ -8,8 +8,9 @@
 import UIKit
 import SwiftyKit
 
-class CategoryContentView: SwiftyUIView {
+class CategoryContentView: UIView {
     // MARK: - IBOutlets
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var badgeLabel: UILabel!
     @IBOutlet weak var emojiImageView: UIImageView!
@@ -23,7 +24,7 @@ class CategoryContentView: SwiftyUIView {
     func configure(category: Category) {
         let layout: NSLayoutConstraint.Axis = .vertical
         stackView.axis = layout
-        backgroundColor = layout == .vertical ? ._tertiarySystemBackground : .clear
+        backgroundView.backgroundColor = layout == .vertical ? ._tertiarySystemBackground : .clear
         
         badgeLabel.text = "\(category.messages.count)"
         

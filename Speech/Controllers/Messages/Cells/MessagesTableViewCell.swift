@@ -20,14 +20,13 @@ class MessagesTableViewCell: AbstractTableViewCell {
     
     // MARK: - Configure
     func configure(categories: [Category], column: Int, isLast: Bool) {
+        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         tapDisposables.removeAll()
         stackView.removeAllArrangedSubviews()
         
         var views = categories.map { category -> UIView in
-//            let view: MessageContentView = .loadFromXib()
             let view: CategoryContentView = .loadFromXib()
             view.configure(category: category)
-            view.aspectRatio(1)
             
             let tapDisposable = view.rx.tapGesture()
                 .when(.recognized)

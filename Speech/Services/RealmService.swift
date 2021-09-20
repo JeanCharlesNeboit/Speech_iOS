@@ -93,12 +93,16 @@ class RealmService {
         commit(completion: completion)
     }
     
-    func deleteObject<T: Object>(_ object: T, completion: ((WriteResult) -> Void)? = nil, cascade: Bool = false) {
+    func deleteObject<T: Object>(_ object: T, cascade: Bool = false, completion: ((WriteResult) -> Void)? = nil) {
+        deleteObjects([object], cascade: cascade, completion: completion)
+    }
+    
+    func deleteObjects<T: Object>(_ objects: [T], cascade: Bool = false, completion: ((WriteResult) -> Void)? = nil) {
         beginWrite()
         if cascade {
-            realm.deleteCascade(object)
+            objects.forEach { realm.deleteCascade($0) }
         } else {
-            realm.delete(object)
+            realm.delete(objects)
         }
         commit(completion: completion)
     }

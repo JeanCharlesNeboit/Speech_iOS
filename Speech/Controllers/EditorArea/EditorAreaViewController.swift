@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 import SwiftyKit
 import SwiftMessages
 import RxSwift
@@ -86,11 +87,25 @@ class EditorAreaViewController: AbstractViewController {
             .subscribe(onNext: { [textView] fontStyle in
                 textView?.setDynamicFont(style: fontStyle)
             }).disposed(by: disposeBag)
+        
+        #warning("ToDo")
+//        NotificationCenter.default.rx.notification(UIWindow.didBecomeVisibleNotification)
+//            .subscribe(onNext: { [weak self] notification in
+//                guard let self = self else { return }
+//                let visibleWindow = notification.object as? UIWindow
+//                let inputAccessoryWindow = self.inputAccessoryView?.window
+//
+//                if visibleWindow != self.view.window,
+//                   inputAccessoryWindow != nil,
+//                   visibleWindow != inputAccessoryWindow {
+//                    print("Hello window")
+//                }
+//            }).disposed(by: disposeBag)
     }
     
     private func listenNotifications() {
         NotificationCenter.default.rx
-            .notification(.editorAreaSaveText)
+            .notification(.EditorAreaSaveText)
             .subscribe(onNext: { [self] _ in
                 switch viewModel.canMessageBeSaved(text: viewModel.text) {
                 case .success(let text):
@@ -117,7 +132,7 @@ class EditorAreaViewController: AbstractViewController {
             }).disposed(by: disposeBag)
         
         NotificationCenter.default.rx
-            .notification(.editorAreaStartSpeaking)
+            .notification(.EditorAreaStartSpeaking)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.viewModel.startSpeaking(keyboardLanguage: self.textView.textInputMode?.primaryLanguage) { result in
@@ -125,6 +140,14 @@ class EditorAreaViewController: AbstractViewController {
                         self.showError(title: error.title, message: error.body)
                     }
                 }
+            }).disposed(by: disposeBag)
+        
+        NotificationCenter.default.rx.notification(.MessageDidSave)
+            .map { _ in DefaultsStorage.savedMessagesCount }
+            .filter { $0 > 0 && $0 % 1 == 0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.resignFirstResponder()
+                SKStoreReviewController.requestReview()
             }).disposed(by: disposeBag)
     }
     

@@ -5,7 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,17 +15,21 @@
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiX-hQ-lWR" customClass="SwiftyUIView" customModule="SwiftyKit">
+                    <rect key="frame" x="0.0" y="10" width="190" height="190"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lp4-xJ-sf8">
-                    <rect key="frame" x="10" y="49" width="180" height="102.5"/>
+                    <rect key="frame" x="10" y="51" width="170" height="98.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DS4-KS-WWS">
-                            <rect key="frame" x="54" y="0.0" width="72" height="72"/>
+                            <rect key="frame" x="51" y="0.0" width="68" height="68"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="DS4-KS-WWS" secondAttribute="height" id="ABP-vn-ajS"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="vgg-7p-NXf">
-                            <rect key="frame" x="52" y="82" width="76.5" height="20.5"/>
+                            <rect key="frame" x="47" y="78" width="76.5" height="20.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Message*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7M-LI-koJ">
                                     <rect key="frame" x="0.0" y="0.0" width="76.5" height="20.5"/>
@@ -41,11 +45,11 @@
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xd-Oy-cdv" customClass="HorizontalCapsule" customModule="SwiftyKit">
-                    <rect key="frame" x="175" y="0.0" width="25" height="25"/>
+                    <rect key="frame" x="170" y="0.0" width="30" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQw-mP-BJU">
-                            <rect key="frame" x="2" y="2" width="21" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <rect key="frame" x="2" y="2" width="26" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -57,34 +61,41 @@
                         <constraint firstAttribute="bottom" secondItem="QQw-mP-BJU" secondAttribute="bottom" constant="2" id="J9u-6Y-Odg"/>
                         <constraint firstAttribute="trailing" secondItem="QQw-mP-BJU" secondAttribute="trailing" constant="2" id="N26-n3-zr5"/>
                         <constraint firstItem="QQw-mP-BJU" firstAttribute="top" secondItem="2Xd-Oy-cdv" secondAttribute="top" constant="2" id="U5K-5E-68y"/>
-                        <constraint firstAttribute="height" constant="25" id="jhr-nm-los"/>
+                        <constraint firstAttribute="height" constant="30" id="jhr-nm-los"/>
                     </constraints>
                 </view>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="KGq-se-zoD"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="lp4-xJ-sf8" secondAttribute="trailing" constant="10" id="EmK-nv-TAk"/>
+                <constraint firstItem="HiX-hQ-lWR" firstAttribute="trailing" secondItem="lp4-xJ-sf8" secondAttribute="trailing" constant="10" id="EmK-nv-TAk"/>
                 <constraint firstItem="lp4-xJ-sf8" firstAttribute="leading" secondItem="Gbl-G2-IEj" secondAttribute="leading" constant="10" id="H5r-cU-huR"/>
+                <constraint firstItem="HiX-hQ-lWR" firstAttribute="top" secondItem="Gbl-G2-IEj" secondAttribute="top" constant="10" id="HJU-zQ-86N"/>
                 <constraint firstAttribute="trailing" secondItem="2Xd-Oy-cdv" secondAttribute="trailing" id="SpT-LL-bmj"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lp4-xJ-sf8" secondAttribute="bottom" constant="10" id="Yb2-bz-sO0"/>
+                <constraint firstItem="HiX-hQ-lWR" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lp4-xJ-sf8" secondAttribute="bottom" constant="10" id="Yb2-bz-sO0"/>
                 <constraint firstItem="lp4-xJ-sf8" firstAttribute="centerY" secondItem="Gbl-G2-IEj" secondAttribute="centerY" id="gPJ-iu-De4"/>
+                <constraint firstItem="HiX-hQ-lWR" firstAttribute="bottom" secondItem="Gbl-G2-IEj" secondAttribute="bottom" id="pOP-t7-LG5"/>
+                <constraint firstAttribute="trailing" secondItem="HiX-hQ-lWR" secondAttribute="trailing" constant="10" id="tmp-AH-yyv"/>
                 <constraint firstItem="2Xd-Oy-cdv" firstAttribute="top" secondItem="Gbl-G2-IEj" secondAttribute="top" id="uK6-fZ-oRO"/>
-                <constraint firstItem="lp4-xJ-sf8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Gbl-G2-IEj" secondAttribute="top" constant="10" id="udX-US-hlQ"/>
+                <constraint firstItem="lp4-xJ-sf8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HiX-hQ-lWR" secondAttribute="top" constant="10" id="udX-US-hlQ"/>
+                <constraint firstItem="HiX-hQ-lWR" firstAttribute="leading" secondItem="Gbl-G2-IEj" secondAttribute="leading" id="wJb-e5-rmL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backgroundView" destination="HiX-hQ-lWR" id="PZT-PK-Wxd"/>
                 <outlet property="badgeLabel" destination="QQw-mP-BJU" id="qlF-tI-1di"/>
                 <outlet property="emojiImageView" destination="DS4-KS-WWS" id="5U6-0G-oeF"/>
                 <outlet property="messageLabel" destination="O7M-LI-koJ" id="Ols-p8-XB9"/>
                 <outlet property="stackView" destination="lp4-xJ-sf8" id="KDx-0F-W96"/>
             </connections>
-            <point key="canvasLocation" x="136.23188405797103" y="122.87946428571428"/>
+            <point key="canvasLocation" x="136.23188405797103" y="122.54464285714285"/>
         </view>
     </objects>
     <resources>
         <namedColor name="AccentColor">
-            <color red="0.16099999845027924" green="0.50199997425079346" blue="0.72500002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -116,7 +116,6 @@ class MessageViewController: BaseListViewController, FormViewController {
     }
 }
 
-#warning("Add remove category feature")
 extension MessageViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard case .category = sections[indexPath.section].items[indexPath.row] else {

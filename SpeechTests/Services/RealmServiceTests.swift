@@ -10,6 +10,7 @@ import XCTest
 
 class RealmServiceTests: RealmTestCase {
     // MARK: - Tests
+    // Messages
     func testAllMessageResult() {
         // Given
         let messages = ["iPhone", "iPad", "Mac"].map { Message(text: $0) }
@@ -88,6 +89,7 @@ class RealmServiceTests: RealmTestCase {
         XCTAssertEqual(realmService.mostUsedMessages(limit: 5).map { $0.text }, messages.reversed().map { $0.text })
     }
     
+    // Categories
     func testGetCategoriesWithoutParentResult() {
         // Given
         let categories = ["Apple", "Raspberry"].map { Speech.Category(name: $0) }
@@ -110,5 +112,23 @@ class RealmServiceTests: RealmTestCase {
         
         // Then
         XCTAssertEqual(realmService.getSubCategoriesResult(parent: fruitCategory).count, 2)
+    }
+    
+    func testMostUsedCategories() {
+        // Given
+        let categories = ["iPhone", "iPad", "Mac", "Watch", "TV"].map { Speech.Category(name: $0) }
+        let messages = ["iPhone 13 Pro", "iPad mini", "Macbook Pro", "Watch SERIES 7", "Apple TV 4K"].map { Message(text: $0) }
+        Array(zip(categories, messages)).forEach { $1.category = $0 }
+        
+        // When
+        realmService.addObjects(messages)
+        messages.enumerated().forEach { offset, message in
+            for _ in 0..<offset {
+                message.incrementNumberOfUse()
+            }
+        }
+        
+        // Then
+        XCTAssertEqual(realmService.mostUsedCategories(limit: 5).map { $0.name }, categories.reversed().map { $0.name })
     }
 }

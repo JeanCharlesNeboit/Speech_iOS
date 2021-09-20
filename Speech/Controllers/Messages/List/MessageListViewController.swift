@@ -107,16 +107,8 @@ class MessageListViewController: AbstractViewController {
         return searchController
     }()
     
-    private lazy var listTableView: TableView = {
+    private lazy var tableView: TableView = {
         let tableView = TableView()
-        tableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
-        return tableView
-    }()
-    
-    private lazy var gridTableView: TableView = {
-        let tableView = TableView(style: .grouped)
-        tableView.separatorStyle = .none
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         return tableView
@@ -161,11 +153,10 @@ class MessageListViewController: AbstractViewController {
     
     // MARK: - Observe
     private func observeSections() {
-        viewModel.$messageSections
+        viewModel.$sections
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.listTableView.isHidden = $0.isEmpty
-                self.gridTableView.isHidden = $0.isEmpty
+                self.tableView.isHidden = $0.isEmpty
                 self.emptyContainerView.isHidden = !$0.isEmpty
             }).disposed(by: disposeBag)
     }
@@ -174,23 +165,15 @@ class MessageListViewController: AbstractViewController {
         DefaultsStorage.$preferredMessageDisplayMode.subscribe(onNext: { [weak self] mode in
             guard let self = self else { return }
             self.layoutModeBarButtonItem.image = mode.image
-            self.contentStackView.removeAllArrangedSubviews()
-            switch mode {
-            case .list:
-                self.contentStackView.addArrangedSubview(self.listTableView)
-            case .grid:
-                self.contentStackView.addArrangedSubview(self.gridTableView)
-            }
         }).disposed(by: disposeBag)
     }
     
     // MARK: - Configure
     override func configure() {
         super.configure()
+        self.contentStackView.addArrangedSubview(self.tableView)
         observeSections()
-        observeDisplayMode()
         configureSearch()
-        configureTableView()
         configureCollectionView()
         configureKeyboard()
     }
@@ -216,31 +199,8 @@ class MessageListViewController: AbstractViewController {
             }).disposed(by: disposeBag)
     }
     
-    private func configureTableView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.MessageSection>(configureCell: { _, tableView, indexPath, message in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MessageTableViewCell.identifier, for: indexPath) as? MessageTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.configure(message: message, layout: .horizontal)
-            return cell
-        }, titleForHeaderInSection: { sections, indexPath -> String? in
-            return sections.sectionModels[indexPath].model.header
-        })
-        
-        viewModel.$messageSections
-            .bind(to: listTableView.rx.items(dataSource: dataSource))
-            .disposed(by: disposeBag)
-        
-        listTableView.rx.modelSelected(Message.self)
-            .subscribe(onNext: { [weak self] message in
-                guard let self = self,
-                      case let message = message else { return }
-                self.viewModel.onTap(message: message)
-            }).disposed(by: disposeBag)
-    }
-    
     private func configureCollectionView() {
-        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.CategorySection>(configureCell: { _, tableView, indexPath, dataSource in
+        let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.Section>(configureCell: { _, tableView, indexPath, dataSource in
             switch dataSource {
             case .message(let message):
                 guard let cell: MessageTableViewCell = tableView.dequeueReusableCell(for: indexPath) else {
@@ -264,16 +224,20 @@ class MessageListViewController: AbstractViewController {
             return sections.sectionModels[indexPath].model.header
         })
         
-        viewModel.$categorySections
-            .bind(to: gridTableView.rx.items(dataSource: dataSource))
+        viewModel.$sections
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        gridTableView.rx.modelSelected(ViewModel.DataSource.self)
+        tableView.rx.modelSelected(ViewModel.DataSource.self)
             .subscribe(onNext: { [weak self] dataSource in
                 guard let self = self else { return }
                 switch dataSource {
                 case .message(let message):
                     self.viewModel.onTap(message: message)
+                    if UIDevice.current.isPhone,
+                       DefaultsStorage.closeMessageViewWhenMessageSelected {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 case .categories(_):
                     break
                 }
@@ -283,8 +247,8 @@ class MessageListViewController: AbstractViewController {
     private func configureKeyboard() {
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardVisibleHeight in
-                self?.listTableView.contentInset.bottom = keyboardVisibleHeight
-                self?.listTableView.scrollIndicatorInsets.bottom = keyboardVisibleHeight
+                self?.tableView.contentInset.bottom = keyboardVisibleHeight
+                self?.tableView.scrollIndicatorInsets.bottom = keyboardVisibleHeight
             }).disposed(by: disposeBag)
     }
     
@@ -297,11 +261,11 @@ class MessageListViewController: AbstractViewController {
 
 extension MessageListViewController: UITableViewDelegate {    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard tableView == listTableView else {
+        let dataSouce = self.viewModel.sections[safe: indexPath.section]?.items[safe: indexPath.row]
+        guard case .message(let message) = dataSouce else {
             // return empty UISwipeActionsConfiguration instead of nil, because nil create delete action automatically !
             return UISwipeActionsConfiguration()
         }
-        guard let message = self.viewModel.messageSections[safe: indexPath.section]?.items[safe: indexPath.row] else { return nil }
         
         let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, _ in
             guard let self = self else { return }
@@ -321,3 +285,6 @@ extension MessageListViewController: UITableViewDelegate {
         return configuration
     }
 }
+
+
+#warning("Manage keyboard content insets")

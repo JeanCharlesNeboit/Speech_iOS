@@ -43,4 +43,7 @@ class DefaultsStorage {
     
     @UserDefault(key: UserDefaultsKeys.saveMessagesQuickly())
     static var replaceTextWhenMessageSelected: Bool = true
+    
+    @UserDefault(key: UserDefaultsKeys.closeMessageViewWhenMessageSelected())
+    static var closeMessageViewWhenMessageSelected: Bool = true
 }

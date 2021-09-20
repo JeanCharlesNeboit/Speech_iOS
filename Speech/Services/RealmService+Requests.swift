@@ -5,6 +5,7 @@
 //  Created by Jean-Charles Neboit on 16/09/2021.
 //
 
+import Foundation
 import RealmSwift
 
 extension RealmService {    
@@ -13,6 +14,7 @@ extension RealmService {
             completion(result)
             if case .success = result {
                 DefaultsStorage.savedMessagesCount += 1
+                NotificationCenter.default.post(name: .MessageDidSave, object: nil)
             }
         }
     }
@@ -75,7 +77,7 @@ extension RealmService {
         Array(getCategoriesWithoutParentResult()
             .toArray()
             .sorted(by: { lhs, rhs in
-                return lhs.numberOfUse < rhs.numberOfUse
+                return lhs.numberOfUse > rhs.numberOfUse
             }).prefix(limit))
     }
 }

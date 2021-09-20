@@ -28,6 +28,7 @@ class CategoriesListViewModel: AbstractViewModel {
         self.mode = mode
         super.init()
         
+        #warning("Listen categories change to update sub categories count")
         let categoriesResultsObservable = Observable.collection(from: realmService.getCategories(parent: parentCategory))
         Observable.combineLatest($search, categoriesResultsObservable)
             .subscribe { search, categoriesResult in
@@ -44,5 +45,6 @@ class CategoriesListViewModel: AbstractViewModel {
     // MARK: -
     func onDelete(category: Category) {
         realmService.deleteObject(category)
+        realmService.deleteObjects(category.subCategories)
     }
 }

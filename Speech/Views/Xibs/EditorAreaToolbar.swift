@@ -8,6 +8,7 @@
 import UIKit
 import SwiftyKit
 
+#warning("Make it subview instead of accessory view")
 class EditorAreaToolbar: AbstractView {
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView! {
@@ -24,7 +25,7 @@ class EditorAreaToolbar: AbstractView {
             clearButton.setTitle(SwiftyAssets.Strings.generic_clear, for: .normal)
             clearButton.rx.tap
                 .subscribe(onNext: { _ in
-                    NotificationCenter.default.post(name: Notification.Name.editorAreaClearText, object: nil)
+                    NotificationCenter.default.post(name: .EditorAreaClearText, object: nil)
                 }).disposed(by: disposeBag)
         }
     }
@@ -36,7 +37,7 @@ class EditorAreaToolbar: AbstractView {
             saveButton.setTitle(SwiftyAssets.Strings.generic_save, for: .normal)
             saveButton.rx.tap
                 .subscribe(onNext: { _ in
-                    NotificationCenter.default.post(name: Notification.Name.editorAreaSaveText, object: nil)
+                    NotificationCenter.default.post(name: .EditorAreaSaveText, object: nil)
                 }).disposed(by: disposeBag)
         }
     }
@@ -49,7 +50,7 @@ class EditorAreaToolbar: AbstractView {
         stopButton.setImage(SwiftyAssets.UIImages.stop_circle.withRenderingMode(.alwaysTemplate), for: .normal)
         stopButton.rx.tap
             .subscribe(onNext: { _ in
-                NotificationCenter.default.post(name: Notification.Name.editorAreaStopSpeaking, object: nil)
+                NotificationCenter.default.post(name: .EditorAreaStopSpeaking, object: nil)
             }).disposed(by: disposeBag)
         return stopButton
     }()
@@ -59,7 +60,7 @@ class EditorAreaToolbar: AbstractView {
         pauseButton.setImage(SwiftyAssets.UIImages.pause_circle.withRenderingMode(.alwaysTemplate), for: .normal)
         pauseButton.rx.tap
             .subscribe(onNext: { _ in
-                NotificationCenter.default.post(name: Notification.Name.editorAreaPauseSpeaking, object: nil)
+                NotificationCenter.default.post(name: .EditorAreaPauseSpeaking, object: nil)
             }).disposed(by: disposeBag)
         return pauseButton
     }()
@@ -70,9 +71,9 @@ class EditorAreaToolbar: AbstractView {
         playButton.rx.tap
             .subscribe(onNext: { _ in
                 if SpeechSynthesizerService.shared.state == .pause {
-                    NotificationCenter.default.post(name: Notification.Name.editorAreaContinueSpeaking, object: nil)
+                    NotificationCenter.default.post(name: .EditorAreaContinueSpeaking, object: nil)
                 } else {
-                    NotificationCenter.default.post(name: Notification.Name.editorAreaStartSpeaking, object: nil)
+                    NotificationCenter.default.post(name: .EditorAreaStartSpeaking, object: nil)
                 }
             }).disposed(by: disposeBag)
         return playButton
