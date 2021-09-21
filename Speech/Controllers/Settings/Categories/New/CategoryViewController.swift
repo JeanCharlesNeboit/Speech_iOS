@@ -17,14 +17,7 @@ class CategoryViewController: BaseListViewController, FormViewController {
             createButton.setTitle(viewModel.mode.saveTitle)
             createButton.rx.tap
                 .subscribe(onNext: { [weak self] in
-                    self?.viewModel.onCreate { [weak self] result in
-                        switch result {
-                        case .success():
-                            self?.dismiss(animated: true, completion: nil)
-                        case .failure(_):
-                            break
-                        }
-                    }
+                    self?.onValidate()
                 }).disposed(by: disposeBag)
         }
     }
@@ -80,5 +73,17 @@ class CategoryViewController: BaseListViewController, FormViewController {
                         })
                     ])
             ]
+    }
+    
+    // MARK: -
+    private func onValidate() {
+        viewModel.onValidate { [weak self] result in
+            switch result {
+            case .success():
+                self?.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                self?.showError(title: error.title, message: error.body)
+            }
+        }
     }
 }

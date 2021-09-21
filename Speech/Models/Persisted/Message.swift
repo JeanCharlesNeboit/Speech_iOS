@@ -35,22 +35,8 @@ class Message: Object {
     }
 }
 
-extension Message: Searchable {
+extension Message: Sortable {
     var searchText: String {
         text
-    }
-}
-
-extension Collection where Iterator.Element: Message {
-    func sortedByAlphabeticalOrder() -> [Message] {
-        sorted(by: { lhs, rhs -> Bool in
-            lhs.text.diacriticInsensitive < rhs.text.diacriticInsensitive
-        })
-    }
-    
-    func sortedByAddedDateOrder() -> [Message] {
-        sorted(by: { lhs, rhs -> Bool in
-            lhs.addedDate > rhs.addedDate
-        })
     }
 }

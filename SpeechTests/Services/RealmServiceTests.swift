@@ -6,11 +6,33 @@
 //
 
 import XCTest
+import RxSwift
 @testable import Speech
 
 class RealmServiceTests: RealmTestCase {
     // MARK: - Tests
     // Messages
+    func testSaveMessage() {
+        // Given
+        let disposeBag = DisposeBag()
+        let notificationRaiseExpectation = XCTestExpectation()
+        let savedMessagesCount = DefaultsStorage.savedMessagesCount
+        let message = Message(text: "Apple")
+        
+        // When
+        NotificationCenter.default.rx.notification(.MessageDidSave)
+            .subscribe(onNext: { _ in
+                notificationRaiseExpectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        realmService.save(message: message) { _ in }
+        
+        // Then
+        XCTAssertEqual(realmService.allMessagesResult().first?.text, "Apple")
+        XCTAssertEqual(DefaultsStorage.savedMessagesCount, savedMessagesCount + 1)
+        wait(for: [notificationRaiseExpectation], timeout: 1)
+    }
+    
     func testAllMessageResult() {
         // Given
         let messages = ["iPhone", "iPad", "Mac"].map { Message(text: $0) }
@@ -71,6 +93,17 @@ class RealmServiceTests: RealmTestCase {
         // Then
         XCTAssertTrue(realmService.doesMessageAlreadyExist(text: "iPhone"))
         XCTAssertFalse(realmService.doesMessageAlreadyExist(text: "iPad"))
+    }
+    
+    func testDoesMessageAlreadyExistWithWhitespaces() {
+        // Given
+        let message = Message(text: "iPhone")
+        
+        // When
+        realmService.addObject(message)
+        
+        // Then
+        XCTAssertTrue(realmService.doesMessageAlreadyExist(text: " iPhone  "))
     }
     
     func testMostUsedMessages() {

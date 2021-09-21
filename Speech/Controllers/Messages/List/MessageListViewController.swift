@@ -81,7 +81,7 @@ class MessageListViewController: AbstractViewController {
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             SortMode.allCases.forEach { sortMode in
-                let title = sortMode.name + (sortMode == self.viewModel.sortMode ? " ✔︎" : "")
+                let title = (sortMode == self.viewModel.sortMode ? "✔︎ " : "") + sortMode.name
                 let action = UIAlertAction(title: title, style: .default, handler: { _ in
                     self.viewModel.sortMode = sortMode
                 })
@@ -246,9 +246,9 @@ class MessageListViewController: AbstractViewController {
     
     private func configureKeyboard() {
         RxKeyboard.instance.visibleHeight
-            .drive(onNext: { [weak self] keyboardVisibleHeight in
-                self?.tableView.contentInset.bottom = keyboardVisibleHeight
-                self?.tableView.scrollIndicatorInsets.bottom = keyboardVisibleHeight
+            .drive(onNext: { [unowned self] keyboardVisibleHeight in
+                let bottomContentInset = keyboardVisibleHeight - self.view.safeAreaInsets.bottom
+                self.additionalSafeAreaInsets.bottom = bottomContentInset
             }).disposed(by: disposeBag)
     }
     
@@ -285,6 +285,5 @@ extension MessageListViewController: UITableViewDelegate {
         return configuration
     }
 }
-
 
 #warning("Manage keyboard content insets")

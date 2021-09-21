@@ -67,23 +67,40 @@ class MessageViewModel: AbstractViewModel, MessageViewModelProtocol {
     }
     
     // MARK: -
-    func onValidate(onCompletion: @escaping ((Result<Void, Error>) -> Void)) {
+    func onValidate(onCompletion: @escaping ((Result<Void, SpeechError>) -> Void)) {
         guard !message.isEmptyOrNil else { return }
         let trimmedMessage = message.strongValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         switch mode {
         case .creation:
-            #warning("Show error in controller & check id to avoid duplication by editing")
             if case .failure(let error) = canMessageBeSaved(text: trimmedMessage) {
-                onCompletion(.failure(error))
+                onCompletion(.failure(.localized(error)))
                 return
             }
             
             let message = Message(emoji: emoji,
                                   text: trimmedMessage,
                                   category: category)
-            realmService.save(message: message, completion: onCompletion)
+            realmService.save(message: message) { result in
+                switch result {
+                case .success():
+                    onCompletion(.success(()))
+                case .failure(let error):
+                    onCompletion(.failure(.localized(error.toLocalizableError)))
+                }
+            }
         case .edition(let message):
+            if case .failure(let error) = canMessageBeSaved(text: trimmedMessage) {
+                if error == MessageError.duplication,
+                   let messageId = realmService.getMessage(text: trimmedMessage)?.id,
+                   messageId == message.id {
+                    // Allow
+                } else {
+                    onCompletion(.failure(.localized(error)))
+                    return
+                }
+            }
+            
             realmService.write {
                 message.emoji = emoji
                 message.text = trimmedMessage

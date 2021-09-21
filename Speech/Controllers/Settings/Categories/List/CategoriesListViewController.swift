@@ -70,6 +70,19 @@ class CategoriesListViewController: BaseListViewController {
     
     private lazy var searchController = SearchController()
     private lazy var emptyView: EmptyView = .loadFromXib()
+    
+    private lazy var selectBarButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Use*", style: .done, target: nil, action: nil)
+        button.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            if case .selection(let onSelection) = self.viewModel.mode,
+               let category = self.viewModel.parentCategory {
+                onSelection(category)
+            }
+            
+        }).disposed(by: disposeBag)
+        return button
+    }()
 
     // MARK: - Initialization
     init(viewModel: ViewModel) {
@@ -109,6 +122,11 @@ class CategoriesListViewController: BaseListViewController {
     private func configureNavigationItem() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        if case .selection = viewModel.mode,
+           viewModel.parentCategory != nil {
+            navigationItem.rightBarButtonItem = selectBarButtonItem
+        }
     }
     
     private func configureSearch() {
@@ -179,6 +197,7 @@ class CategoriesListViewController: BaseListViewController {
             .asObservable()
             .subscribe(onNext: { [weak self] height in
                 guard let self = self else { return }
+                #warning("Update to additional safe area insets")
                 let keyboardBottomContentInset = height - self.view.safeAreaInsets.bottom
                 let buttonBottomContentInset = UIView.getBottomContentInset(view: self.addButton, bottomConstraint: self.addButtonBottomConstraint)
                 self.tableView.setBottomContentInset(max(keyboardBottomContentInset, buttonBottomContentInset))

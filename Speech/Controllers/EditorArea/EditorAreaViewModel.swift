@@ -18,7 +18,7 @@ class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
     override init() {
         super.init()
         
-        if environmentService.isDev && !environmentService.isTest {
+        if environmentService.isDebug && !environmentService.isTest && false {
             text = "Bonjour"
         }
         
@@ -35,7 +35,7 @@ class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
                       let message = notification.object as? Message else { return }
                 message.incrementNumberOfUse()
                 
-                if DefaultsStorage.replaceTextWhenMessageSelected {
+                if DefaultsStorage.replaceTextWhenMessageSelected || self.text.isEmptyOrNil {
                     self.text = message.text
                 } else {
                     self.text = self.text.strongValue + " \(message.text)"
@@ -51,9 +51,9 @@ class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
         realmService.save(message: message, completion: onCompletion)
     }
     
-    func startSpeaking(keyboardLanguage: String?, onCompletion: @escaping ((Result<Void, MessageError>) -> Void)) {
+    func startSpeaking(keyboardLanguage: String?, onCompletion: @escaping ((Result<Void, SpeechError>) -> Void)) {
         guard let text = text.nilIfEmpty else {
-            onCompletion(.failure(.empty))
+            onCompletion(.failure(.localized(MessageError.empty)))
             return
         }
         

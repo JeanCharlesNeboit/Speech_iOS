@@ -44,6 +44,8 @@
 		7E47AFD5261F860200BA175E /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AFD4261F860200BA175E /* UIFontExtension.swift */; };
 		7E47AFE72620CC6200BA175E /* Firebase in Resources */ = {isa = PBXBuildFile; fileRef = 7E47AFE62620CC6200BA175E /* Firebase */; };
 		7E47AFEB2620CE7800BA175E /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AFEA2620CE7800BA175E /* FirebaseService.swift */; };
+		7E4E0B1326FA613700553BB5 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E0B1226FA613700553BB5 /* Sortable.swift */; };
+		7E4E0B1526FA7A2800553BB5 /* SpeechError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E0B1426FA7A2800553BB5 /* SpeechError.swift */; };
 		7E56F11326B44D19000D6B04 /* EnvironmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E56F11226B44D19000D6B04 /* EnvironmentService.swift */; };
 		7E56F11626B451CF000D6B04 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 7E56F11526B451CF000D6B04 /* RxDataSources */; };
 		7E56F11926B452E1000D6B04 /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 7E56F11826B452E1000D6B04 /* RxKeyboard */; };
@@ -212,6 +214,8 @@
 		7E47AFD4261F860200BA175E /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		7E47AFE62620CC6200BA175E /* Firebase */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Firebase; sourceTree = "<group>"; };
 		7E47AFEA2620CE7800BA175E /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		7E4E0B1226FA613700553BB5 /* Sortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sortable.swift; sourceTree = "<group>"; };
+		7E4E0B1426FA7A2800553BB5 /* SpeechError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechError.swift; sourceTree = "<group>"; };
 		7E56F11226B44D19000D6B04 /* EnvironmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentService.swift; sourceTree = "<group>"; };
 		7E5AEE1326120B85008E024C /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		7E5AEE1726120E56008E024C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				7E21117F26E6C04E00916417 /* Searchable.swift */,
+				7E4E0B1226FA613700553BB5 /* Sortable.swift */,
 				7EF0F81926DE301E000616E1 /* FormViewController.swift */,
 			);
 			path = Protocols;
@@ -525,6 +530,7 @@
 		7E7E6ECE26F4E34F00834F48 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
+				7E4E0B1426FA7A2800553BB5 /* SpeechError.swift */,
 				7E7E6ECF26F4E35C00834F48 /* MessageError.swift */,
 			);
 			path = Errors;
@@ -1221,6 +1227,7 @@
 				7EE1F27F262CB74200537240 /* RxBehaviorSubject.swift in Sources */,
 				7EAE4F8D26B33F1C00088655 /* MessageContentView.swift in Sources */,
 				7E21118026E6C04E00916417 /* Searchable.swift in Sources */,
+				7E4E0B1326FA613700553BB5 /* Sortable.swift in Sources */,
 				7ECE53AB26B0AE1D00BE28B5 /* CategoryViewModel.swift in Sources */,
 				7E47AFC0261DC4FD00BA175E /* SwiftyColors.swift in Sources */,
 				7E9058D526284A3D0082F057 /* CharacterExtension.swift in Sources */,
@@ -1247,6 +1254,7 @@
 				7EE1F27C262CB70800537240 /* RxUserDefault.swift in Sources */,
 				7E5AEE3226126A46008E024C /* SwiftyStrings.swift in Sources */,
 				7E5B64782614D27300F39BF3 /* SpeechSynthesizerService.swift in Sources */,
+				7E4E0B1526FA7A2800553BB5 /* SpeechError.swift in Sources */,
 				7EF83F84260F49EC00E53A70 /* AbstractViewController.swift in Sources */,
 				7EE1F284262DEA9A00537240 /* CategoryTableViewCell.swift in Sources */,
 				7E5AEE3E2613838E008E024C /* RealmObserver.swift in Sources */,

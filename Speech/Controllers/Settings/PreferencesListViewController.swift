@@ -93,7 +93,7 @@ class PreferencesListViewController: BaseListViewController {
                           })
                 ),
                 UIDevice.current.isPhone ? .switchChoice(
-                    .init(title: "Automatically close message view when a message is selected*",
+                    .init(title: SwiftyAssets.Strings.preferences_close_message_view_when_message_selected,
                           initialValue: DefaultsStorage.replaceTextWhenMessageSelected,
                           onSwitch: { value in
                             DefaultsStorage.closeMessageViewWhenMessageSelected = value

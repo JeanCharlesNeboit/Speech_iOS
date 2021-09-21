@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum MessageError: Error {
+enum MessageError: LocalizableError {
     case empty
     case duplication
     
-    var title: String {
+    var title: String? {
         switch self {
         case .empty:
             return SwiftyAssets.Strings.editor_area_empty_text_on_save_title

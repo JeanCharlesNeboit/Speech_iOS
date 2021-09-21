@@ -27,6 +27,10 @@ extension RealmService {
         }
     }
     
+    func getMessage(text: String) -> Message? {
+        allMessagesResult().first(where: { $0.text == text })
+    }
+    
     func allMessagesResult() -> Results<Message> {
         all(Message.self)
     }
@@ -44,7 +48,7 @@ extension RealmService {
     }
     
     func doesMessageAlreadyExist(text: String) -> Bool {
-        return allMessagesResult().contains(where: { $0.text == text })
+        return allMessagesResult().contains(where: { $0.text == text.trimmingCharacters(in: .whitespacesAndNewlines) })
     }
     
     func mostUsedMessages(limit: Int) -> [Message] {
@@ -56,6 +60,14 @@ extension RealmService {
 }
 
 extension RealmService {
+    func allCategoriesResult() -> Results<Category> {
+        all(Category.self)
+    }
+    
+    func getCategory(name: String) -> Category? {
+        allCategoriesResult().first(where: { $0.name == name })
+    }
+    
     func getCategories(parent category: Category?) -> Results<Category> {
         if let category = category {
             return getSubCategoriesResult(parent: category)
@@ -71,6 +83,10 @@ extension RealmService {
     func getSubCategoriesResult(parent category: Category) -> Results<Category> {
         all(Category.self)
             .filter("\(#keyPath(Category.parentCategory)) == %@", category)
+    }
+    
+    func doesCategoryAlreadyExist(name: String) -> Bool {
+        return allCategoriesResult().contains(where: { $0.name == name.trimmingCharacters(in: .whitespacesAndNewlines) })
     }
     
     func mostUsedCategories(limit: Int) -> [Category] {

@@ -235,8 +235,12 @@ preferences_show_frequently_used_messages:
     en: Show frequently used messages
     
 preferences_replace_text_when_message_selected:
-    fr: Remplacer le texte lors de la selection d'un message
+    fr: Remplacer le texte lors de la sélection d'un message
     en: Replace the text when selecting a message
+    
+preferences_close_message_view_when_message_selected:
+    fr: Fermer automatiquement la vue des messages lors de la sélection d'un message
+    en: Automatically close message view when a message is selected
     
 ## Categories list
 categories_list_empty_title:

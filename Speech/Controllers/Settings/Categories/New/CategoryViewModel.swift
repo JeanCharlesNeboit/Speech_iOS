@@ -50,16 +50,45 @@ class CategoryViewModel: AbstractViewModel {
     }
     
     // MARK: -
-    func onCreate(onCompletion: ((Result<Void, Error>) -> Void)) {
+    #warning("ToDo")
+    func canMessageBeSaved(name: String?) -> Result<String, MessageError> {
+        guard let name = name.nilIfEmpty else {
+            return .failure(MessageError.empty)
+        }
+        guard !realmService.doesCategoryAlreadyExist(name: name) else {
+            return .failure(MessageError.duplication)
+        }
+        return .success(name)
+    }
+    
+    func onValidate(onCompletion: ((Result<Void, SpeechError>) -> Void)) {
         guard !name.isEmptyOrNil else { return }
+        let trimmedName = name.strongValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
         switch mode {
         case .creation(let parentCategory):
+            if case .failure(let error) = canMessageBeSaved(name: trimmedName) {
+                onCompletion(.failure(.localized(error)))
+                return
+            }
+            
             let category = Category(name: name.strongValue,
                                     emoji: emoji,
                                     parentCategory: parentCategory)
             realmService.addObject(category)
         case .edition(let category):
+            #warning("Check for subcategories")
+            if case .failure(let error) = canMessageBeSaved(name: trimmedName) {
+                if error == MessageError.duplication,
+                   let categoryId = realmService.getCategory(name: trimmedName)?.id,
+                   categoryId == category.id {
+                    // Allow
+                } else {
+                    onCompletion(.failure(.localized(error)))
+                    return
+                }
+            }
+            
             realmService.write {
                 category.name = name.strongValue
                 category.emoji = emoji

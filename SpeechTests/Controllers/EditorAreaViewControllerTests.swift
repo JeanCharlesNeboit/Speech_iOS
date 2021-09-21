@@ -18,6 +18,7 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
     override func setUp() {
         super.setUp()
         DefaultsStorage.welcomeDone = true
+        DefaultsStorage.replaceTextWhenMessageSelected = true
         sut = EditorAreaViewController()
     }
     
@@ -89,5 +90,48 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
         XCTAssertFalse(textView.isPlaceholderActive)
         XCTAssertEqual(sut.viewModel.text, textView.text)
         XCTAssertEqual(textView.textColor, .text)
+    }
+    
+    func testEditorAreaAppendTextNotificationWithReplaceFeature() {
+        // Given
+        let message = Message(text: "Apple")
+        let messageViewModel = MessageListViewModel(category: nil)
+        
+        // When
+        showViewController()
+        sut.viewModel.text = "Big Brother"
+        messageViewModel.onTap(message: message)
+        
+        // Then
+        XCTAssertEqual(textView.text, "Apple")
+    }
+    
+    func testEditorAreaAppendTextNotification() {
+        // Given
+        DefaultsStorage.replaceTextWhenMessageSelected = false
+        let message = Message(text: "Apple")
+        let messageViewModel = MessageListViewModel(category: nil)
+        
+        // When
+        showViewController()
+        messageViewModel.onTap(message: message)
+        
+        // Then
+        XCTAssertEqual(textView.text, "Apple")
+    }
+    
+    func testEditorAreaAppendTextNotificationWithNotEmptyTextView() {
+        // Given
+        DefaultsStorage.replaceTextWhenMessageSelected = false
+        let message = Message(text: "World !")
+        let messageViewModel = MessageListViewModel(category: nil)
+        
+        // When
+        showViewController()
+        sut.viewModel.text = "Hello"
+        messageViewModel.onTap(message: message)
+        
+        // Then
+        XCTAssertEqual(textView.text, "Hello World !")
     }
 }

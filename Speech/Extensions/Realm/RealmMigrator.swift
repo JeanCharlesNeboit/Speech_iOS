@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class RealmMigrator {
-    static let currentSchemaVersion: UInt64 = 13
+    static let currentSchemaVersion: UInt64 = 14
     
     static private func migrationBlock(migration: Migration, oldSchemaVersion: UInt64) {
         if oldSchemaVersion < 1 {

@@ -38,8 +38,8 @@ extension UIViewController {
 }
 
 extension AbstractViewController {
-    func showError(title: String, message: String) {
-        showMessageCardView(title: title, body: message, theme: .error)
+    func showError(title: String?, message: String) {
+        showMessageCardView(title: title.strongValue, body: message, theme: .error)
     }
     
     func showWarning(title: String, message: String) {

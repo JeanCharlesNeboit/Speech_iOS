@@ -10,9 +10,10 @@ import RealmSwift
 
 class Category: Object {
     // MARK: - Properties
-    @Persisted(primaryKey: true) private var id: String
+    @Persisted(primaryKey: true) private(set) var id: String
     @Persisted var name: String
     @Persisted var emoji: String?
+    @Persisted private(set) var addedDate: Date = Date()
     @objc @Persisted private(set) var parentCategory: Category?
     private var isEmptyCategory = false
     
@@ -53,7 +54,7 @@ class Category: Object {
     }
 }
 
-extension Category: Searchable {
+extension Category: Sortable {
     var searchText: String {
         name
     }

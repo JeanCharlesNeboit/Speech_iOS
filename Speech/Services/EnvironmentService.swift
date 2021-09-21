@@ -11,14 +11,6 @@ class EnvironmentService {
     // MARK: - Properties
     lazy var environment: [String: String] = ProcessInfo.processInfo.environment
     
-    var isDev: Bool {
-        #if DEV
-        return true
-        #else
-        return false
-        #endif
-    }
-    
     var isDebug: Bool {
         #if DEBUG
         return true
@@ -43,15 +35,13 @@ class EnvironmentService {
         #endif
     }
     
-    var additionalName: String {
+    var configurationName: String {
         #if DEBUG
-        return "👨‍💻"
+        return "debug"
         #elseif BETA
-        return "👩‍🔬"
-        #elseif RELEASE
-        return "📱"
+        return "beta"
         #else
-        return nil
+        return ""
         #endif
     }
 }

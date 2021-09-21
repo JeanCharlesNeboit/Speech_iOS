@@ -101,9 +101,14 @@ class MessageListViewModel: AbstractViewModel {
         if category == nil && !withoutCategory.messages.isEmpty {
             categories.append(withoutCategory)
         }
-        let filteredCategories = categories.filter(search: search)
+        var filteredCategories = categories.filter(search: search)
         
-        #warning("sortMode")
+        switch sortMode {
+        case .alphabetical:
+            filteredCategories = categories.sortedByAlphabeticalOrder()
+        case .addedDate:
+            filteredCategories = categories.sortedByAddedDateOrder()
+        }
         
         var sections = [Section]()
         if !filteredCategories.isEmpty || !messages.isEmpty {
@@ -120,8 +125,12 @@ class MessageListViewModel: AbstractViewModel {
             if sections.isEmpty {
                 defaultSectionHeader = nil
             }
-            sections.append(SectionModel(model: .init(header: defaultSectionHeader),
-                                         items: filteredCategories.chunked(into: self.gridColumn).map { .categories($0) }))
+            
+            let subCategories = filteredCategories.chunked(into: self.gridColumn)
+            if !subCategories.isEmpty {
+                sections.append(SectionModel(model: .init(header: defaultSectionHeader),
+                                             items: subCategories.map { .categories($0) }))
+            }
         }
         return sections
     }

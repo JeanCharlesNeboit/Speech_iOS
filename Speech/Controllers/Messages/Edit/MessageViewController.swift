@@ -108,11 +108,10 @@ class MessageViewController: BaseListViewController, FormViewController {
             switch result {
             case .success():
                 self?.dismiss(animated: true, completion: nil)
-            case .failure(_):
-                break
+            case .failure(let error):
+                self?.showError(title: error.title, message: error.body)
             }
         }
-        
     }
 }
 
