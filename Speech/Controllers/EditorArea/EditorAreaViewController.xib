@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditorAreaViewController" customModule="Speech" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="fNE-Yn-tVd" id="v0P-od-jB5"/>
+                <outlet property="toolbarBottomConstraint" destination="zfR-ME-LSb" id="h4Z-bY-zRA"/>
+                <outlet property="toolbarContainerView" destination="uR5-cz-YXB" id="1W3-Va-SjD"/>
+                <outlet property="toolbarWidthConstraint" destination="fUo-fi-arb" id="Knh-Tu-MhE"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ZVQ-wh-tiW"/>
             </connections>
         </placeholder>
@@ -21,20 +24,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fNE-Yn-tVd" customClass="TextView" customModule="Speech" customModuleProvider="target">
-                    <rect key="frame" x="20" y="20" width="728" height="984"/>
+                    <rect key="frame" x="20" y="40" width="728" height="964"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uR5-cz-YXB">
+                    <rect key="frame" x="184" y="954" width="400" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="400" id="fUo-fi-arb"/>
+                        <constraint firstAttribute="height" priority="250" constant="50" placeholder="YES" id="hOb-Gx-dFE"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fNE-Yn-tVd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="34E-Cz-fbb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fNE-Yn-tVd" secondAttribute="bottom" constant="20" id="5md-MX-KvE"/>
+                <constraint firstItem="uR5-cz-YXB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DjQ-JI-YLt"/>
                 <constraint firstItem="fNE-Yn-tVd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="QeS-6v-Xp2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fNE-Yn-tVd" secondAttribute="trailing" constant="20" id="jJc-1L-IMb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uR5-cz-YXB" secondAttribute="bottom" constant="20" id="zfR-ME-LSb"/>
             </constraints>
             <point key="canvasLocation" x="9" y="108"/>
         </view>

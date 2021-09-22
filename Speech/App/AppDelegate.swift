@@ -27,13 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // AVAudioSession
         AVAudioSessionService.default.set(category: .playback, mode: .spokenAudio)
         
+        // StoreReviewService
+        StoreReviewService.shared.configure()
+        
         // SwiftyKit
         SwiftyUIView.DefaultCornerRadius = 10
         
         // Window
         window = UIWindow()
         window?.set(rootViewController: LoadViewController())
-//        window?.set(rootViewController: UIViewController.main)
         
         return true
     }

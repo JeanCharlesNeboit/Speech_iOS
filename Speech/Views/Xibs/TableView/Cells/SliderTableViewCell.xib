@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YvK-3g-q6y">
-                        <rect key="frame" x="20" y="10" width="374" height="41"/>
+                        <rect key="frame" x="20" y="15.5" width="374" height="30"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="FVd-xb-0t4" customClass="SwitchSlider" customModule="SwiftyKit">
-                                <rect key="frame" x="-2" y="5.5" width="378" height="31"/>
+                                <rect key="frame" x="-2" y="0.0" width="378" height="31"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="step">
                                         <real key="value" value="0.0"/>
@@ -35,9 +35,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="YvK-3g-q6y" firstAttribute="centerY" secondItem="2QZ-6a-zDb" secondAttribute="centerY" id="4qI-H7-lzH"/>
                     <constraint firstItem="YvK-3g-q6y" firstAttribute="leading" secondItem="2QZ-6a-zDb" secondAttribute="leading" constant="20" id="GwX-Li-GSw"/>
-                    <constraint firstItem="YvK-3g-q6y" firstAttribute="top" secondItem="2QZ-6a-zDb" secondAttribute="top" constant="10" id="UrZ-Gr-sw0"/>
-                    <constraint firstAttribute="bottom" secondItem="YvK-3g-q6y" secondAttribute="bottom" constant="10" id="j9M-WA-8nD"/>
+                    <constraint firstItem="YvK-3g-q6y" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2QZ-6a-zDb" secondAttribute="top" constant="10" id="UrZ-Gr-sw0"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YvK-3g-q6y" secondAttribute="bottom" constant="10" id="j9M-WA-8nD"/>
                     <constraint firstAttribute="trailing" secondItem="YvK-3g-q6y" secondAttribute="trailing" constant="20" id="nBV-Vg-ROR"/>
                 </constraints>
             </tableViewCellContentView>

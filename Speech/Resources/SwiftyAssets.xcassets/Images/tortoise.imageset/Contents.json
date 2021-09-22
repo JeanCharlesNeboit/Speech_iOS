@@ -1,12 +1,23 @@
 {
-	"info" : {
-		"author" : "xcode",
-		"version" : 1
-	},
-	"images" : [
-		{
-			"filename" : "tortoise.svg",
-			"idiom" : "universal"
-		}
-	]
+  "images" : [
+    {
+      "filename" : "tortoise@1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "tortoise@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "tortoise@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
 }

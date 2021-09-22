@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageListViewController" customModule="Speech" customModuleProvider="target">
             <connections>
-                <outlet property="contentStackView" destination="9Va-vB-ZwB" id="vnR-0L-D4x"/>
                 <outlet property="emptyContainerView" destination="y4v-BB-EEn" id="Mrf-fg-7tI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,9 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9Va-vB-ZwB">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-BB-EEn">
                     <rect key="frame" x="41.5" y="348" width="331" height="200"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -35,12 +31,8 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
-                <constraint firstItem="9Va-vB-ZwB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="B02-eM-CQz"/>
-                <constraint firstItem="9Va-vB-ZwB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Dxr-Zt-s92"/>
                 <constraint firstItem="y4v-BB-EEn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L4l-V4-Zi9"/>
                 <constraint firstItem="y4v-BB-EEn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="eBf-x4-bL0"/>
-                <constraint firstAttribute="bottom" secondItem="9Va-vB-ZwB" secondAttribute="bottom" id="kQ7-xL-JKv"/>
-                <constraint firstItem="9Va-vB-ZwB" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="mfh-Z8-Tcs"/>
                 <constraint firstItem="y4v-BB-EEn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="tyx-nb-Pr8"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>

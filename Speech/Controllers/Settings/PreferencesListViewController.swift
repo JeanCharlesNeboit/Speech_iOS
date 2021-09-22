@@ -37,7 +37,7 @@ class PreferencesListViewController: BaseListViewController {
                           maximumValue: 1,
                           maximumIcon: .image(SwiftyAssets.UIImages.hare, .text),
                           initialValue: DefaultsStorage.preferredSpeakingRate,
-                          step: 0.1,
+                          step: 1/6,
                           onSlide: { value in
                             DefaultsStorage.preferredSpeakingRate = value
                           }

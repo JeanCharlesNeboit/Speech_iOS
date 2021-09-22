@@ -55,7 +55,6 @@ class MessageListViewController: AbstractViewController {
     }
     
     // MARK: - IBOutlets
-    @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var emptyContainerView: UIView! {
         didSet {
             emptyContainerView.addSubview(emptyView)
@@ -101,9 +100,9 @@ class MessageListViewController: AbstractViewController {
     
     private lazy var searchController: SearchController = {
         let searchController = SearchController(searchResultsController: nil)
-        if !isCollapsed {
-            searchController.searchBar.inputAccessoryView = EditorAreaToolbar.shared
-        }
+//        if !isCollapsed {
+//            searchController.searchBar.inputAccessoryView = EditorAreaToolbar.shared
+//        }
         return searchController
     }()
     
@@ -171,7 +170,9 @@ class MessageListViewController: AbstractViewController {
     // MARK: - Configure
     override func configure() {
         super.configure()
-        self.contentStackView.addArrangedSubview(self.tableView)
+        view.insertSubview(tableView, at: 0)
+        tableView.edgesToSuperview()
+        
         observeSections()
         configureSearch()
         configureCollectionView()
@@ -285,5 +286,3 @@ extension MessageListViewController: UITableViewDelegate {
         return configuration
     }
 }
-
-#warning("Manage keyboard content insets")

@@ -26,6 +26,38 @@ extension UIViewController {
 }
 
 extension UIViewController {
+    // https://www.advancedswift.com/animate-with-ios-keyboard-swift/#keyboardanimationcurveuserinfokey-and-uiviewpropertyanimator
+    func animateWithKeyboard(notification: Notification, animations: ((_ keyboardFrame: CGRect) -> Void)?) {
+        // Extract the duration of the keyboard animation
+        let durationKey = UIResponder.keyboardAnimationDurationUserInfoKey
+        guard let duration = notification.userInfo?[durationKey] as? Double else { return }
+        
+        // Extract the final frame of the keyboard
+        let frameKey = UIResponder.keyboardFrameEndUserInfoKey
+        guard let keyboardFrameValue = notification.userInfo?[frameKey] as? NSValue else { return }
+        
+        // Extract the curve of the iOS keyboard animation
+        let curveKey = UIResponder.keyboardAnimationCurveUserInfoKey
+        guard let curveValue = notification.userInfo?[curveKey] as? Int,
+              let curve = UIView.AnimationCurve(rawValue: curveValue) else { return }
+        
+        // Create a property animator to manage the animation
+        let animator = UIViewPropertyAnimator(
+            duration: duration,
+            curve: curve
+        ) {
+            // Perform the necessary animation layout updates
+            animations?(keyboardFrameValue.cgRectValue)
+            
+            // Required to trigger NSLayoutConstraint changes
+            // to animate
+            self.view?.layoutIfNeeded()
+        }
+        
+        // Start the animation
+        animator.startAnimation()
+    }
+    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -65,7 +97,7 @@ extension AbstractViewController {
         config.keyboardTrackingView = KeyboardTrackingView()
         config.duration = duration
         config.presentationStyle = presentationStyle
-        config.presentationContext = .window(windowLevel: .normal)
+        config.presentationContext = .viewController(self)
         
         SwiftMessages.show(config: config, view: cardView)
     }

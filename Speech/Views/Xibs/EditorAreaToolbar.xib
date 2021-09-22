@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,16 +16,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrI-Eq-UKL">
-                    <rect key="frame" x="20" y="0.0" width="374" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Mig-tw-gFH">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <color key="backgroundColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.50196078431372548" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <blurEffect style="regular"/>
                 </visualEffectView>
                 <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-Jb-yJh">
-                    <rect key="frame" x="20" y="0.0" width="374" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                     <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="bHc-n3-Qq1"/>
@@ -37,28 +37,28 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hK-Hc-EUo">
-                    <rect key="frame" x="40" y="10" width="334" height="40"/>
+                    <rect key="frame" x="20" y="10" width="374" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNk-xP-kaH">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNk-xP-kaH">
                             <rect key="frame" x="0.0" y="0.0" width="56" height="40"/>
                             <state key="normal" title="Effacer*"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R33-H9-Gps">
-                            <rect key="frame" x="56" y="0.0" width="86" height="40"/>
+                            <rect key="frame" x="56" y="0.0" width="106" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tR9-lm-85C">
-                            <rect key="frame" x="142" y="0.0" width="50" height="40"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tR9-lm-85C">
+                            <rect key="frame" x="162" y="0.0" width="50" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="tR9-lm-85C" secondAttribute="height" multiplier="1:1" priority="250" id="I5w-cl-GWr"/>
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwV-gn-TFH">
-                            <rect key="frame" x="192" y="0.0" width="60" height="40"/>
+                            <rect key="frame" x="212" y="0.0" width="80" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbA-Vv-EsU">
-                            <rect key="frame" x="252" y="0.0" width="82" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbA-Vv-EsU">
+                            <rect key="frame" x="292" y="0.0" width="82" height="40"/>
                             <state key="normal" title="Enregistrer*"/>
                         </button>
                     </subviews>
@@ -71,33 +71,20 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="WrI-Eq-UKL" firstAttribute="bottom" secondItem="Feg-Jb-yJh" secondAttribute="bottom" id="0XB-mm-twh"/>
-                <constraint firstItem="Feg-Jb-yJh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="2fS-a2-RIj"/>
+                <constraint firstItem="Feg-Jb-yJh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2fS-a2-RIj"/>
                 <constraint firstItem="8hK-Hc-EUo" firstAttribute="top" secondItem="Feg-Jb-yJh" secondAttribute="top" constant="10" id="32H-1W-V2c"/>
                 <constraint firstItem="Feg-Jb-yJh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GDD-Y2-Wzw"/>
                 <constraint firstItem="Feg-Jb-yJh" firstAttribute="trailing" secondItem="8hK-Hc-EUo" secondAttribute="trailing" constant="20" id="NII-Rc-gph"/>
-                <constraint firstAttribute="trailing" secondItem="Feg-Jb-yJh" secondAttribute="trailing" constant="20" id="RQL-yl-wDH"/>
+                <constraint firstAttribute="trailing" secondItem="Feg-Jb-yJh" secondAttribute="trailing" id="RQL-yl-wDH"/>
                 <constraint firstItem="Feg-Jb-yJh" firstAttribute="bottom" secondItem="8hK-Hc-EUo" secondAttribute="bottom" constant="10" id="URc-Vv-aq9"/>
                 <constraint firstItem="8hK-Hc-EUo" firstAttribute="leading" secondItem="Feg-Jb-yJh" secondAttribute="leading" constant="20" id="Vwq-LH-aaB"/>
                 <constraint firstItem="WrI-Eq-UKL" firstAttribute="leading" secondItem="Feg-Jb-yJh" secondAttribute="leading" id="YRb-04-KO6"/>
-                <constraint firstItem="dN5-jr-bQ2" firstAttribute="bottom" secondItem="Feg-Jb-yJh" secondAttribute="bottom" constant="20" id="bzt-8B-6gc"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Feg-Jb-yJh" secondAttribute="bottom" id="bzt-8B-6gc"/>
                 <constraint firstItem="WrI-Eq-UKL" firstAttribute="top" secondItem="Feg-Jb-yJh" secondAttribute="top" id="fVH-xB-hNz"/>
                 <constraint firstItem="WrI-Eq-UKL" firstAttribute="trailing" secondItem="Feg-Jb-yJh" secondAttribute="trailing" id="iay-SC-wMt"/>
-                <constraint firstItem="Feg-Jb-yJh" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="n73-h5-gDr"/>
                 <constraint firstItem="Feg-Jb-yJh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tmq-Qi-hcf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="n73-h5-gDr"/>
-                </mask>
-            </variation>
-            <variation key="heightClass=regular-widthClass=regular">
-                <mask key="constraints">
-                    <exclude reference="2fS-a2-RIj"/>
-                    <exclude reference="RQL-yl-wDH"/>
-                    <include reference="n73-h5-gDr"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="clearButton" destination="hNk-xP-kaH" id="Ddz-g5-0aA"/>
                 <outlet property="contentView" destination="WrI-Eq-UKL" id="zpr-fh-FYa"/>

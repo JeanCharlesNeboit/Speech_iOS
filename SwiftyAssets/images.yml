@@ -21,7 +21,7 @@ gearshape:
     height: 24
     
 hare:
-    format: svg
+    height: 50
     
 smileys_and_people:
     format: svg
@@ -33,7 +33,7 @@ rectangle_grid_1x2:
     height: 22
     
 tortoise:
-    format: svg
+    height: 50
 
 line_horizontal_3_circle:
     height: 24

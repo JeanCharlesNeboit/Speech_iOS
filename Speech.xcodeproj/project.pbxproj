@@ -81,6 +81,7 @@
 		7E68C02226262BB500617FA2 /* PreferencesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C02126262BB400617FA2 /* PreferencesListViewController.swift */; };
 		7E68C02626262F1A00617FA2 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C02526262F1A00617FA2 /* SwitchTableViewCell.swift */; };
 		7E68C02926262F3500617FA2 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E68C02826262F3500617FA2 /* SwitchTableViewCell.xib */; };
+		7E6A5AD826FBD02D0038F2FB /* StoreReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A5AD726FBD02D0038F2FB /* StoreReviewService.swift */; };
 		7E6E1E532631735C00165FF9 /* MarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E1E522631735C00165FF9 /* MarkdownViewController.swift */; };
 		7E6E1E56263180B300165FF9 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E1E55263180B300165FF9 /* stylesheet.css */; };
 		7E6E1E5926319EF100165FF9 /* privacy_policy.html in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E1E5826319EF100165FF9 /* privacy_policy.html */; };
@@ -248,6 +249,7 @@
 		7E68C02126262BB400617FA2 /* PreferencesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesListViewController.swift; sourceTree = "<group>"; };
 		7E68C02526262F1A00617FA2 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		7E68C02826262F3500617FA2 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
+		7E6A5AD726FBD02D0038F2FB /* StoreReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewService.swift; sourceTree = "<group>"; };
 		7E6E1E522631735C00165FF9 /* MarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownViewController.swift; sourceTree = "<group>"; };
 		7E6E1E55263180B300165FF9 /* stylesheet.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
 		7E6E1E5826319EF100165FF9 /* privacy_policy.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = privacy_policy.html; sourceTree = "<group>"; };
@@ -927,6 +929,7 @@
 				7E83EC2926F34FB100663540 /* RealmService+Requests.swift */,
 				7E5B64772614D27300F39BF3 /* SpeechSynthesizerService.swift */,
 				7E68C0182625904A00617FA2 /* KeyboardService.swift */,
+				7E6A5AD726FBD02D0038F2FB /* StoreReviewService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1196,6 +1199,7 @@
 				7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */,
 				7E89D18A261C6CB2009930E6 /* DetailsTableViewCell.swift in Sources */,
 				7E5AEE1426120B85008E024C /* TextView.swift in Sources */,
+				7E6A5AD826FBD02D0038F2FB /* StoreReviewService.swift in Sources */,
 				7E4099D7262637CB006E2A37 /* OpenSourceListViewController.swift in Sources */,
 				7EF83F8B260F4A2600E53A70 /* MessageListViewController.swift in Sources */,
 				7E89D19B261C9C19009930E6 /* MessageViewController.swift in Sources */,
@@ -1691,7 +1695,7 @@
 			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.3;
+				minimumVersion = 9.0.4;
 			};
 		};
 		7E21118926E9589500916417 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {

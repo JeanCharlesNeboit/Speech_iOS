@@ -29,12 +29,13 @@ class SliderTableViewCell: AbstractTableViewCell {
     
     // MARK: - Properties
     private var onSlide: ((Float) -> Void)?
+    private let imageViewHeight: CGFloat = 30
     
     private(set) lazy var minimumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.aspectRatio(1)
-        imageView.height(24)
+        imageView.height(imageViewHeight)
         return imageView
     }()
     
@@ -53,11 +54,11 @@ class SliderTableViewCell: AbstractTableViewCell {
         }
     }
     
-    private(set) var maximumImageView: UIImageView = {
+    private(set) lazy var maximumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.aspectRatio(1)
-        imageView.height(24)
+        imageView.height(imageViewHeight)
         return imageView
     }()
     

@@ -8,7 +8,6 @@
 import UIKit
 import SwiftyKit
 
-#warning("Make it subview instead of accessory view")
 class EditorAreaToolbar: AbstractView {
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView! {
@@ -43,8 +42,6 @@ class EditorAreaToolbar: AbstractView {
     }
     
     // MARK: - Properties
-    static let shared: EditorAreaToolbar = .loadFromXib()
-    
     private lazy var stopButton: UIButton = {
         let stopButton = UIButton()
         stopButton.setImage(SwiftyAssets.UIImages.stop_circle.withRenderingMode(.alwaysTemplate), for: .normal)

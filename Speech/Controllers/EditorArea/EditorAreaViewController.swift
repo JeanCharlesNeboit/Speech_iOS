@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import StoreKit
 import SwiftyKit
 import SwiftMessages
 import RxSwift
@@ -21,20 +20,18 @@ class EditorAreaViewController: AbstractViewController {
             textView.placeholder = SwiftyAssets.Strings.editor_area_placeholder
         }
     }
+    @IBOutlet weak var toolbarContainerView: UIStackView! {
+        didSet {
+            toolbarContainerView.addArrangedSubview(toolbar)
+        }
+    }
+    @IBOutlet weak var toolbarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     let viewModel = ViewModel()
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
     
-    override var inputAccessoryView: UIView? {
-        let accessoryView = EditorAreaToolbar.shared
-        let keyboardHeight = KeyboardService.shared.keyboardHeight - accessoryView.bounds.height
-        accessoryView.configure(safeAreaBottomInset: view.safeAreaInsets.bottom,
-                                keyboardHeight: max(0, keyboardHeight))
-        return accessoryView
-    }
+    private lazy var toolbar: EditorAreaToolbar = .loadFromXib()
     
     lazy var settingsBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: SwiftyAssets.UIImages.gearshape, style: .plain, target: nil, action: nil)
@@ -55,8 +52,6 @@ class EditorAreaViewController: AbstractViewController {
         super.viewWillAppear(animated)
         
         updateNavigationItem()
-        showInputAccessoryView()
-        
         if !DefaultsStorage.welcomeDone {
             let nav = NavigationController(rootViewController: WelcomeViewController())
             present(nav)
@@ -68,10 +63,23 @@ class EditorAreaViewController: AbstractViewController {
         updateNavigationItem()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let ratio = view.bounds.height/view.bounds.width <= 4/3 ? 0.5 : 0.8
+        self.toolbarWidthConstraint.constant = self.view.bounds.width * ratio
+//        let animator = UIViewPropertyAnimator(duration: 2, curve: .easeInOut) { [unowned self] in
+//            self.view.layoutIfNeeded()
+//        }
+//        animator.startAnimation()
+    }
+    
     // MARK: - Configure
     override func configure() {
         navigationItem.rightBarButtonItem = settingsBarButtonItem
+        
         listenNotifications()
+        listenKeyboard()
         
         viewModel.$text.subscribe(onNext: { [weak self] text in
             self?.textView.text = text
@@ -87,20 +95,19 @@ class EditorAreaViewController: AbstractViewController {
             .subscribe(onNext: { [textView] fontStyle in
                 textView?.setDynamicFont(style: fontStyle)
             }).disposed(by: disposeBag)
-        
-        #warning("ToDo")
-//        NotificationCenter.default.rx.notification(UIWindow.didBecomeVisibleNotification)
-//            .subscribe(onNext: { [weak self] notification in
-//                guard let self = self else { return }
-//                let visibleWindow = notification.object as? UIWindow
-//                let inputAccessoryWindow = self.inputAccessoryView?.window
-//
-//                if visibleWindow != self.view.window,
-//                   inputAccessoryWindow != nil,
-//                   visibleWindow != inputAccessoryWindow {
-//                    print("Hello window")
-//                }
-//            }).disposed(by: disposeBag)
+    }
+    
+    func updateNavigationItem() {
+        if !isCollapsed {
+            navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        } else {
+            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
+            messageBarButtonItem.rx.tap
+                .subscribe(onNext: { [self] in
+                    present(NavigationController(rootViewController: MessageListViewController()))
+                }).disposed(by: disposeBag)
+            navigationItem.leftBarButtonItem = messageBarButtonItem
+        }
     }
     
     private func listenNotifications() {
@@ -141,37 +148,19 @@ class EditorAreaViewController: AbstractViewController {
                     }
                 }
             }).disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(.MessageDidSave)
-            .map { _ in DefaultsStorage.savedMessagesCount }
-            .filter { $0 > 0 && $0 % 1 == 0 }
-            .subscribe(onNext: { [weak self] _ in
-                self?.resignFirstResponder()
-                SKStoreReviewController.requestReview()
-            }).disposed(by: disposeBag)
     }
     
-    func updateNavigationItem() {
-        if !isCollapsed {
-            navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        } else {
-            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
-            messageBarButtonItem.rx.tap
-                .subscribe(onNext: { [self] in
-                    present(NavigationController(rootViewController: MessageListViewController()))
-                }).disposed(by: disposeBag)
-            navigationItem.leftBarButtonItem = messageBarButtonItem
-        }
-    }
-    
-    // MARK: -
-    private func showInputAccessoryView() {
-        becomeFirstResponder()
-    }
-}
-
-extension EditorAreaViewController: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        showInputAccessoryView()
+    private func listenKeyboard() {
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil).subscribe(onNext: { [unowned self] notification in
+            animateWithKeyboard(notification: notification) { [unowned self] keyboardFrame in
+                self.toolbarBottomConstraint.constant = 20 + keyboardFrame.height
+            }
+        }).disposed(by: disposeBag)
+            
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil).subscribe(onNext: { [unowned self] notification in
+            animateWithKeyboard(notification: notification) { [unowned self] _ in
+                self.toolbarBottomConstraint.constant = 20
+            }
+        }).disposed(by: disposeBag)
     }
 }
