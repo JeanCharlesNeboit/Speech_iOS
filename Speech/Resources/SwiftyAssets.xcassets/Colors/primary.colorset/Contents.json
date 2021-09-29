@@ -1,9 +1,9 @@
 {
-	"info" : {
-		"author" : "xcode",
-		"version" : 1
-	},
-	"colors" : [
+    "info" : {
+        "author" : "xcode",
+        "version" : 1
+    },
+    	"colors" : [
 		{
 			"idiom" : "universal",
 			"color" : {

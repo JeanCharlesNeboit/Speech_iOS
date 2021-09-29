@@ -92,16 +92,4 @@ class TextView: UITextView {
         super.text = isPlaceholderActive ? placeholder : nil
         textColor = isPlaceholderActive ? .placeholder : .text
     }
-    
-    // MARK: -
-//    func clear() {
-//        guard !isPlaceholderActive else { return }
-//        text = nil
-//    }
-//
-//    func append(text appendingText: String) {
-//        unsetPlaceholderIfNeeded()
-//        let newText = [enteredText ?? "", appendingText].joined(separator: " ").trimmingCharacters(in: .whitespaces)
-//        text = newText
-//    }
 }

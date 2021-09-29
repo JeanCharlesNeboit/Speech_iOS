@@ -17,17 +17,20 @@ class VoiceListViewController: BaseListViewController {
     
     // MARK: - Properties
     private var voicesSections: [VoicesSection] {
-        Dictionary(grouping: AVSpeechSynthesisVoice.speechVoices(), by: { Locale(identifier: $0.language) })
-            .map { VoicesSection(locale: $0.key, voices: $0.value) }
-            .sorted { lhs, rhs in
-                lhs.locale.countryName.strongValue < rhs.locale.countryName.strongValue
-            }
+        [
+            Dictionary(grouping: AVSpeechSynthesisVoice.speechVoices(), by: { Locale(identifier: $0.language) })
+                .map { VoicesSection(locale: $0.key, voices: $0.value) }
+                .sorted { lhs, rhs in
+                    lhs.locale.countryName.strongValue < rhs.locale.countryName.strongValue
+                }.first { $0.locale.identifier == DefaultsStorage.preferredLanguage }
+        ].compactMap { $0 }
     }
     
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
         title = SwiftyAssets.Strings.preferences_voice
+        
         sections = voicesSections.map { section in
             let country = [section.locale.countryFlag, section.locale.countryName].compactMap { $0 }.joined(separator: " ")
             return Section(model: .init(header: country),
@@ -37,7 +40,7 @@ class VoiceListViewController: BaseListViewController {
                     genderEmoji = voice.gender.emoji
                 }
                 let voice = [genderEmoji, voice.name].compactMap { $0 }.joined(separator: " ")
-                return .action(title: voice, onTap: {
+                return .selection(config: .init(title: voice), isSelected: false, onTap: {
                 })
             })
         }

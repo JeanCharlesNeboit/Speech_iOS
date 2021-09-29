@@ -11,11 +11,13 @@ enum UserDefaultsKeys: String {
     case welcomeDone
     case preferredEditorAreaTextFont
     case preferredSpeakingRate
-    case useKeyboardLanguageAsVoiceLanguage
+    case preferredLanguage
+    case automaticLanguageRecognition
     case savedMessagesCount
     case preferredMessageDisplayMode
     case preferredMessagesSortMode
     case showFrequentlyUsedMessages
     case saveMessagesQuickly
     case closeMessageViewWhenMessageSelected
+    case enableCrashlyticsCollection
 }

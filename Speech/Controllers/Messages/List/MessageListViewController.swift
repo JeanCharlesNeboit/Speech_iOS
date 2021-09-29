@@ -10,7 +10,6 @@ import SwiftyKit
 import RxSwift
 import RxDataSources
 import RealmSwift
-import RxKeyboard
 
 class MessageListViewController: AbstractViewController {
     // MARK: - Typealias
@@ -98,14 +97,6 @@ class MessageListViewController: AbstractViewController {
         return button
     }()
     
-    private lazy var searchController: SearchController = {
-        let searchController = SearchController(searchResultsController: nil)
-//        if !isCollapsed {
-//            searchController.searchBar.inputAccessoryView = EditorAreaToolbar.shared
-//        }
-        return searchController
-    }()
-    
     private lazy var tableView: TableView = {
         let tableView = TableView()
         tableView.rx.setDelegate(self)
@@ -174,9 +165,11 @@ class MessageListViewController: AbstractViewController {
         tableView.edgesToSuperview()
         
         observeSections()
+        observeDisplayMode()
+        
         configureSearch()
-        configureCollectionView()
         configureKeyboard()
+        configureCollectionView()
     }
     
     private func updateNavigationItem() {
@@ -242,14 +235,6 @@ class MessageListViewController: AbstractViewController {
                 case .categories(_):
                     break
                 }
-            }).disposed(by: disposeBag)
-    }
-    
-    private func configureKeyboard() {
-        RxKeyboard.instance.visibleHeight
-            .drive(onNext: { [unowned self] keyboardVisibleHeight in
-                let bottomContentInset = keyboardVisibleHeight - self.view.safeAreaInsets.bottom
-                self.additionalSafeAreaInsets.bottom = bottomContentInset
             }).disposed(by: disposeBag)
     }
     

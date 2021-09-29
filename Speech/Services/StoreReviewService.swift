@@ -11,7 +11,7 @@ import RxSwift
 
 class StoreReviewService {
     // MARK: - Properties
-    static let shared = StoreReviewService()
+    static let `default` = StoreReviewService()
     
     private let disposeBag = DisposeBag()
     private let eachSavedMessage = 10

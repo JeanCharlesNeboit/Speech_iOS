@@ -13,8 +13,9 @@ import TinyConstraints
 
 enum BaseListCellType {
     case container(view: UIView, onConfigure: ((IndexPath) -> Void)?)
-    case details(title: String, withViewController: (() -> UIViewController?))
+    case details(config: DetailsTableViewCell.Config, withViewController: (() -> UIViewController?))
     case action(title: String, onTap: (() -> Void)?)
+    case selection(config: DetailsTableViewCell.Config, isSelected: Bool, onTap: (() -> Void)?)
     case link(Link)
     case slider(SliderTableViewCell.Config)
     case switchChoice(SwitchTableViewCell.Config)
@@ -28,6 +29,8 @@ enum BaseListCellType {
              .action,
             .link:
             return DetailsTableViewCell.self
+        case .selection:
+            return SelectionTableViewCell.self
         case .slider:
             return SliderTableViewCell.self
         case .switchChoice:
@@ -42,12 +45,14 @@ enum BaseListCellType {
         case .container(let view, let onConfigure):
             (cell as? ContainerTableViewCell)?.configure(view: view)
             onConfigure?(indexPath)
-        case .details(let title, _):
-            (cell as? DetailsTableViewCell)?.configure(title: title, accessoryType: .disclosureIndicator)
+        case .details(let config, _):
+            (cell as? DetailsTableViewCell)?.configure(config: config, accessoryType: .disclosureIndicator)
         case .action(let title, _):
-            (cell as? DetailsTableViewCell)?.configure(title: title)
+            (cell as? DetailsTableViewCell)?.configure(config: .init(title: title))
+        case .selection(let config, let isSelected, _):
+            (cell as? SelectionTableViewCell)?.configure(config: config, isSelected: isSelected)
         case .link(let link):
-            (cell as? DetailsTableViewCell)?.configure(title: link.title)
+            (cell as? DetailsTableViewCell)?.configure(config: .init(title: link.title))
         case .switchChoice(let state):
             (cell as? SwitchTableViewCell)?.configure(config: state)
         case .slider(let state):
@@ -81,7 +86,8 @@ class BaseListViewController: AbstractViewController {
                 case .details(let title, let closure):
                     guard let vc = closure() else { return }
                     self.navigationController?.pushViewController(vc, animated: true)
-                case .action(_, let onTap):
+                case .action(_, let onTap),
+                    .selection(_, _, let onTap):
                     onTap?()
                 case .link(let link):
                     self.openSafari(urlString: link.urlString)

@@ -184,10 +184,6 @@ settings_share_app:
 settings_rate_app:
     fr: Donner votre avis sur %@
     en: Give your opinion about %@
-    
-settings_privacy_policy:
-    fr: Politique de confidentialité
-    en: Privacy policy
 
 settings_about:
     fr: À propos
@@ -214,9 +210,13 @@ preferences_speaking_rate:
     fr: Débit vocale
     en: Speaking rate
     
-preferences_keyboard_language:
-    fr: Utiliser la langue du clavier comme langue pour la voix de synthèse
-    en: Use the keyboard language as the language for the synthesized voice
+preferences_preferred_voice_language:
+    fr: Langue
+    en: Language
+    
+preferences_automatic_language_recognition:
+    fr: Reconnaissance automatique de la langue
+    en: Automatic language recognition
 
 preferences_voice:
     fr: Voix
@@ -287,6 +287,19 @@ category_delete_confirmation_title:
 category_delete_confirmation_message:
     fr: Cette catégorie et ses sous-catégories seront supprimées.
     en: This category and subcategories will be deleted.
+    
+## Privacy
+privacy:
+    fr: Confidentialité
+    en: Privacy
+    
+privacy_policy:
+    fr: Politique de confidentialité
+    en: Privacy policy
+
+enable_crashlytics:
+    fr: Activer la collecte des rapports crash
+    en: Enable crash reports
 
 ## About
 about_description:

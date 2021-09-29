@@ -7,12 +7,16 @@
 
 import Foundation
 import AVFoundation
+import NaturalLanguage
 
 class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
     // MARK: - Properties
     @RxBehaviorSubject var text: String?
     
     private lazy var speechSynthesizerService = SpeechSynthesizerService.shared
+    
+    @available(iOS 12.0, *)
+    private lazy var recognizer = NLLanguageRecognizer()
     
     // MARK: - Initialization
     override init() {
@@ -57,10 +61,20 @@ class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
             return
         }
         
-        var voice: AVSpeechSynthesisVoice?
-        if DefaultsStorage.useKeyboardLanguageAsVoiceLanguage {
-            voice = AVSpeechSynthesisVoice(language: keyboardLanguage)
+        var voice = AVSpeechSynthesisVoice(language: DefaultsStorage.preferredLanguage)
+        if DefaultsStorage.automaticLanguageRecognition {
+            if #available(iOS 12.0, *) {
+                recognizer.processString(text)
+                if let language = recognizer.dominantLanguage {
+                    voice = AVSpeechSynthesisVoice(language: language.rawValue)
+                }
+                recognizer.reset()
+            } else {
+                #warning("ToDo")
+                // Fallback on earlier versions
+            }
         }
+        
         speechSynthesizerService.startSpeaking(text: text, voice: voice)
     }
 }

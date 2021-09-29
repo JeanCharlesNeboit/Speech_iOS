@@ -153,7 +153,7 @@ class EditorAreaViewController: AbstractViewController {
     private func listenKeyboard() {
         NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil).subscribe(onNext: { [unowned self] notification in
             animateWithKeyboard(notification: notification) { [unowned self] keyboardFrame in
-                self.toolbarBottomConstraint.constant = 20 + keyboardFrame.height
+                self.toolbarBottomConstraint.constant = 20 + keyboardFrame.height - view.safeAreaInsets.bottom
             }
         }).disposed(by: disposeBag)
             

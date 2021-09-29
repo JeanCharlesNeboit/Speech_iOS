@@ -7,10 +7,24 @@
 
 import Firebase
 import FirebaseCrashlytics
+import RxSwift
 
 class FirebaseService {
+    // MARK: - Properties
+    static let `default` = FirebaseService()
+    private let disposeBag = DisposeBag()
+    
     // MARK: - Configure
-    static func configure() {
+    func configure() {
         FirebaseApp.configure()
+        DefaultsStorage.$enableCrashlyticsCollection.subscribe(onNext: { [weak self] enabled in
+            self?.setCrashlyticsCollection(enabled: enabled)
+        }).disposed(by: disposeBag)
+    }
+    
+    // MARK: - Crashlytics
+    private func setCrashlyticsCollection(enabled: Bool) {
+        log.info(message: enabled ? "Crashlytics enable" : "Crashlytics disable")
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(enabled)
     }
 }

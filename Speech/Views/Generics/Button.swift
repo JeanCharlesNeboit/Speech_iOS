@@ -8,6 +8,20 @@
 import UIKit
 
 @IBDesignable class Button: UIButton {
+    // MARK: - Enum
+    enum ButtonState {
+        case normal
+        case disabled
+    }
+    
+    // MARK: - Properties
+    private var disabledBackgroundColor: UIColor?
+    private var defaultBackgroundColor: UIColor? {
+        didSet {
+            backgroundColor = defaultBackgroundColor
+        }
+    }
+    
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,13 +37,39 @@ import UIKit
         contentEdgeInsets = .init(top: 12, left: 20, bottom: 12, right: 20)
         layer.cornerRadius = 10
         
-        backgroundColor = SwiftyAssets.UIColors.primary
+        defaultBackgroundColor = SwiftyAssets.UIColors.primary
+        disabledBackgroundColor = ._secondarySystemFill
+        
         titleLabel?.font = UIFont.getFont(style: .subheadline, weight: .bold)
         setTitleColor(.white, for: .normal)
+    }
+    
+    // MARK: - State
+    override var isEnabled: Bool {
+        didSet {
+            if isEnabled {
+                if let color = defaultBackgroundColor {
+                    self.backgroundColor = color
+                }
+            } else {
+                if let color = disabledBackgroundColor {
+                    self.backgroundColor = color
+                }
+            }
+        }
     }
     
     // MARK: -
     func setTitle(_ title: String) {
         setTitle(title, for: .normal)
+    }
+    
+    func setBackgroundColor(_ color: UIColor?, for state: ButtonState) {
+        switch state {
+        case .disabled:
+            disabledBackgroundColor = color
+        case .normal:
+            defaultBackgroundColor = color
+        }
     }
 }

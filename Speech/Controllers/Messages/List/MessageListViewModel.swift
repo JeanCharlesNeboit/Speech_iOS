@@ -101,13 +101,13 @@ class MessageListViewModel: AbstractViewModel {
         if category == nil && !withoutCategory.messages.isEmpty {
             categories.append(withoutCategory)
         }
-        var filteredCategories = categories.filter(search: search)
         
+        var filteredCategories = categories.filter(search: search)
         switch sortMode {
         case .alphabetical:
-            filteredCategories = categories.sortedByAlphabeticalOrder()
+            filteredCategories = filteredCategories.sortedByAlphabeticalOrder()
         case .addedDate:
-            filteredCategories = categories.sortedByAddedDateOrder()
+            filteredCategories = filteredCategories.sortedByAddedDateOrder()
         }
         
         var sections = [Section]()

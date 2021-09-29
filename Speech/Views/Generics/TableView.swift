@@ -48,7 +48,8 @@ class TableView: AbstractTableView {
             SwitchTableViewCell.self,
             MessageTableViewCell.self,
             MessagesTableViewCell.self,
-            CategoryTableViewCell.self
+            CategoryTableViewCell.self,
+            SelectionTableViewCell.self
         ]
         
         cells.forEach {

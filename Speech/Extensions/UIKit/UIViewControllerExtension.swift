@@ -118,11 +118,11 @@ extension UIViewController {
     }
     
     func present(_ vc: UIViewController) {
-        if !(splitViewController?.isCollapsed ?? true) {
-            vc.modalPresentationStyle = .formSheet
-        } else {
-            vc.modalPresentationStyle = .fullScreen
-        }
+//        if !(splitViewController?.isCollapsed ?? true) {
+//            vc.modalPresentationStyle = .formSheet
+//        } else {
+//            vc.modalPresentationStyle = .fullScreen
+//        }
         
 //        // Important because viewWillAppear not called on iOS 13 modal
 //        if let delegate = self as? UIAdaptivePresentationControllerDelegate {

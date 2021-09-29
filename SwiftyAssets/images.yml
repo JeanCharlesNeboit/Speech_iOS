@@ -11,6 +11,12 @@ folder:
     format: svg
     
 # Icons
+checkmark_circle_fill:
+    format: svg
+    
+circle:
+    format: svg
+    
 ellipsis_circle:
     height: 24
     
@@ -41,6 +47,9 @@ line_horizontal_3_circle:
 # SpeechMode
 play_circle:
     height: 40
+    
+play_circle_fill:
+    format: svg
 
 pause_circle:
     height: 40

@@ -22,11 +22,12 @@ class SettingsViewController: BaseListViewController {
     override func sharedInit() {
         super.sharedInit()
         title = SwiftyAssets.Strings.generic_settings
+        
         sections = [
             Section(model: .init(),
                     items: [
-                        .details(title: PreferencesListViewController.title) { PreferencesListViewController() },
-                        .details(title: CategoriesListViewController.title) {
+                        .details(config: .init(title: PreferencesListViewController.title)) { PreferencesListViewController() },
+                        .details(config: .init(title: CategoriesListViewController.title)) {
                             CategoriesListViewController(viewModel: .init(parentCategory: nil, mode: .edition))
                         }
                     ]),
@@ -38,18 +39,18 @@ class SettingsViewController: BaseListViewController {
                         .link(.init(title: String(format: SwiftyAssets.Strings.settings_rate_app, Bundle.main.displayName),
                                     urlString: viewModel.appStoreAppLink))
                     ]),
-//            Section(model: .init(),
-//                    items: [
-//                        .details(vc: MarkdownViewController())
-//                    ]),
+            Section(model: .init(),
+                    items: [
+                        .details(config: .init(title: PrivacyViewController.title)) { PrivacyViewController() }
+                    ]),
             Section(model: .init(footer: viewModel.appVersionInfo),
                     items: [
-                        .details(title: AboutViewController.title) { AboutViewController() },
+                        .details(config: .init(title: AboutViewController.title)) { AboutViewController() },
                         .link(.init(title: SwiftyAssets.Strings.settings_github,
                                     urlString: viewModel.githubRepositoryLink,
                                     inApp: false)),
-                        .details(title: OpenSourceListViewController.title) { OpenSourceListViewController() },
-                        .details(title: ThanksListViewController.title) { ThanksListViewController() }
+                        .details(config: .init(title: OpenSourceListViewController.title)) { OpenSourceListViewController() },
+                        .details(config: .init(title: ThanksListViewController.title)) { ThanksListViewController() }
                     ])
         ]
     }

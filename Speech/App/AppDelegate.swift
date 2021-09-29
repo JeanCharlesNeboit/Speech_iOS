@@ -21,14 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RealmMigrator.setDefaultConfiguration()
         RealmService.default.printDatabaseFilePath()
         
+        // DefaultsStorage
+        DefaultsStorage.configure()
+        
         // Firebase
-        FirebaseService.configure()
+        FirebaseService.default.configure()
         
         // AVAudioSession
         AVAudioSessionService.default.set(category: .playback, mode: .spokenAudio)
         
         // StoreReviewService
-        StoreReviewService.shared.configure()
+        StoreReviewService.default.configure()
         
         // SwiftyKit
         SwiftyUIView.DefaultCornerRadius = 10

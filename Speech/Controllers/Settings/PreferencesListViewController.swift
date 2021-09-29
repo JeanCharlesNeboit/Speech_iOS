@@ -7,6 +7,7 @@
 
 import UIKit
 
+#warning("Add prefered voice language")
 class PreferencesListViewController: BaseListViewController {
     // MARK: - Properties
     static let title = SwiftyAssets.Strings.settings_preferences
@@ -45,15 +46,6 @@ class PreferencesListViewController: BaseListViewController {
                     )
                 ]
             ),
-//            Section(model: .init(header: SwiftyAssets.Strings.preferences_voice), items: [
-//                .switchChoice(.init(title: SwiftyAssets.Strings.preferences_keyboard_language,
-//                                    initialValue: DefaultsStorage.useKeyboardLanguageAsVoiceLanguage,
-//                                    onSwitch: { _ in
-//                                        DefaultsStorage.useKeyboardLanguageAsVoiceLanguage.toggle()
-//                                    }
-//                )),
-//                .details(title: SwiftyAssets.Strings.preferences_voice) { VoiceListViewController() }
-//            ]),
             Section(model: .init(header: SwiftyAssets.Strings.preferences_editor_area_text_size), items: [
                 .slider(
                     .init(minimumValue: 0,
@@ -70,6 +62,16 @@ class PreferencesListViewController: BaseListViewController {
                     )
                 ]
             ),
+            Section(model: .init(header: SwiftyAssets.Strings.preferences_voice), items: [
+                .details(config: .init(title: SwiftyAssets.Strings.preferences_preferred_voice_language)) { VoiceLanguageListViewController() },
+                .details(config: .init(title: SwiftyAssets.Strings.preferences_voice)) { VoiceListViewController() },
+                .switchChoice(.init(title: SwiftyAssets.Strings.preferences_automatic_language_recognition,
+                                    initialValue: DefaultsStorage.automaticLanguageRecognition,
+                                    onSwitch: { _ in
+                                        DefaultsStorage.automaticLanguageRecognition.toggle()
+                                    }
+                ))
+            ]),
             Section(model: .init(header: SwiftyAssets.Strings.generic_messages), items: [
                 .switchChoice(
                     .init(title: SwiftyAssets.Strings.preferences_save_messages_quickly,

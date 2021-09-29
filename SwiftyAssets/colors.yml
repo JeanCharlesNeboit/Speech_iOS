@@ -8,3 +8,7 @@ warning:
 error:
     light: "#ff3b30"
     dark: "#ff453a"
+
+secondary_fill:
+    light: "#E9E9EB"
+    dark: "#D4D4D6"

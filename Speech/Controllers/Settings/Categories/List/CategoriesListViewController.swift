@@ -68,7 +68,6 @@ class CategoriesListViewController: BaseListViewController {
     static let title = SwiftyAssets.Strings.generic_categories
     let viewModel: ViewModel
     
-    private lazy var searchController = SearchController()
     private lazy var emptyView: EmptyView = .loadFromXib()
     
     private lazy var selectBarButtonItem: UIBarButtonItem = {
@@ -192,12 +191,12 @@ class CategoriesListViewController: BaseListViewController {
             }).disposed(by: disposeBag)
     }
     
-    private func configureKeyboard() {
+    override func configureKeyboard() {
         RxKeyboard.instance.visibleHeight
             .asObservable()
             .subscribe(onNext: { [weak self] height in
                 guard let self = self else { return }
-                #warning("Update to additional safe area insets")
+                #warning("Update to additional safe area insets & merge with super view configureKeyboard")
                 let keyboardBottomContentInset = height - self.view.safeAreaInsets.bottom
                 let buttonBottomContentInset = UIView.getBottomContentInset(view: self.addButton, bottomConstraint: self.addButtonBottomConstraint)
                 self.tableView.setBottomContentInset(max(keyboardBottomContentInset, buttonBottomContentInset))

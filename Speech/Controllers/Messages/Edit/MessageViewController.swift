@@ -60,6 +60,11 @@ class MessageViewController: BaseListViewController, FormViewController {
         super.configure()
         configureDataSource()
         configureTableView()
+        
+        emojiMessageView.messageTextField.rx.text
+            .subscribe(onNext: { [weak self] in
+                self?.validButton.isEnabled = !$0.isEmptyOrNil
+            }).disposed(by: disposeBag)
     }
     
     private func configureDataSource() {

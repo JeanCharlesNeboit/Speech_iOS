@@ -12,10 +12,10 @@ class CategoryViewController: BaseListViewController, FormViewController {
     typealias ViewModel = CategoryViewModel
     
     // MARK: - IBOutlets
-    @IBOutlet weak var createButton: Button! {
+    @IBOutlet weak var validButton: Button! {
         didSet {
-            createButton.setTitle(viewModel.mode.saveTitle)
-            createButton.rx.tap
+            validButton.setTitle(viewModel.mode.saveTitle)
+            validButton.rx.tap
                 .subscribe(onNext: { [weak self] in
                     self?.onValidate()
                 }).disposed(by: disposeBag)
@@ -33,8 +33,8 @@ class CategoryViewController: BaseListViewController, FormViewController {
         viewModel.$emoji.subscribe(onNext: { emoji in
             emojiMessageView.configure(emoji: emoji)
         }).disposed(by: disposeBag)
+        
         emojiMessageView.emojiTextField.rx.text.bind(to: viewModel.$emoji).disposed(by: disposeBag)
-
         (emojiMessageView.messageTextField.rx.text <-> viewModel.$name).disposed(by: disposeBag)
         
         return emojiMessageView
@@ -55,6 +55,12 @@ class CategoryViewController: BaseListViewController, FormViewController {
         super.configure()
         title = viewModel.mode.title
         navigationItem.leftBarButtonItem = cancelBarButtonItem
+        
+        emojiMessageView.messageTextField.rx.text
+            .subscribe(onNext: { [weak self] in
+                self?.validButton.isEnabled = !$0.isEmptyOrNil
+            }).disposed(by: disposeBag)
+        
         configureDataSource()
     }
     

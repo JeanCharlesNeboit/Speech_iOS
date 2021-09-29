@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxKeyboard
 import SwiftyKit
 import SwiftMessages
 
@@ -18,6 +19,14 @@ class AbstractViewController: UIViewController {
         splitViewController?.isCollapsed ?? true
     }
     
+    var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode {
+        .automatic
+    }
+    
+    var prefersLargeTitles: Bool {
+        true
+    }
+    
     lazy var cancelBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem.init(title: SwiftyAssets.Strings.generic_cancel, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
@@ -25,6 +34,9 @@ class AbstractViewController: UIViewController {
         }).disposed(by: disposeBag)
         return button
     }()
+    
+    lazy var environmentService = EnvironmentService()
+    lazy var searchController: SearchController = SearchController()
     
     // MARK: - Initialization
     init() {
@@ -38,14 +50,15 @@ class AbstractViewController: UIViewController {
     }
     
     func sharedInit() {
-        print("🚀 Initialize \(Self.description())")
-//        view.backgroundColor = AppThemeService.shared.systemBackgroundColor
+        log.message("🚀 Initialize \(Self.description())")
     }
     
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // https://stackoverflow.com/a/53165371/8353989
+        navigationController?.navigationItem.largeTitleDisplayMode = largeTitleDisplayMode
+        navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitles
+        // https://stackoverflow.com/a/53165371/8353989`
         navigationController?.navigationBar.sizeToFit()
     }
     
@@ -57,5 +70,13 @@ class AbstractViewController: UIViewController {
     // MARK: - Configure
     func configure() {
         hideKeyboardWhenTappedAround()
+    }
+    
+    func configureKeyboard() {
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [unowned self] keyboardVisibleHeight in
+                let bottomContentInset = keyboardVisibleHeight - self.view.safeAreaInsets.bottom
+                self.additionalSafeAreaInsets.bottom = bottomContentInset
+            }).disposed(by: disposeBag)
     }
 }

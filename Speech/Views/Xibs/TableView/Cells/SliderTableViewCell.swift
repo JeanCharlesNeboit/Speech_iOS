@@ -79,6 +79,7 @@ class SliderTableViewCell: AbstractTableViewCell {
     
     // MARK: - Configure
     func configure(config: Config) {
+        slider.trackColor = SwiftyAssets.UIColors.secondary_fill // Secondary System Fill Color without transparency
         slider.minimumValue = config.minimumValue
         slider.maximumValue = config.maximumValue
         slider.value = config.initialValue
