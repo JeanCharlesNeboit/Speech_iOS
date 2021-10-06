@@ -1,11 +1,11 @@
-name: Archive to App Store Connect
+name: Deploy to App Store Connect
 
 on:
   workflow_dispatch:
 
 env:
   SCHEME: "Speech"
-  APPLE_DEVELOPER_REPO_PATH: "apple-developer"
+  APPLE_DEVELOPER_REPO_PATH: "AppleDeveloper"
   ARCHIVE_PATH: "archive"
 
 jobs:
@@ -24,9 +24,27 @@ jobs:
           repository: JeanCharlesNeboit/AppleDeveloper
           token: ${{ secrets.ACCESS_TOKEN }}
           path: ${{ env.APPLE_DEVELOPER_REPO_PATH }}
-      - name: Archiving
+      - name: Set env from .github.env file
+        uses: JeanCharlesNeboit/action-dotenv-to-setenv@main
+        with:
+          env-file: .github.env
+      - name: Decrypt gpg files
+        run: ./SwiftyCI/scripts/decrypt_secret.sh ${{ env.GPG_FILES }}
+        env:
+          PASSPHRASE: ${{ secrets.GPG_SECRET }}
+      - name: Xcode select
+        if: ${{ env.XCODE != '' }}
+        uses: ./SwiftyCI/actions/xcode_select
+        with:
+          xcode: ${{ env.XCODE }}
+      - name: Setup signing
+        run: ./SwiftyCI/scripts/setup_signing.sh
+        env: 
+          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+      - name: Archive
         uses: ./SwiftyCI/actions/archive
         with:
           scheme: ${{ env.SCHEME }}
           configuration: Beta
           archivePath:  ${{ env.ARCHIVE_PATH }}
+          profilesPath: ${{ env.APPLE_DEVELOPER_REPO_PATH }}/profiles
