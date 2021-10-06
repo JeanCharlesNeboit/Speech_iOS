@@ -1,0 +1,29 @@
+name: Archive to App Store Connect
+
+on:
+  workflow_dispatch:
+
+env:
+  SCHEME: "Speech"
+  APPLE_DEVELOPER_REPO_PATH: "apple-developer"
+  ARCHIVE_PATH: "archive"
+
+jobs:
+  upload:
+    name: Archive
+    runs-on: macOS-11
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Checkout AppleDeveloper repository
+        uses: actions/checkout@master
+        with:
+          repository: JeanCharlesNeboit/AppleDeveloper
+          token: ${{ secrets.ACCESS_TOKEN }}
+          path: ${{ env.APPLE_DEVELOPER_REPO_PATH }}
+      - name: Archiving
+        uses: ./SwiftyCI/actions/xcode_select
+        with:
+          scheme: ${{ env.SCHEME }}
+          configuration: Beta
+          archivePath:  ${{ ARCHIVE_PATH }}
