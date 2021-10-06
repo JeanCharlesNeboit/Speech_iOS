@@ -25,14 +25,14 @@ Here an example of stored device information collected by Crashlytics:
 
 You can enable/disable crash reports collection at any time directly in the settings section of the application. We strongly recommend to enable this feature to help us improve the application.
 
-# Third-party services
+## Third-party services
 
 • Google Firebase Crashlytics [privacy policy](https://firebase.google.com/support/privacy)
 
-# Links to other websites
+## Links to other websites
 
 Our application contains links that lead to other websites. When you click on these links (for example, the link to the GitHub repository), we are not responsible for protecting your data and privacy on those sites. Be sure to read the privacy policy documentation of the website you link to from our app.
 
-# Contact us
+## Contact us
 
 If you have any question about the privacy policy, feel free to contact us via [email](mailto:jcn-18-@hotmail.fr) or directly via our [Facebook page](https://www.facebook.com/Speech-680075348800105).

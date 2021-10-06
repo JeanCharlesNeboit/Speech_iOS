@@ -25,14 +25,14 @@ Voici un exemple d'informations stockées sur votre appareil collectées par Cra
 
 Vous pouvez activer/désactiver la collecte des rapports de crash à tout moment directement dans les paramètres de l'application. Nous vous recommandons vivement d'activer cette fonctionnalité pour nous aider à améliorer l'application.
 
-# Services tiers
+## Services tiers
 
 • Google Firebase Crashlytics [privacy policy](https://firebase.google.com/support/privacy)
 
-# Liens vers d'autres sites web
+## Liens vers d'autres sites web
 
 Notre application contient des liens qui mènent à d'autres sites web. Lorsque vous cliquez sur ces liens (par exemple, le lien vers le dépôt GitHub), nous ne sommes pas responsables de la protection de vos données et de votre vie privée sur ces sites. Veillez à lire la documentation relative à la politique de confidentialité du site web vers lequel vous vous dirigez depuis notre application.
 
-# Contacter-nous
+## Contacter-nous
 
 Si vous avez des questions sur la politique de confidentialité, n'hésitez pas à nous contacter par [e-mail](mailto:jcn-18-@hotmail.fr) ou directement via notre [page Facebook](https://www.facebook.com/Speech-680075348800105).
