@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          submodules: recursive
       - name: Checkout AppleDeveloper repository
         uses: actions/checkout@master
         with:
@@ -22,8 +25,8 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           path: ${{ env.APPLE_DEVELOPER_REPO_PATH }}
       - name: Archiving
-        uses: ./SwiftyCI/actions/xcode_select
+        uses: ./SwiftyCI/actions/archive
         with:
           scheme: ${{ env.SCHEME }}
           configuration: Beta
-          archivePath:  ${{ ARCHIVE_PATH }}
+          archivePath:  ${{ env.ARCHIVE_PATH }}
