@@ -12,13 +12,11 @@ import TinyConstraints
 import SwiftUI
 
 class MarkdownViewController: AbstractViewController {
+    // MARK: - IBOutlets
+    @IBOutlet weak var textView: UITextView!
+    
     // MARK: - Properties
-    private lazy var textView: UITextView = {
-        let textView = UITextView()
-        textView.isEditable = false
-        textView.textContainerInset = .uniform(16)
-        return textView
-    }()
+    private let markdown: String
     
     override var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode {
         .never
@@ -30,8 +28,8 @@ class MarkdownViewController: AbstractViewController {
         
     // MARK: - Initialization
     init(markdown: String) {
+        self.markdown = markdown
         super.init()
-        textView.attributedText = MarkdownParser(font: UIFont.getFont(style: .body), color: UIColor.text).parse(markdown)
     }
     
     required init?(coder: NSCoder) {
@@ -41,13 +39,9 @@ class MarkdownViewController: AbstractViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor._systemBackground
-        view.addSubview(textView)
-        textView.edgesToSuperview()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        textView.setContentOffset(.zero, animated: true)
+        textView.attributedText = MarkdownParser(font: UIFont.getFont(style: .body), color: UIColor.text).parse(markdown)
+        textView.isEditable = false
+        textView.textContainerInset = .uniform(16)
+        textView.contentOffset.y = view.safeAreaInsets.top
     }
 }

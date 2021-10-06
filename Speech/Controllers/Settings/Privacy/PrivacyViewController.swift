@@ -38,16 +38,3 @@ class PrivacyViewController: BaseListViewController {
         ]
     }
 }
-
-//extension PrivacyViewController {
-//    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        #if DEBUG
-//        let simulateCrashButton: Button?
-//        simulateCrashButton = Button()
-//        simulateCrashButton?.setTitle("Simulate crash")
-//        return simulateCrashButton
-//        #else
-//        return nil
-//        #endif
-//    }
-//}

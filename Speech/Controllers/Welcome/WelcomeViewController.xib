@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,16 +24,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e6k-0e-hVl">
-                    <rect key="frame" x="20" y="190.5" width="374" height="515.5"/>
+                    <rect key="frame" x="20" y="127.5" width="374" height="641.5"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome" translatesAutoresizingMaskIntoConstraints="NO" id="avG-UT-K8j">
-                            <rect key="frame" x="0.0" y="0.0" width="374" height="374"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="avG-UT-K8j" secondAttribute="height" id="OJ1-Dy-aUI"/>
-                            </constraints>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome" translatesAutoresizingMaskIntoConstraints="NO" id="avG-UT-K8j" customClass="ScaledHeightImageView" customModule="Speech" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="500"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTd-mv-J1B" customClass="Label" customModule="Speech" customModuleProvider="target">
-                            <rect key="frame" x="118" y="394" width="138.5" height="71"/>
+                            <rect key="frame" x="118" y="520" width="138.5" height="71"/>
                             <string key="text">Ecriver,
 Sauvegarder,
 Communiquer !*</string>
@@ -42,15 +39,15 @@ Communiquer !*</string>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Speech est une application destinée aux personnes privées de la parole.*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGN-jl-6dR">
-                            <rect key="frame" x="9" y="485" width="356.5" height="30.5"/>
+                            <rect key="frame" x="9" y="611" width="356.5" height="30.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5M-Vl-pJ8" customClass="Button" customModule="Speech" customModuleProvider="target">
-                    <rect key="frame" x="41.5" y="812" width="331" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5M-Vl-pJ8" customClass="PrimaryButton" customModule="Speech" customModuleProvider="target">
+                    <rect key="frame" x="41.5" y="832" width="331" height="30"/>
                     <state key="normal" title="Continuer*"/>
                 </button>
             </subviews>
@@ -59,7 +56,7 @@ Communiquer !*</string>
             <constraints>
                 <constraint firstItem="e6k-0e-hVl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" id="77r-JK-yHG"/>
                 <constraint firstAttribute="trailing" secondItem="e6k-0e-hVl" secondAttribute="trailing" constant="20" id="G7T-vi-bDI"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q5M-Vl-pJ8" secondAttribute="bottom" constant="20" id="HG4-Hx-lgK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q5M-Vl-pJ8" secondAttribute="bottom" id="HG4-Hx-lgK"/>
                 <constraint firstItem="q5M-Vl-pJ8" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="KcS-eF-laM"/>
                 <constraint firstItem="e6k-0e-hVl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Klo-tJ-Ueu"/>
                 <constraint firstItem="q5M-Vl-pJ8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MBm-Pu-ymo"/>
@@ -88,7 +85,7 @@ Communiquer !*</string>
         </designable>
     </designables>
     <resources>
-        <image name="welcome" width="400" height="400"/>
+        <image name="welcome" width="500" height="500"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

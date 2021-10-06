@@ -85,6 +85,10 @@
 		7E68C02626262F1A00617FA2 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E68C02526262F1A00617FA2 /* SwitchTableViewCell.swift */; };
 		7E68C02926262F3500617FA2 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E68C02826262F3500617FA2 /* SwitchTableViewCell.xib */; };
 		7E6A5AD826FBD02D0038F2FB /* StoreReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6A5AD726FBD02D0038F2FB /* StoreReviewService.swift */; };
+		7E6BF359270B7B320042FF63 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BF357270B7B320042FF63 /* ActionViewController.swift */; };
+		7E6BF35A270B7B320042FF63 /* ActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6BF358270B7B320042FF63 /* ActionViewController.xib */; };
+		7E6BF35C270B870F0042FF63 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BF35B270B870F0042FF63 /* StyleButton.swift */; };
+		7E6BF35E270B8E920042FF63 /* CrashlyticsActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BF35D270B8E920042FF63 /* CrashlyticsActionViewController.swift */; };
 		7E6E1E532631735C00165FF9 /* MarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E1E522631735C00165FF9 /* MarkdownViewController.swift */; };
 		7E7A41312674CE0C00BB64F9 /* MessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A41302674CE0C00BB64F9 /* MessagesTableViewCell.xib */; };
 		7E7E6ECD26F478D300834F48 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E6ECC26F478D300834F48 /* StringExtension.swift */; };
@@ -120,6 +124,7 @@
 		7EAF709226DD084100A3E490 /* AVSpeechSynthesisVoiceGenderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF709126DD084100A3E490 /* AVSpeechSynthesisVoiceGenderExtension.swift */; };
 		7EB4DCBC264C6FE0009FA304 /* AbstractTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */; };
 		7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */; };
+		7EC2F9AA270722560013CAFF /* MarkdownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC2F9A9270722560013CAFF /* MarkdownViewController.xib */; };
 		7ECE539B26B0904300BE28B5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7ECE539A26B0904300BE28B5 /* Realm */; };
 		7ECE539D26B0904300BE28B5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7ECE539C26B0904300BE28B5 /* RealmSwift */; };
 		7ECE53A026B09B2500BE28B5 /* CategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECE539F26B09B2500BE28B5 /* CategoriesListViewModel.swift */; };
@@ -258,6 +263,10 @@
 		7E68C02526262F1A00617FA2 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		7E68C02826262F3500617FA2 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		7E6A5AD726FBD02D0038F2FB /* StoreReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewService.swift; sourceTree = "<group>"; };
+		7E6BF357270B7B320042FF63 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		7E6BF358270B7B320042FF63 /* ActionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionViewController.xib; sourceTree = "<group>"; };
+		7E6BF35B270B870F0042FF63 /* StyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
+		7E6BF35D270B8E920042FF63 /* CrashlyticsActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsActionViewController.swift; sourceTree = "<group>"; };
 		7E6E1E522631735C00165FF9 /* MarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownViewController.swift; sourceTree = "<group>"; };
 		7E7A41302674CE0C00BB64F9 /* MessagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesTableViewCell.xib; sourceTree = "<group>"; };
 		7E7E6ECC26F478D300834F48 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -293,6 +302,7 @@
 		7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTableView.swift; sourceTree = "<group>"; };
 		7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionView.swift; sourceTree = "<group>"; };
 		7EBC6B5126E962C700B827BC /* SwiftyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftyKit; sourceTree = "<group>"; };
+		7EC2F9A9270722560013CAFF /* MarkdownViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkdownViewController.xib; sourceTree = "<group>"; };
 		7ECE539F26B09B2500BE28B5 /* CategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListViewModel.swift; sourceTree = "<group>"; };
 		7ECE53A126B09E5A00BE28B5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		7ECE53A626B0A39500BE28B5 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
@@ -436,6 +446,7 @@
 			children = (
 				7E47AF8F261DB8B000BA175E /* WelcomeViewController.swift */,
 				7E47AF90261DB8B000BA175E /* WelcomeViewController.xib */,
+				7E6BF35D270B8E920042FF63 /* CrashlyticsActionViewController.swift */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -476,6 +487,9 @@
 				7EE49A8A2617266E00524C9F /* SplitViewController.swift */,
 				7E89D1BF261CF9F2009930E6 /* SearchController.swift */,
 				7E6E1E522631735C00165FF9 /* MarkdownViewController.swift */,
+				7EC2F9A9270722560013CAFF /* MarkdownViewController.xib */,
+				7E6BF357270B7B320042FF63 /* ActionViewController.swift */,
+				7E6BF358270B7B320042FF63 /* ActionViewController.xib */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -614,6 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				7E47AF94261DBBCF00BA175E /* Button.swift */,
+				7E6BF35B270B870F0042FF63 /* StyleButton.swift */,
 				7E64EA50265DA29D00087124 /* CollectionView.swift */,
 				7E4099F426278C1E006E2A37 /* EmojiTextField.swift */,
 				7E9058D726284F810082F057 /* Label.swift */,
@@ -1089,6 +1104,7 @@
 				7E21117E26E6BB9900916417 /* CategoryContentView.xib in Resources */,
 				7E21436426B1E9CC00A3E8A2 /* MessageViewController.xib in Resources */,
 				7E87FE6F2704FC7F00BD145B /* PrivacyPolicy in Resources */,
+				7E6BF35A270B7B320042FF63 /* ActionViewController.xib in Resources */,
 				7E024382270250BD0042D239 /* SelectionTableViewCell.xib in Resources */,
 				7E89D1B9261CE71A009930E6 /* AboutViewController.xib in Resources */,
 				7E47AFE72620CC6200BA175E /* Firebase in Resources */,
@@ -1101,6 +1117,7 @@
 				7EE1F288262DEAA400537240 /* CategoryTableViewCell.xib in Resources */,
 				7EF83F7E260F22AF00E53A70 /* EditorAreaViewController.xib in Resources */,
 				7E68C02926262F3500617FA2 /* SwitchTableViewCell.xib in Resources */,
+				7EC2F9AA270722560013CAFF /* MarkdownViewController.xib in Resources */,
 				7E9058E22628D38B0082F057 /* CategoryViewController.xib in Resources */,
 				7ECE53A926B0A3A100BE28B5 /* EmptyView.xib in Resources */,
 				7E68C01F2625AFDD00617FA2 /* SliderTableViewCell.xib in Resources */,
@@ -1201,7 +1218,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7ECE53A026B09B2500BE28B5 /* CategoriesListViewModel.swift in Sources */,
+				7E6BF35C270B870F0042FF63 /* StyleButton.swift in Sources */,
 				7E89D196261C8F91009930E6 /* BaseListViewController.swift in Sources */,
+				7E6BF35E270B8E920042FF63 /* CrashlyticsActionViewController.swift in Sources */,
 				7E47AFD0261E4CFA00BA175E /* DefaultsStorage.swift in Sources */,
 				7E5AEE482613AFB2008E024C /* NotificationNameExtension.swift in Sources */,
 				7EAF709226DD084100A3E490 /* AVSpeechSynthesisVoiceGenderExtension.swift in Sources */,
@@ -1213,6 +1232,7 @@
 				7E64EA51265DA29D00087124 /* CollectionView.swift in Sources */,
 				7EF83F74260F20ED00E53A70 /* UIViewControllerExtension.swift in Sources */,
 				7E68C02626262F1A00617FA2 /* SwitchTableViewCell.swift in Sources */,
+				7E6BF359270B7B320042FF63 /* ActionViewController.swift in Sources */,
 				7EF83FC226110AB700E53A70 /* SwiftyAssets.swift in Sources */,
 				7EE1F293262E06F600537240 /* Link.swift in Sources */,
 				7E87FE632704E40E00BD145B /* LoggerService.swift in Sources */,
@@ -1597,7 +1617,7 @@
 					"-weak_framework",
 					SwiftUI,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-charles.Speech";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jean-charles.Speech.debug";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

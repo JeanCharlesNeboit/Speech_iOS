@@ -27,6 +27,10 @@ class AbstractViewController: UIViewController {
         true
     }
     
+    var shouldDismissModal: Bool {
+        true
+    }
+    
     lazy var cancelBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem.init(title: SwiftyAssets.Strings.generic_cancel, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: {
@@ -64,6 +68,8 @@ class AbstractViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presentationController?.delegate = self
+        navigationController?.presentationController?.delegate = self
         configure()
     }
     
@@ -78,5 +84,11 @@ class AbstractViewController: UIViewController {
                 let bottomContentInset = keyboardVisibleHeight - self.view.safeAreaInsets.bottom
                 self.additionalSafeAreaInsets.bottom = bottomContentInset
             }).disposed(by: disposeBag)
+    }
+}
+
+extension AbstractViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        shouldDismissModal
     }
 }

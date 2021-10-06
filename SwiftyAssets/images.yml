@@ -2,9 +2,12 @@
 app_icon:
     width: 200
 
-# Welcome
+# Onboarding
 welcome:
-    width: 400
+    format: svg
+
+qa_engineers:
+    format: svg
     
 # Empty
 folder:

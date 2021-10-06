@@ -14,9 +14,14 @@ import UIKit
         case disabled
     }
     
+    enum Style {
+        case primary
+        case secondary
+    }
+    
     // MARK: - Properties
-    private var disabledBackgroundColor: UIColor?
-    private var defaultBackgroundColor: UIColor? {
+    var disabledBackgroundColor: UIColor?
+    var defaultBackgroundColor: UIColor? {
         didSet {
             backgroundColor = defaultBackgroundColor
         }
@@ -33,15 +38,17 @@ import UIKit
         sharedInit()
     }
     
-    private func sharedInit() {
+    func sharedInit() {
         contentEdgeInsets = .init(top: 12, left: 20, bottom: 12, right: 20)
         layer.cornerRadius = 10
         
-        defaultBackgroundColor = SwiftyAssets.UIColors.primary
         disabledBackgroundColor = ._secondarySystemFill
-        
         titleLabel?.font = UIFont.getFont(style: .subheadline, weight: .bold)
-        setTitleColor(.white, for: .normal)
+    }
+    
+    // MARK: -
+    func setTitle(_ title: String) {
+        setTitle(title, for: .normal)
     }
     
     // MARK: - State
@@ -59,9 +66,16 @@ import UIKit
         }
     }
     
-    // MARK: -
-    func setTitle(_ title: String) {
-        setTitle(title, for: .normal)
+    // MARK: Style
+    func setStyle(_ style: Style) {
+        switch style {
+        case .primary:
+            defaultBackgroundColor = SwiftyAssets.UIColors.primary
+            setTitleColor(.white, for: .normal)
+        case .secondary:
+            defaultBackgroundColor = .clear
+            setTitleColor(SwiftyAssets.UIColors.primary, for: .normal)
+        }
     }
     
     func setBackgroundColor(_ color: UIColor?, for state: ButtonState) {

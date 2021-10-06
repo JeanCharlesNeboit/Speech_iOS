@@ -35,10 +35,6 @@ class NavigationController: UINavigationController {
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        configureNavigation()
-        navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationBar.sizeToFit()
     }
     
     // MARK: - Configure

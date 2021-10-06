@@ -51,7 +51,7 @@ class CategoriesListViewController: BaseListViewController {
     }
     
     @IBOutlet weak var addButtonBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var addButton: Button! {
+    @IBOutlet weak var addButton: PrimaryButton! {
         didSet {
             addButton.setTitle(SwiftyAssets.Strings.generic_add)
             addButton.rx.tap

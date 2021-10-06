@@ -27,6 +27,6 @@ class WelcomeViewControllerTests: AbstractTestViewController<WelcomeViewControll
         XCTAssertEqual(sut.welcomeImageView.image?.pngData(), SwiftyAssets.UIImages.welcome.pngData())
         XCTAssertEqual(sut.sloganLabel.text, SwiftyAssets.Strings.welcome_slogan)
         XCTAssertEqual(sut.descriptionLabel.text, SwiftyAssets.Strings.welcome_description)
-        XCTAssertEqual(sut.getStartedButton.titleLabel?.text, SwiftyAssets.Strings.welcome_get_started)
+        XCTAssertEqual(sut.getStartedButton.titleLabel?.text, SwiftyAssets.Strings.generic_continue)
     }
 }

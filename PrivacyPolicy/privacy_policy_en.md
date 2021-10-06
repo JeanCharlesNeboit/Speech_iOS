@@ -35,4 +35,4 @@ Our application contains links that lead to other websites. When you click on th
 
 # Contact us
 
-If you have any question about the privacy policy, feel free to contact us via [email](jcn-18-@hotmail.fr) or directly via our [Facebook page](https://www.facebook.com/Speech-680075348800105).
+If you have any question about the privacy policy, feel free to contact us via [email](mailto:jcn-18-@hotmail.fr) or directly via our [Facebook page](https://www.facebook.com/Speech-680075348800105).

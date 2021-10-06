@@ -12,7 +12,7 @@ class MessageViewController: BaseListViewController, FormViewController {
     typealias ViewModel = MessageViewModel
     
     // MARK: - IBOutlets
-    @IBOutlet var validButton: Button! {
+    @IBOutlet var validButton: PrimaryButton! {
         didSet {
             validButton.setTitle(viewModel.mode.saveTitle)
             validButton.rx.tap.subscribe(onNext: { [weak self] in

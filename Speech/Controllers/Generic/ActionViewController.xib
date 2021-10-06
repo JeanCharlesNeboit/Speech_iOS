@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActionViewController" customModule="Speech" customModuleProvider="target">
+            <connections>
+                <outlet property="bodyLabel" destination="Xs1-oi-FVo" id="Lsu-Vo-i47"/>
+                <outlet property="primaryButton" destination="FXr-7g-RpT" id="pUe-wD-4GA"/>
+                <outlet property="secondaryButton" destination="DG7-Xc-831" id="xfw-AW-DVy"/>
+                <outlet property="subtitleLabel" destination="QMg-7Z-hEr" id="Jsr-ZH-OZG"/>
+                <outlet property="view" destination="arB-tr-VLi" id="RVb-KQ-NCe"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="arB-tr-VLi">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="IRf-7x-YkU">
+                    <rect key="frame" x="20" y="159.5" width="374" height="577.5"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qa_engineers" translatesAutoresizingMaskIntoConstraints="NO" id="ogx-Um-E8O" customClass="ScaledHeightImageView" customModule="Speech" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="500"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Subtitle*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMg-7Z-hEr" customClass="Label" customModule="Speech" customModuleProvider="target">
+                            <rect key="frame" x="150.5" y="520" width="73.5" height="23"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Body*" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs1-oi-FVo">
+                            <rect key="frame" x="169.5" y="563" width="35" height="14.5"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="glG-9y-Ulj">
+                    <rect key="frame" x="41.5" y="794" width="331" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXr-7g-RpT" customClass="PrimaryButton" customModule="Speech" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="331" height="30"/>
+                            <state key="normal" title="Continuer*"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG7-Xc-831" customClass="SecondaryButton" customModule="Speech" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="38" width="331" height="30"/>
+                            <state key="normal" title="Annuler*"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="dKs-ht-oLc"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="glG-9y-Ulj" firstAttribute="width" secondItem="arB-tr-VLi" secondAttribute="width" multiplier="0.8" id="2MB-OA-Tfh"/>
+                <constraint firstItem="IRf-7x-YkU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dKs-ht-oLc" secondAttribute="top" id="T5K-0V-LxF"/>
+                <constraint firstItem="glG-9y-Ulj" firstAttribute="centerX" secondItem="arB-tr-VLi" secondAttribute="centerX" id="U9D-n8-lSs"/>
+                <constraint firstItem="IRf-7x-YkU" firstAttribute="centerY" secondItem="arB-tr-VLi" secondAttribute="centerY" id="V57-XN-5Ax"/>
+                <constraint firstItem="dKs-ht-oLc" firstAttribute="bottom" secondItem="glG-9y-Ulj" secondAttribute="bottom" id="dyn-yI-LuU"/>
+                <constraint firstItem="IRf-7x-YkU" firstAttribute="centerX" secondItem="arB-tr-VLi" secondAttribute="centerX" id="glU-iM-q6u"/>
+                <constraint firstItem="glG-9y-Ulj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IRf-7x-YkU" secondAttribute="bottom" constant="20" id="kQh-R6-fag"/>
+                <constraint firstItem="glG-9y-Ulj" firstAttribute="width" secondItem="arB-tr-VLi" secondAttribute="width" multiplier="0.5" id="oWK-wH-QQy"/>
+                <constraint firstItem="IRf-7x-YkU" firstAttribute="leading" secondItem="arB-tr-VLi" secondAttribute="leading" constant="20" id="pJr-NC-9D3"/>
+                <constraint firstAttribute="trailing" secondItem="IRf-7x-YkU" secondAttribute="trailing" constant="20" id="zgB-OP-4cq"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="oWK-wH-QQy"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="2MB-OA-Tfh"/>
+                    <include reference="oWK-wH-QQy"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="113.04347826086958" y="227.34375"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="DG7-Xc-831">
+            <size key="intrinsicContentSize" width="60" height="30"/>
+        </designable>
+        <designable name="FXr-7g-RpT">
+            <size key="intrinsicContentSize" width="75" height="30"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="qa_engineers" width="750" height="500"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

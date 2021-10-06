@@ -17,7 +17,7 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
     // MARK: - Lifecycle
     override func setUp() {
         super.setUp()
-        DefaultsStorage.welcomeDone = true
+        DefaultsStorage.onboardingDone = true
         DefaultsStorage.replaceTextWhenMessageSelected = true
         sut = EditorAreaViewController()
     }
@@ -25,7 +25,7 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
     // MARK: - Tests
     func testShowWelcome() {
         // Given
-        DefaultsStorage.welcomeDone = false
+        DefaultsStorage.onboardingDone = false
         
         // When
         showViewController()
@@ -51,18 +51,7 @@ class EditorAreaViewControllerTests: AbstractTestViewController<EditorAreaViewCo
         XCTAssertEqual(navigationItem.title, Bundle.main.displayName)
         XCTAssertEqual(navigationItem.rightBarButtonItem?.image, SwiftyAssets.UIImages.gearshape)
     }
-    
-    // MARK: View
-    func testViewAppear() {
-        // Given
-        
-        // When
-        showViewController()
-        
-        // Then
-        XCTAssertTrue(sut.isFirstResponder)
-    }
-    
+      
     // MARK: TextView
     func testTextView() {
         // Given

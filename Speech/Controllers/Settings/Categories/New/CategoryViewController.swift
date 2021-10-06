@@ -12,7 +12,7 @@ class CategoryViewController: BaseListViewController, FormViewController {
     typealias ViewModel = CategoryViewModel
     
     // MARK: - IBOutlets
-    @IBOutlet weak var validButton: Button! {
+    @IBOutlet weak var validButton: PrimaryButton! {
         didSet {
             validButton.setTitle(viewModel.mode.saveTitle)
             validButton.rx.tap

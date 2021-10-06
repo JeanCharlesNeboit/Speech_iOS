@@ -57,6 +57,18 @@ generic_add:
 generic_create:
     fr: Créer
     en: Create
+
+generic_continue:
+    fr: Continuer
+    en: Continue
+    
+generic_allow:
+    fr: Autoriser
+    en: Allow
+    
+generic_deny:
+    fr: Refuser
+    en: Deny
     
 ## Search
 search_empty_title:
@@ -84,10 +96,19 @@ welcome_slogan:
 welcome_description:
     fr: Speech est une application destinée aux personnes privées de la parole.
     en: Speech is an app for people without speech.
-
-welcome_get_started:
-    fr: Découvrir
-    en: Get started
+    
+## Crash Reports
+help_us:
+    fr: Aidez-nous
+    en: Help us
+    
+help_us_improve:
+    fr: Aidez-nous à améliorer %@
+    en: Help us improve %@
+    
+crash_reports_description:
+    fr: Pour améliorer l'expérience et la stabilité de l'application, %@ souhaite collecter des rapports de crash. Ces informations anonymes permettent de détecter les problèmes, puis de les résoudre.\nAutoriser %@ à collecter des rapports de crash ?
+    en: To improve application experience and stability, %@ would like to collect crash reports. This anonymous information allow us detect troubles, then fix it.\nAllow %@ to collect crash reports ?
 
 ## EditorArea
 editor_area_placeholder:
@@ -298,7 +319,7 @@ privacy_policy:
     en: Privacy policy
 
 enable_crashlytics:
-    fr: Activer la collecte des rapports crash
+    fr: Activer la collecte des rapports de crash
     en: Enable crash reports
 
 ## About

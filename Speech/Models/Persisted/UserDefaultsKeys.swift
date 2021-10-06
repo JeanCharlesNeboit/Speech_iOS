@@ -8,7 +8,7 @@
 import Foundation
 
 enum UserDefaultsKeys: String {
-    case welcomeDone
+    case onboardingDone
     case preferredEditorAreaTextFont
     case preferredSpeakingRate
     case preferredLanguage

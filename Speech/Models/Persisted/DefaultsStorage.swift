@@ -12,9 +12,9 @@ import AVFoundation
 
 // swiftlint:disable redundant_optional_initialization
 class DefaultsStorage {
-    // MARK: - Welcome
-    @UserDefault(key: UserDefaultsKeys.welcomeDone())
-    static var welcomeDone: Bool = false
+    // MARK: - Onboarding
+    @UserDefault(key: UserDefaultsKeys.onboardingDone())
+    static var onboardingDone: Bool = false
     
     // MARK: - Editor area
     @RxRawUserDefault(key: UserDefaultsKeys.preferredEditorAreaTextFont())

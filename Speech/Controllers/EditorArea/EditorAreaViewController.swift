@@ -52,7 +52,7 @@ class EditorAreaViewController: AbstractViewController {
         super.viewWillAppear(animated)
         
         updateNavigationItem()
-        if !DefaultsStorage.welcomeDone {
+        if !DefaultsStorage.onboardingDone {
             let nav = NavigationController(rootViewController: WelcomeViewController())
             present(nav)
         }
@@ -68,10 +68,6 @@ class EditorAreaViewController: AbstractViewController {
         
         let ratio = view.bounds.height/view.bounds.width <= 4/3 ? 0.5 : 0.8
         self.toolbarWidthConstraint.constant = self.view.bounds.width * ratio
-//        let animator = UIViewPropertyAnimator(duration: 2, curve: .easeInOut) { [unowned self] in
-//            self.view.layoutIfNeeded()
-//        }
-//        animator.startAnimation()
     }
     
     // MARK: - Configure
