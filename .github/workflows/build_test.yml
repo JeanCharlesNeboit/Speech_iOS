@@ -89,5 +89,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.BUILD_PRODUCTS_ARTIFACT_NAME }}
+          path: ${{ env.DERIVED_DATA_PATH }}/Build/Products
       - name: Run test action
         uses: ./SwiftyCI/actions/test
