@@ -93,3 +93,6 @@ iOSInjectionProject/
 
 # App Store Preview
 AppStorePreviews
+
+# Archive
+**/*.xcarchive

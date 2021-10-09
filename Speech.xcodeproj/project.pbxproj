@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -176,19 +176,6 @@
 			remoteInfo = Speech;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7EF83FAC260F5F2D00E53A70 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E02437D27023E560042D239 /* VoiceLanguageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceLanguageListViewController.swift; sourceTree = "<group>"; };
@@ -996,8 +983,6 @@
 				7E47AFF02620E74B00BA175E /* Setup Firebase */,
 				7EF73317260F1756009D7A08 /* Resources */,
 				7EF83F92260F4C4800E53A70 /* SwiftLint */,
-				7E47AFE92620CD7C00BA175E /* Firebase */,
-				7EF83FAC260F5F2D00E53A70 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1136,26 +1121,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7E47AFE92620CD7C00BA175E /* Firebase */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = Firebase;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Firebase/Scripts/run\"\n";
-		};
 		7E47AFF02620E74B00BA175E /* Setup Firebase */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1194,6 +1159,7 @@
 		};
 		7EF83FBB261109FE00E53A70 /* SwiftyAssets */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1208,7 +1174,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/SwiftyAssets/swiftyassets.sh\n";
+			shellScript = "#${PROJECT_DIR}/SwiftyAssets/swiftyassets.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
