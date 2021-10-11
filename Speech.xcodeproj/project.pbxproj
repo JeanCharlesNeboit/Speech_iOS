@@ -45,7 +45,6 @@
 		7E47AFC7261E3F4C00BA175E /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AFC6261E3F4C00BA175E /* Typography.swift */; };
 		7E47AFD0261E4CFA00BA175E /* DefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AFCF261E4CFA00BA175E /* DefaultsStorage.swift */; };
 		7E47AFD5261F860200BA175E /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AFD4261F860200BA175E /* UIFontExtension.swift */; };
-		7E47AFE72620CC6200BA175E /* Firebase in Resources */ = {isa = PBXBuildFile; fileRef = 7E47AFE62620CC6200BA175E /* Firebase */; };
 		7E47AFEB2620CE7800BA175E /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47AFEA2620CE7800BA175E /* FirebaseService.swift */; };
 		7E4E0B1326FA613700553BB5 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E0B1226FA613700553BB5 /* Sortable.swift */; };
 		7E4E0B1526FA7A2800553BB5 /* SpeechError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E0B1426FA7A2800553BB5 /* SpeechError.swift */; };
@@ -1093,7 +1092,6 @@
 				7E6BF35A270B7B320042FF63 /* ActionViewController.xib in Resources */,
 				7E024382270250BD0042D239 /* SelectionTableViewCell.xib in Resources */,
 				7E89D1B9261CE71A009930E6 /* AboutViewController.xib in Resources */,
-				7E47AFE72620CC6200BA175E /* Firebase in Resources */,
 				7EF73326260F1757009D7A08 /* Assets.xcassets in Resources */,
 				7E600AA8262F4B88003058FE /* ContainerTableViewCell.xib in Resources */,
 				7E4099F226278BD2006E2A37 /* EmojiMessageView.xib in Resources */,
