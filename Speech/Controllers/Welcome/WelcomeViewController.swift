@@ -23,46 +23,37 @@ class ScaledHeightImageView: UIImageView {
     }
 }
 
-class WelcomeViewController: AbstractViewController {
-    // MARK: - IBOutlets
-    @IBOutlet weak var welcomeImageView: UIImageView!
-    @IBOutlet weak var sloganLabel: UILabel! {
-        didSet {
-            sloganLabel.font = UIFont.getFont(style: .title2, weight: .bold)
-            sloganLabel.text = SwiftyAssets.Strings.welcome_slogan
-        }
-    }
-    
-    @IBOutlet weak var descriptionLabel: UILabel! {
-        didSet {
-            descriptionLabel.font = UIFont.getFont(style: .body)
-            descriptionLabel.text = SwiftyAssets.Strings.welcome_description
-        }
-    }
-    
-    @IBOutlet weak var getStartedButton: PrimaryButton! {
-        didSet {
-            getStartedButton.setTitle(SwiftyAssets.Strings.generic_continue)
-            getStartedButton.rx.tap
-                .subscribe(onNext: { [weak self] _ in
-                    self?.navigationController?.pushViewController(CrashlyticsActionViewController(), animated: true)
-                }).disposed(by: disposeBag)
-        }
-    }
-    
+class WelcomeViewController: ActionViewController {    
     // MARK: - Properties
+    override var nibName: String? {
+        "ActionViewController"
+    }
+    
     override var shouldDismissModal: Bool {
         false
     }
     
+    private var continueAction: Action {
+        .init(title: SwiftyAssets.Strings.generic_continue, completion: { [weak self] in
+            self?.navigationController?.pushViewController(CrashlyticsActionViewController(), animated: true)
+        })
+    }
+    
     // MARK: - Initialization
-    override func sharedInit() {
-        super.sharedInit()
-        title = SwiftyAssets.Strings.welcome_title
+    init() {
+        super.init(title: SwiftyAssets.Strings.welcome_title)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Lifecycle
     override func configure() {
         super.configure()
+        configure(image: SwiftyAssets.UIImages.welcome,
+                  subtitle: SwiftyAssets.Strings.welcome_slogan,
+                  body: SwiftyAssets.Strings.welcome_description,
+                  primaryAction: continueAction)
     }
 }

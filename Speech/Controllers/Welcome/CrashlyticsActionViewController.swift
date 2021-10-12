@@ -44,7 +44,11 @@ class CrashlyticsActionViewController: ActionViewController {
         let appName = Bundle.main.displayName
         let subtitle = String(format: SwiftyAssets.Strings.help_us_improve, appName)
         let body = String(format: SwiftyAssets.Strings.crash_reports_description, appName, appName)
-        configure(subtitle: subtitle, body: body, primaryAction: allowAction, secondaryAction: denyAction)
+        configure(image: SwiftyAssets.UIImages.qa_engineers,
+                  subtitle: subtitle,
+                  body: body,
+                  primaryAction: allowAction,
+                  secondaryAction: denyAction)
     }
     
     // MARK: -

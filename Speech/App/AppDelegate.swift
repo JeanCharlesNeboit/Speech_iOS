@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RealmMigrator.setDefaultConfiguration()
         RealmService.default.printDatabaseFilePath()
         
+//        if !DefaultsStorage.coreDataMigrationDone {
+            RealmService.default.performCoreDataToRealmMigration()
+//        }
+        
         // DefaultsStorage
         DefaultsStorage.configure()
         

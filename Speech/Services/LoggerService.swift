@@ -16,7 +16,16 @@ class LoggerService {
         os_log("%@", log: .default, type: .info, message)
     }
     
-    static func info(message: String) {
+    static func info(_ message: String) {
         self.message("ℹ️ \(message)")
+    }
+    
+    // MARK: - Error
+    static func error(_ message: String) {
+        self.message("‼️ \(message)")
+    }
+    
+    static func error(_ error: Error) {
+        self.error(error.localizedDescription)
     }
 }

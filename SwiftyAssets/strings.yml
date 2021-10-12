@@ -107,8 +107,8 @@ help_us_improve:
     en: Help us improve %@
     
 crash_reports_description:
-    fr: Pour améliorer l'expérience et la stabilité de l'application, %@ souhaite collecter des rapports de crash. Ces informations anonymes permettent de détecter les problèmes, puis de les résoudre.\nAutoriser %@ à collecter des rapports de crash ?
-    en: To improve application experience and stability, %@ would like to collect crash reports. This anonymous information allow us detect troubles, then fix it.\nAllow %@ to collect crash reports ?
+    fr: Pour améliorer l'expérience et la stabilité de l'application, %@ souhaite collecter des rapports de crash. Ces informations anonymes permettent de détecter les problèmes, puis de les résoudre.\n\nAutoriser %@ à collecter des rapports de crash ?
+    en: To improve application experience and stability, %@ would like to collect crash reports. This anonymous information allow us detect troubles, then fix it.\n\nAllow %@ to collect crash reports ?
 
 ## EditorArea
 editor_area_placeholder:

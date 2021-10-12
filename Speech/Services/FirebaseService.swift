@@ -24,7 +24,7 @@ class FirebaseService {
     
     // MARK: - Crashlytics
     private func setCrashlyticsCollection(enabled: Bool) {
-        log.info(message: enabled ? "Crashlytics enable" : "Crashlytics disable")
+        log.info(enabled ? "Crashlytics enable" : "Crashlytics disable")
         Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(enabled)
     }
 }

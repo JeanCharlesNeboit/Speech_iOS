@@ -9,9 +9,9 @@ import Foundation
 import RealmSwift
 
 extension RealmService {    
-    func save(message: Message, completion: @escaping ((WriteResult) -> Void)) {
+    func save(message: Message, completion: ((WriteResult) -> Void)? = nil) {
         addObject(message) { result in
-            completion(result)
+            completion?(result)
             if case .success = result {
                 DefaultsStorage.savedMessagesCount += 1
                 NotificationCenter.default.post(name: .MessageDidSave, object: nil)

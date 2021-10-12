@@ -57,6 +57,10 @@ class DefaultsStorage {
     @RxUserDefault(key: UserDefaultsKeys.enableCrashlyticsCollection())
     static var enableCrashlyticsCollection: Bool = false
     
+    // MARK: - CoreData Migration
+    @UserDefault(key: UserDefaultsKeys.coreDataMigrationDone())
+    static var coreDataMigrationDone: Bool = false
+    
     // MARK: - Configure
     static func configure() {
         #if DEBUG && false

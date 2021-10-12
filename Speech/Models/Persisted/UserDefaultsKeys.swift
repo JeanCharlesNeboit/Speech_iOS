@@ -20,4 +20,5 @@ enum UserDefaultsKeys: String {
     case saveMessagesQuickly
     case closeMessageViewWhenMessageSelected
     case enableCrashlyticsCollection
+    case coreDataMigrationDone
 }

@@ -15,6 +15,7 @@ struct Action {
 
 class ActionViewController: AbstractViewController {
     // MARK: - IBOutlets
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var subtitleLabel: UILabel! {
         didSet {
             subtitleLabel.font = UIFont.getFont(style: .title2, weight: .bold)
@@ -61,13 +62,18 @@ class ActionViewController: AbstractViewController {
     }
     
     // MARK: - Configure
-    func configure(subtitle: String, body: String, primaryAction: Action, secondaryAction: Action) {
+    func configure(image: UIImage, subtitle: String, body: String, primaryAction: Action, secondaryAction: Action? = nil) {
         self.primaryAction = primaryAction
         self.secondaryAction = secondaryAction
         
+        imageView.image = image
         subtitleLabel.text = subtitle
         bodyLabel.text = body
         primaryButton.setTitle(primaryAction.title)
-        secondaryButton.setTitle(secondaryAction.title)
+        
+        secondaryButton.isHidden = secondaryAction == nil
+        if let secondaryAction = secondaryAction {
+            secondaryButton.setTitle(secondaryAction.title)
+        }
     }
 }

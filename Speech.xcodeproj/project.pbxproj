@@ -120,6 +120,11 @@
 		7EAE4F8F26B33F2700088655 /* MessageContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE4F8E26B33F2700088655 /* MessageContentView.xib */; };
 		7EAF708F26DCE04000A3E490 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF708E26DCE04000A3E490 /* UIDeviceExtension.swift */; };
 		7EAF709226DD084100A3E490 /* AVSpeechSynthesisVoiceGenderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF709126DD084100A3E490 /* AVSpeechSynthesisVoiceGenderExtension.swift */; };
+		7EB22C8B27162038003E7C35 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C8A27162038003E7C35 /* CoreDataService.swift */; };
+		7EB22C8D271620DF003E7C35 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB22C8C271620DF003E7C35 /* CoreData.framework */; };
+		7EB22C90271621C7003E7C35 /* Speech.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C8E271621C7003E7C35 /* Speech.xcdatamodeld */; };
+		7EB22C9227162230003E7C35 /* CoreDataSentences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C912716222F003E7C35 /* CoreDataSentences.swift */; };
+		7EB22C9527162321003E7C35 /* RealmService+CoreDataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C9427162321003E7C35 /* RealmService+CoreDataMigration.swift */; };
 		7EB4DCBC264C6FE0009FA304 /* AbstractTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */; };
 		7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */; };
 		7EC2F9AA270722560013CAFF /* MarkdownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC2F9A9270722560013CAFF /* MarkdownViewController.xib */; };
@@ -203,7 +208,6 @@
 		7E4670C9265268FC00373FE8 /* AbstractTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTestViewController.swift; sourceTree = "<group>"; };
 		7E4670CB2652703C00373FE8 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7E47AF8F261DB8B000BA175E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		7E47AF90261DB8B000BA175E /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		7E47AF94261DBBCF00BA175E /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		7E47AF97261DBF4000BA175E /* colors.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = colors.yml; sourceTree = "<group>"; };
 		7E47AFBF261DC4FD00BA175E /* SwiftyColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyColors.swift; sourceTree = "<group>"; };
@@ -284,6 +288,12 @@
 		7EAE4F8E26B33F2700088655 /* MessageContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageContentView.xib; sourceTree = "<group>"; };
 		7EAF708E26DCE04000A3E490 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		7EAF709126DD084100A3E490 /* AVSpeechSynthesisVoiceGenderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSpeechSynthesisVoiceGenderExtension.swift; sourceTree = "<group>"; };
+		7EB22C8A27162038003E7C35 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		7EB22C8C271620DF003E7C35 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7EB22C8F271621C7003E7C35 /* Speech.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Speech.xcdatamodel; sourceTree = "<group>"; };
+		7EB22C912716222F003E7C35 /* CoreDataSentences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSentences.swift; sourceTree = "<group>"; };
+		7EB22C9427162321003E7C35 /* RealmService+CoreDataMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmService+CoreDataMigration.swift"; sourceTree = "<group>"; };
+		7EB22C96271628AC003E7C35 /* Speech.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Speech.entitlements; sourceTree = "<group>"; };
 		7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTableView.swift; sourceTree = "<group>"; };
 		7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionView.swift; sourceTree = "<group>"; };
 		7EBC6B5126E962C700B827BC /* SwiftyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftyKit; sourceTree = "<group>"; };
@@ -355,6 +365,7 @@
 				7E87FE682704ED0500BD145B /* MarkdownKit in Frameworks */,
 				7E21118B26E9589500916417 /* FirebaseCrashlytics in Frameworks */,
 				7E56F11626B451CF000D6B04 /* RxDataSources in Frameworks */,
+				7EB22C8D271620DF003E7C35 /* CoreData.framework in Frameworks */,
 				7E5B647526149CEC00F39BF3 /* SwiftyKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,7 +441,6 @@
 			isa = PBXGroup;
 			children = (
 				7E47AF8F261DB8B000BA175E /* WelcomeViewController.swift */,
-				7E47AF90261DB8B000BA175E /* WelcomeViewController.xib */,
 				7E6BF35D270B8E920042FF63 /* CrashlyticsActionViewController.swift */,
 			);
 			path = Welcome;
@@ -651,6 +661,26 @@
 			path = AVFoundation;
 			sourceTree = "<group>";
 		};
+		7EB22C8927161FC6003E7C35 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				7EB22C8E271621C7003E7C35 /* Speech.xcdatamodeld */,
+				7EB22C8A27162038003E7C35 /* CoreDataService.swift */,
+				7EB22C912716222F003E7C35 /* CoreDataSentences.swift */,
+			);
+			path = Deprecated;
+			sourceTree = "<group>";
+		};
+		7EB22C93271622F1003E7C35 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				7EF83FB0260F60A200E53A70 /* RealmService.swift */,
+				7E83EC2926F34FB100663540 /* RealmService+Requests.swift */,
+				7EB22C9427162321003E7C35 /* RealmService+CoreDataMigration.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		7EBC6B1126E962BF00B827BC /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +814,7 @@
 		7EF20D9E260F1E5400407F29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EB22C8C271620DF003E7C35 /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -814,6 +845,7 @@
 		7EF7331B260F1756009D7A08 /* Speech */ = {
 			isa = PBXGroup;
 			children = (
+				7EB22C96271628AC003E7C35 /* Speech.entitlements */,
 				7EF73354260F1773009D7A08 /* App */,
 				7EF83F98260F5E3800E53A70 /* Models */,
 				7E5AEE1126120AD5008E024C /* Views */,
@@ -823,6 +855,7 @@
 				7EF83F72260F20DA00E53A70 /* Extensions */,
 				7EE1F279262CB6C200537240 /* Utils */,
 				7EF73355260F179D009D7A08 /* Resources */,
+				7EB22C8927161FC6003E7C35 /* Deprecated */,
 			);
 			path = Speech;
 			sourceTree = "<group>";
@@ -943,11 +976,10 @@
 		7EF83FAE260F5FB400E53A70 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7EB22C93271622F1003E7C35 /* Realm */,
 				7E5B647B2614D49600F39BF3 /* AVAudioSessionService.swift */,
 				7E56F11226B44D19000D6B04 /* EnvironmentService.swift */,
 				7E47AFEA2620CE7800BA175E /* FirebaseService.swift */,
-				7EF83FB0260F60A200E53A70 /* RealmService.swift */,
-				7E83EC2926F34FB100663540 /* RealmService+Requests.swift */,
 				7E5B64772614D27300F39BF3 /* SpeechSynthesizerService.swift */,
 				7E68C0182625904A00617FA2 /* KeyboardService.swift */,
 				7E6A5AD726FBD02D0038F2FB /* StoreReviewService.swift */,
@@ -1192,7 +1224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#${PROJECT_DIR}/SwiftyAssets/swiftyassets.sh\n";
+			shellScript = "${PROJECT_DIR}/SwiftyAssets/swiftyassets.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1203,6 +1235,7 @@
 			files = (
 				7ECE53A026B09B2500BE28B5 /* CategoriesListViewModel.swift in Sources */,
 				7E6BF35C270B870F0042FF63 /* StyleButton.swift in Sources */,
+				7EB22C9527162321003E7C35 /* RealmService+CoreDataMigration.swift in Sources */,
 				7E89D196261C8F91009930E6 /* BaseListViewController.swift in Sources */,
 				7E6BF35E270B8E920042FF63 /* CrashlyticsActionViewController.swift in Sources */,
 				7E47AFD0261E4CFA00BA175E /* DefaultsStorage.swift in Sources */,
@@ -1225,6 +1258,7 @@
 				7E47AFD5261F860200BA175E /* UIFontExtension.swift in Sources */,
 				7E21117A26E6104200916417 /* LoadViewController.swift in Sources */,
 				7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */,
+				7EB22C9227162230003E7C35 /* CoreDataSentences.swift in Sources */,
 				7E89D18A261C6CB2009930E6 /* DetailsTableViewCell.swift in Sources */,
 				7E02437E27023E560042D239 /* VoiceLanguageListViewController.swift in Sources */,
 				7E5AEE1426120B85008E024C /* TextView.swift in Sources */,
@@ -1286,7 +1320,9 @@
 				7E47AFC4261E36A000BA175E /* UserDefaultsKeys.swift in Sources */,
 				7E9058D826284F810082F057 /* Label.swift in Sources */,
 				7E5AEE2926124659008E024C /* AbstractView.swift in Sources */,
+				7EB22C90271621C7003E7C35 /* Speech.xcdatamodeld in Sources */,
 				7E5AEE532613C5CE008E024C /* MessageTableViewCell.swift in Sources */,
+				7EB22C8B27162038003E7C35 /* CoreDataService.swift in Sources */,
 				7EE1F27C262CB70800537240 /* RxUserDefault.swift in Sources */,
 				7E5AEE3226126A46008E024C /* SwiftyStrings.swift in Sources */,
 				7E5B64782614D27300F39BF3 /* SpeechSynthesizerService.swift in Sources */,
@@ -1422,6 +1458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID_SUFFIX = .beta;
+				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
@@ -1589,6 +1626,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID_SUFFIX = .debug;
+				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1617,6 +1655,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID_SUFFIX = "";
+				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
@@ -1834,6 +1873,19 @@
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		7EB22C8E271621C7003E7C35 /* Speech.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7EB22C8F271621C7003E7C35 /* Speech.xcdatamodel */,
+			);
+			currentVersion = 7EB22C8F271621C7003E7C35 /* Speech.xcdatamodel */;
+			path = Speech.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7EF73311260F1756009D7A08 /* Project object */;
 }
