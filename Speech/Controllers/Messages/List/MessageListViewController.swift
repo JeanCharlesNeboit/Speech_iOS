@@ -232,7 +232,7 @@ class MessageListViewController: AbstractViewController {
                        DefaultsStorage.closeMessageViewWhenMessageSelected {
                         self.dismiss(animated: true, completion: nil)
                     }
-                case .categories(_):
+                case .categories:
                     break
                 }
             }).disposed(by: disposeBag)

@@ -85,7 +85,7 @@ class CategoryViewController: BaseListViewController, FormViewController {
     private func onValidate() {
         viewModel.onValidate { [weak self] result in
             switch result {
-            case .success():
+            case .success:
                 self?.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 self?.showError(title: error.title, message: error.body)

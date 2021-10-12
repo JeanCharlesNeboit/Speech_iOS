@@ -83,7 +83,7 @@ class MessageViewModel: AbstractViewModel, MessageViewModelProtocol {
                                   category: category)
             realmService.save(message: message) { result in
                 switch result {
-                case .success():
+                case .success:
                     onCompletion(.success(()))
                 case .failure(let error):
                     onCompletion(.failure(.localized(error.toLocalizableError)))

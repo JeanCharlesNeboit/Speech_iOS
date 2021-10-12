@@ -1,12 +1,12 @@
 {
-	"info" : {
-		"author" : "xcode",
-		"version" : 1
-	},
-	"images" : [
-		{
-			"filename" : "welcome.svg",
-			"idiom" : "universal"
-		}
-	]
+  "images" : [
+    {
+      "filename" : "welcome.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
 }

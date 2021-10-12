@@ -66,7 +66,7 @@ class EditorAreaViewController: AbstractViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let ratio = view.bounds.height/view.bounds.width <= 4/3 ? 0.5 : 0.8
+        let ratio: CGFloat = view.bounds.height/view.bounds.width <= 4/3 ? 0.5 : 0.8
         self.toolbarWidthConstraint.constant = self.view.bounds.width * ratio
     }
     
