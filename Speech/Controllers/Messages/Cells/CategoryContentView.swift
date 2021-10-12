@@ -29,7 +29,8 @@ class CategoryContentView: UIView {
         badgeLabel.text = "\(category.messages.count)"
         
         let emoji = category.emoji
-        emojiImageView.image = emoji?.toImage() ?? SwiftyAssets.UIImages.face_smiling
+        emojiImageView.isHidden = emoji.isEmptyOrNil
+        emojiImageView.image = emoji?.toImage() // ?? SwiftyAssets.UIImages.face_smiling
         
         messageLabel.text = category.name
     }

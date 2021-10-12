@@ -9,9 +9,19 @@ import UIKit
 import RxSwift
 import RxGesture
 
-class MessagesTableViewCell: AbstractTableViewCell {
+class CategoriesTableViewCell: AbstractTableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var leadingStackViewConstraint: NSLayoutConstraint! {
+        didSet {
+            updateMargin(leadingStackViewConstraint)
+        }
+    }
+    @IBOutlet weak var trailingStackViewConstraint: NSLayoutConstraint! {
+        didSet {
+            updateMargin(trailingStackViewConstraint)
+        }
+    }
     @IBOutlet weak var bottomStackViewConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
@@ -46,5 +56,13 @@ class MessagesTableViewCell: AbstractTableViewCell {
 
         stackView.addArrangedSubview(views)
         bottomStackViewConstraint.constant = isLast ? 0 : 16
+    }
+    
+    private func updateMargin(_ constraint: NSLayoutConstraint) {
+        if #available(iOS 13, *) {
+            
+        } else {
+            constraint.constant = 16
+        }
     }
 }

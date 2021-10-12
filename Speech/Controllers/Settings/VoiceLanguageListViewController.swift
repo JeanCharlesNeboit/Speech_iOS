@@ -62,20 +62,34 @@ class VoiceLanguageListViewController: BaseListViewController {
     }
     
     private func update(search: String?, preferredLanguage: String?) {
-        sections = [
-            Section(model: .init(header: ""),
-                    items: languages
-                        .filter(search: search)
-                        .map { locale -> BaseListCellType in
-                            let isSelected = locale.identifier == preferredLanguage
-                            return .selection(config: .init(title: locale.localizedStringWithFlag,
-                                                            subtitle: locale.currentLocaleLocalizedString),
-                                              isSelected: isSelected,
-                                              onTap: {
-                                DefaultsStorage.preferredLanguage = locale.identifier
-                            })
-                        })
-        ]
+        let cell: ((Locale) -> BaseListCellType) = { locale in
+            let isSelected = locale.identifier == preferredLanguage
+            return .selection(config: .init(title: locale.localizedStringWithFlag,
+                                            subtitle: locale.currentLocaleLocalizedString),
+                              isSelected: isSelected,
+                              onTap: {
+                DefaultsStorage.preferredLanguage = locale.identifier
+            })
+        }
+        
+        if let search = search.nilIfEmpty {
+            sections = [
+                Section(model: .init(header: ""),
+                        items: languages
+                            .filter(search: search)
+                            .map { cell($0) })
+            ]
+        } else {
+            sections = [
+                Section(model: .init(header: ""),
+                        items: languages.filter { $0.identifier != preferredLanguage }.map { cell($0) })
+            ]
+            
+            if let preferredLocale = languages.first(where: { $0.identifier == preferredLanguage }) {
+                sections.insert(Section(model: .init(header: ""), items: [preferredLocale].map { cell($0) }), at: 0)
+            }
+        }
+        
     }
 
     private func configureNavigationItem() {

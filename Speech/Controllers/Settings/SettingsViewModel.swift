@@ -9,8 +9,7 @@ import Foundation
 
 class SettingsViewModel: AbstractViewModel {
     // MARK: - Properties
-    #warning("ToDo")
-    let appStoreAppLink = "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review"
+    let appStoreAppLink = "https://apps.apple.com/app/id1080624469?action=write-review"
     let githubRepositoryLink = "https://github.com/JeanCharlesNeboit/Speech_iOS"
     
     var appVersionInfo: String {

@@ -11,6 +11,7 @@ class OpenSourceListViewController: BaseListViewController {
     private var dependencies: [(title: String, urlString: String)] {
         [
             (title: "Firebase", urlString: "https://github.com/firebase/firebase-ios-sdk.git"),
+            (title: "MarkdownKit", urlString: "https://github.com/bmoliveira/MarkdownKit"),
             (title: "Realm", urlString: "https://github.com/realm/realm-cocoa.git"),
             (title: "RxSwift", urlString: "https://github.com/ReactiveX/RxSwift.git"),
             (title: "RxDataSources", urlString: "https://github.com/RxSwiftCommunity/RxDataSources.git"),

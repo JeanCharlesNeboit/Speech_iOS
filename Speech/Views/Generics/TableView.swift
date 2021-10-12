@@ -47,7 +47,7 @@ class TableView: AbstractTableView {
             SliderTableViewCell.self,
             SwitchTableViewCell.self,
             MessageTableViewCell.self,
-            MessagesTableViewCell.self,
+            CategoriesTableViewCell.self,
             CategoryTableViewCell.self,
             SelectionTableViewCell.self
         ]

@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hHR-JU-N6l" customClass="MessagesTableViewCell" customModule="Speech" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hHR-JU-N6l" customClass="CategoriesTableViewCell" customModule="Speech" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hHR-JU-N6l" id="Fxm-jB-KpR">
@@ -31,7 +31,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="bottomStackViewConstraint" destination="xAx-kw-HtW" id="ny3-F3-fnK"/>
+                <outlet property="leadingStackViewConstraint" destination="EHR-a8-Uv6" id="QCp-WT-LpM"/>
                 <outlet property="stackView" destination="AjL-zx-tv1" id="MJK-uT-QFF"/>
+                <outlet property="trailingStackViewConstraint" destination="RME-xo-YFU" id="7f5-Nq-bKM"/>
             </connections>
             <point key="canvasLocation" x="-65.217391304347828" y="66.964285714285708"/>
         </tableViewCell>

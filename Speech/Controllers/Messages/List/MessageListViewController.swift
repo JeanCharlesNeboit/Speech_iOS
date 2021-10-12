@@ -155,6 +155,7 @@ class MessageListViewController: AbstractViewController {
         DefaultsStorage.$preferredMessageDisplayMode.subscribe(onNext: { [weak self] mode in
             guard let self = self else { return }
             self.layoutModeBarButtonItem.image = mode.image
+            self.tableView.separatorStyle = mode == .list ? .singleLine : .none
         }).disposed(by: disposeBag)
     }
     
@@ -203,7 +204,7 @@ class MessageListViewController: AbstractViewController {
                 cell.configure(message: message, layout: .horizontal)
                 return cell
             case .categories(let categories):
-                guard let cell: MessagesTableViewCell = tableView.dequeueReusableCell(for: indexPath) else {
+                guard let cell: CategoriesTableViewCell = tableView.dequeueReusableCell(for: indexPath) else {
                     return UITableViewCell()
                 }
                 let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1

@@ -40,7 +40,9 @@ class AbstractViewController: UIViewController {
     }()
     
     lazy var environmentService = EnvironmentService()
-    lazy var searchController: SearchController = SearchController()
+    
+    // Add searchResultsController parameter otherwise search bar does not display (iOS 12)
+    lazy var searchController: SearchController = SearchController(searchResultsController: nil)
     
     // MARK: - Initialization
     init() {
