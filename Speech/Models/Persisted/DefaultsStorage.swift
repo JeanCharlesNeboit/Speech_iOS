@@ -26,7 +26,21 @@ class DefaultsStorage {
     
     // MARK: - Voice
     @RxUserDefault(key: UserDefaultsKeys.preferredLanguage())
-    static var preferredLanguage: String? = nil
+    static var preferredLanguage: String? = nil {
+        didSet {
+            guard let preferredLanguage = preferredLanguage else { return }
+            preferredVoices[preferredLanguage] = AVSpeechSynthesisVoice.init(language: preferredLanguage)?.identifier
+        }
+    }
+    
+    
+    
+    @RxUserDefault(key: UserDefaultsKeys.preferredVoices())
+    static var preferredVoices: [String: String] = [:]
+    static var preferredVoice: String? {
+        guard let preferredLanguage = preferredLanguage else { return nil }
+        return preferredVoices[preferredLanguage]
+    }
     
     @UserDefault(key: UserDefaultsKeys.automaticLanguageRecognition())
     static var automaticLanguageRecognition: Bool = true
@@ -76,8 +90,10 @@ class DefaultsStorage {
         if self.preferredLanguage == nil {
             if let voice = AVSpeechSynthesisVoice.init(language: isoLanguageCode) {
                 self.preferredLanguage = voice.language
+                self.preferredVoices[voice.language] = voice.identifier
             } else {
-                self.preferredLanguage = "en-US"
+                let defaultLocale = "en-US"
+                self.preferredLanguage = defaultLocale
             }
         }
     }

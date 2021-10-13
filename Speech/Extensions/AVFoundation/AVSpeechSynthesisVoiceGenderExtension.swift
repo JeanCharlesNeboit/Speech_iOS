@@ -14,7 +14,11 @@ extension AVSpeechSynthesisVoiceGender {
         case .unspecified:
             return nil
         case .male:
-            return "🧔‍♂️"
+            if #available(iOS 14.5, *) {
+                return "🧔‍♂️"
+            } else {
+                return "👨"
+            }
         case .female:
             return "👩"
         @unknown default:

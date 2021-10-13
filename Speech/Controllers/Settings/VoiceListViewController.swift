@@ -31,20 +31,32 @@ class VoiceListViewController: BaseListViewController {
         super.sharedInit()
         title = SwiftyAssets.Strings.preferences_voice
         
-        sections = voicesSections.map { section in
-            let country = [section.locale.countryFlag, section.locale.countryName].compactMap { $0 }.joined(separator: " ")
-            return Section(model: .init(header: country),
-                           items: section.voices.map { voice in
-                var genderEmoji: String?
-                if #available(iOS 13.0, *) {
-                    genderEmoji = voice.gender.emoji
-                }
-                let voice = [genderEmoji, voice.name].compactMap { $0 }.joined(separator: " ")
-                return .selection(config: .init(title: voice), isSelected: false, onTap: {
-                })
-            })
-        }
-        sections.insert(Section(model: .init(header: "To use more voice, download more on your device settings*"),
-                                items: []), at: 0)
+        DefaultsStorage.$preferredVoices.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.sections = self.voicesSections.map { section in
+                let country = [section.locale.countryFlag, section.locale.countryName].compactMap { $0 }.joined(separator: " ")
+                let preferredVoice = DefaultsStorage.preferredVoice
+                
+                return Section(model: .init(header: country),
+                               items: section.voices.map { voice in
+                                var genderEmoji: String?
+                                if #available(iOS 13.0, *) {
+                                    genderEmoji = voice.gender.emoji
+                                }
+                                let voiceName = [genderEmoji, voice.name].compactMap { $0 }.joined(separator: " ")
+                                return .selection(config: .init(title: voiceName), isSelected: voice.identifier == preferredVoice, onTap: {
+                                    guard let preferredLanguage = DefaultsStorage.preferredLanguage else { return }
+                                    DefaultsStorage.preferredVoices[preferredLanguage] = voice.identifier
+                                })
+                               })
+            }
+            
+            self.sections.insert(Section(model: .init(header: SwiftyAssets.Strings.preferences_voice_get_more),
+                                    items: []), at: 0)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func update() {
+        
     }
 }

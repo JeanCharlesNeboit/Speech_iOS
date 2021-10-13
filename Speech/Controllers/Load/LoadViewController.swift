@@ -11,6 +11,11 @@ class LoadViewController: AbstractViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !DefaultsStorage.coreDataMigrationDone {
+            RealmService.default.performCoreDataToRealmMigration()
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIWindow.currentWindow?.set(rootViewController: UIViewController.main)
         }

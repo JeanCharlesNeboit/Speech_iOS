@@ -44,15 +44,15 @@
                         </label>
                     </subviews>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="glG-9y-Ulj">
-                    <rect key="frame" x="41.5" y="778" width="331" height="68"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="glG-9y-Ulj">
+                    <rect key="frame" x="41.5" y="770" width="331" height="76"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXr-7g-RpT" customClass="PrimaryButton" customModule="Speech" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="331" height="30"/>
                             <state key="normal" title="Continuer*"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG7-Xc-831" customClass="SecondaryButton" customModule="Speech" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="38" width="331" height="30"/>
+                            <rect key="frame" x="0.0" y="46" width="331" height="30"/>
                             <state key="normal" title="Annuler*"/>
                         </button>
                     </subviews>

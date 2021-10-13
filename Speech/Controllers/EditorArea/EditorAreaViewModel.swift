@@ -61,17 +61,16 @@ class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
             return
         }
         
-        var voice = AVSpeechSynthesisVoice(language: DefaultsStorage.preferredLanguage)
-        if DefaultsStorage.automaticLanguageRecognition {
-            if #available(iOS 12.0, *) {
+        var voice = AVSpeechSynthesisVoice.preferredVoice
+        
+        if #available(iOS 12.0, *) {
+            if DefaultsStorage.automaticLanguageRecognition {
                 recognizer.processString(text)
-                if let language = recognizer.dominantLanguage {
-                    voice = AVSpeechSynthesisVoice(language: language.rawValue)
+                if let language = recognizer.dominantLanguage,
+                   voice?.locale != language.rawValue {
+                    voice = AVSpeechSynthesisVoice.preferredVoice(locale: language.rawValue)
                 }
                 recognizer.reset()
-            } else {
-                #warning("ToDo")
-                // Fallback on earlier versions
             }
         }
         

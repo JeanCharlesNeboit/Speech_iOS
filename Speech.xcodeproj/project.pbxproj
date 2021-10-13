@@ -125,6 +125,7 @@
 		7EB22C90271621C7003E7C35 /* Speech.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C8E271621C7003E7C35 /* Speech.xcdatamodeld */; };
 		7EB22C9227162230003E7C35 /* CoreDataSentences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C912716222F003E7C35 /* CoreDataSentences.swift */; };
 		7EB22C9527162321003E7C35 /* RealmService+CoreDataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C9427162321003E7C35 /* RealmService+CoreDataMigration.swift */; };
+		7EB22C982717043C003E7C35 /* AVSpeechSynthesisVoiceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB22C972717043B003E7C35 /* AVSpeechSynthesisVoiceExtension.swift */; };
 		7EB4DCBC264C6FE0009FA304 /* AbstractTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */; };
 		7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */; };
 		7EC2F9AA270722560013CAFF /* MarkdownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EC2F9A9270722560013CAFF /* MarkdownViewController.xib */; };
@@ -294,6 +295,7 @@
 		7EB22C912716222F003E7C35 /* CoreDataSentences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSentences.swift; sourceTree = "<group>"; };
 		7EB22C9427162321003E7C35 /* RealmService+CoreDataMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmService+CoreDataMigration.swift"; sourceTree = "<group>"; };
 		7EB22C96271628AC003E7C35 /* Speech.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Speech.entitlements; sourceTree = "<group>"; };
+		7EB22C972717043B003E7C35 /* AVSpeechSynthesisVoiceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSpeechSynthesisVoiceExtension.swift; sourceTree = "<group>"; };
 		7EB4DCBB264C6FE0009FA304 /* AbstractTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTableView.swift; sourceTree = "<group>"; };
 		7EB4DCBD264C7362009FA304 /* AbstractCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionView.swift; sourceTree = "<group>"; };
 		7EBC6B5126E962C700B827BC /* SwiftyKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftyKit; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 			isa = PBXGroup;
 			children = (
 				7EAF709126DD084100A3E490 /* AVSpeechSynthesisVoiceGenderExtension.swift */,
+				7EB22C972717043B003E7C35 /* AVSpeechSynthesisVoiceExtension.swift */,
 			);
 			path = AVFoundation;
 			sourceTree = "<group>";
@@ -1327,6 +1330,7 @@
 				7E5AEE3226126A46008E024C /* SwiftyStrings.swift in Sources */,
 				7E5B64782614D27300F39BF3 /* SpeechSynthesizerService.swift in Sources */,
 				7E4E0B1526FA7A2800553BB5 /* SpeechError.swift in Sources */,
+				7EB22C982717043C003E7C35 /* AVSpeechSynthesisVoiceExtension.swift in Sources */,
 				7EF83F84260F49EC00E53A70 /* AbstractViewController.swift in Sources */,
 				7EE1F284262DEA9A00537240 /* CategoryTableViewCell.swift in Sources */,
 				7E5AEE3E2613838E008E024C /* RealmObserver.swift in Sources */,

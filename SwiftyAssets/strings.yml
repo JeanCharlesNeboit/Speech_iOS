@@ -242,6 +242,10 @@ preferences_automatic_language_recognition:
 preferences_voice:
     fr: Voix
     en: Voice
+    
+preferences_voice_get_more:
+    fr: Pour avoir plus de voix, téléchargez-en davantage dans les paramètres de votre appareil.
+    en: To get more voices, download more in your device settings.
 
 preferences_editor_area_text_size:
     fr: Taille du texte de la zone de message

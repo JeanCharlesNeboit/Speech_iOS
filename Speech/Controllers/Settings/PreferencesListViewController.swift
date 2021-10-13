@@ -25,6 +25,14 @@ class PreferencesListViewController: BaseListViewController {
         .largeTitle
     ]
     
+    private var automaticLanguageRecognitionAvailable: Bool {
+        if #available(iOS 12.0, *) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: - Initialization
     override func sharedInit() {
         super.sharedInit()
@@ -65,13 +73,14 @@ class PreferencesListViewController: BaseListViewController {
             Section(model: .init(header: SwiftyAssets.Strings.preferences_voice), items: [
                 .details(config: .init(title: SwiftyAssets.Strings.preferences_preferred_voice_language)) { VoiceLanguageListViewController() },
                 .details(config: .init(title: SwiftyAssets.Strings.preferences_voice)) { VoiceListViewController() },
-                .switchChoice(.init(title: SwiftyAssets.Strings.preferences_automatic_language_recognition,
-                                    initialValue: DefaultsStorage.automaticLanguageRecognition,
-                                    onSwitch: { _ in
-                                        DefaultsStorage.automaticLanguageRecognition.toggle()
-                                    }
-                ))
-            ]),
+                automaticLanguageRecognitionAvailable ? .switchChoice(
+                    .init(title: SwiftyAssets.Strings.preferences_automatic_language_recognition,
+                          initialValue: DefaultsStorage.automaticLanguageRecognition,
+                          onSwitch: { _ in
+                            DefaultsStorage.automaticLanguageRecognition.toggle()
+                          }
+                )) : nil
+            ].compactMap { $0 }),
             Section(model: .init(header: SwiftyAssets.Strings.generic_messages), items: [
                 .switchChoice(
                     .init(title: SwiftyAssets.Strings.preferences_save_messages_quickly,

@@ -39,7 +39,6 @@ import UIKit
     }
     
     func sharedInit() {
-        contentEdgeInsets = .init(top: 12, left: 20, bottom: 12, right: 20)
         layer.cornerRadius = 10
         
         disabledBackgroundColor = ._secondarySystemFill
@@ -72,9 +71,11 @@ import UIKit
         case .primary:
             defaultBackgroundColor = SwiftyAssets.UIColors.primary
             setTitleColor(.white, for: .normal)
+            contentEdgeInsets = .init(top: 12, left: 20, bottom: 12, right: 20)
         case .secondary:
             defaultBackgroundColor = .clear
             setTitleColor(SwiftyAssets.UIColors.primary, for: .normal)
+            contentEdgeInsets = .init(top: 0, left: 20, bottom: 0, right: 20)
         }
     }
     
