@@ -90,7 +90,7 @@ class PreferencesListViewController: BaseListViewController {
                           })
                 ),
                 .switchChoice(
-                    .init(title: SwiftyAssets.Strings.preferences_show_frequently_used_messages,
+                    .init(title: SwiftyAssets.Strings.show_frequently_used_messages,
                           initialValue: DefaultsStorage.showFrequentlyUsedMessages,
                           onSwitch: { value in
                             DefaultsStorage.showFrequentlyUsedMessages = value

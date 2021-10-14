@@ -26,17 +26,19 @@ class CategoriesTableViewCell: AbstractTableViewCell {
     
     // MARK: - Properties
     private var tapDisposables = [Disposable]()
+    private(set) var categoriesView = [UIView]()
     var onCategoryTap: ((Category) -> Void)?
     
     // MARK: - Configure
-    func configure(categories: [Category], column: Int, isLast: Bool) {
+    func configure(categories: [Category], column: Int, isLast: Bool, onConfigure: ((CategoryContentView, Category) -> Void)?) {
         separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         tapDisposables.removeAll()
         stackView.removeAllArrangedSubviews()
         
-        var views = categories.map { category -> UIView in
+        categoriesView = categories.map { category -> UIView in
             let view: CategoryContentView = .loadFromXib()
             view.configure(category: category)
+            onConfigure?(view, category)
             
             let tapDisposable = view.rx.tapGesture()
                 .when(.recognized)
@@ -48,13 +50,13 @@ class CategoriesTableViewCell: AbstractTableViewCell {
             return view
         }
         
-        let missingColumn = column - views.count
+        let missingColumn = column - categoriesView.count
         for _ in 0..<missingColumn {
             let clearView = UIView()
-            views.append(clearView)
+            categoriesView.append(clearView)
         }
 
-        stackView.addArrangedSubview(views)
+        stackView.addArrangedSubview(categoriesView)
         bottomStackViewConstraint.constant = isLast ? 0 : 16
     }
     

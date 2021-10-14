@@ -175,6 +175,14 @@ messages_frequently_used:
 messages_all:
     fr: Tous les messages
     en: All messages
+
+show_frequently_used_messages:
+    fr: Afficher les messages fréquemment utilisés
+    en: Show frequently used messages
+    
+hide_frequently_used_messages:
+    fr: Cacher les messages fréquemment utilisés
+    en: Hide frequently used messages
     
 ## Message
 message_new_title:
@@ -254,10 +262,6 @@ preferences_editor_area_text_size:
 preferences_save_messages_quickly:
     fr: Sauvegarder les nouveaux messages radipement
     en: Save new messages quickly
-            
-preferences_show_frequently_used_messages:
-    fr: Afficher les messages fréquemment utilisés
-    en: Show frequently used messages
     
 preferences_replace_text_when_message_selected:
     fr: Remplacer le texte lors de la sélection d'un message

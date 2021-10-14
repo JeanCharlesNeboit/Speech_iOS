@@ -85,6 +85,11 @@ extension RealmService {
             .filter("\(#keyPath(Category.parentCategory)) == %@", category)
     }
     
+    func delete(category: Category) {
+        deleteObject(category)
+        deleteObjects(category.subCategories)
+    }
+    
     func doesCategoryAlreadyExist(name: String) -> Bool {
         return allCategoriesResult().contains(where: { $0.name == name.trimmingCharacters(in: .whitespacesAndNewlines) })
     }

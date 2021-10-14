@@ -158,7 +158,7 @@ class CategoriesListViewController: BaseListViewController {
         tableView.rx.modelSelected(BaseListCellType.self)
             .subscribe(onNext: { [weak self] cellType in
                 guard let self = self else { return }
-                guard case let .category(category) = cellType,
+                guard case let .category(category, _) = cellType,
                       let category = category else { return }
                 
                 let showSubCategories = {
@@ -183,8 +183,13 @@ class CategoriesListViewController: BaseListViewController {
                 guard let self = self else { return }
                 self.sections = [
                     Section.init(model: .init(header: self.viewModel.parentCategory?.name), items:
-                        categories.map {
-                            return .category($0)
+                        categories.map { category in
+                            return .category(category) { cell in
+                                if #available(iOS 13, *) {
+                                    let interaction = ContextMenuInteraction<Category>(item: category, delegate: self)
+                                    cell.addInteraction(interaction)
+                                }
+                            }
                         }
                     )
                 ]
@@ -204,8 +209,26 @@ class CategoriesListViewController: BaseListViewController {
     }
 }
 
-extension CategoriesListViewController {
-    private func showCategoryDeleteAlert(onCompletion: @escaping ((Bool) -> Void)) {
+protocol CategoriesManager: AbstractViewController {
+    
+}
+
+extension CategoriesManager {
+    func onEdit(category: Category) {
+        let vc = CategoryViewController(viewModel: .init(mode: .edition(category: category)))
+        present(NavigationController(rootViewController: vc))
+    }
+    
+    func onDelete(category: Category) {
+        self.showCategoryDeleteAlert(onCompletion: { shouldDelete in
+            if shouldDelete {
+                #warning("Add to a viewModel")
+                RealmService().delete(category: category)
+            }
+        })
+    }
+    
+    func showCategoryDeleteAlert(onCompletion: @escaping ((Bool) -> Void)) {
         let alertViewController = UIAlertController(title: SwiftyAssets.Strings.category_delete_confirmation_title,
                                                     message: SwiftyAssets.Strings.category_delete_confirmation_message,
                                                     preferredStyle: .alert)
@@ -224,24 +247,19 @@ extension CategoriesListViewController {
     }
 }
 
-extension CategoriesListViewController {
+extension CategoriesListViewController: CategoriesManager {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: SwiftyAssets.Strings.generic_delete) { [weak self] _, _, completion in
             guard let self = self else { return }
             guard let category = self.viewModel.categories[safe: indexPath.row] else { return }
-            self.showCategoryDeleteAlert(onCompletion: { [weak self] shouldDelete in
-                if shouldDelete {
-                    self?.viewModel.onDelete(category: category)
-                }
-                completion(true)
-            })
+            self.onDelete(category: category)
+            completion(true)
         }
         
         let editAction = UIContextualAction(style: .normal, title: SwiftyAssets.Strings.generic_edit) { [weak self] _, _, completion in
             guard let self = self else { return }
             guard let category = self.viewModel.categories[safe: indexPath.row] else { return }
-            let vc = CategoryViewController(viewModel: .init(mode: .edition(category: category)))
-            self.present(NavigationController(rootViewController: vc))
+            self.onEdit(category: category)
             completion(true)
         }
         
@@ -249,5 +267,32 @@ extension CategoriesListViewController {
         configuration.performsFirstActionWithFullSwipe = true
         
         return configuration
+    }
+}
+
+@available(iOS 13.0, *)
+extension CategoriesListViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        if let categoryInteraction = interaction as? ContextMenuInteraction<Category> {
+            return UIContextMenuConfiguration.MakeCategoryContextMenuConfiguration(category: categoryInteraction.item, manager: self)
+        }
+        return nil
+    }
+}
+
+@available(iOS 13.0, *)
+extension UIContextMenuConfiguration {
+    static func MakeCategoryContextMenuConfiguration(category: Category, manager: CategoriesManager) -> UIContextMenuConfiguration {
+        UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let edit = UIAction(title: SwiftyAssets.Strings.generic_edit, image: UIImage(systemName: "square.and.pencil")) { _ in
+                manager.onEdit(category: category)
+            }
+        
+            let delete = UIAction(title: SwiftyAssets.Strings.generic_delete, image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+                manager.onDelete(category: category)
+            }
+        
+            return UIMenu(title: "", children: [edit, delete])
+        }
     }
 }

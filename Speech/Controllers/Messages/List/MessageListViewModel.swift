@@ -26,7 +26,21 @@ class MessageListViewModel: AbstractViewModel {
     private let mostUsedLimit = 5
     
     @RxBehaviorSubject var search: String?
-    @RxBehaviorSubject var sortMode = DefaultsStorage.preferredMessageSortMode
+    @RxBehaviorSubject var sortMode = DefaultsStorage.preferredMessageSortMode {
+        didSet {
+            DefaultsStorage.preferredMessageSortMode = sortMode
+        }
+    }
+    @RxBehaviorSubject var showFrequentlyUsedMessages = DefaultsStorage.showFrequentlyUsedMessages {
+        didSet {
+            DefaultsStorage.showFrequentlyUsedMessages = showFrequentlyUsedMessages
+        }
+    }
+    @RxBehaviorSubject var preferredMessageDisplayMode = DefaultsStorage.preferredMessageDisplayMode {
+        didSet {
+            DefaultsStorage.preferredMessageDisplayMode = preferredMessageDisplayMode
+        }
+    }
     
     @RxBehaviorSubject var sections = [Section]()
     
@@ -34,7 +48,6 @@ class MessageListViewModel: AbstractViewModel {
     init(category: Category?) {
         self.category = category
         super.init()
-        observeSortMode()
         observeMessageResult()
     }
     
@@ -47,8 +60,8 @@ class MessageListViewModel: AbstractViewModel {
                                  messagesResultsObservable,
                                  categoriesResultObservable,
                                  $sortMode,
-                                 DefaultsStorage.$showFrequentlyUsedMessages,
-                                 DefaultsStorage.$preferredMessageDisplayMode)
+                                 $showFrequentlyUsedMessages,
+                                 $preferredMessageDisplayMode)
             .subscribe(onNext: { [weak self] search, messagesResult, categoriesResult, sortMode, showFrequentlyUsed, displayMode in
                 guard let self = self else { return }
                 switch displayMode {
@@ -59,12 +72,6 @@ class MessageListViewModel: AbstractViewModel {
                 }
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func observeSortMode() {
-        $sortMode.subscribe(onNext: { sortMode in
-            DefaultsStorage.preferredMessageSortMode = sortMode
-        }).disposed(by: disposeBag)
     }
     
     // MARK: - Sections

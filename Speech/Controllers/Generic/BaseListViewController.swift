@@ -19,7 +19,7 @@ enum BaseListCellType {
     case link(Link)
     case slider(SliderTableViewCell.Config)
     case switchChoice(SwitchTableViewCell.Config)
-    case category(Category?)
+    case category(Category?, onConfigure: ((UITableViewCell) -> Void)? = nil)
     
     var cellType: CellIdentifiable.Type {
         switch self {
@@ -57,8 +57,9 @@ enum BaseListCellType {
             (cell as? SwitchTableViewCell)?.configure(config: state)
         case .slider(let state):
             (cell as? SliderTableViewCell)?.configure(config: state)
-        case .category(let category):
+        case .category(let category, let onConfigure):
             (cell as? CategoryTableViewCell)?.configure(category: category)
+            onConfigure?(cell)
         }
     }
 }

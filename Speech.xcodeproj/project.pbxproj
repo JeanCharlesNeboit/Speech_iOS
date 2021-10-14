@@ -116,6 +116,7 @@
 		7E9058DC2628B96F0082F057 /* InputMessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9058DB2628B96F0082F057 /* InputMessageStackView.swift */; };
 		7E9058E22628D38B0082F057 /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E9058E12628D38B0082F057 /* CategoryViewController.xib */; };
 		7E9548D026678B1A00EBDC2A /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9548CF26678B1A00EBDC2A /* GridCollectionViewLayout.swift */; };
+		7E9AF07B2718C70300412D15 /* ContextMenuInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9AF07A2718C70300412D15 /* ContextMenuInteraction.swift */; };
 		7EAE4F8D26B33F1C00088655 /* MessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAE4F8C26B33F1C00088655 /* MessageContentView.swift */; };
 		7EAE4F8F26B33F2700088655 /* MessageContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE4F8E26B33F2700088655 /* MessageContentView.xib */; };
 		7EAF708F26DCE04000A3E490 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF708E26DCE04000A3E490 /* UIDeviceExtension.swift */; };
@@ -285,6 +286,7 @@
 		7E9058DB2628B96F0082F057 /* InputMessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMessageStackView.swift; sourceTree = "<group>"; };
 		7E9058E12628D38B0082F057 /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		7E9548CF26678B1A00EBDC2A /* GridCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		7E9AF07A2718C70300412D15 /* ContextMenuInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuInteraction.swift; sourceTree = "<group>"; };
 		7EAE4F8C26B33F1C00088655 /* MessageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContentView.swift; sourceTree = "<group>"; };
 		7EAE4F8E26B33F2700088655 /* MessageContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageContentView.xib; sourceTree = "<group>"; };
 		7EAF708E26DCE04000A3E490 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
@@ -955,6 +957,7 @@
 		7EF83F9D260F5EED00E53A70 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				7E9AF07A2718C70300412D15 /* ContextMenuInteraction.swift */,
 				7E21435F26B1BF1500A3E8A2 /* UIColorExtension.swift */,
 				7EAF708E26DCE04000A3E490 /* UIDeviceExtension.swift */,
 				7E47AFD4261F860200BA175E /* UIFontExtension.swift */,
@@ -1261,6 +1264,7 @@
 				7E47AFD5261F860200BA175E /* UIFontExtension.swift in Sources */,
 				7E21117A26E6104200916417 /* LoadViewController.swift in Sources */,
 				7EB4DCBE264C7362009FA304 /* AbstractCollectionView.swift in Sources */,
+				7E9AF07B2718C70300412D15 /* ContextMenuInteraction.swift in Sources */,
 				7EB22C9227162230003E7C35 /* CoreDataSentences.swift in Sources */,
 				7E89D18A261C6CB2009930E6 /* DetailsTableViewCell.swift in Sources */,
 				7E02437E27023E560042D239 /* VoiceLanguageListViewController.swift in Sources */,
@@ -1464,7 +1468,7 @@
 				BUNDLE_ID_SUFFIX = .beta;
 				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Speech/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1632,7 +1636,7 @@
 				BUNDLE_ID_SUFFIX = .debug;
 				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Speech/Resources/Info.plist";
@@ -1661,7 +1665,7 @@
 				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Speech/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
