@@ -158,8 +158,8 @@ class CategoriesListViewController: BaseListViewController {
         tableView.rx.modelSelected(BaseListCellType.self)
             .subscribe(onNext: { [weak self] cellType in
                 guard let self = self else { return }
-                guard case let .category(category, _) = cellType,
-                      let category = category else { return }
+                guard case let .category(_category, _) = cellType,
+                      let category = _category else { return }
                 
                 let showSubCategories = {
                     let vc = CategoriesListViewController(viewModel: .init(parentCategory: category, mode: self.viewModel.mode))
@@ -222,7 +222,7 @@ extension CategoriesManager {
     func onDelete(category: Category) {
         self.showCategoryDeleteAlert(onCompletion: { shouldDelete in
             if shouldDelete {
-                #warning("Add to a viewModel")
+                #warning("Add in a viewModel")
                 RealmService().delete(category: category)
             }
         })
