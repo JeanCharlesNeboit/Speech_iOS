@@ -33,8 +33,6 @@ class DefaultsStorage {
         }
     }
     
-    
-    
     @RxUserDefault(key: UserDefaultsKeys.preferredVoices())
     static var preferredVoices: [String: String] = [:]
     static var preferredVoice: String? {

@@ -7,7 +7,6 @@
 
 import UIKit
 
-#warning("Add prefered voice language")
 class PreferencesListViewController: BaseListViewController {
     // MARK: - Properties
     static let title = SwiftyAssets.Strings.settings_preferences

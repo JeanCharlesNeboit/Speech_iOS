@@ -57,7 +57,7 @@ class EditorAreaViewModel: AbstractViewModel, MessageViewModelProtocol {
     
     func startSpeaking(keyboardLanguage: String?, onCompletion: @escaping ((Result<Void, SpeechError>) -> Void)) {
         guard let text = text.nilIfEmpty else {
-            onCompletion(.failure(.localized(MessageError.empty)))
+            onCompletion(.failure(.localized(InputError.empty)))
             return
         }
         

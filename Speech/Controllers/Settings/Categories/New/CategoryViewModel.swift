@@ -50,13 +50,12 @@ class CategoryViewModel: AbstractViewModel {
     }
     
     // MARK: -
-    #warning("ToDo")
-    func canMessageBeSaved(name: String?) -> Result<String, MessageError> {
+    func canMessageBeSaved(name: String?) -> Result<String, InputError> {
         guard let name = name.nilIfEmpty else {
-            return .failure(MessageError.empty)
+            return .failure(InputError.empty)
         }
         guard !realmService.doesCategoryAlreadyExist(name: name) else {
-            return .failure(MessageError.duplication)
+            return .failure(InputError.duplication(type: .category))
         }
         return .success(name)
     }
@@ -79,7 +78,7 @@ class CategoryViewModel: AbstractViewModel {
         case .edition(let category):
             #warning("Check for subcategories")
             if case .failure(let error) = canMessageBeSaved(name: trimmedName) {
-                if error == MessageError.duplication,
+                if case .duplication = error,
                    let categoryId = realmService.getCategory(name: trimmedName)?.id,
                    categoryId == category.id {
                     // Allow

@@ -43,8 +43,8 @@ generic_message:
     en: Message
     
 generic_category:
-    fr: Catégory
-    en: Categorie
+    fr: Catégorie
+    en: Category
 
 generic_categories:
     fr: Catégories
@@ -81,7 +81,7 @@ search_empty_body:
 
 ## EmojiView
 emoji_only_allowed:
-    fr: Seul les emojis sont autorisés !
+    fr: Seuls les emojis sont autorisés !
     en: Only emojis are allowed !
     
 ## Welcome
@@ -112,7 +112,7 @@ crash_reports_description:
 
 ## EditorArea
 editor_area_placeholder:
-    fr: Entrez le texte à prononcer ici
+    fr: Entrer le texte à prononcer ici
     en: Tap text here
 
 # Empty text
@@ -133,23 +133,26 @@ editor_area_successfully_saved_body:
     fr: Le message a été enregistré.
     en: The message have been successfully saved.
 
-# Not successfully saved
-editor_area_not_successfully_saved_title:
+# Errors
+error_not_successfully_saved_title:
     fr: Erreur d'enregistrement !
     en: Saving error !
 
-editor_area_not_successfully_saved_body:
-    fr: Une erreur est survenue lors de enregistrement du message.
+error_not_successfully_saved_body:
+    fr: Une erreur est survenue lors de l'enregistrement du message.
     en: An error occurred while saving the message.
 
-# Duplication
-editor_area_duplication_title:
+error_duplication_title:
     fr: Duplication !
     en: Duplication !
 
-editor_area_duplication_body:
-    fr: Le message existe déjà !
-    en: The message already exists !
+error_duplication_message_body:
+    fr: Le message existe déjà.
+    en: The message already exists.
+
+error_duplication_category_body:
+    fr: La catégorie existe déjà.
+    en: The category already exists.
 
 ## Messages list
 messages_list_empty_title:
@@ -169,7 +172,7 @@ messages_list_sort_by_date_added:
     en: Sort by date added
     
 messages_frequently_used:
-    fr: Fréquemment utilisé
+    fr: Fréquemment utilisés
     en: Frequently used
 
 messages_all:
@@ -231,12 +234,12 @@ settings_thanks:
     en: Thanks
 
 settings_made_in_auvergne:
-    fr: Conçu en Auvergne 🇫🇷
+    fr: Conçue en Auvergne 🇫🇷
     en: Made in Auvergne 🇫🇷
 
 ## Preferences
 preferences_speaking_rate:
-    fr: Débit vocale
+    fr: Débit vocal
     en: Speaking rate
     
 preferences_preferred_voice_language:
@@ -302,8 +305,8 @@ category_edit_title:
     en: Edit category
 
 category_name:
-    fr: Nom de la catégory
-    en: Categorie name
+    fr: Nom de la catégorie
+    en: Category name
 
 category_without_category:
     fr: Sans catégorie
@@ -332,5 +335,5 @@ enable_crashlytics:
 
 ## About
 about_description:
-    fr: Tout commence en 2016, lors d'un projet d'étude du département Informatique Graphique de l'IUT du Puy-en-Velay, Auvergne, France. (Université Clermont Auvergne). L'association ADOL43 (Haute-Loire), association départementale de lutte contre la douleur, souhaite proposer aux patients laryngectomisés du centre hospitalier Emile Roux (Le Puy-en-Velay) une application mobile afin qu'ils puissent continuer à communiquer avec leur environnement. Ainsi est née l'application Speech.\n\nSpeech s'est très vite trouvée utile pour d'autres personnes atteintes de pathologie les empêchant de communiquer (Paralysie du visage, Trouble de la parole, etc) et ce, dans le monde entier. Ainsi, Speech, au delà de son origine, se veut aujourd'hui comme une application dont le but est de donner aux personnes privées de la parole un moyen de s'exprimer.
-    en: It all starts in 2016, during a study project of the IUT of Le Puy-en-Velay, Auvergne, France. (University Clermont Auvergne). The ADOL43 association (Haute-Loire), a departmental association for the fight against pain, wanted to offer laryngectomized patients at the Emile Roux hospital (Le Puy-en-Velay) a mobile application so that they could continue to communicate with their environment. This is how the Speech application was born. It was quickly found to be useful for other people suffering from pathologies that prevent them from communicating (facial paralysis, speech disorders, etc.) and this, all over the world. Thus, Speech, beyond its origin, is today an application whose goal is to give people deprived of speech a way to express themselves.
+    fr: Tout commence en 2016, lors d'un projet d'étude du département Informatique Graphique de l'IUT du Puy-en-Velay, Auvergne, France (Université Clermont Auvergne). L'association ADOL43 (Haute-Loire), association départementale de lutte contre la douleur, souhaite proposer aux patients laryngectomisés du centre hospitalier Emile Roux (Le Puy-en-Velay) une application mobile afin qu'ils puissent continuer à communiquer avec leur environnement. Ainsi est née l'application Speech.\n\nSpeech s'est très vite trouvée utile pour d'autres personnes atteintes de pathologies les empêchant de communiquer (paralysie du visage, trouble de la parole, etc) et ce, dans le monde entier. Ainsi, Speech, au-delà de son origine, veut aujourd'hui donner aux personnes privées de la parole un moyen de s'exprimer.
+    en: It all starts in 2016, during a study project of the IUT of Le Puy-en-Velay, Auvergne, France (University Clermont Auvergne). The ADOL43 association (Haute-Loire), a departmental association for the fight against pain, wanted to offer laryngectomized patients at the Emile Roux hospital (Le Puy-en-Velay) a mobile application so that they could continue to communicate with their environment. This is how the Speech application was born. It was quickly found to be useful for other people suffering from pathologies that prevent them from communicating (facial paralysis, speech disorders, etc.) and this, all over the world. Thus, Speech, beyond its origin, wants to give people deprived of speech a way to express themselves.

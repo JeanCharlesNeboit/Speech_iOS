@@ -24,6 +24,7 @@
 		7E21436026B1BF1500A3E8A2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21435F26B1BF1500A3E8A2 /* UIColorExtension.swift */; };
 		7E21436426B1E9CC00A3E8A2 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E21436326B1E9CC00A3E8A2 /* MessageViewController.xib */; };
 		7E21436726B1ED2C00A3E8A2 /* RxSwiftExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21436626B1ED2C00A3E8A2 /* RxSwiftExtension.swift */; };
+		7E2C023127503AD100680579 /* CategoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C023027503AD100680579 /* CategoriesManager.swift */; };
 		7E3953DE26B1989B0012E0B3 /* UIScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3953DD26B1989B0012E0B3 /* UIScrollViewExtension.swift */; };
 		7E3953E126B199CE0012E0B3 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3953E026B199CE0012E0B3 /* UIViewExtension.swift */; };
 		7E4099D7262637CB006E2A37 /* OpenSourceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4099D6262637CB006E2A37 /* OpenSourceListViewController.swift */; };
@@ -90,7 +91,7 @@
 		7E6E1E532631735C00165FF9 /* MarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6E1E522631735C00165FF9 /* MarkdownViewController.swift */; };
 		7E7A41312674CE0C00BB64F9 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E7A41302674CE0C00BB64F9 /* CategoriesTableViewCell.xib */; };
 		7E7E6ECD26F478D300834F48 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E6ECC26F478D300834F48 /* StringExtension.swift */; };
-		7E7E6ED026F4E35C00834F48 /* MessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E6ECF26F4E35C00834F48 /* MessageError.swift */; };
+		7E7E6ED026F4E35C00834F48 /* InputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E6ECF26F4E35C00834F48 /* InputError.swift */; };
 		7E83EC2826F349CD00663540 /* RealmServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83EC2726F349CD00663540 /* RealmServiceTests.swift */; };
 		7E83EC2A26F34FB100663540 /* RealmService+Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83EC2926F34FB100663540 /* RealmService+Requests.swift */; };
 		7E87FE632704E40E00BD145B /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E87FE622704E40E00BD145B /* LoggerService.swift */; };
@@ -197,6 +198,7 @@
 		7E21435F26B1BF1500A3E8A2 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7E21436326B1E9CC00A3E8A2 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		7E21436626B1ED2C00A3E8A2 /* RxSwiftExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftExtension.swift; sourceTree = "<group>"; };
+		7E2C023027503AD100680579 /* CategoriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesManager.swift; sourceTree = "<group>"; };
 		7E3953DD26B1989B0012E0B3 /* UIScrollViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtension.swift; sourceTree = "<group>"; };
 		7E3953E026B199CE0012E0B3 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		7E4099D6262637CB006E2A37 /* OpenSourceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceListViewController.swift; sourceTree = "<group>"; };
@@ -261,7 +263,7 @@
 		7E6E1E522631735C00165FF9 /* MarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownViewController.swift; sourceTree = "<group>"; };
 		7E7A41302674CE0C00BB64F9 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		7E7E6ECC26F478D300834F48 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		7E7E6ECF26F4E35C00834F48 /* MessageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
+		7E7E6ECF26F4E35C00834F48 /* InputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputError.swift; sourceTree = "<group>"; };
 		7E83EC2726F349CD00663540 /* RealmServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServiceTests.swift; sourceTree = "<group>"; };
 		7E83EC2926F34FB100663540 /* RealmService+Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmService+Requests.swift"; sourceTree = "<group>"; };
 		7E87FE622704E40E00BD145B /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 		7E4099E3262787FF006E2A37 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7E2C023027503AD100680579 /* CategoriesManager.swift */,
 				7EE1F282262DEA6F00537240 /* Cells */,
 				7ECE53A326B0A01400BE28B5 /* List */,
 				7ECE53A426B0A02200BE28B5 /* New */,
@@ -558,7 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				7E4E0B1426FA7A2800553BB5 /* SpeechError.swift */,
-				7E7E6ECF26F4E35C00834F48 /* MessageError.swift */,
+				7E7E6ECF26F4E35C00834F48 /* InputError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -1242,6 +1245,7 @@
 				7ECE53A026B09B2500BE28B5 /* CategoriesListViewModel.swift in Sources */,
 				7E6BF35C270B870F0042FF63 /* StyleButton.swift in Sources */,
 				7EB22C9527162321003E7C35 /* RealmService+CoreDataMigration.swift in Sources */,
+				7E2C023127503AD100680579 /* CategoriesManager.swift in Sources */,
 				7E89D196261C8F91009930E6 /* BaseListViewController.swift in Sources */,
 				7E6BF35E270B8E920042FF63 /* CrashlyticsActionViewController.swift in Sources */,
 				7E47AFD0261E4CFA00BA175E /* DefaultsStorage.swift in Sources */,
@@ -1309,7 +1313,7 @@
 				7E9058D526284A3D0082F057 /* CharacterExtension.swift in Sources */,
 				7E5AEE1F26123319008E024C /* SettingsViewController.swift in Sources */,
 				7E21435A26B1A40200A3E8A2 /* EditorAreaViewModel.swift in Sources */,
-				7E7E6ED026F4E35C00834F48 /* MessageError.swift in Sources */,
+				7E7E6ED026F4E35C00834F48 /* InputError.swift in Sources */,
 				7EE49A8B2617266E00524C9F /* SplitViewController.swift in Sources */,
 				7ECFD1932614F1730026406E /* main.swift in Sources */,
 				7E64EA44265D773E00087124 /* MessageListViewModel.swift in Sources */,

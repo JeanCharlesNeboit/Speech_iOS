@@ -120,8 +120,8 @@ class EditorAreaViewController: AbstractViewController {
                                 self.showSuccess(title: SwiftyAssets.Strings.editor_area_successfully_saved_title,
                                                  message: SwiftyAssets.Strings.editor_area_successfully_saved_body)
                             case .failure:
-                                self.showError(title: SwiftyAssets.Strings.editor_area_not_successfully_saved_title,
-                                                message: SwiftyAssets.Strings.editor_area_not_successfully_saved_body)
+                                self.showError(title: SwiftyAssets.Strings.error_not_successfully_saved_title,
+                                                message: SwiftyAssets.Strings.error_not_successfully_saved_body)
                             }
                         }
                     } else {

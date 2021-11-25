@@ -18,6 +18,7 @@ class CategoriesListViewModel: AbstractViewModel {
     @RxBehaviorSubject var search: String?
     @RxBehaviorSubject private(set) var categories = [Category]()
     
+    private var dataSourceDisposable: Disposable?
     private(set) var parentCategory: Category?
     let mode: Mode
     
@@ -27,10 +28,12 @@ class CategoriesListViewModel: AbstractViewModel {
         self.parentCategory = parentCategory
         self.mode = mode
         super.init()
-        
-        #warning("Listen categories change to update sub categories count")
+    }
+    
+    func viewWillAppear() {
+        // Refresh to update sub-categories count
         let categoriesResultsObservable = Observable.collection(from: realmService.getCategories(parent: parentCategory))
-        Observable.combineLatest($search, categoriesResultsObservable)
+        dataSourceDisposable = Observable.combineLatest($search, categoriesResultsObservable)
             .subscribe { search, categoriesResult in
                 let categories = categoriesResult.toArray()
                     .filter { category in
@@ -39,6 +42,6 @@ class CategoriesListViewModel: AbstractViewModel {
                         return category.name.uppercased().contains(search.uppercased())
                     }
                 self.categories = categories.sorted()
-            }.disposed(by: disposeBag)
+            }
     }
 }

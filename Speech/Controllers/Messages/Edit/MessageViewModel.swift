@@ -12,12 +12,12 @@ protocol MessageViewModelProtocol: AbstractViewModel {
 }
 
 extension MessageViewModelProtocol {
-    func canMessageBeSaved(text: String?) -> Result<String, MessageError> {
+    func canMessageBeSaved(text: String?) -> Result<String, InputError> {
         guard let text = text.nilIfEmpty else {
-            return .failure(MessageError.empty)
+            return .failure(InputError.empty)
         }
         guard !realmService.doesMessageAlreadyExist(text: text) else {
-            return .failure(MessageError.duplication)
+            return .failure(InputError.duplication(type: .message))
         }
         return .success(text)
     }
@@ -91,7 +91,7 @@ class MessageViewModel: AbstractViewModel, MessageViewModelProtocol {
             }
         case .edition(let message):
             if case .failure(let error) = canMessageBeSaved(text: trimmedMessage) {
-                if error == MessageError.duplication,
+                if case .duplication = error,
                    let messageId = realmService.getMessage(text: trimmedMessage)?.id,
                    messageId == message.id {
                     // Allow
