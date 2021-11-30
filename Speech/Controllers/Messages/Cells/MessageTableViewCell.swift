@@ -19,7 +19,7 @@ class MessageTableViewCell: AbstractTableViewCell {
     }
     
     // MARK: - Configure
-    func configure(message: Message, layout: NSLayoutConstraint.Axis) {
-        messageView.configure(message: message, layout: layout)
+    func configure(message: Message, layout: NSLayoutConstraint.Axis, isLast: Bool) {
+        messageView.configure(message: message, layout: layout, isLast: isLast)
     }
 }

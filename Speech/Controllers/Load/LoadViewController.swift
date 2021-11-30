@@ -21,3 +21,23 @@ class LoadViewController: AbstractViewController {
         }
     }
 }
+
+// MARK: - Previews
+#if DEBUG && canImport(SwiftUI)
+import SwiftUI
+
+@available(iOS 15, *)
+struct LoadViewControllerPreviews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            LoadViewController().asPreview()
+                .previewDevice("iPhone 13")
+            LoadViewController().asPreview()
+                .previewDevice("iPad Pro (9.7-inch)")
+            LoadViewController().asPreview()
+                .previewDevice("iPad Pro (9.7-inch)")
+                .previewInterfaceOrientation(.landscapeRight)
+        }
+    }
+}
+#endif

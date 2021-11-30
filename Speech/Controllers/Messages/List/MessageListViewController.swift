@@ -80,6 +80,7 @@ class MessageListViewController: AbstractViewController {
     
     private lazy var tableView: TableView = {
         let tableView = TableView()
+        tableView.separatorStyle = .none
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         return tableView
@@ -136,7 +137,7 @@ class MessageListViewController: AbstractViewController {
         viewModel.$preferredMessageDisplayMode.subscribe(onNext: { [weak self] mode in
             guard let self = self else { return }
             self.layoutModeBarButtonItem.image = mode.image
-            self.tableView.separatorStyle = mode == .list ? .singleLine : .none
+//            self.tableView.separatorStyle = mode == .list ? .singleLine : .none
         }).disposed(by: disposeBag)
     }
     
@@ -225,12 +226,14 @@ class MessageListViewController: AbstractViewController {
     
     private func configureCollectionView() {
         let dataSource = RxTableViewSectionedReloadDataSource<ViewModel.Section>(configureCell: { [self] _, tableView, indexPath, dataSource in
+            let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
+            
             switch dataSource {
             case .message(let message):
                 guard let cell: MessageTableViewCell = tableView.dequeueReusableCell(for: indexPath) else {
                     return UITableViewCell()
                 }
-                cell.configure(message: message, layout: .horizontal)
+                cell.configure(message: message, layout: .horizontal, isLast: isLast)
                 
                 if #available(iOS 13, *) {
                     let interaction = ContextMenuInteraction<Message>(item: message, delegate: self)
@@ -242,7 +245,6 @@ class MessageListViewController: AbstractViewController {
                 guard let cell: CategoriesTableViewCell = tableView.dequeueReusableCell(for: indexPath) else {
                     return UITableViewCell()
                 }
-                let isLast = indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1
                 cell.configure(categories: categories, column: self.viewModel.gridColumn, isLast: isLast) { categoryView, category in
                     if #available(iOS 13, *) {
                         let interaction = ContextMenuInteraction<Category>(item: category, delegate: self)

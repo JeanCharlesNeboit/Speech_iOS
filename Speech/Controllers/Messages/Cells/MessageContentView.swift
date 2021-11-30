@@ -25,14 +25,15 @@ class MessageContentView: SwiftyUIView {
         }
     }
     
-    @IBOutlet weak var dateLabel: UILabel! {
+    @IBOutlet weak var separatorHeightConstraint: NSLayoutConstraint! {
         didSet {
-            dateLabel.setDynamicFont(style: .caption2)
+            separatorHeightConstraint.constant = 0.33
         }
     }
+    @IBOutlet weak var separatorView: UIView!
     
     // MARK: - Configure
-    func configure(message: Message, layout: NSLayoutConstraint.Axis) {
+    func configure(message: Message, layout: NSLayoutConstraint.Axis, isLast: Bool) {
         stackView.axis = layout
         backgroundColor = layout == .vertical ? ._tertiarySystemBackground : .clear
         
@@ -46,9 +47,6 @@ class MessageContentView: SwiftyUIView {
         categoryLabel.text = categoryName
         categoryLabel.isHidden = categoryName.isEmptyOrNil
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = .short
-//        dateFormatter.timeStyle = .none
-//        dateLabel.text = dateFormatter.string(from: message.addedDate) //.toRelative(style: RelativeFormatter.defaultStyle()).capitalizingFirstLetter()
+        separatorView.isHidden = isLast
     }
 }
