@@ -36,7 +36,6 @@ class Category: Object {
     }
     
     @objc var numberOfUse: Int {
-        #warning("average could be better condition")
         return messages.compactMap { $0.numberOfUse }.reduce(0, +)
     }
     

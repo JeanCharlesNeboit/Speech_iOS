@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fNE-Yn-tVd" customClass="TextView" customModule="Speech" customModuleProvider="target">
-                    <rect key="frame" x="20" y="40" width="728" height="964"/>
+                    <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -41,11 +41,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fNE-Yn-tVd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="34E-Cz-fbb"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fNE-Yn-tVd" secondAttribute="bottom" constant="20" id="5md-MX-KvE"/>
+                <constraint firstItem="fNE-Yn-tVd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="34E-Cz-fbb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fNE-Yn-tVd" secondAttribute="bottom" id="5md-MX-KvE"/>
                 <constraint firstItem="uR5-cz-YXB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DjQ-JI-YLt"/>
-                <constraint firstItem="fNE-Yn-tVd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="QeS-6v-Xp2"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fNE-Yn-tVd" secondAttribute="trailing" constant="20" id="jJc-1L-IMb"/>
+                <constraint firstItem="fNE-Yn-tVd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QeS-6v-Xp2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fNE-Yn-tVd" secondAttribute="trailing" id="jJc-1L-IMb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="uR5-cz-YXB" secondAttribute="bottom" constant="20" id="zfR-ME-LSb"/>
             </constraints>
             <point key="canvasLocation" x="9" y="108"/>

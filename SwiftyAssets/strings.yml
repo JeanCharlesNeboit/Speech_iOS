@@ -234,7 +234,7 @@ settings_thanks:
     en: Thanks
 
 settings_made_in_auvergne:
-    fr: Conçue en Auvergne 🇫🇷
+    fr: Conçu en Auvergne 🇫🇷
     en: Made in Auvergne 🇫🇷
 
 ## Preferences
@@ -337,3 +337,8 @@ enable_crashlytics:
 about_description:
     fr: Tout commence en 2016, lors d'un projet d'étude du département Informatique Graphique de l'IUT du Puy-en-Velay, Auvergne, France (Université Clermont Auvergne). L'association ADOL43 (Haute-Loire), association départementale de lutte contre la douleur, souhaite proposer aux patients laryngectomisés du centre hospitalier Emile Roux (Le Puy-en-Velay) une application mobile afin qu'ils puissent continuer à communiquer avec leur environnement. Ainsi est née l'application Speech.\n\nSpeech s'est très vite trouvée utile pour d'autres personnes atteintes de pathologies les empêchant de communiquer (paralysie du visage, trouble de la parole, etc) et ce, dans le monde entier. Ainsi, Speech, au-delà de son origine, veut aujourd'hui donner aux personnes privées de la parole un moyen de s'exprimer.
     en: It all starts in 2016, during a study project of the IUT of Le Puy-en-Velay, Auvergne, France (University Clermont Auvergne). The ADOL43 association (Haute-Loire), a departmental association for the fight against pain, wanted to offer laryngectomized patients at the Emile Roux hospital (Le Puy-en-Velay) a mobile application so that they could continue to communicate with their environment. This is how the Speech application was born. It was quickly found to be useful for other people suffering from pathologies that prevent them from communicating (facial paralysis, speech disorders, etc.) and this, all over the world. Thus, Speech, beyond its origin, wants to give people deprived of speech a way to express themselves.
+
+## App Store Previews
+preview_hello:
+    fr: Bonjour !
+    en: Hello !

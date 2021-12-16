@@ -27,6 +27,24 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "xcrun simctl status_bar booted override --time 9:41 --operatorName &apos; &apos; --cellularMode active --cellularBar 4 --wifiBars 3 --batteryState charged --batteryLevel 100&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "xcrun simctl status_bar booted clear&#10;">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <TestPlans>
          <TestPlanReference
             reference = "container:SpeechTests/XCTestPlan/UnitTests.xctestplan"
@@ -44,6 +62,16 @@
                BlueprintIdentifier = "7EF7332E260F1757009D7A08"
                BuildableName = "SpeechTests.xctest"
                BlueprintName = "SpeechTests"
+               ReferencedContainer = "container:Speech.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7E74DF4D2767CF010044CBE8"
+               BuildableName = "SpeechUITests.xctest"
+               BlueprintName = "SpeechUITests"
                ReferencedContainer = "container:Speech.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -35,4 +35,4 @@ Notre application contient des liens qui mènent à d'autres sites web. Lorsque 
 
 ## Contacter-nous
 
-Si vous avez des questions sur la politique de confidentialité, n'hésitez pas à nous contacter par [e-mail](mailto:jcn-18-@hotmail.fr) ou directement via notre [page Facebook](https://www.facebook.com/Speech-680075348800105).
+Si vous avez des questions sur la politique de confidentialité, n'hésitez pas à nous contacter par [e-mail](mailto:speech_app@icloud.com) ou directement via notre [page Facebook](https://www.facebook.com/Speech-680075348800105).

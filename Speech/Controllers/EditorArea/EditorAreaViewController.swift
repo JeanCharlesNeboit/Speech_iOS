@@ -7,9 +7,9 @@
 
 import UIKit
 import SwiftyKit
-import SwiftMessages
 import RxSwift
 import RxKeyboard
+import SwiftMessages
 
 class EditorAreaViewController: AbstractViewController {
     typealias ViewModel = EditorAreaViewModel
@@ -31,7 +31,16 @@ class EditorAreaViewController: AbstractViewController {
     // MARK: - Properties
     let viewModel = ViewModel()
     
-    private lazy var toolbar: EditorAreaToolbar = .loadFromXib()
+    private(set) lazy var toolbar: EditorAreaToolbar = .loadFromXib()
+    
+    lazy var messageBarButtonItem: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
+        button.rx.tap
+            .subscribe(onNext: { [self] in
+                present(NavigationController(rootViewController: MessageListViewController()))
+            }).disposed(by: disposeBag)
+        return button
+    }()
     
     lazy var settingsBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem(image: SwiftyAssets.UIImages.gearshape, style: .plain, target: nil, action: nil)
@@ -52,6 +61,8 @@ class EditorAreaViewController: AbstractViewController {
         super.viewWillAppear(animated)
         
         updateNavigationItem()
+        navigationItem.largeTitleDisplayMode = .always
+        
         if !DefaultsStorage.onboardingDone {
             let nav = NavigationController(rootViewController: WelcomeViewController())
             present(nav)
@@ -97,11 +108,6 @@ class EditorAreaViewController: AbstractViewController {
         if !isCollapsed {
             navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         } else {
-            let messageBarButtonItem = UIBarButtonItem(image: SwiftyAssets.UIImages.line_horizontal_3_circle, style: .plain, target: nil, action: nil)
-            messageBarButtonItem.rx.tap
-                .subscribe(onNext: { [self] in
-                    present(NavigationController(rootViewController: MessageListViewController()))
-                }).disposed(by: disposeBag)
             navigationItem.leftBarButtonItem = messageBarButtonItem
         }
     }
@@ -158,5 +164,25 @@ class EditorAreaViewController: AbstractViewController {
                 self.toolbarBottomConstraint.constant = 20
             }
         }).disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .asObservable()
+            .subscribe(onNext: { [unowned self] height in
+                var contentInsetBottom = [
+                    height,
+                    toolbarBottomConstraint.constant,
+                    toolbarContainerView.bounds.height
+                ].reduce(0, +)
+                
+                let safeAreaInsetsBottom = view.safeAreaInsets.bottom
+                if height >= safeAreaInsetsBottom {
+                    contentInsetBottom -= view.safeAreaInsets.bottom
+                }
+                
+                textView.contentInset.bottom = contentInsetBottom
+                if #available(iOS 11.1, *) {
+                    textView.verticalScrollIndicatorInsets.bottom = contentInsetBottom
+                }
+            }).disposed(by: disposeBag)
     }
 }

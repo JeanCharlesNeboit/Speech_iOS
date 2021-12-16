@@ -36,7 +36,7 @@ struct LoadViewControllerPreviews: PreviewProvider {
                 .previewDevice("iPad Pro (9.7-inch)")
             LoadViewController().asPreview()
                 .previewDevice("iPad Pro (9.7-inch)")
-                .previewInterfaceOrientation(.landscapeRight)
+                //.previewInterfaceOrientation(.landscapeRight)
         }
     }
 }

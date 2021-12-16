@@ -58,7 +58,7 @@ class TextView: UITextView {
     
     // MARK: - Configure
     private func configure() {
-        textContainerInset = .zero
+        textContainerInset = .init(top: 16, left: 16, bottom: 16, right: 16)
         textContainer.lineFragmentPadding = 0
         
         Observable.combineLatest($isPlaceholderActive, $placeholder)

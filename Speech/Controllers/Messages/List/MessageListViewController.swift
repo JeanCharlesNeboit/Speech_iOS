@@ -64,7 +64,7 @@ class MessageListViewController: AbstractViewController {
     // MARK: - Properties
     let viewModel: ViewModel
     
-    private lazy var layoutModeBarButtonItem: UIBarButtonItem = {
+    private(set) lazy var layoutModeBarButtonItem: UIBarButtonItem = {
         let button = UIBarButtonItem.init(image: viewModel.preferredMessageDisplayMode.image, style: .plain, target: nil, action: nil)
         button.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }

@@ -30,8 +30,11 @@
   "testTargets" : [
     {
       "selectedTests" : [
-        "AppStorePreviews\/testLoadPreview()",
-        "AppStorePreviews\/testWelcomePreview()"
+        "AppStorePreviews\/testEditorAreaPreview()",
+        "AppStorePreviews\/testMessagesGridPreview()",
+        "AppStorePreviews\/testMessagesListPreview()",
+        "AppStorePreviews\/testNewMessagePreview()",
+        "AppStorePreviews\/testSettingsPreview()"
       ],
       "target" : {
         "containerPath" : "container:Speech.xcodeproj",
