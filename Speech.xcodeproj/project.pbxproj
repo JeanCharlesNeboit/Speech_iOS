@@ -1496,7 +1496,7 @@
 				BUNDLE_ID_SUFFIX = .beta;
 				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Speech/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1665,7 +1665,7 @@
 				BUNDLE_ID_SUFFIX = .debug;
 				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Speech/Resources/Info.plist";
@@ -1694,7 +1694,7 @@
 				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_ENTITLEMENTS = Speech/Speech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 32Y9285KBZ;
 				INFOPLIST_FILE = "$(SRCROOT)/Speech/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
