@@ -1177,8 +1177,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		7E4376B82714887A00C9B7AE /* Firebase */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -1192,7 +1191,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/Firebase/Scripts/run\n";
 		};

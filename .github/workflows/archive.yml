@@ -2,6 +2,12 @@ name: Deploy to App Store Connect
 
 on:
   workflow_dispatch:
+    inputs:
+      nextVersion:
+        description: 'Increment build number'
+        required: true
+        default: true
+        type: boolean
 
 env:
   SCHEME: "Speech"
@@ -41,6 +47,9 @@ jobs:
         run: ./SwiftyCI/scripts/setup_signing.sh
         env: 
           CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+      - name: Increment build number
+        if: ${{ github.event.inputs.nextVersion }}
+        run: xcrun agvtool next-version -all
       - name: Archive
         uses: ./SwiftyCI/actions/archive
         with:

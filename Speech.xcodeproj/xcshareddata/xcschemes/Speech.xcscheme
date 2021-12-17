@@ -32,7 +32,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "xcrun simctl status_bar booted override --time 9:41 --operatorName &apos; &apos; --cellularMode active --cellularBar 4 --wifiBars 3 --batteryState charged --batteryLevel 100&#10;">
+               scriptText = "xcrun simctl status_bar booted override --time &apos;2007-01-09T9:41:00+01:00&apos; --operatorName &apos; &apos; --cellularMode active --cellularBar 4 --wifiBars 3 --batteryState charged --batteryLevel 100&#10;">
             </ActionContent>
          </ExecutionAction>
       </PreActions>
