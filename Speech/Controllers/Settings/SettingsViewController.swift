@@ -37,19 +37,19 @@ class SettingsViewController: BaseListViewController {
                         .action(title: String(format: SwiftyAssets.Strings.settings_share_app, Bundle.main.displayName), onTap: { [weak self] in
                             self?.onShareApp()
                         }),
-                        .link(.init(title: SwiftyAssets.Strings.settings_rate_app, urlString: viewModel.appStoreAppLink)),
-                        .action(title: SwiftyAssets.Strings.settings_share_feedback, onTap: {
-                            let actionController = UIAlertController(title: SwiftyAssets.Strings.settings_share_feedback, message: nil, preferredStyle: .actionSheet)
-                            let cancelAction = UIAlertAction(title: SwiftyAssets.Strings.generic_cancel, style: .cancel, handler: nil)
-                            ViewModel.FeedbackType.allCases.forEach { feedbackType in
-                                let action = UIAlertAction(title: feedbackType.title, style: .default) { [weak self] _ in
-                                    self?.composeMail(feedbackType: feedbackType)
-                                }
-                                actionController.addAction(action)
-                            }
-                            actionController.addAction(cancelAction)
-                            self.present(actionController, animated: true)
-                        })
+                        .link(.init(title: SwiftyAssets.Strings.settings_rate_app, urlString: viewModel.appStoreAppLink))
+//                        .action(title: SwiftyAssets.Strings.settings_share_feedback, onTap: {
+//                            let actionController = UIAlertController(title: SwiftyAssets.Strings.settings_share_feedback, message: nil, preferredStyle: .actionSheet)
+//                            let cancelAction = UIAlertAction(title: SwiftyAssets.Strings.generic_cancel, style: .cancel, handler: nil)
+//                            ViewModel.FeedbackType.allCases.forEach { feedbackType in
+//                                let action = UIAlertAction(title: feedbackType.title, style: .default) { [weak self] _ in
+//                                    self?.composeMail(feedbackType: feedbackType)
+//                                }
+//                                actionController.addAction(action)
+//                            }
+//                            actionController.addAction(cancelAction)
+//                            self.present(actionController, animated: true)
+//                        })
                     ]),
             Section(model: .init(),
                     items: [
