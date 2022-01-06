@@ -1,0 +1,23 @@
+<plist version="1.0">
+     <dict>
+        <key>sub_categories</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@sub_categories@</string>
+            <key>sub_categories</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>one</key>
+                <string>%d sub-category</string>
+                <key>other</key>
+                <string>%d sub-categories</string>
+            </dict>
+        </dict>
+    </dict>
+</plist>
+
+
+                

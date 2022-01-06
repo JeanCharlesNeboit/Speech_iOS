@@ -15,7 +15,7 @@ class ThanksListViewController: BaseListViewController {
         title = Self.title
         sections = [
             Section(model: .init(), items: [
-                .link(.init(title: "Association ADOL43", urlString: "")),
+                .link(.init(title: "Association ADOL 43", urlString: "")),
                 .link(.init(title: "Freepik Storyset", urlString: "https://storyset.com"))
             ])
         ]

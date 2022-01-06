@@ -69,6 +69,10 @@ generic_allow:
 generic_deny:
     fr: Refuser
     en: Deny
+
+generic_set_up:
+    fr: Configurer
+    en: Set up
     
 ## Search
 search_empty_title:
@@ -153,6 +157,14 @@ error_duplication_message_body:
 error_duplication_category_body:
     fr: La catégorie existe déjà.
     en: The category already exists.
+    
+error_no_mail_account_title:
+    fr: Aucun compte de messagerie
+    en: No mail accounts
+
+error_no_mail_account_message:
+    fr: Veuillez configurer un compte de messagerie afin d'envoyer un email.
+    en: Please set up a mail account in order to send mail.
 
 ## Messages list
 messages_list_empty_title:
@@ -214,8 +226,24 @@ settings_share_app:
     en: Share %@
 
 settings_rate_app:
-    fr: Donner votre avis sur %@
-    en: Give your opinion about %@
+    fr: Donner votre avis sur l'App Store
+    en: Give your opinion on the App Store
+
+settings_share_feedback:
+    fr: Partager un commentaire
+    en: Share feedback
+    
+settings_feedback_feature_request:
+    fr: Demande de fonctionnalité
+    en: Feature request
+
+settings_bug_report:
+    fr: Signalement de bug
+    en: Bug report
+    
+settings_get_help:
+    fr: Obtenir de l'aide
+    en: Get help
 
 settings_about:
     fr: À propos
@@ -280,20 +308,20 @@ categories_list_empty_title:
     en: No categories !
 
 categories_list_empty_body:
-    fr: Vos catégories enregistrés apparaîtront ici.
+    fr: Vos catégories enregistrées apparaîtront ici.
     en: Your saved categories will appear here.
     
 sub_categories_list_empty_body:
     fr: Aucune sous-catégorie !
     en: No sub-categories !
-    
-sub_categories_single:
-    fr: '%@ sous-catégorie'
-    en: '%@ sub-category'
-    
-sub_categories_plurial:
-    fr: '%@ sous-catégories'
-    en: '%@ sub-categories'
+
+sub_categories:
+    fr:
+        one: '%d sous-catégorie'
+        other: '%d sous-catégories'
+    en:
+        one: '%d sub-category'
+        other: '%d sub-categories'
 
 ## Category
 category_new_title:

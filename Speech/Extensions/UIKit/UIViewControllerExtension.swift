@@ -134,7 +134,7 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func openSafari(urlString: String, inApp: Bool = false) {
+    func open(urlString: String, inApp: Bool = false) {
         guard let url = URL(string: urlString) else { return }
         if inApp {
             let safariVC = SFSafariViewController(url: url)
@@ -142,5 +142,19 @@ extension UIViewController {
         } else {
             UIApplication.shared.open(url)
         }
+    }
+    
+    func showNoMailAccountsAlert() {
+        let alertController = UIAlertController(title: SwiftyAssets.Strings.error_no_mail_account_title, message: SwiftyAssets.Strings.error_no_mail_account_message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: SwiftyAssets.Strings.generic_cancel, style: .cancel)
+        let setUpAction = UIAlertAction(title: SwiftyAssets.Strings.generic_set_up, style: .default) { [weak self] _ in
+            self?.open(urlString: "message://")
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(setUpAction)
+        
+        present(alertController, animated: true)
     }
 }

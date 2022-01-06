@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 import LinkPresentation
 import SwiftyKit
 import RxSwift
@@ -36,8 +37,19 @@ class SettingsViewController: BaseListViewController {
                         .action(title: String(format: SwiftyAssets.Strings.settings_share_app, Bundle.main.displayName), onTap: { [weak self] in
                             self?.onShareApp()
                         }),
-                        .link(.init(title: String(format: SwiftyAssets.Strings.settings_rate_app, Bundle.main.displayName),
-                                    urlString: viewModel.appStoreAppLink))
+                        .link(.init(title: SwiftyAssets.Strings.settings_rate_app, urlString: viewModel.appStoreAppLink)),
+                        .action(title: SwiftyAssets.Strings.settings_share_feedback, onTap: {
+                            let actionController = UIAlertController(title: SwiftyAssets.Strings.settings_share_feedback, message: nil, preferredStyle: .actionSheet)
+                            let cancelAction = UIAlertAction(title: SwiftyAssets.Strings.generic_cancel, style: .cancel, handler: nil)
+                            ViewModel.FeedbackType.allCases.forEach { feedbackType in
+                                let action = UIAlertAction(title: feedbackType.title, style: .default) { [weak self] _ in
+                                    self?.composeMail(feedbackType: feedbackType)
+                                }
+                                actionController.addAction(action)
+                            }
+                            actionController.addAction(cancelAction)
+                            self.present(actionController, animated: true)
+                        })
                     ]),
             Section(model: .init(),
                     items: [
@@ -95,5 +107,31 @@ extension SettingsViewController: UIActivityItemSource {
         metadata.originalURL = URL(string: viewModel.appStoreAppLink)
         metadata.iconProvider = NSItemProvider(object: SwiftyAssets.UIImages.app_icon)
         return metadata
+    }
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    private func composeMail(feedbackType: ViewModel.FeedbackType) {
+        guard MFMailComposeViewController.canSendMail() else {
+            showNoMailAccountsAlert()
+            return
+        }
+        
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+         
+        composeVC.setToRecipients([viewModel.emailAddress])
+        composeVC.setSubject(feedbackType.title)
+        
+        if feedbackType == .bug || feedbackType == .help,
+           let deviceInfoData = UIDevice.current.info.data(using: .utf8) {
+            composeVC.addAttachmentData(deviceInfoData, mimeType: "text/plain", fileName: "device.txt")
+        }
+         
+        self.present(composeVC, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

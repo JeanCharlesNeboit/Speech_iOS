@@ -86,8 +86,8 @@ extension RealmService {
     }
     
     func delete(category: Category) {
-        deleteObject(category)
         deleteObjects(category.subCategories)
+        deleteObject(category)
     }
     
     func doesCategoryAlreadyExist(name: String) -> Bool {

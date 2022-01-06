@@ -23,7 +23,7 @@ class CategoryTableViewCell: AbstractTableViewCell {
         
         let subCategories = category?.subCategories ?? []
         subCategoriesLabel.isHidden = subCategories.isEmpty
-        subCategoriesLabel.text = String(format: subCategories.count <= 1 ? SwiftyAssets.Strings.sub_categories_single : SwiftyAssets.Strings.sub_categories_plurial, "\(subCategories.count)")
+        subCategoriesLabel.text = SwiftyAssets.Strings.sub_categories(count: subCategories.count)
         subCategoriesLabel.setDynamicFont(style: .footnote)
         
         accessoryType = .disclosureIndicator

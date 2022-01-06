@@ -11,6 +11,7 @@
 		7E024381270250BD0042D239 /* SelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E02437F270250BD0042D239 /* SelectionTableViewCell.swift */; };
 		7E024382270250BD0042D239 /* SelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E024380270250BD0042D239 /* SelectionTableViewCell.xib */; };
 		7E0BA4E027568CA900A03FD5 /* UIViewControllerExtension+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0BA4DF27568CA900A03FD5 /* UIViewControllerExtension+Preview.swift */; };
+		7E1953A427877918001F8FCE /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7E1953A227877918001F8FCE /* Localizable.stringsdict */; };
 		7E21117826E6103400916417 /* LoadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E21117726E6103400916417 /* LoadViewController.xib */; };
 		7E21117A26E6104200916417 /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21117926E6104200916417 /* LoadViewController.swift */; };
 		7E21117C26E6BB8600916417 /* CategoryContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21117B26E6BB8600916417 /* CategoryContentView.swift */; };
@@ -192,6 +193,8 @@
 		7E02437F270250BD0042D239 /* SelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewCell.swift; sourceTree = "<group>"; };
 		7E024380270250BD0042D239 /* SelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionTableViewCell.xib; sourceTree = "<group>"; };
 		7E0BA4DF27568CA900A03FD5 /* UIViewControllerExtension+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewControllerExtension+Preview.swift"; sourceTree = "<group>"; };
+		7E1953A327877918001F8FCE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		7E1953A527877D47001F8FCE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7E21117726E6103400916417 /* LoadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadViewController.xib; sourceTree = "<group>"; };
 		7E21117926E6104200916417 /* LoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
 		7E21117B26E6BB8600916417 /* CategoryContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryContentView.swift; sourceTree = "<group>"; };
@@ -914,6 +917,7 @@
 				7E5AEE3126126A46008E024C /* SwiftyStrings.swift */,
 				7EF73327260F1757009D7A08 /* LaunchScreen.storyboard */,
 				7E5AEE3426126AFB008E024C /* Localizable.strings */,
+				7E1953A227877918001F8FCE /* Localizable.stringsdict */,
 				7EF7332A260F1757009D7A08 /* Info.plist */,
 				7E87FE6E2704FC7F00BD145B /* PrivacyPolicy */,
 			);
@@ -1155,6 +1159,7 @@
 				7EF83F8C260F4A2600E53A70 /* MessageListViewController.xib in Resources */,
 				7EE1F288262DEAA400537240 /* CategoryTableViewCell.xib in Resources */,
 				7EF83F7E260F22AF00E53A70 /* EditorAreaViewController.xib in Resources */,
+				7E1953A427877918001F8FCE /* Localizable.stringsdict in Resources */,
 				7E68C02926262F3500617FA2 /* SwitchTableViewCell.xib in Resources */,
 				7EC2F9AA270722560013CAFF /* MarkdownViewController.xib in Resources */,
 				7E9058E22628D38B0082F057 /* CategoryViewController.xib in Resources */,
@@ -1177,6 +1182,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		7E4376B82714887A00C9B7AE /* Firebase */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 8;
 			files = (
 			);
@@ -1410,6 +1416,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		7E1953A227877918001F8FCE /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E1953A327877918001F8FCE /* en */,
+				7E1953A527877D47001F8FCE /* fr */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		7E5AEE3426126AFB008E024C /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -91,7 +91,7 @@ class BaseListViewController: AbstractViewController {
                     .selection(_, _, let onTap):
                     onTap?()
                 case .link(let link):
-                    self.openSafari(urlString: link.urlString)
+                    self.open(urlString: link.urlString)
                 case .container,
                      .slider,
                      .switchChoice,
