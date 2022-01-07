@@ -10,104 +10,93 @@ import Foundation
 
 extension SwiftyAssets {
     class Strings {
-        static var generic_deny: String {
-            return NSLocalizedString("generic_deny", comment: "")
+        // MARK - Localized Strings
+        static var about_description: String {
+            return NSLocalizedString("about_description", comment: "")
         }
         
-        static var preferences_speaking_rate: String {
-            return NSLocalizedString("preferences_speaking_rate", comment: "")
+        static var categories_list_empty_body: String {
+            return NSLocalizedString("categories_list_empty_body", comment: "")
         }
         
-        static var settings_rate_app: String {
-            return NSLocalizedString("settings_rate_app", comment: "")
+        static var categories_list_empty_title: String {
+            return NSLocalizedString("categories_list_empty_title", comment: "")
         }
         
-        static var message_edit_title: String {
-            return NSLocalizedString("message_edit_title", comment: "")
-        }
-        
-        static var generic_set_up: String {
-            return NSLocalizedString("generic_set_up", comment: "")
-        }
-        
-        static var search_empty_title: String {
-            return NSLocalizedString("search_empty_title", comment: "")
-        }
-        
-        static var generic_save: String {
-            return NSLocalizedString("generic_save", comment: "")
+        static var category_delete_confirmation_message: String {
+            return NSLocalizedString("category_delete_confirmation_message", comment: "")
         }
         
         static var category_delete_confirmation_title: String {
             return NSLocalizedString("category_delete_confirmation_title", comment: "")
         }
         
+        static var category_edit_title: String {
+            return NSLocalizedString("category_edit_title", comment: "")
+        }
+        
         static var category_name: String {
             return NSLocalizedString("category_name", comment: "")
         }
         
-        static var preview_hello: String {
-            return NSLocalizedString("preview_hello", comment: "")
-        }
-        
-        static var generic_cancel: String {
-            return NSLocalizedString("generic_cancel", comment: "")
-        }
-        
-        static var settings_speech_synthesis: String {
-            return NSLocalizedString("settings_speech_synthesis", comment: "")
-        }
-        
-        static var editor_area_placeholder: String {
-            return NSLocalizedString("editor_area_placeholder", comment: "")
-        }
-        
-        static var preferences_editor_area_text_size: String {
-            return NSLocalizedString("preferences_editor_area_text_size", comment: "")
-        }
-        
-        static var settings_feedback_feature_request: String {
-            return NSLocalizedString("settings_feedback_feature_request", comment: "")
-        }
-        
-        static var generic_continue: String {
-            return NSLocalizedString("generic_continue", comment: "")
-        }
-        
-        static var welcome_title: String {
-            return NSLocalizedString("welcome_title", comment: "")
-        }
-        
-        static var preferences_close_message_view_when_message_selected: String {
-            return NSLocalizedString("preferences_close_message_view_when_message_selected", comment: "")
+        static var category_new_title: String {
+            return NSLocalizedString("category_new_title", comment: "")
         }
         
         static var category_without_category: String {
             return NSLocalizedString("category_without_category", comment: "")
         }
         
-        static var generic_allow: String {
-            return NSLocalizedString("generic_allow", comment: "")
+        static var crash_reports_description: String {
+            return NSLocalizedString("crash_reports_description", comment: "")
+        }
+        
+        static var editor_area_empty_text_on_save_body: String {
+            return NSLocalizedString("editor_area_empty_text_on_save_body", comment: "")
+        }
+        
+        static var editor_area_empty_text_on_save_title: String {
+            return NSLocalizedString("editor_area_empty_text_on_save_title", comment: "")
+        }
+        
+        static var editor_area_placeholder: String {
+            return NSLocalizedString("editor_area_placeholder", comment: "")
+        }
+        
+        static var editor_area_successfully_saved_body: String {
+            return NSLocalizedString("editor_area_successfully_saved_body", comment: "")
+        }
+        
+        static var editor_area_successfully_saved_title: String {
+            return NSLocalizedString("editor_area_successfully_saved_title", comment: "")
+        }
+        
+        static var emoji_only_allowed: String {
+            return NSLocalizedString("emoji_only_allowed", comment: "")
+        }
+        
+        static var enable_crashlytics: String {
+            return NSLocalizedString("enable_crashlytics", comment: "")
+        }
+        
+        static var error_duplication_category_body: String {
+            return NSLocalizedString("error_duplication_category_body", comment: "")
+        }
+        
+        static var error_duplication_message_body: String {
+            return NSLocalizedString("error_duplication_message_body", comment: "")
+        }
+        
+        static var error_duplication_title: String {
+            return NSLocalizedString("error_duplication_title", comment: "")
         }
         
         static var error_no_mail_account_message: String {
             return NSLocalizedString("error_no_mail_account_message", comment: "")
         }
         
-        static var messages_frequently_used: String {
-            return NSLocalizedString("messages_frequently_used", comment: "")
-        }
-        
-        static var generic_messages: String {
-            return NSLocalizedString("generic_messages", comment: "")
-        }
-        
-        static var settings_thanks: String {
-            return NSLocalizedString("settings_thanks", comment: "")
-        }
-        
-        static var error_duplication_message_body: String {
-            return NSLocalizedString("error_duplication_message_body", comment: "")
+        static var error_no_mail_account_title: String {
+            return NSLocalizedString("error_no_mail_account_title", comment: "")
         }
         
         static var error_not_successfully_saved_body: String {
@@ -118,234 +107,247 @@ extension SwiftyAssets {
             return NSLocalizedString("error_not_successfully_saved_title", comment: "")
         }
         
-        static var categories_list_empty_body: String {
-            return NSLocalizedString("categories_list_empty_body", comment: "")
+        static var generic_add: String {
+            return NSLocalizedString("generic_add", comment: "")
         }
         
-        static var generic_edit: String {
-            return NSLocalizedString("generic_edit", comment: "")
+        static var generic_allow: String {
+            return NSLocalizedString("generic_allow", comment: "")
         }
         
-        static var message_new_title: String {
-            return NSLocalizedString("message_new_title", comment: "")
-        }
-        
-        static var welcome_description: String {
-            return NSLocalizedString("welcome_description", comment: "")
-        }
-        
-        static var help_us: String {
-            return NSLocalizedString("help_us", comment: "")
-        }
-        
-        static var settings_get_help: String {
-            return NSLocalizedString("settings_get_help", comment: "")
-        }
-        
-        static var error_duplication_category_body: String {
-            return NSLocalizedString("error_duplication_category_body", comment: "")
-        }
-        
-        static var messages_list_empty_title: String {
-            return NSLocalizedString("messages_list_empty_title", comment: "")
-        }
-        
-        static var search_empty_body: String {
-            return NSLocalizedString("search_empty_body", comment: "")
-        }
-        
-        static var preferences_automatic_language_recognition: String {
-            return NSLocalizedString("preferences_automatic_language_recognition", comment: "")
-        }
-        
-        static var settings_about: String {
-            return NSLocalizedString("settings_about", comment: "")
-        }
-        
-        static var editor_area_successfully_saved_body: String {
-            return NSLocalizedString("editor_area_successfully_saved_body", comment: "")
-        }
-        
-        static var messages_list_sort_by_date_added: String {
-            return NSLocalizedString("messages_list_sort_by_date_added", comment: "")
-        }
-        
-        static var preferences_preferred_voice_language: String {
-            return NSLocalizedString("preferences_preferred_voice_language", comment: "")
-        }
-        
-        static var generic_validate: String {
-            return NSLocalizedString("generic_validate", comment: "")
-        }
-        
-        static var emoji_only_allowed: String {
-            return NSLocalizedString("emoji_only_allowed", comment: "")
-        }
-        
-        static var categories_list_empty_title: String {
-            return NSLocalizedString("categories_list_empty_title", comment: "")
-        }
-        
-        static var category_edit_title: String {
-            return NSLocalizedString("category_edit_title", comment: "")
-        }
-        
-        static var settings_made_in_auvergne: String {
-            return NSLocalizedString("settings_made_in_auvergne", comment: "")
-        }
-        
-        static var preferences_voice: String {
-            return NSLocalizedString("preferences_voice", comment: "")
-        }
-        
-        static var category_new_title: String {
-            return NSLocalizedString("category_new_title", comment: "")
-        }
-        
-        static var generic_category: String {
-            return NSLocalizedString("generic_category", comment: "")
-        }
-        
-        static var error_no_mail_account_title: String {
-            return NSLocalizedString("error_no_mail_account_title", comment: "")
-        }
-        
-        static var show_frequently_used_messages: String {
-            return NSLocalizedString("show_frequently_used_messages", comment: "")
-        }
-        
-        static var editor_area_empty_text_on_save_body: String {
-            return NSLocalizedString("editor_area_empty_text_on_save_body", comment: "")
-        }
-        
-        static var welcome_slogan: String {
-            return NSLocalizedString("welcome_slogan", comment: "")
-        }
-        
-        static var settings_open_source: String {
-            return NSLocalizedString("settings_open_source", comment: "")
-        }
-        
-        static var preferences_voice_get_more: String {
-            return NSLocalizedString("preferences_voice_get_more", comment: "")
-        }
-        
-        static var editor_area_empty_text_on_save_title: String {
-            return NSLocalizedString("editor_area_empty_text_on_save_title", comment: "")
-        }
-        
-        static var settings_preferences: String {
-            return NSLocalizedString("settings_preferences", comment: "")
-        }
-        
-        static var enable_crashlytics: String {
-            return NSLocalizedString("enable_crashlytics", comment: "")
-        }
-        
-        static var generic_create: String {
-            return NSLocalizedString("generic_create", comment: "")
-        }
-        
-        static var about_description: String {
-            return NSLocalizedString("about_description", comment: "")
-        }
-        
-        static var messages_all: String {
-            return NSLocalizedString("messages_all", comment: "")
-        }
-        
-        static var crash_reports_description: String {
-            return NSLocalizedString("crash_reports_description", comment: "")
-        }
-        
-        static var settings_bug_report: String {
-            return NSLocalizedString("settings_bug_report", comment: "")
-        }
-        
-        static var category_delete_confirmation_message: String {
-            return NSLocalizedString("category_delete_confirmation_message", comment: "")
-        }
-        
-        static var hide_frequently_used_messages: String {
-            return NSLocalizedString("hide_frequently_used_messages", comment: "")
-        }
-        
-        static var settings_share_feedback: String {
-            return NSLocalizedString("settings_share_feedback", comment: "")
-        }
-        
-        static var message_emoji_and_message: String {
-            return NSLocalizedString("message_emoji_and_message", comment: "")
-        }
-        
-        static var generic_clear: String {
-            return NSLocalizedString("generic_clear", comment: "")
-        }
-        
-        static var settings_github: String {
-            return NSLocalizedString("settings_github", comment: "")
-        }
-        
-        static var preferences_save_messages_quickly: String {
-            return NSLocalizedString("preferences_save_messages_quickly", comment: "")
-        }
-        
-        static var privacy: String {
-            return NSLocalizedString("privacy", comment: "")
+        static var generic_cancel: String {
+            return NSLocalizedString("generic_cancel", comment: "")
         }
         
         static var generic_categories: String {
             return NSLocalizedString("generic_categories", comment: "")
         }
         
-        static var privacy_policy: String {
-            return NSLocalizedString("privacy_policy", comment: "")
+        static var generic_category: String {
+            return NSLocalizedString("generic_category", comment: "")
         }
         
-        static var generic_message: String {
-            return NSLocalizedString("generic_message", comment: "")
+        static var generic_clear: String {
+            return NSLocalizedString("generic_clear", comment: "")
         }
         
-        static var editor_area_successfully_saved_title: String {
-            return NSLocalizedString("editor_area_successfully_saved_title", comment: "")
+        static var generic_continue: String {
+            return NSLocalizedString("generic_continue", comment: "")
         }
         
-        static var preferences_replace_text_when_message_selected: String {
-            return NSLocalizedString("preferences_replace_text_when_message_selected", comment: "")
-        }
-        
-        static var messages_list_empty_body: String {
-            return NSLocalizedString("messages_list_empty_body", comment: "")
-        }
-        
-        static var generic_add: String {
-            return NSLocalizedString("generic_add", comment: "")
+        static var generic_create: String {
+            return NSLocalizedString("generic_create", comment: "")
         }
         
         static var generic_delete: String {
             return NSLocalizedString("generic_delete", comment: "")
         }
         
-        static var help_us_improve: String {
-            return NSLocalizedString("help_us_improve", comment: "")
+        static var generic_deny: String {
+            return NSLocalizedString("generic_deny", comment: "")
         }
         
-        static var messages_list_sort_by_alphabetical_order: String {
-            return NSLocalizedString("messages_list_sort_by_alphabetical_order", comment: "")
+        static var generic_edit: String {
+            return NSLocalizedString("generic_edit", comment: "")
         }
         
-        static var error_duplication_title: String {
-            return NSLocalizedString("error_duplication_title", comment: "")
+        static var generic_message: String {
+            return NSLocalizedString("generic_message", comment: "")
         }
         
-        static var settings_share_app: String {
-            return NSLocalizedString("settings_share_app", comment: "")
+        static var generic_messages: String {
+            return NSLocalizedString("generic_messages", comment: "")
+        }
+        
+        static var generic_save: String {
+            return NSLocalizedString("generic_save", comment: "")
+        }
+        
+        static var generic_set_up: String {
+            return NSLocalizedString("generic_set_up", comment: "")
         }
         
         static var generic_settings: String {
             return NSLocalizedString("generic_settings", comment: "")
         }
         
+        static var generic_validate: String {
+            return NSLocalizedString("generic_validate", comment: "")
+        }
+        
+        static var help_us: String {
+            return NSLocalizedString("help_us", comment: "")
+        }
+        
+        static var help_us_improve: String {
+            return NSLocalizedString("help_us_improve", comment: "")
+        }
+        
+        static var hide_frequently_used_messages: String {
+            return NSLocalizedString("hide_frequently_used_messages", comment: "")
+        }
+        
+        static var message_edit_title: String {
+            return NSLocalizedString("message_edit_title", comment: "")
+        }
+        
+        static var message_emoji_and_message: String {
+            return NSLocalizedString("message_emoji_and_message", comment: "")
+        }
+        
+        static var message_new_title: String {
+            return NSLocalizedString("message_new_title", comment: "")
+        }
+        
+        static var messages_all: String {
+            return NSLocalizedString("messages_all", comment: "")
+        }
+        
+        static var messages_frequently_used: String {
+            return NSLocalizedString("messages_frequently_used", comment: "")
+        }
+        
+        static var messages_list_empty_body: String {
+            return NSLocalizedString("messages_list_empty_body", comment: "")
+        }
+        
+        static var messages_list_empty_title: String {
+            return NSLocalizedString("messages_list_empty_title", comment: "")
+        }
+        
+        static var messages_list_sort_by_alphabetical_order: String {
+            return NSLocalizedString("messages_list_sort_by_alphabetical_order", comment: "")
+        }
+        
+        static var messages_list_sort_by_date_added: String {
+            return NSLocalizedString("messages_list_sort_by_date_added", comment: "")
+        }
+        
+        static var preferences_automatic_language_recognition: String {
+            return NSLocalizedString("preferences_automatic_language_recognition", comment: "")
+        }
+        
+        static var preferences_close_message_view_when_message_selected: String {
+            return NSLocalizedString("preferences_close_message_view_when_message_selected", comment: "")
+        }
+        
+        static var preferences_editor_area_text_size: String {
+            return NSLocalizedString("preferences_editor_area_text_size", comment: "")
+        }
+        
+        static var preferences_preferred_voice_language: String {
+            return NSLocalizedString("preferences_preferred_voice_language", comment: "")
+        }
+        
+        static var preferences_replace_text_when_message_selected: String {
+            return NSLocalizedString("preferences_replace_text_when_message_selected", comment: "")
+        }
+        
+        static var preferences_save_messages_quickly: String {
+            return NSLocalizedString("preferences_save_messages_quickly", comment: "")
+        }
+        
+        static var preferences_speaking_rate: String {
+            return NSLocalizedString("preferences_speaking_rate", comment: "")
+        }
+        
+        static var preferences_voice: String {
+            return NSLocalizedString("preferences_voice", comment: "")
+        }
+        
+        static var preferences_voice_get_more: String {
+            return NSLocalizedString("preferences_voice_get_more", comment: "")
+        }
+        
+        static var preview_hello: String {
+            return NSLocalizedString("preview_hello", comment: "")
+        }
+        
+        static var privacy: String {
+            return NSLocalizedString("privacy", comment: "")
+        }
+        
+        static var privacy_policy: String {
+            return NSLocalizedString("privacy_policy", comment: "")
+        }
+        
+        static var search_empty_body: String {
+            return NSLocalizedString("search_empty_body", comment: "")
+        }
+        
+        static var search_empty_title: String {
+            return NSLocalizedString("search_empty_title", comment: "")
+        }
+        
+        static var settings_about: String {
+            return NSLocalizedString("settings_about", comment: "")
+        }
+        
+        static var settings_bug_report: String {
+            return NSLocalizedString("settings_bug_report", comment: "")
+        }
+        
+        static var settings_feedback_feature_request: String {
+            return NSLocalizedString("settings_feedback_feature_request", comment: "")
+        }
+        
+        static var settings_get_help: String {
+            return NSLocalizedString("settings_get_help", comment: "")
+        }
+        
+        static var settings_github: String {
+            return NSLocalizedString("settings_github", comment: "")
+        }
+        
+        static var settings_made_in_auvergne: String {
+            return NSLocalizedString("settings_made_in_auvergne", comment: "")
+        }
+        
+        static var settings_open_source: String {
+            return NSLocalizedString("settings_open_source", comment: "")
+        }
+        
+        static var settings_preferences: String {
+            return NSLocalizedString("settings_preferences", comment: "")
+        }
+        
+        static var settings_rate_app: String {
+            return NSLocalizedString("settings_rate_app", comment: "")
+        }
+        
+        static var settings_share_app: String {
+            return NSLocalizedString("settings_share_app", comment: "")
+        }
+        
+        static var settings_share_feedback: String {
+            return NSLocalizedString("settings_share_feedback", comment: "")
+        }
+        
+        static var settings_speech_synthesis: String {
+            return NSLocalizedString("settings_speech_synthesis", comment: "")
+        }
+        
+        static var settings_thanks: String {
+            return NSLocalizedString("settings_thanks", comment: "")
+        }
+        
+        static var show_frequently_used_messages: String {
+            return NSLocalizedString("show_frequently_used_messages", comment: "")
+        }
+        
+        static var welcome_description: String {
+            return NSLocalizedString("welcome_description", comment: "")
+        }
+        
+        static var welcome_slogan: String {
+            return NSLocalizedString("welcome_slogan", comment: "")
+        }
+        
+        static var welcome_title: String {
+            return NSLocalizedString("welcome_title", comment: "")
+        }
+        
+        // MARK - Plurals Localized Strings
         static func sub_categories(count: Int) -> String {
             let formatString = NSLocalizedString("sub_categories", comment: "")
             return String.localizedStringWithFormat(formatString, count)

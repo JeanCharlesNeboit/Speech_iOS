@@ -160,7 +160,7 @@ error_duplication_category_body:
     
 error_no_mail_account_title:
     fr: Aucun compte de messagerie
-    en: No mail accounts
+    en: No mail account
 
 error_no_mail_account_message:
     fr: Veuillez configurer un compte de messagerie afin d'envoyer un email.
@@ -169,7 +169,7 @@ error_no_mail_account_message:
 ## Messages list
 messages_list_empty_title:
     fr: Aucun message !
-    en: No messages !
+    en: No message !
 
 messages_list_empty_body:
     fr: Vos messages enregistrés apparaîtront ici.
@@ -305,7 +305,7 @@ preferences_close_message_view_when_message_selected:
 ## Categories list
 categories_list_empty_title:
     fr: Aucune catégorie !
-    en: No categories !
+    en: No category !
 
 categories_list_empty_body:
     fr: Vos catégories enregistrées apparaîtront ici.
@@ -317,9 +317,9 @@ sub_categories:
         one: '%d sous-catégorie'
         other: '%d sous-catégories'
     en:
-        zero: No sub-categories !
-        one: '%d sub-category'
-        other: '%d sub-categories'
+        zero: No subcategory !
+        one: '%d subcategory'
+        other: '%d subcategories'
 
 ## Category
 category_new_title:
@@ -336,7 +336,7 @@ category_name:
 
 category_without_category:
     fr: Sans catégorie
-    en: No category
+    en: Without category
 
 category_delete_confirmation_title:
     fr: Voulez-vous supprimer cette catégorie ?

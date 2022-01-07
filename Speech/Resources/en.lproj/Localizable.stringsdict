@@ -11,13 +11,13 @@
                 <key>NSStringFormatSpecTypeKey</key>
                 <string>NSStringPluralRuleType</string>
                 <key>NSStringFormatValueTypeKey</key>
-                <string>d</string>
+                <string></string>
                 <key>one</key>
-                <string>%d sub-category</string>
+                <string>%d subcategory</string>
                 <key>other</key>
-                <string>%d sub-categories</string>
+                <string>%d subcategories</string>
                 <key>zero</key>
-                <string>No sub-categories !</string>
+                <string>No subcategory !</string>
             </dict>
         </dict>
     </dict>
