@@ -35,13 +35,13 @@ class EnvironmentService {
         #endif
     }
     
-    var configurationName: String {
+    var configurationName: String? {
         #if DEBUG
         return "debug"
         #elseif BETA
         return "beta"
         #else
-        return ""
+        return nil
         #endif
     }
 }

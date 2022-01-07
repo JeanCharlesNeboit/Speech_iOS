@@ -16,6 +16,8 @@
                 <string>%d sous-catégorie</string>
                 <key>other</key>
                 <string>%d sous-catégories</string>
+                <key>zero</key>
+                <string>Aucune sous-catégorie !</string>
             </dict>
         </dict>
     </dict>

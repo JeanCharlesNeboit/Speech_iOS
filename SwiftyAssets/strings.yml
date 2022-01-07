@@ -311,15 +311,13 @@ categories_list_empty_body:
     fr: Vos catégories enregistrées apparaîtront ici.
     en: Your saved categories will appear here.
     
-sub_categories_list_empty_body:
-    fr: Aucune sous-catégorie !
-    en: No sub-categories !
-
 sub_categories:
     fr:
+        zero: Aucune sous-catégorie !
         one: '%d sous-catégorie'
         other: '%d sous-catégories'
     en:
+        zero: No sub-categories !
         one: '%d sub-category'
         other: '%d sub-categories'
 

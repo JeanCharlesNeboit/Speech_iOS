@@ -35,7 +35,7 @@ class CategoriesListViewController: BaseListViewController {
             case .category:
                 return SwiftyAssets.Strings.categories_list_empty_body
             case .subCategory:
-                return SwiftyAssets.Strings.sub_categories_list_empty_body
+                return SwiftyAssets.Strings.sub_categories(count: 0)
             case .search:
                 return SwiftyAssets.Strings.search_empty_body
             }
