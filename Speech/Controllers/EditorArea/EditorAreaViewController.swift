@@ -170,8 +170,8 @@ class EditorAreaViewController: AbstractViewController {
             .subscribe(onNext: { [unowned self] height in
                 var contentInsetBottom = [
                     height,
-                    toolbarBottomConstraint.constant,
-                    toolbarContainerView.bounds.height
+                    toolbarContainerView.bounds.height,
+                    20
                 ].reduce(0, +)
                 
                 let safeAreaInsetsBottom = view.safeAreaInsets.bottom

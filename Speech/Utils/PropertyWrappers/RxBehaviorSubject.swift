@@ -32,8 +32,8 @@ public class RxBehaviorSubject<T> {
     public init(wrappedValue: T) {
         self.value = wrappedValue
         self.behaviorSubject = BehaviorSubject<T>(value: wrappedValue)
-        behaviorSubject.subscribe(onNext: { newValue in
-            self.value = newValue
+        behaviorSubject.subscribe(onNext: { [weak self] newValue in
+            self?.value = newValue
         }).disposed(by: disposeBag)
     }
 }

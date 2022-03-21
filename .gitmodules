@@ -1,5 +1,5 @@
 [submodule "Dependencies/SwiftyKit"]
-	path = Dependencies/SwiftyKit
+	path = vendor/SwiftyKit
 	url = git@github.com:JeanCharlesNeboit/SwiftyKit.git
 [submodule "SwiftyCI"]
 	path = SwiftyCI

@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import SwiftyKit
 
 class CoreDataService {
     // MARK: - Shared container

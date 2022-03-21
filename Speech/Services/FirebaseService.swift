@@ -5,6 +5,7 @@
 //  Created by Jean-Charles Neboit on 09/04/2021.
 //
 
+import SwiftyKit
 import Firebase
 import FirebaseCrashlytics
 import RxSwift

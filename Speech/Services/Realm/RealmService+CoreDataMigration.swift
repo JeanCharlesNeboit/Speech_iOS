@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyKit
 
 extension RealmService {
     func performCoreDataToRealmMigration() {
